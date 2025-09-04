@@ -155,15 +155,17 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
     gap: 4rem;
     align-items: center;
     position: relative;
     z-index: 1;
+    min-height: 80vh;
 }
 
 .hero-content {
+    flex: 1;
     animation: slideInLeft 1s ease-out;
 }
 
@@ -255,13 +257,15 @@ body {
 }
 
 .hero-image {
+    flex: 1;
     display: flex;
     justify-content: center;
     animation: slideInRight 1s ease-out;
 }
 
 .profile-card {
-    width: 300px;
+    width: 100%;
+    max-width: 300px;
     height: 300px;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 20px;
@@ -786,6 +790,40 @@ section {
 
 /* Responsive Design */
 
+/* Large Desktop Styles */
+@media (min-width: 1400px) {
+    .hero-container {
+        max-width: 1400px;
+        gap: 6rem;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+    }
+
+    .hero-title .highlight {
+        font-size: 4rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.8rem;
+    }
+
+    .hero-description {
+        font-size: 1.2rem;
+    }
+
+    .profile-card {
+        max-width: 350px;
+        height: 350px;
+    }
+
+    .profile-image {
+        width: 300px;
+        height: 300px;
+    }
+}
+
 /* Tablet Styles */
 @media (max-width: 1024px) {
     .container {
@@ -904,6 +942,11 @@ section {
         margin: 0 auto;
     }
 
+    .profile-card {
+        max-width: 250px;
+        height: 250px;
+    }
+
     .profile-image {
         width: 200px;
         height: 200px;
@@ -1013,6 +1056,11 @@ section {
         gap: 0.8rem;
     }
 
+    .profile-card {
+        max-width: 200px;
+        height: 200px;
+    }
+
     .profile-image {
         width: 150px;
         height: 150px;
@@ -1098,6 +1146,11 @@ section {
         font-size: 1.6rem;
     }
 
+    .profile-card {
+        max-width: 150px;
+        height: 150px;
+    }
+
     .profile-image {
         width: 120px;
         height: 120px;
@@ -1121,6 +1174,11 @@ section {
 
     .hero-image {
         order: 2;
+    }
+
+    .profile-card {
+        max-width: 200px;
+        height: 200px;
     }
 
     .profile-image {
