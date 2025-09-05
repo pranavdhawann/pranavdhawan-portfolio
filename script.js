@@ -334,21 +334,41 @@ function animateCounters() {
     const counters = document.querySelectorAll('.stat h3');
     
     counters.forEach(counter => {
-        const target = parseInt(counter.textContent);
-        const increment = target / 100;
-        let current = 0;
+        const originalText = counter.textContent;
         
-        const updateCounter = () => {
-            if (current < target) {
-                current += increment;
-                counter.textContent = Math.ceil(current) + '+';
-                requestAnimationFrame(updateCounter);
-            } else {
-                counter.textContent = target + '+';
-            }
-        };
-        
-        updateCounter();
+        // Handle GPA specifically (contains decimal)
+        if (originalText.includes('.')) {
+            const target = parseFloat(originalText);
+            const increment = target / 100;
+            let current = 0;
+            
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.textContent = current.toFixed(2);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target.toFixed(2);
+                }
+            };
+            updateCounter();
+        } else {
+            // Handle integer values (certifications, experience)
+            const target = parseInt(originalText.replace('+', ''));
+            const increment = target / 100;
+            let current = 0;
+            
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    counter.textContent = Math.ceil(current) + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    counter.textContent = target + '+';
+                }
+            };
+            updateCounter();
+        }
     });
 }
 
