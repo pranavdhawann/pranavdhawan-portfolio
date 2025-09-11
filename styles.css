@@ -919,11 +919,19 @@ section {
     color: #2563eb;
     text-decoration: none;
     font-weight: 500;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border: 1px solid #2563eb;
+    border-radius: 8px;
+    background: rgba(37, 99, 235, 0.05);
 }
 
 .project-link:hover {
-    color: #1d4ed8;
+    color: white;
+    background: #2563eb;
+    border-color: #1d4ed8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 /* Enhanced Timeline Styles - Replace the existing experience section styles */
@@ -1207,8 +1215,13 @@ section {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .experience {
+        padding: 3rem 0;
+    }
     .timeline-container {
         padding: 1rem 0;
+        margin: 0;
+        max-width: 100%;
     }
     
     .timeline-line {
@@ -1216,8 +1229,11 @@ section {
     }
     
     .timeline-item {
-        padding-left: 0;
+        padding-left: 0 !important;
         margin-bottom: 2.5rem;
+        margin-left: 0;
+        margin-right: 0;
+        transform: translateX(0);
     }
     
     .timeline-marker {
@@ -1226,6 +1242,7 @@ section {
     
     .timeline-content {
         padding: 2rem 1.5rem 1.5rem;
+        margin: 0;
     }
     
     .timeline-date {
@@ -1265,23 +1282,34 @@ section {
 }
 
 @media (max-width: 480px) {
+    .experience {
+        padding: 2rem 0;
+    }
+    
     .timeline-line {
-        left: 25px;
+        display: none;
     }
     
     .timeline-item {
-        padding-left: 65px;
+        padding-left: 0 !important;
+        margin-left: 0;
+        margin-right: 0;
+        transform: translateX(0);
     }
     
     .timeline-marker {
-        left: -5px;
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+        display: none;
     }
     
     .timeline-content {
         padding: 1.8rem 1.2rem 1.2rem;
+        margin: 0;
+    }
+    
+    .timeline-container {
+        padding: 1rem 0;
+        margin: 0;
+        max-width: 100%;
     }
     
     .timeline-date {
@@ -1894,6 +1922,9 @@ section {
         width: 100%;
         max-width: 250px;
         margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .profile-card {
