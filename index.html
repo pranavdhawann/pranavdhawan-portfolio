@@ -8,60 +8,38 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
         rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- Mobile Toggle Button -->
-    <button class="mobile-toggle" id="mobileToggle">
-        <i class="fas fa-bars"></i>
-    </button>
-
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <div class="nav-logo">
-                <a href="#home">PRANAV DHAWAN</a>
-            </div>
+    <!-- Top Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-logo">
+            <a href="#home">PRANAV DHAWAN</a>
         </div>
-        <ul class="nav-menu">
+        <button class="mobile-toggle" id="mobileToggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-menu" id="navMenu">
             <li class="nav-item">
-                <a href="#home" class="nav-link">
-                    <i class="fas fa-home"></i>
-                    <span>HOME</span>
-                </a>
+                <a href="#home" class="nav-link">HOME</a>
             </li>
             <li class="nav-item">
-                <a href="#about" class="nav-link">
-                    <i class="fas fa-user"></i>
-                    <span>ABOUT</span>
-                </a>
+                <a href="#about" class="nav-link">ABOUT</a>
             </li>
             <li class="nav-item">
-                <a href="#skills" class="nav-link">
-                    <i class="fas fa-code"></i>
-                    <span>SKILLS</span>
-                </a>
+                <a href="#skills" class="nav-link">SKILLS</a>
             </li>
             <li class="nav-item">
-                <a href="#projects" class="nav-link">
-                    <i class="fas fa-folder-open"></i>
-                    <span>PROJECTS</span>
-                </a>
+                <a href="#projects" class="nav-link">PROJECTS</a>
             </li>
             <li class="nav-item">
-                <a href="#experience" class="nav-link">
-                    <i class="fas fa-briefcase"></i>
-                    <span>EXPERIENCE</span>
-                </a>
+                <a href="#experience" class="nav-link">EXPERIENCE</a>
             </li>
             <li class="nav-item">
-                <a href="#contact" class="nav-link">
-                    <i class="fas fa-envelope"></i>
-                    <span>CONTACT</span>
-                </a>
+                <a href="#contact" class="nav-link">CONTACT</a>
             </li>
         </ul>
     </nav>
@@ -98,6 +76,18 @@
                 <div class="rocket rocket-4">
                     <i class="fas fa-rocket"></i>
                 </div>
+                <div class="rocket rocket-5">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="rocket rocket-6">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="rocket rocket-7">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="rocket rocket-8">
+                    <i class="fas fa-rocket"></i>
+                </div>
             </div>
 
             <div class="hero-container">
@@ -106,12 +96,7 @@
                         Hi, I'm <span class="highlight">Pranav Dhawan</span>
                     </h1>
                     <p class="hero-description">
-                        I’m a Machine Learning Engineer and Data Scientist pursuing my MS in Data Science at GWU. I work
-                        on
-                        building and deploying ML models, NLP systems, and data visualizations that solve real problems
-                        and
-                        deliver measurable impact.
-                    </p>
+                        MS Data Science @ George Washington University | <br> AI Engineer 
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">View My Work</a>
                         <a href="#contact" class="btn btn-secondary">Get In Touch</a>
@@ -137,15 +122,10 @@
                     <div class="about-text">
                         <p>
                             I’m a Machine Learning Engineer and Data Scientist currently pursuing my MS in Data Science
-                            at George Washington University. With a background in Computer Science Engineering from
-                            Manipal University Jaipur, I enjoy building ML solutions that solve real-world problems and
-                            create tangible business value.
+                            at George Washington University. My experience spans computer vision, NLP, and analytics with a focus on turning messy data into reliable, scalable solutions.
                         </p>
                         <p>
-                            My work spans document layout detection, intelligent document processing, NLP-based question
-                            answering systems, and workforce analytics. I enjoy uncovering meaningful insights from
-                            data, automating manual and repetitive workflows, and turning complex problems into clean,
-                            scalable solutions using modern ML frameworks and cloud platforms.
+I'm drawn to problems where you need to navigate ambiguity, optimize for constraints, and build systems people actually use. Whether it's refactoring models to improve accuracy and speed, engineering features from messy data, or deploying scalable pipelines.
                         </p>
                     </div>
                 </div>
@@ -159,11 +139,11 @@
                     <div class="skills-card">
                         <div class="card-header">
                             <i class="fas fa-code"></i>
-                            <h3>TECHNICAL SKILLS</h3>
+                            <h3>LANGUAGES & FRAMEWORKS</h3>
                         </div>
                         <div class="skill-categories">
                             <div class="skill-category">
-                                <h4>LANGUAGES & LIBRARIES</h4>
+                                <h4>PROGRAMMING LANGUAGES</h4>
                                 <div class="skill-items">
                                     <div class="skill-item">
                                         <i class="fab fa-python"></i>
@@ -173,14 +153,11 @@
                                         <i class="fas fa-chart-bar"></i>
                                         <span>R</span>
                                     </div>
-                                    <div class="skill-item">
-                                        <i class="fas fa-database"></i>
-                                        <span>SQL</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fas fa-code"></i>
-                                        <span>Bash</span>
-                                    </div>
+                                </div>
+                            </div>
+                            <div class="skill-category">
+                                <h4>LIBRARIES & FRAMEWORKS</h4>
+                                <div class="skill-items">
                                     <div class="skill-item">
                                         <i class="fas fa-layer-group"></i>
                                         <span>Pandas</span>
@@ -190,12 +167,16 @@
                                         <span>NumPy</span>
                                     </div>
                                     <div class="skill-item">
+                                        <i class="fas fa-brain"></i>
+                                        <span>Scikit-learn</span>
+                                    </div>
+                                    <div class="skill-item">
                                         <i class="fas fa-chart-line"></i>
                                         <span>Matplotlib</span>
                                     </div>
                                     <div class="skill-item">
-                                        <i class="fas fa-brain"></i>
-                                        <span>Scikit-learn</span>
+                                        <i class="fas fa-chart-area"></i>
+                                        <span>Seaborn</span>
                                     </div>
                                     <div class="skill-item">
                                         <i class="fas fa-fire"></i>
@@ -205,6 +186,10 @@
                                         <i class="fas fa-fire"></i>
                                         <span>TensorFlow</span>
                                     </div>
+                                    <div class="skill-item">
+                                        <i class="fas fa-robot"></i>
+                                        <span>HuggingFace</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -213,12 +198,20 @@
                     <div class="skills-card">
                         <div class="card-header">
                             <i class="fas fa-tools"></i>
-                            <h3>TOOLS & CLOUD</h3>
+                            <h3>DATA & CLOUD</h3>
                         </div>
                         <div class="skill-categories">
                             <div class="skill-category">
-                                <h4>CLOUD & DEVOPS</h4>
+                                <h4>DATA MANAGEMENT</h4>
                                 <div class="skill-items">
+                                    <div class="skill-item">
+                                        <i class="fas fa-database"></i>
+                                        <span>SQL</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fas fa-database"></i>
+                                        <span>MySQL</span>
+                                    </div>
                                     <div class="skill-item">
                                         <i class="fab fa-aws"></i>
                                         <span>AWS</span>
@@ -226,14 +219,6 @@
                                     <div class="skill-item">
                                         <i class="fab fa-google"></i>
                                         <span>Google Cloud Platform</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-docker"></i>
-                                        <span>Docker</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-git-alt"></i>
-                                        <span>Git</span>
                                     </div>
                                 </div>
                             </div>
@@ -271,17 +256,42 @@
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3>Multimodal Financial Forecasting</h3>
-                            <p>Designing GNN-based architecture fusing LSTM, FinBERT, and graph networks for stock
-                                prediction using FinMultiTime dataset.</p>
+                            <h3>Multimodal Financial Time Series Forecasting</h3>
+                            <p>Designing a GNN-based multimodal architecture fusing LSTM (time series), FinBERT (NLP sentiment), and graph networks to model inter-sector dependencies for stock prediction using the FinMultiTime dataset with attention-based late fusion, targeting sub-2% MAPE on held-out test data.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">Python</span>
                                 <span class="tech-tag">GNN</span>
                                 <span class="tech-tag">LSTM</span>
                                 <span class="tech-tag">FinBERT</span>
+                                <span class="tech-tag">Attention</span>
                             </div>
                             <div class="project-links">
                                 <a href="https://github.com/pranavdhawann/spring-2026-group4" class="project-link"
+                                    target="_blank">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <div class="project-placeholder">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Edge-Based PII Detection & Censoring System</h3>
+                            <p>Achieved 98.1% F1-score and 97.9% recall across 54 PII entity types by architecting and benchmarking 4 transformer architectures, selecting DeBERTa as the production model and deploying via ONNX for &lt;100ms on-device inference. Built an end-to-end Streamlit demo with Tesseract OCR and SHAP/LIME explainability.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">DeBERTa</span>
+                                <span class="tech-tag">ONNX</span>
+                                <span class="tech-tag">Streamlit</span>
+                                <span class="tech-tag">Tesseract OCR</span>
+                                <span class="tech-tag">SHAP/LIME</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/pranavdhawann/Final-Project-Group4" class="project-link"
                                     target="_blank">
                                     <i class="fab fa-github"></i> Code
                                 </a>
@@ -297,8 +307,7 @@
                         </div>
                         <div class="project-content">
                             <h3>Real-Time Financial Data Streaming</h3>
-                            <p>Deployed high-frequency microservice on GCP Cloud Run. Integrated FinBERT for sentiment
-                                scoring of financial news.</p>
+                            <p>Deployed a high-frequency microservice on GCP Cloud Run processing live stock market data. Integrated FinBERT for real-time sentiment scoring of financial news, enabling sub-second sentiment signals alongside price feeds.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">GCP Cloud Run</span>
                                 <span class="tech-tag">Docker</span>
@@ -306,12 +315,10 @@
                                 <span class="tech-tag">FinBERT</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://stock-sentiment-app-egc2jnomta-uc.a.run.app/" class="project-link"
-                                    target="_blank">
+                                <a href="https://stock-sentiment-app-egc2jnomta-uc.a.run.app/" class="project-link" target="_blank">
                                     <i class="fas fa-external-link-alt"></i> Demo
                                 </a>
-                                <a href="https://github.com/pranavdhawann/stock-sentiment-analysis"
-                                    class="project-link">
+                                <a href="https://github.com/pranavdhawann/stock-sentiment-analysis" class="project-link" target="_blank">
                                     <i class="fab fa-github"></i> Code
                                 </a>
                             </div>
@@ -321,38 +328,12 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <i class="fas fa-shield-alt"></i>
+                                <i class="fas fa-cloud"></i>
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3>Edge-Based PII Detection</h3>
-                            <p>Architected privacy-preserving system with DeBERTa-v3 achieving 98.1% F1-score for
-                                on-device PII detection.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">DeBERTa</span>
-                                <span class="tech-tag">ONNX</span>
-                                <span class="tech-tag">Streamlit</span>
-                                <span class="tech-tag">Transformers</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/pranavdhawann/Final-Project-Group4" class="project-link"
-                                    target="_blank">
-                                    <i class="fab fa-github"></i> Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <div class="project-placeholder">
-                                <i class="fas fa-cloud-sun-rain"></i>
-                            </div>
-                        </div>
-                        <div class="project-content">
-                            <h3>Serverless ETL - Weather Dashboard</h3>
-                            <p>Engineered serverless ETL pipeline using AWS Lambda and EventBridge for 99.9% uptime
-                                real-time weather data ingestion.</p>
+                            <h3>Serverless ETL — Weather Dashboard</h3>
+                            <p>Built a fully serverless ETL pipeline on AWS using Lambda and EventBridge to ingest and transform real-time weather data from the OpenWeather API on a scheduled cadence, with results surfaced through an interactive dashboard.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">AWS Lambda</span>
                                 <span class="tech-tag">EventBridge</span>
@@ -360,8 +341,7 @@
                                 <span class="tech-tag">ETL</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/pranavdhawann/weather-dashboard" class="project-link"
-                                    target="_blank">
+                                <a href="https://github.com/pranavdhawann/serverless-weather-etl" class="project-link" target="_blank">
                                     <i class="fab fa-github"></i> Code
                                 </a>
                             </div>
@@ -388,9 +368,6 @@
                             <h4>George Washington University | Washington, DC</h4>
                             <div class="timeline-details">
                                 <p class="gpa-info">GPA: <span class="highlight-gpa">3.74/4.0</span></p>
-                                <p class="research-info"
-                                    style="margin-top: 5px; color: var(--text-secondary); font-size: 0.95rem;">Currently
-                                    Researching Multimodal Financial Time Series Forecasting</p>
                                 <div class="coursework">
                                     <h5>Relevant Coursework:</h5>
                                     <div class="course-tags">
@@ -413,19 +390,28 @@
                         <div class="timeline-content">
                             <div class="timeline-date">February 2024 - August 2024</div>
                             <h3>Machine Learning Engineer</h3>
-                            <h4>Lumina Datamatics | Norwell, MA</h4>
+                            <h4>Lumina Datamatics </h4>
                             <div class="timeline-details">
                                 <div class="achievements">
+                                    <div class="achievement-item">
+                                        <div class="achievement-icon">
+                                            <i class="fas fa-eye"></i>
+                                        </div>
+                                        <div class="achievement-text">
+                                            Fine-tuned Computer Vision models to detect and extract complex equations from
+                                            <strong>10,000+ unstructured documents</strong>, achieving high precision in
+                                            technical expression recognition and eliminating the need for manual
+                                            post-processing.
+                                        </div>
+                                    </div>
                                     <div class="achievement-item">
                                         <div class="achievement-icon">
                                             <i class="fas fa-file-alt"></i>
                                         </div>
                                         <div class="achievement-text">
-                                            Developed processing pipelines and fine-tuned Computer Vision models to
-                                            detect and extract complex equations from documents, achieving high
-                                            precision in unstructured data extraction. Refactored the existing document
-                                            layout parsing pipeline, improving accuracy by <strong>16%</strong> and
-                                            reducing inference latency by <strong>0.3ms per page</strong>.
+                                            Reduced manual correction overhead by <strong>16%</strong> and cut inference
+                                            latency by <strong>0.3ms per page</strong> by replacing LayoutParser with a
+                                            custom YOLO-based document layout pipeline.
                                         </div>
                                     </div>
                                     <div class="achievement-item">
@@ -433,28 +419,21 @@
                                             <i class="fas fa-search"></i>
                                         </div>
                                         <div class="achievement-text">
-                                            Built a Retrieval-Augmented Generation system for legal document search.
-                                            Optimized vector embeddings and indexing strategies to improve search
-                                            relevance and reduce query time from <strong>minutes to seconds</strong>.
-                                        </div>
-                                    </div>
-                                    <div class="achievement-item">
-                                        <div class="achievement-icon">
-                                            <i class="fas fa-chart-line"></i>
-                                        </div>
-                                        <div class="achievement-text">
-                                            Operationalized models on AWS SageMaker, ensuring scalability to handle
-                                            <strong>10,000+ documents</strong>.
+                                            Reduced legal document search query time from minutes to
+                                            <strong>under 5 seconds</strong> by architecting a hybrid RAG system with
+                                            optimized vector embeddings and FAISS indexing, improving search relevance
+                                            for counsel teams.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tech-stack">
                                     <h5>Technologies Used:</h5>
                                     <div class="tech-tags">
-                                        <span class="tech-tag">AWS SageMaker</span>
+                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">YOLO</span>
                                         <span class="tech-tag">Computer Vision</span>
                                         <span class="tech-tag">RAG</span>
-                                        <span class="tech-tag">Python</span>
+                                        <span class="tech-tag">FAISS</span>
                                     </div>
                                 </div>
                             </div>
@@ -476,9 +455,10 @@
                                             <i class="fas fa-chart-line"></i>
                                         </div>
                                         <div class="achievement-text">
-                                            Built <strong>predictive models</strong> using scikit-learn to analyze
-                                            workforce productivity for 500+ employees. Utilized Logistic Regression and
-                                            Random Forest to identify key drivers of performance.
+                                            Identified the <strong>top 5 drivers of workforce performance</strong> with
+                                            <strong>87% prediction accuracy</strong> by building Logistic Regression and
+                                            Random Forest models trained on activity data from 500+ employees, enabling
+                                            targeted HR interventions.
                                         </div>
                                     </div>
                                     <div class="achievement-item">
@@ -486,9 +466,9 @@
                                             <i class="fas fa-database"></i>
                                         </div>
                                         <div class="achievement-text">
-                                            Engineered new data driven KPIs from raw activity logs (screen time, app
-                                            usage) using <strong>SQL and Python</strong>, identifying patterns that
-                                            correlated with high-performance clusters.
+                                            Engineered <strong>12+ data-driven KPIs</strong> from raw employee activity
+                                            logs (screen time, app usage) using SQL and Python, surfacing patterns that
+                                            differentiated high-performance clusters from the broader population.
                                         </div>
                                     </div>
                                     <div class="achievement-item">
@@ -497,7 +477,7 @@
                                         </div>
                                         <div class="achievement-text">
                                             Designed interactive <strong>Tableau dashboards</strong> to visualize
-                                            productivity trends, enabling management to make data driven workforce
+                                            productivity trends, enabling management to make data-driven workforce
                                             planning decisions.
                                         </div>
                                     </div>
@@ -527,12 +507,13 @@
                                 <div class="achievements">
                                     <div class="achievement-item">
                                         <div class="achievement-icon">
-                                            <i class="fas fa-dashboard"></i>
+                                            <i class="fas fa-chart-pie"></i>
                                         </div>
                                         <div class="achievement-text">
-                                            Developed <strong>Power BI dashboards</strong> for Sales & HR, visualizing
-                                            KPIs such as revenue trends and attrition rates to support strategic
-                                            planning.
+                                            Consolidated Sales & HR KPI reporting into <strong>4 Power BI
+                                            dashboards</strong>—covering revenue trends and attrition rates—cutting
+                                            cross-functional reporting turnaround and supporting strategic planning for
+                                            senior leadership.
                                         </div>
                                     </div>
                                     <div class="achievement-item">
@@ -540,9 +521,9 @@
                                             <i class="fas fa-cogs"></i>
                                         </div>
                                         <div class="achievement-text">
-                                            Automated <strong>ETL workflows</strong> using Alteryx, cleaning and
-                                            transforming raw data from multiple sources to ensure 100% reporting
-                                            accuracy.
+                                            Achieved <strong>100% reporting accuracy</strong> across monthly business
+                                            reviews by automating ETL workflows for <strong>5+ data sources</strong>
+                                            using Alteryx, eliminating manual data cleaning and transformation.
                                         </div>
                                     </div>
                                 </div>
@@ -586,37 +567,28 @@
                             <i class="fas fa-code"></i>
                         </div>
                         <div class="timeline-content">
-                            <div class="timeline-date">August 2021 - September 2021</div>
+                            <div class="timeline-date">Aug 2021 – Sept 2021</div>
                             <h3>Full Stack Intern</h3>
                             <h4>Learnovate Ecommerce | Remote</h4>
                             <div class="timeline-details">
                                 <div class="achievements">
                                     <div class="achievement-item">
                                         <div class="achievement-icon">
-                                            <i class="fas fa-mobile-alt"></i>
+                                            <i class="fas fa-shopping-cart"></i>
                                         </div>
                                         <div class="achievement-text">
-                                            Engineered <strong>responsive and visually captivating webpages</strong>
-                                            utilizing HTML, CSS, and JavaScript
-                                        </div>
-                                    </div>
-                                    <div class="achievement-item">
-                                        <div class="achievement-icon">
-                                            <i class="fas fa-paint-brush"></i>
-                                        </div>
-                                        <div class="achievement-text">
-                                            Formulated, designed, and maintained websites following <strong>contemporary
-                                                design principles</strong> and industry best practices
+                                            Developed and maintained full-stack features for an e-commerce platform,
+                                            contributing to both front-end UI components and back-end API integrations.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tech-stack">
                                     <h5>Technologies Used:</h5>
                                     <div class="tech-tags">
+                                        <span class="tech-tag">HTML</span>
+                                        <span class="tech-tag">CSS</span>
                                         <span class="tech-tag">JavaScript</span>
-                                        <span class="tech-tag">HTML5</span>
-                                        <span class="tech-tag">CSS3</span>
-                                        <span class="tech-tag">Responsive Design</span>
+                                        <span class="tech-tag">REST APIs</span>
                                     </div>
                                 </div>
                             </div>
@@ -628,42 +600,33 @@
                             <i class="fas fa-code"></i>
                         </div>
                         <div class="timeline-content">
-                            <div class="timeline-date">June 2021 - August 2021</div>
+                            <div class="timeline-date">Jun 2021 – Aug 2021</div>
                             <h3>Front-End Intern</h3>
                             <h4>Education 4 ol | Remote</h4>
                             <div class="timeline-details">
                                 <div class="achievements">
                                     <div class="achievement-item">
                                         <div class="achievement-icon">
-                                            <i class="fas fa-cubes"></i>
+                                            <i class="fas fa-laptop-code"></i>
                                         </div>
                                         <div class="achievement-text">
-                                            Constructed <strong>reusable code modules</strong>, optimizing efficiency
-                                            across projects and reducing expenses
-                                        </div>
-                                    </div>
-                                    <div class="achievement-item">
-                                        <div class="achievement-icon">
-                                            <i class="fas fa-palette"></i>
-                                        </div>
-                                        <div class="achievement-text">
-                                            Devised <strong>layout structures and graphics</strong>, enhancing visual
-                                            appeal and overall aesthetics of websites
+                                            Built responsive front-end interfaces for an ed-tech platform,
+                                            improving user experience and accessibility for online learning content.
                                         </div>
                                     </div>
                                 </div>
                                 <div class="tech-stack">
                                     <h5>Technologies Used:</h5>
                                     <div class="tech-tags">
-                                        <span class="tech-tag">Front-End Development</span>
-                                        <span class="tech-tag">UI/UX Design</span>
-                                        <span class="tech-tag">Code Optimization</span>
-                                        <span class="tech-tag">Graphics Design</span>
+                                        <span class="tech-tag">HTML</span>
+                                        <span class="tech-tag">CSS</span>
+                                        <span class="tech-tag">JavaScript</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </section>
@@ -699,13 +662,11 @@
                 </div>
             </div>
             <!-- Contact Form Removed -->
-            </div>
-            </div>
         </section>
 
         <footer class="footer">
             <div class="container">
-                <p>&copy; 2025 Pranav Dhawan | All rights reserved.</p>
+                <p>&copy; 2026 Pranav Dhawan | All rights reserved.</p>
             </div>
         </footer>
 
