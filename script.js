@@ -48,6 +48,25 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Back to Top Button
+const backToTopButton = document.getElementById('backToTop');
+
+if (backToTopButton) {
+    const toggleBackToTop = () => {
+        backToTopButton.classList.toggle('is-visible', window.scrollY > 500);
+    };
+
+    toggleBackToTop();
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+
+    backToTopButton.addEventListener('click', () => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        window.scrollTo({
+            top: 0,
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+    });
+}
+
 // Theme Toggle Logic
 const themeToggle = document.getElementById('themeToggle');
 const body = document.body;
@@ -114,7 +133,7 @@ const scrollObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.project-card, .skill-item, .timeline-item, .contact-content').forEach(el => {
+document.querySelectorAll('.project-card, .skill-item, .timeline-item, .contact-content, .contact-content-centered').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
     el.style.transition = 'opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';

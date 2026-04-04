@@ -853,6 +853,10 @@ section {
     opacity: 0;
 }
 
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
 .timeline-marker {
     position: absolute;
     left: -68px;
@@ -910,6 +914,7 @@ section {
     border: 3px solid var(--border);
     box-shadow: var(--shadow);
     position: relative;
+    min-width: 0;
     transition: all var(--transition-smooth);
 }
 
@@ -930,6 +935,9 @@ section {
     border: 2px solid var(--border);
     box-shadow: 2px 2px 0px var(--border);
     z-index: 3;
+    max-width: calc(100% - 40px);
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 .timeline-badge {
@@ -1010,15 +1018,32 @@ section {
     border: 2px solid var(--border);
 }
 
+.course-tag,
+.tech-tag,
+.timeline-content h3,
+.timeline-content h4,
+.achievement-text,
+.gpa-info {
+    overflow-wrap: anywhere;
+}
+
+.achievements {
+    display: grid;
+    gap: 1rem;
+}
+
 .achievement-item {
     display: flex;
     align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 1rem;
     padding: 1rem;
     background: var(--bg-card);
     border: 2px solid var(--border);
     transition: all var(--transition-fast);
+}
+
+.achievement-item:last-child {
+    margin-bottom: 0;
 }
 
 .achievement-item:hover {
@@ -1049,6 +1074,56 @@ section {
 
 .achievement-text strong {
     color: var(--text-primary);
+}
+
+/* ==========================================
+   BACK TO TOP
+   ========================================== */
+.back-to-top {
+    position: fixed;
+    right: 1.5rem;
+    bottom: 1.5rem;
+    width: 56px;
+    height: 56px;
+    border: 3px solid var(--border);
+    background: var(--primary);
+    color: var(--text-primary);
+    box-shadow: var(--shadow);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1100;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(16px) scale(0.96);
+    transition: opacity var(--transition-smooth),
+        transform var(--transition-smooth),
+        visibility var(--transition-smooth),
+        background var(--transition-fast);
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.back-to-top i {
+    font-size: 1.1rem;
+}
+
+.back-to-top:hover {
+    background: var(--primary-dark);
+    transform: translate(-2px, -2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.back-to-top:focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
 }
 
 /* ==========================================
@@ -1196,40 +1271,6 @@ section {
     text-align: center;
     padding: 2rem 0;
     border-top: 3px solid var(--border);
-}
-
-/* Back to Top Button */
-.back-to-top {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 50px;
-    height: 50px;
-    background: var(--primary);
-    color: var(--text-primary);
-    border: 3px solid var(--border);
-    box-shadow: var(--shadow);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    transition: all var(--transition-smooth);
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px);
-    z-index: 1000;
-}
-
-.back-to-top.show {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.back-to-top:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: var(--shadow-hover);
 }
 
 /* ==========================================
@@ -1636,6 +1677,95 @@ section {
         gap: 2rem;
     }
 
+    .timeline-container {
+        padding: 1rem 0 0.5rem;
+    }
+
+    .timeline-line {
+        left: 23px;
+        top: 8px;
+        bottom: 8px;
+        width: 2px;
+    }
+
+    .timeline-item {
+        display: grid;
+        grid-template-columns: 48px minmax(0, 1fr);
+        column-gap: 1rem;
+        align-items: start;
+        margin-bottom: 1.75rem;
+        padding-left: 0;
+    }
+
+    .timeline-marker {
+        position: relative;
+        left: auto;
+        top: 0;
+        width: 48px;
+        height: 48px;
+        font-size: 1.1rem;
+    }
+
+    .timeline-content {
+        padding: 1.5rem;
+    }
+
+    .timeline-date {
+        position: static;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        max-width: 100%;
+        margin-bottom: 0.85rem;
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+
+    .timeline-badge {
+        margin-bottom: 0.85rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.2rem;
+        line-height: 1.25;
+    }
+
+    .timeline-content h4 {
+        font-size: 1rem;
+        line-height: 1.45;
+        margin-bottom: 1rem;
+    }
+
+    .timeline-details {
+        margin-top: 1rem;
+    }
+
+    .gpa-info {
+        padding: 0.9rem 1rem;
+    }
+
+    .course-tags,
+    .tech-tags {
+        gap: 0.5rem;
+    }
+
+    .course-tag,
+    .tech-tag {
+        font-size: 0.78rem;
+        max-width: 100%;
+    }
+
+    .achievement-item {
+        gap: 0.85rem;
+        padding: 0.9rem;
+    }
+
+    .achievement-text {
+        font-size: 0.92rem;
+        line-height: 1.65;
+    }
+
     .project-card {
         margin-bottom: 2rem;
     }
@@ -1664,6 +1794,13 @@ section {
     .form-group input,
     .form-group textarea {
         font-size: 16px;
+    }
+
+    .back-to-top {
+        right: 1rem;
+        bottom: 1rem;
+        width: 52px;
+        height: 52px;
     }
 }
 
@@ -1773,6 +1910,77 @@ section {
         font-size: 0.9rem;
     }
 
+    .timeline-container {
+        padding-top: 0.5rem;
+    }
+
+    .timeline-line {
+        left: 18px;
+    }
+
+    .timeline-item {
+        grid-template-columns: 38px minmax(0, 1fr);
+        column-gap: 0.85rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .timeline-marker {
+        width: 38px;
+        height: 38px;
+        font-size: 0.95rem;
+        border-width: 2px;
+    }
+
+    .timeline-content {
+        padding: 1.15rem;
+    }
+
+    .timeline-date {
+        padding: 0.45rem 0.8rem;
+        font-size: 0.74rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .timeline-badge {
+        font-size: 0.68rem;
+        padding: 0.35rem 0.75rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .timeline-content h3 {
+        font-size: 1.05rem;
+    }
+
+    .timeline-content h4 {
+        font-size: 0.9rem;
+        margin-bottom: 0.9rem;
+    }
+
+    .timeline-details {
+        margin-top: 0.9rem;
+    }
+
+    .gpa-info,
+    .achievement-item {
+        padding: 0.85rem;
+    }
+
+    .achievement-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+    }
+
+    .achievement-text {
+        font-size: 0.88rem;
+    }
+
+    .course-tag,
+    .tech-tag {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.7rem;
+    }
+
     .experience-item {
         padding: 1rem;
     }
@@ -1810,6 +2018,13 @@ section {
 
     .stat p {
         font-size: 0.9rem;
+    }
+
+    .back-to-top {
+        width: 48px;
+        height: 48px;
+        right: 0.85rem;
+        bottom: 0.85rem;
     }
 }
 
