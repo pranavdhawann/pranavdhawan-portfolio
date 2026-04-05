@@ -67,8 +67,6 @@ if (backToTopButton) {
     });
 }
 
-
-
 // Active Link Highlighter with Intersection Observer
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-link');
@@ -122,8 +120,6 @@ if (heroTitle) {
     });
 }
 
-
-
 // ==========================================
 // AVATAR EYE TRACKING (Boundary-Constrained)
 // ==========================================
@@ -148,8 +144,8 @@ if (heroTitle) {
         }
     ];
 
-    // Disable on touch/mobile devices
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) return;
+    // Disable on touch/mobile devices or small screens
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth <= 768) return;
 
     let ready = false;
 
