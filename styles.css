@@ -413,16 +413,10 @@ body {
     will-change: transform;
 }
 
-/* Static mobile avatar — hidden on desktop, shown on mobile */
-.avatar-static-mobile {
-    display: none;
-    width: 400px;
-    max-width: 100%;
-    height: auto;
-    pointer-events: none;
-    user-select: none;
+/* Disable transition smoothing while the mobile orbit animation drives transforms */
+.avatar-wrapper.is-auto-orbit .eye-pupil {
+    transition: none;
 }
-
 .scroll-indicator {
     position: absolute;
     bottom: 30px;
@@ -1346,15 +1340,6 @@ section {
     .hero-image {
         order: 1;
         justify-content: center;
-    }
-
-    /* Hide animated avatar, show static photo on mobile */
-    .avatar-wrapper {
-        display: none !important;
-    }
-
-    .avatar-static-mobile {
-        display: block;
     }
 
     .hero-title {

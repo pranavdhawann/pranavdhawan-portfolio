@@ -121,7 +121,7 @@ if (heroTitle) {
 }
 
 // ==========================================
-// AVATAR EYE TRACKING (Boundary-Constrained)
+// AVATAR EYES (Desktop tracking, mobile orbit)
 // ==========================================
 (function initEyeTracking() {
     const wrapper = document.getElementById('avatarWrapper');
@@ -130,7 +130,7 @@ if (heroTitle) {
     const eyeR = document.getElementById('eyeRight');
     if (!wrapper || !base || !eyeL || !eyeR) return;
 
-    // Boundary definitions in photo.png pixel coordinates (487×476)
+    // Boundary definitions in photo.png pixel coordinates (487x476)
     const eyes = [
         {
             el: eyeL, cx: 208, cy: 188, offsetX: -1, scale: 0.97,
@@ -144,9 +144,11 @@ if (heroTitle) {
         }
     ];
 
-    // Disable on touch/mobile devices or small screens
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth <= 768) return;
-
+    const ORBIT_PERIOD_SECONDS = 8.5;
+    const ORBIT_INTENSITY = 0.58;
+    const ORBIT_BREATH = 0.06;
+    const pointerTypeQuery = window.matchMedia('(pointer: coarse)');
+    const hoverQuery = window.matchMedia('(hover: none)');
     let ready = false;
 
     function setup() {
@@ -158,28 +160,52 @@ if (heroTitle) {
         const H = base.naturalHeight;
         const pw = eyeL.naturalWidth;
         const ph = eyeL.naturalHeight;
+        let pointerListening = false;
+        let orbitFrame = 0;
+        let activeMode = null;
 
-        // Pre-compute directional extents (reduced 20% from raw values)
         for (const eye of eyes) {
             eye.rxPos = (eye.right.x - eye.cx) * 0.5;
             eye.rxNeg = (eye.cx - eye.left.x) * 0.68;
             eye.ryNeg = (eye.cy - eye.top.y) * 0.48;
             eye.ryPos = (eye.bottom.y - eye.cy) * 0.384;
 
-            // Compute display size — use same size for both eyes (larger value)
             const targetW = 38 * 0.88 * (eye.scale || 1);
-            const targetH = targetW * (ph / pw); // maintain eye.png aspect ratio
+            const targetH = targetW * (ph / pw);
             eye.el.style.width = (targetW / W * 100) + '%';
             eye.el.style.left = ((eye.cx + (eye.offsetX || 0) - targetW / 2) / W * 100) + '%';
             eye.el.style.top = ((eye.cy - targetH / 2) / H * 100) + '%';
         }
 
+        function setEyeTransform(eye, moveX, moveY, rect) {
+            const dispX = (moveX / W) * rect.width;
+            const dispY = (moveY / H) * rect.height;
+            eye.el.style.transform = `translate(${dispX}px, ${dispY}px)`;
+        }
+
+        function getDirectionalRadius(eye, dirX, dirY) {
+            const rx = dirX >= 0 ? eye.rxPos : eye.rxNeg;
+            const ry = dirY >= 0 ? eye.ryPos : eye.ryNeg;
+
+            return 1 / Math.sqrt(
+                (dirX * dirX) / (rx * rx) + (dirY * dirY) / (ry * ry)
+            );
+        }
+
+        function resetEyes() {
+            eyes.forEach((eye) => {
+                eye.el.style.transform = 'translate(0px, 0px)';
+            });
+        }
+
         function onPointerMove(e) {
+            if (activeMode !== 'pointer') return;
+
             const rect = wrapper.getBoundingClientRect();
-            const wW = rect.width;
-            const wH = rect.height;
-            const cursorX = ((e.clientX - rect.left) / wW) * W;
-            const cursorY = ((e.clientY - rect.top) / wH) * H;
+            if (!rect.width || !rect.height) return;
+
+            const cursorX = ((e.clientX - rect.left) / rect.width) * W;
+            const cursorY = ((e.clientY - rect.top) / rect.height) * H;
 
             for (const eye of eyes) {
                 const dx = cursorX - eye.cx;
@@ -187,45 +213,112 @@ if (heroTitle) {
                 const dist = Math.sqrt(dx * dx + dy * dy);
 
                 if (dist < 0.5) {
-                    eye.el.style.transform = 'translate(0px,0px)';
+                    eye.el.style.transform = 'translate(0px, 0px)';
                     continue;
                 }
 
                 const dirX = dx / dist;
                 const dirY = dy / dist;
-
-                // Asymmetric ellipse semi-axes for this direction
-                const rx = dirX >= 0 ? eye.rxPos : eye.rxNeg;
-                const ry = dirY >= 0 ? eye.ryPos : eye.ryNeg;
-
-                // Max radius on ellipse: r = 1/√((cosθ/a)²+(sinθ/b)²)
-                // Point (dirX*maxR, dirY*maxR) is guaranteed on the ellipse
-                const maxR = 1 / Math.sqrt(
-                    (dirX * dirX) / (rx * rx) + (dirY * dirY) / (ry * ry)
-                );
-
-                // Intensity ramps to 1.0 when cursor is ~35% of image width away
+                const maxR = getDirectionalRadius(eye, dirX, dirY);
                 const intensity = Math.min(dist / (W * 0.35), 1);
 
-                // Displacement along gaze direction, capped to ellipse
-                const moveX = dirX * maxR * intensity;
-                const moveY = dirY * maxR * intensity;
-
-                // Convert to display coords
-                const dispX = (moveX / W) * wW;
-                const dispY = (moveY / H) * wH;
-                eye.el.style.transform = `translate(${dispX}px, ${dispY}px)`;
+                setEyeTransform(eye, dirX * maxR * intensity, dirY * maxR * intensity, rect);
             }
         }
 
-        document.addEventListener('mousemove', onPointerMove, { passive: true });
+        function stepOrbit(now) {
+            if (activeMode !== 'orbit') return;
+
+            const rect = wrapper.getBoundingClientRect();
+            if (rect.width && rect.height) {
+                const t = now / 1000;
+                const phase = (t / ORBIT_PERIOD_SECONDS) * Math.PI * 2;
+                const angle = ((Math.sin(phase - Math.PI / 2 + 0.1 * Math.sin(t * 0.45)) + 1) / 2) * Math.PI;
+                const dirX = Math.cos(angle);
+                const dirY = Math.sin(angle);
+                const intensity = ORBIT_INTENSITY + ORBIT_BREATH * Math.sin(t * 0.75);
+
+                for (const eye of eyes) {
+                    const maxR = getDirectionalRadius(eye, dirX, dirY);
+                    setEyeTransform(eye, dirX * maxR * intensity, dirY * maxR * intensity, rect);
+                }
+            }
+
+            orbitFrame = window.requestAnimationFrame(stepOrbit);
+        }
+
+        function stopPointerMode() {
+            if (!pointerListening) return;
+            document.removeEventListener('mousemove', onPointerMove);
+            pointerListening = false;
+        }
+
+        function stopOrbitMode() {
+            if (!orbitFrame) return;
+            window.cancelAnimationFrame(orbitFrame);
+            orbitFrame = 0;
+        }
+
+        function startPointerMode() {
+            stopOrbitMode();
+            wrapper.classList.remove('is-auto-orbit');
+
+            if (!pointerListening) {
+                document.addEventListener('mousemove', onPointerMove);
+                pointerListening = true;
+            }
+
+            activeMode = 'pointer';
+            resetEyes();
+        }
+
+        function startOrbitMode() {
+            stopPointerMode();
+            stopOrbitMode();
+            wrapper.classList.add('is-auto-orbit');
+            activeMode = 'orbit';
+            orbitFrame = window.requestAnimationFrame(stepOrbit);
+        }
+
+        function shouldUseOrbitMode() {
+            return (
+                pointerTypeQuery.matches ||
+                hoverQuery.matches ||
+                'ontouchstart' in window ||
+                navigator.maxTouchPoints > 0
+            );
+        }
+
+        function syncMode() {
+            if (shouldUseOrbitMode()) {
+                if (activeMode !== 'orbit') startOrbitMode();
+                return;
+            }
+
+            if (activeMode !== 'pointer') startPointerMode();
+        }
+
+        syncMode();
+        window.addEventListener('resize', syncMode, { passive: true });
+
+        const bindModeListener = (query) => {
+            if (typeof query.addEventListener === 'function') {
+                query.addEventListener('change', syncMode);
+                return;
+            }
+
+            if (typeof query.addListener === 'function') {
+                query.addListener(syncMode);
+            }
+        };
+
+        bindModeListener(pointerTypeQuery);
+        bindModeListener(hoverQuery);
     }
 
-    // Wait for both photo.png and eye.png to load
     if (base.complete) setup();
     else base.addEventListener('load', setup);
+
     if (eyeL.complete) setup();
     else eyeL.addEventListener('load', setup);
 })();
-
-
