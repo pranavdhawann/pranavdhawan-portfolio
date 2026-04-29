@@ -13,22 +13,29 @@ if (mobileToggle) {
 
 // Close menu on navigation (Mobile)
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    if (window.innerWidth <= 768) {
+    if (window.innerWidth <= 768 && navMenu) {
         navMenu.classList.remove('active');
-        const icon = mobileToggle.querySelector('i');
-        icon.classList.add('fa-bars');
-        icon.classList.remove('fa-times');
+        if (mobileToggle) {
+            const icon = mobileToggle.querySelector('i');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
+        }
     }
 }));
 
 // Close menu when clicking outside (Mobile)
 document.addEventListener('click', (e) => {
+    if (!mobileToggle || !navMenu) return;
     if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
         if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
             navMenu.classList.remove('active');
             const icon = mobileToggle.querySelector('i');
-            icon.classList.add('fa-bars');
-            icon.classList.remove('fa-times');
+            if (icon) {
+                icon.classList.add('fa-bars');
+                icon.classList.remove('fa-times');
+            }
         }
     }
 });
@@ -67,57 +74,99 @@ if (backToTopButton) {
     });
 }
 
-// Active Link Highlighter with Intersection Observer
-const sections = document.querySelectorAll('section');
+// Active Link Highlighter — track all sections, pick the one with the largest visible ratio
+const sections = Array.from(document.querySelectorAll('section'));
 const navLinks = document.querySelectorAll('.nav-link');
+const sectionRatios = new Map();
 
-const observerOptions = {
-    threshold: 0.3,
-    rootMargin: '-80px 0px 0px 0px'
+const setActiveLink = (id) => {
+    navLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+    });
 };
 
 const sectionObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const currentId = entry.target.getAttribute('id');
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === `#${currentId}`) {
-                    link.classList.add('active');
-                }
-            });
+        sectionRatios.set(entry.target, entry.isIntersecting ? entry.intersectionRatio : 0);
+    });
+
+    let bestId = null;
+    let bestRatio = 0;
+    sectionRatios.forEach((ratio, el) => {
+        if (ratio > bestRatio) {
+            bestRatio = ratio;
+            bestId = el.getAttribute('id');
         }
     });
-}, observerOptions);
+
+    if (bestId) setActiveLink(bestId);
+}, {
+    threshold: [0, 0.1, 0.25, 0.5, 0.75, 1],
+    rootMargin: '-80px 0px -40% 0px'
+});
 
 sections.forEach(section => sectionObserver.observe(section));
 
-// Scroll Animations (Fade Up)
+// Scroll Animations (Fade Up) — toggle CSS class so :hover transforms still apply
 const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+            entry.target.classList.add('is-visible');
             scrollObserver.unobserve(entry.target);
         }
     });
 }, { threshold: 0.1 });
 
 document.querySelectorAll('.project-card, .skill-item, .timeline-item, .contact-content-centered').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+    el.classList.add('fade-up');
     scrollObserver.observe(el);
 });
 
-// FUN FACTOR: Interactive Hero Title (3D Tilt)
+// FUN FACTOR: Interactive Hero Title (3D Tilt) — only on fine-pointer devices, only while hero visible
 const heroTitle = document.querySelector('.hero-title');
-if (heroTitle) {
-    document.addEventListener('mousemove', (e) => {
+const heroSection = document.getElementById('home');
+const finePointerQuery = window.matchMedia('(pointer: fine)');
+
+if (heroTitle && heroSection) {
+    let heroVisible = true;
+    let tiltAttached = false;
+
+    const onTiltMove = (e) => {
         const xPos = (window.innerWidth / 2 - e.clientX) / 50;
         const yPos = (window.innerHeight / 2 - e.clientY) / 50;
         heroTitle.style.transform = `rotateY(${xPos}deg) rotateX(${yPos}deg)`;
-    });
+    };
+
+    const attachTilt = () => {
+        if (tiltAttached) return;
+        document.addEventListener('mousemove', onTiltMove);
+        tiltAttached = true;
+    };
+
+    const detachTilt = () => {
+        if (!tiltAttached) return;
+        document.removeEventListener('mousemove', onTiltMove);
+        tiltAttached = false;
+        heroTitle.style.transform = '';
+    };
+
+    const syncTilt = () => {
+        if (finePointerQuery.matches && heroVisible) attachTilt();
+        else detachTilt();
+    };
+
+    new IntersectionObserver((entries) => {
+        entries.forEach(entry => { heroVisible = entry.isIntersecting; });
+        syncTilt();
+    }, { threshold: 0 }).observe(heroSection);
+
+    if (typeof finePointerQuery.addEventListener === 'function') {
+        finePointerQuery.addEventListener('change', syncTilt);
+    } else if (typeof finePointerQuery.addListener === 'function') {
+        finePointerQuery.addListener(syncTilt);
+    }
+
+    syncTilt();
 }
 
 // ==========================================
@@ -316,9 +365,8 @@ if (heroTitle) {
         bindModeListener(hoverQuery);
     }
 
-    if (base.complete) setup();
-    else base.addEventListener('load', setup);
-
-    if (eyeL.complete) setup();
-    else eyeL.addEventListener('load', setup);
+    const trySetup = () => setup();
+    if (!base.complete) base.addEventListener('load', trySetup, { once: true });
+    if (!eyeL.complete) eyeL.addEventListener('load', trySetup, { once: true });
+    if (base.complete && eyeL.complete) trySetup();
 })();
