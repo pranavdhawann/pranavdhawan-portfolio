@@ -370,3 +370,209 @@ if (heroTitle && heroSection) {
     if (!eyeL.complete) eyeL.addEventListener('load', trySetup, { once: true });
     if (base.complete && eyeL.complete) trySetup();
 })();
+
+/* ==========================================
+   SKILLS GRAPH (static)
+   ========================================== */
+(() => {
+    const svg = document.getElementById('skillsGraph');
+    if (!svg) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const linksLayer = svg.querySelector('.links');
+    const nodesLayer = svg.querySelector('.nodes');
+
+    const nodes = [
+        { id: 'python',  label: 'Python',       group: 'lang' },
+        { id: 'r',       label: 'R',            group: 'lang' },
+        { id: 'pandas',  label: 'Pandas',       group: 'mllib' },
+        { id: 'numpy',   label: 'NumPy',        group: 'mllib' },
+        { id: 'sklearn', label: 'Scikit-learn', group: 'mllib' },
+        { id: 'mpl',     label: 'Matplotlib',   group: 'mllib' },
+        { id: 'sns',     label: 'Seaborn',      group: 'mllib' },
+        { id: 'pt',      label: 'PyTorch',      group: 'mllib' },
+        { id: 'tf',      label: 'TensorFlow',   group: 'mllib' },
+        { id: 'hf',      label: 'HuggingFace',  group: 'mllib' },
+        { id: 'sql',     label: 'SQL',          group: 'cloud' },
+        { id: 'mysql',   label: 'MySQL',        group: 'cloud' },
+        { id: 'aws',     label: 'AWS',          group: 'cloud' },
+        { id: 'gcp',     label: 'GCP',          group: 'cloud' },
+        { id: 'pbi',     label: 'Power BI',     group: 'viz' },
+        { id: 'tab',     label: 'Tableau',      group: 'viz' },
+        { id: 'st',      label: 'Streamlit',    group: 'viz' },
+    ];
+
+    const linkPairs = [
+        ['python','pandas'], ['python','numpy'], ['python','sklearn'],
+        ['python','mpl'], ['python','sns'], ['python','pt'], ['python','tf'],
+        ['python','hf'], ['python','st'], ['python','aws'], ['python','gcp'],
+        ['python','sql'],
+        ['r','tab'], ['r','pbi'], ['r','sql'],
+        ['pandas','numpy'], ['pandas','sklearn'], ['pandas','mpl'],
+        ['pandas','sns'], ['pandas','st'], ['pandas','sql'],
+        ['numpy','sklearn'], ['numpy','pt'], ['numpy','tf'],
+        ['sklearn','mpl'], ['sklearn','sns'],
+        ['mpl','sns'],
+        ['pt','tf'], ['pt','hf'], ['tf','hf'],
+        ['sql','mysql'], ['sql','aws'], ['sql','gcp'],
+        ['sql','pbi'], ['sql','tab'],
+        ['mysql','aws'], ['aws','gcp'], ['aws','st'],
+        ['pbi','tab'],
+    ];
+
+    const links = linkPairs.map(([s, t]) => ({ source: s, target: t }));
+    const nodeMap = new Map(nodes.map(n => [n.id, n]));
+    const neighbors = new Map();
+    const addNeighbor = (a, b) => {
+        if (!neighbors.has(a)) neighbors.set(a, new Set());
+        neighbors.get(a).add(b);
+    };
+    links.forEach(l => { addNeighbor(l.source, l.target); addNeighbor(l.target, l.source); });
+
+    links.forEach(l => {
+        const el = document.createElementNS(NS, 'line');
+        el.setAttribute('class', 'link');
+        l.el = el;
+        linksLayer.appendChild(el);
+    });
+
+    nodes.forEach(n => {
+        const g = document.createElementNS(NS, 'g');
+        g.setAttribute('class', `node node-${n.group}`);
+        g.dataset.id = n.id;
+        const c = document.createElementNS(NS, 'circle');
+        c.setAttribute('class', 'node-circle');
+        g.appendChild(c);
+        const t = document.createElementNS(NS, 'text');
+        t.setAttribute('class', 'node-label');
+        t.setAttribute('font-size', 13);
+        t.setAttribute('dy', '0.35em');
+        t.textContent = n.label;
+        g.appendChild(t);
+        nodesLayer.appendChild(g);
+        n.el = g; n.circle = c; n.text = t;
+    });
+
+    // dynamic radius from rendered text width
+    function measureRadii() {
+        nodes.forEach(n => {
+            let w = 60;
+            try { w = n.text.getBBox().width; } catch (_) {}
+            const r = Math.max(24, Math.round(w / 2 + 14));
+            n.r = r;
+            n.circle.setAttribute('r', r);
+        });
+    }
+
+    function simulate(W, H) {
+        nodes.forEach((n, i) => {
+            const a = (i / nodes.length) * Math.PI * 2;
+            n.x = W / 2 + Math.cos(a) * Math.min(W, H) * 0.32;
+            n.y = H / 2 + Math.sin(a) * Math.min(W, H) * 0.32;
+            n.vx = 0; n.vy = 0;
+        });
+
+        const ITER = 500;
+        const REPULSION = 16000;
+        const SPRING = 0.035;
+        const REST = Math.min(W, H) * 0.18;
+        const CENTER = 0.006;
+        const DAMP = 0.82;
+
+        for (let it = 0; it < ITER; it++) {
+            for (let a = 0; a < nodes.length; a++) {
+                for (let b = a + 1; b < nodes.length; b++) {
+                    const na = nodes[a], nb = nodes[b];
+                    let dx = nb.x - na.x, dy = nb.y - na.y;
+                    let d2 = dx * dx + dy * dy;
+                    if (d2 < 0.01) { dx = Math.random(); dy = Math.random(); d2 = dx*dx+dy*dy; }
+                    const d = Math.sqrt(d2);
+                    const f = REPULSION / d2;
+                    let fx = (f * dx) / d, fy = (f * dy) / d;
+                    const minDist = na.r + nb.r + 12;
+                    if (d < minDist) {
+                        const push = (minDist - d) * 0.6;
+                        fx += (dx / d) * push;
+                        fy += (dy / d) * push;
+                    }
+                    na.vx -= fx; na.vy -= fy;
+                    nb.vx += fx; nb.vy += fy;
+                }
+            }
+            for (const l of links) {
+                const a = nodeMap.get(l.source), b = nodeMap.get(l.target);
+                const dx = b.x - a.x, dy = b.y - a.y;
+                const d = Math.sqrt(dx * dx + dy * dy) + 0.01;
+                const f = SPRING * (d - REST);
+                const fx = (f * dx) / d, fy = (f * dy) / d;
+                a.vx += fx; a.vy += fy;
+                b.vx -= fx; b.vy -= fy;
+            }
+            for (const n of nodes) {
+                n.vx += (W / 2 - n.x) * CENTER;
+                n.vy += (H / 2 - n.y) * CENTER;
+                n.vx *= DAMP; n.vy *= DAMP;
+                n.x += n.vx; n.y += n.vy;
+                n.x = Math.max(n.r + 6, Math.min(W - n.r - 6, n.x));
+                n.y = Math.max(n.r + 6, Math.min(H - n.r - 6, n.y));
+            }
+        }
+    }
+
+    function render() {
+        for (const l of links) {
+            const a = nodeMap.get(l.source), b = nodeMap.get(l.target);
+            l.el.setAttribute('x1', a.x);
+            l.el.setAttribute('y1', a.y);
+            l.el.setAttribute('x2', b.x);
+            l.el.setAttribute('y2', b.y);
+        }
+        for (const n of nodes) {
+            n.el.setAttribute('transform', `translate(${n.x}, ${n.y})`);
+        }
+    }
+
+    function layout() {
+        const narrow = window.matchMedia('(max-width: 768px)').matches;
+        const W = narrow ? 560 : 1100;
+        const H = narrow ? 980 : 690;
+        svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+        measureRadii();
+        simulate(W, H);
+        render();
+    }
+
+    // wait a tick so SVG is laid out and getBBox works
+    requestAnimationFrame(layout);
+
+    nodes.forEach(n => {
+        n.el.addEventListener('pointerenter', () => highlight(n.id));
+        n.el.addEventListener('pointerleave', clearHighlight);
+    });
+
+    function highlight(id) {
+        const connected = new Set([id, ...(neighbors.get(id) || [])]);
+        nodes.forEach(n => n.el.classList.toggle('dim', !connected.has(n.id)));
+        links.forEach(l => {
+            const isActive = l.source === id || l.target === id;
+            l.el.classList.toggle('active', isActive);
+            l.el.classList.toggle('dim', !isActive);
+        });
+    }
+    function clearHighlight() {
+        nodes.forEach(n => n.el.classList.remove('dim'));
+        links.forEach(l => { l.el.classList.remove('active'); l.el.classList.remove('dim'); });
+    }
+
+    let resizeTimer;
+    let lastNarrow = window.matchMedia('(max-width: 768px)').matches;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            const narrow = window.matchMedia('(max-width: 768px)').matches;
+            if (narrow !== lastNarrow) {
+                lastNarrow = narrow;
+                layout();
+            }
+        }, 150);
+    }, { passive: true });
+})();
