@@ -399,13 +399,17 @@ if (heroTitle && heroSection) {
         { id: 'pbi',     label: 'Power BI',     group: 'viz' },
         { id: 'tab',     label: 'Tableau',      group: 'viz' },
         { id: 'st',      label: 'Streamlit',    group: 'viz' },
+        { id: 'n8n',     label: 'n8n',          group: 'agent' },
+        { id: 'agentai', label: 'Agentic AI',   group: 'agent' },
+        { id: 'lc',      label: 'LangChain',    group: 'agent' },
+        { id: 'crew',    label: 'CrewAI',       group: 'agent' },
     ];
 
     const linkPairs = [
         ['python','pandas'], ['python','numpy'], ['python','sklearn'],
         ['python','mpl'], ['python','sns'], ['python','pt'], ['python','tf'],
         ['python','hf'], ['python','st'], ['python','aws'], ['python','gcp'],
-        ['python','sql'],
+        ['python','sql'], ['python','lc'], ['python','crew'], ['python','agentai'],
         ['r','tab'], ['r','pbi'], ['r','sql'],
         ['pandas','numpy'], ['pandas','sklearn'], ['pandas','mpl'],
         ['pandas','sns'], ['pandas','st'], ['pandas','sql'],
@@ -417,6 +421,9 @@ if (heroTitle && heroSection) {
         ['sql','pbi'], ['sql','tab'],
         ['mysql','aws'], ['aws','gcp'], ['aws','st'],
         ['pbi','tab'],
+        ['n8n','agentai'], ['agentai','lc'], ['agentai','crew'],
+        ['lc','hf'], ['lc','crew'], ['crew','hf'],
+        ['n8n','aws'], ['n8n','gcp'], ['n8n','lc'],
     ];
 
     const links = linkPairs.map(([s, t]) => ({ source: s, target: t }));
