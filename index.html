@@ -4,13 +4,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pranav Dhawan</title>
-    <link rel="icon" href="data:,">
+    <title>Pranav Dhawan — AI Engineer & Data Scientist</title>
+    <meta name="description" content="Portfolio of Pranav Dhawan — AI Workforce Engineer at the American Chemical Society, MS in Data Science from George Washington University. Building ML systems across computer vision, NLP, and agentic AI.">
+    <meta name="author" content="Pranav Dhawan">
+    <link rel="canonical" href="https://pranavdhawan.netlify.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pranavdhawan.netlify.app/">
+    <meta property="og:title" content="Pranav Dhawan — AI Engineer & Data Scientist">
+    <meta property="og:description" content="AI Workforce Engineer | MS Data Science @ GWU. Building ML systems across computer vision, NLP, and agentic AI.">
+    <meta property="og:image" content="https://pranavdhawan.netlify.app/photo.png">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pranav Dhawan — AI Engineer & Data Scientist">
+    <meta name="twitter:description" content="AI Workforce Engineer | MS Data Science @ GWU. Building ML systems across computer vision, NLP, and agentic AI.">
+    <meta name="twitter:image" content="https://pranavdhawan.netlify.app/photo.png">
+
+    <!-- Favicon: inline SVG, neobrutalism yellow with 'P' -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD600' stroke='%231A1A1A' stroke-width='6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Space Grotesk,sans-serif' font-size='42' font-weight='800' fill='%231A1A1A'%3EP%3C/text%3E%3C/svg%3E">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link
+
+    <!-- Preconnect hints for third-party origins -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer">
+    <!-- Google Fonts CSS rotates per-browser; SRI not recommended (Google docs) -->
+    <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+        crossorigin="anonymous">
 </head>
 
 <body>
@@ -20,8 +49,8 @@
         <div class="nav-logo">
             <a href="#home">PRANAV DHAWAN</a>
         </div>
-        <button class="mobile-toggle" id="mobileToggle">
-            <i class="fas fa-bars"></i>
+        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+            <i class="fas fa-bars" aria-hidden="true"></i>
         </button>
         <ul class="nav-menu" id="navMenu">
             <li class="nav-item">
@@ -49,47 +78,7 @@
     <main class="main-content">
 
         <section id="home" class="hero">
-            <!-- Particle Background -->
-            <div class="particles-container">
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-                <div class="particle"></div>
-            </div>
-
-            <!-- Hero Rockets Animation - Only in Hero Section -->
-            <div class="hero-rockets">
-                <div class="rocket rocket-1">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="rocket rocket-2">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="rocket rocket-3">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="rocket rocket-4">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="rocket rocket-5">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="rocket rocket-6">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="rocket rocket-7">
-                    <i class="fas fa-rocket"></i>
-                </div>
-                <div class="rocket rocket-8">
-                    <i class="fas fa-rocket"></i>
-                </div>
-            </div>
+            <!-- Particle + rocket decorations injected by script.js on capable viewports only -->
 
             <div class="hero-container">
                 <div class="hero-content">
@@ -123,16 +112,18 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p>
-                            I'm a AI Engineer and Data Scientist currently working on cool stuff. I hold a Master’s in
+                            I’m an AI Engineer and Data Scientist building production ML systems. I hold a Master’s in
                             Data Science from George Washington University and a Bachelor’s in Computer Science and
                             Engineering. My experience spans computer vision, natural language processing (NLP), and
-                            analytics, with a focus on transforming messy data into reliable, scalable solutions. </p>
+                            analytics, with a focus on transforming messy data into reliable, scalable solutions.
+                        </p>
                         <p>
                             I’ve recently been working on AI agents, context compression, and workflow automation. I’m
-                            particularly interested in challenges that involve navigating ambiguity, optimizing under
-                            constraints, and building systems that people actually use. This includes improving model
-                            performance, engineering features from data, and deploying pipelines on the cloud. </p>
-                        <p>Always open to connecting with others working on interesting problems!</p>
+                            drawn to problems that involve navigating ambiguity, optimizing under constraints, and
+                            building systems people actually use — improving model performance, engineering features
+                            from data, and deploying pipelines on the cloud.
+                        </p>
+                        <p>Always open to connecting with others working on interesting problems.</p>
                     </div>
                 </div>
             </div>
@@ -141,7 +132,7 @@
         <section id="skills" class="skills">
             <div class="container">
                 <h2 class="section-title">SKILLS & TECHNOLOGIES</h2>
-                <p class="skills-graph-hint">Hover any node to highlight connections</p>
+                <p class="skills-graph-hint">Hover or tap any node to highlight connections</p>
                 <div class="skills-graph-legend">
                     <span class="legend-item"><span class="legend-dot legend-lang"></span>Language</span>
                     <span class="legend-item"><span class="legend-dot legend-mllib"></span>ML / Data Library</span>
@@ -150,7 +141,9 @@
                     <span class="legend-item"><span class="legend-dot legend-agent"></span>AI Agents</span>
                 </div>
                 <div class="skills-graph-wrapper">
-                    <svg id="skillsGraph" class="skills-graph" role="img" aria-label="Static skill graph">
+                    <svg id="skillsGraph" class="skills-graph" role="img" aria-labelledby="skillsGraphTitle skillsGraphDesc">
+                        <title id="skillsGraphTitle">Skills graph</title>
+                        <desc id="skillsGraphDesc">Interactive graph showing relationships between my skills: programming languages (Python, R); ML and data libraries (Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, PyTorch, TensorFlow, HuggingFace); databases and cloud platforms (SQL, MySQL, AWS, GCP); visualization tools (Power BI, Tableau, Streamlit); and AI agent frameworks (n8n, Agentic AI, LangChain, CrewAI).</desc>
                         <g class="links"></g>
                         <g class="nodes"></g>
                     </svg>
@@ -165,7 +158,7 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <i class="fas fa-stream"></i>
+                                <i class="fas fa-stream" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="project-content">
@@ -176,14 +169,14 @@
                                 it streamlines decision-making with data-driven insights and predictive forecasting
                                 capabilities.</p>
                             <div class="project-tech">
-                                <span class="tech-tag">CGP</span>
+                                <span class="tech-tag">GCP</span>
                                 <span class="tech-tag">Python</span>
                                 <span class="tech-tag">ML</span>
                             </div>
                             <div class="project-links">
                                 <a href="https://stock-screen-25476982226.us-central1.run.app/" class="project-link"
                                     target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-external-link-alt"></i> View
+                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i> View
                                 </a>
                             </div>
                         </div>
@@ -192,7 +185,7 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <i class="fas fa-chart-line"></i>
+                                <i class="fas fa-chart-line" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="project-content">
@@ -210,7 +203,7 @@
                             <div class="project-links">
                                 <a href="https://github.com/pranavdhawann/spring-2026-group4" class="project-link"
                                     target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github"></i> Code
+                                    <i class="fab fa-github" aria-hidden="true"></i> Code
                                 </a>
                             </div>
                         </div>
@@ -219,7 +212,7 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <i class="fas fa-shield-alt"></i>
+                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="project-content">
@@ -235,7 +228,7 @@
                             <div class="project-links">
                                 <a href="https://github.com/pranavdhawann/Final-Project-Group4" class="project-link"
                                     target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github"></i> Code
+                                    <i class="fab fa-github" aria-hidden="true"></i> Code
                                 </a>
                             </div>
                         </div>
@@ -244,7 +237,7 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <i class="fas fa-cloud"></i>
+                                <i class="fas fa-cloud" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="project-content">
@@ -260,7 +253,7 @@
                             <div class="project-links">
                                 <a href="https://github.com/pranavdhawann/serverless-weather-etl" class="project-link"
                                     target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github"></i> Code
+                                    <i class="fab fa-github" aria-hidden="true"></i> Code
                                 </a>
                             </div>
                         </div>
@@ -273,10 +266,7 @@
             <div class="container">
                 <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
                 <div class="timeline-container">
-                    <div class="timeline-line"></div>
-
                     <div class="timeline-item timeline-internship">
-                        <div class="timeline-marker internship-marker"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">May 2026 - Present</div>
                             <div class="timeline-badge current-badge">Current</div>
@@ -286,7 +276,6 @@
                     </div>
 
                     <div class="timeline-item timeline-education">
-                        <div class="timeline-marker education-marker"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">August 2024 - May 2026</div>
                             <div class="timeline-badge education-badge">Graduated</div>
@@ -310,11 +299,10 @@
                     </div>
 
                     <div class="timeline-item timeline-internship">
-                        <div class="timeline-marker internship-marker"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">February 2024 - August 2024</div>
                             <h3>Machine Learning Engineer</h3>
-                            <h4>Lumina Datamatics </h4>
+                            <h4>Lumina Datamatics</h4>
                             <div class="timeline-details">
                                 <div class="achievements">
                                     <div class="achievement-item">
@@ -356,8 +344,26 @@
                         </div>
                     </div>
 
+                    <div class="timeline-item timeline-education">
+                        <div class="timeline-content">
+                            <div class="timeline-date">August 2020 - July 2024</div>
+                            <div class="timeline-badge education-badge">Graduated</div>
+                            <h3>B.Tech in Computer Science and Engineering</h3>
+                            <h4>Manipal University Jaipur | Rajasthan, India</h4>
+                            <div class="timeline-details">
+                                <p class="gpa-info">GPA: <span class="highlight-gpa">8.51/10.0</span></p>
+                                <div class="coursework">
+                                    <h5>Relevant Coursework:</h5>
+                                    <div class="course-tags">
+                                        <span class="course-tag">Algorithms & Data Structures</span>
+                                        <span class="course-tag">Database Management Systems</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="timeline-item timeline-internship">
-                        <div class="timeline-marker internship-marker"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">July 2023 - September 2023</div>
                             <h3>Machine Learning Intern</h3>
@@ -401,7 +407,6 @@
                     </div>
 
                     <div class="timeline-item timeline-internship">
-                        <div class="timeline-marker internship-marker"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">May 2023 - July 2023</div>
                             <h3>Summer Intern</h3>
@@ -437,28 +442,7 @@
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-education">
-                        <div class="timeline-marker education-marker"></div>
-                        <div class="timeline-content">
-                            <div class="timeline-date">August 2020 - July 2024</div>
-                            <div class="timeline-badge education-badge">Graduated</div>
-                            <h3>B.Tech in Computer Science and Engineering</h3>
-                            <h4>Manipal University Jaipur | Rajasthan, India</h4>
-                            <div class="timeline-details">
-                                <p class="gpa-info">GPA: <span class="highlight-gpa">8.51/10.0</span></p>
-                                <div class="coursework">
-                                    <h5>Relevant Coursework:</h5>
-                                    <div class="course-tags">
-                                        <span class="course-tag">Algorithms & Data Structures</span>
-                                        <span class="course-tag">Database Management Systems</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     <div class="timeline-item timeline-internship">
-                        <div class="timeline-marker internship-marker"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">Aug 2021 – Sept 2021</div>
                             <h3>Full Stack Intern</h3>
@@ -486,7 +470,6 @@
                     </div>
 
                     <div class="timeline-item timeline-internship">
-                        <div class="timeline-marker internship-marker"></div>
                         <div class="timeline-content">
                             <div class="timeline-date">Jun 2021 – Aug 2021</div>
                             <h3>Front-End Intern</h3>
@@ -518,25 +501,25 @@
 
         <section id="contact" class="contact">
             <div class="container">
-                <h2 class="section-title">Let's work together!</h2>
+                <h2 class="section-title">GET IN TOUCH</h2>
                 <div class="contact-content-centered">
                     <div class="contact-info">
                         <div class="resume-download">
-                            <a href="Resume.pdf" class="resume-btn" download="Pranav_Dhawan_Resume.pdf">
-                                <i class="fas fa-download"></i>
+                            <a href="Pranav_Dhawan_Resume.pdf" class="resume-btn" download="Pranav_Dhawan_Resume.pdf">
+                                <i class="fas fa-download" aria-hidden="true"></i>
                                 <span>Download Resume</span>
                             </a>
                         </div>
 
                         <div class="social-links">
                             <a href="mailto:dhawanpranav02@gmail.com" class="social-link" aria-label="Email Me">
-                                <i class="fas fa-envelope"></i>
+                                <i class="fas fa-envelope" aria-hidden="true"></i>
                             </a>
-                            <a href="https://github.com/pranavdhawann" class="social-link">
-                                <i class="fab fa-github"></i>
+                            <a href="https://github.com/pranavdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                                <i class="fab fa-github" aria-hidden="true"></i>
                             </a>
-                            <a href="https://linkedin.com/in/pranavvdhawann" class="social-link">
-                                <i class="fab fa-linkedin"></i>
+                            <a href="https://linkedin.com/in/pranavvdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                                <i class="fab fa-linkedin" aria-hidden="true"></i>
                             </a>
                         </div>
                     </div>
@@ -553,7 +536,7 @@
     </main>
 
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
 
     <script src="script.js"></script>

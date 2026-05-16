@@ -1,27 +1,64 @@
+// Global: respect reduced-motion preference
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+// Inject decorative hero particles + rockets only on desktop and only if motion is OK.
+// Keeps mobile DOM lean and respects accessibility preferences.
+(function injectHeroDecorations() {
+    const hero = document.getElementById('home');
+    if (!hero) return;
+    if (prefersReducedMotion.matches) return;
+    if (window.matchMedia('(max-width: 768px)').matches) return;
+
+    const particles = document.createElement('div');
+    particles.className = 'particles-container';
+    particles.setAttribute('aria-hidden', 'true');
+    for (let i = 0; i < 10; i++) {
+        particles.appendChild(document.createElement('div')).className = 'particle';
+    }
+
+    const rockets = document.createElement('div');
+    rockets.className = 'hero-rockets';
+    rockets.setAttribute('aria-hidden', 'true');
+    for (let i = 1; i <= 8; i++) {
+        const r = document.createElement('div');
+        r.className = `rocket rocket-${i}`;
+        const icon = document.createElement('i');
+        icon.className = 'fas fa-rocket';
+        icon.setAttribute('aria-hidden', 'true');
+        r.appendChild(icon);
+        rockets.appendChild(r);
+    }
+
+    hero.prepend(rockets);
+    hero.prepend(particles);
+})();
+
 // Mobile Nav Toggle
 const mobileToggle = document.getElementById('mobileToggle');
 const navMenu = document.getElementById('navMenu');
 
+function setMenuOpen(open) {
+    if (!navMenu || !mobileToggle) return;
+    navMenu.classList.toggle('active', open);
+    mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    const icon = mobileToggle.querySelector('i');
+    if (icon) {
+        icon.classList.toggle('fa-times', open);
+        icon.classList.toggle('fa-bars', !open);
+    }
+}
+
 if (mobileToggle) {
     mobileToggle.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        const icon = mobileToggle.querySelector('i');
-        icon.classList.toggle('fa-bars');
-        icon.classList.toggle('fa-times');
+        const isOpen = navMenu.classList.contains('active');
+        setMenuOpen(!isOpen);
     });
 }
 
 // Close menu on navigation (Mobile)
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
     if (window.innerWidth <= 768 && navMenu) {
-        navMenu.classList.remove('active');
-        if (mobileToggle) {
-            const icon = mobileToggle.querySelector('i');
-            if (icon) {
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            }
-        }
+        setMenuOpen(false);
     }
 }));
 
@@ -30,12 +67,7 @@ document.addEventListener('click', (e) => {
     if (!mobileToggle || !navMenu) return;
     if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
         if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
-            navMenu.classList.remove('active');
-            const icon = mobileToggle.querySelector('i');
-            if (icon) {
-                icon.classList.add('fa-bars');
-                icon.classList.remove('fa-times');
-            }
+            setMenuOpen(false);
         }
     }
 });
@@ -49,7 +81,10 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const navbar = document.querySelector('.navbar');
             const navHeight = navbar ? navbar.offsetHeight : 0;
             const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
-            window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+            window.scrollTo({
+                top: targetPosition,
+                behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
+            });
         }
     });
 });
@@ -66,10 +101,9 @@ if (backToTopButton) {
     window.addEventListener('scroll', toggleBackToTop, { passive: true });
 
     backToTopButton.addEventListener('click', () => {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         window.scrollTo({
             top: 0,
-            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+            behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
         });
     });
 }
@@ -117,7 +151,7 @@ const scrollObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.project-card, .skill-item, .timeline-item, .contact-content-centered').forEach(el => {
+document.querySelectorAll('.project-card, .timeline-item, .contact-content-centered').forEach(el => {
     el.classList.add('fade-up');
     scrollObserver.observe(el);
 });
@@ -151,9 +185,16 @@ if (heroTitle && heroSection) {
     };
 
     const syncTilt = () => {
+        if (prefersReducedMotion.matches) { detachTilt(); return; }
         if (finePointerQuery.matches && heroVisible) attachTilt();
         else detachTilt();
     };
+
+    if (typeof prefersReducedMotion.addEventListener === 'function') {
+        prefersReducedMotion.addEventListener('change', syncTilt);
+    } else if (typeof prefersReducedMotion.addListener === 'function') {
+        prefersReducedMotion.addListener(syncTilt);
+    }
 
     new IntersectionObserver((entries) => {
         entries.forEach(entry => { heroVisible = entry.isIntersecting; });
@@ -406,24 +447,42 @@ if (heroTitle && heroSection) {
     ];
 
     const linkPairs = [
+        // Python ecosystem (Python is the central hub)
         ['python','pandas'], ['python','numpy'], ['python','sklearn'],
         ['python','mpl'], ['python','sns'], ['python','pt'], ['python','tf'],
-        ['python','hf'], ['python','st'], ['python','aws'], ['python','gcp'],
-        ['python','sql'], ['python','lc'], ['python','crew'], ['python','agentai'],
-        ['r','tab'], ['r','pbi'], ['r','sql'],
-        ['pandas','numpy'], ['pandas','sklearn'], ['pandas','mpl'],
-        ['pandas','sns'], ['pandas','st'], ['pandas','sql'],
+        ['python','hf'], ['python','st'], ['python','sql'],
+        ['python','aws'], ['python','gcp'],
+        ['python','lc'], ['python','crew'], ['python','agentai'], ['python','n8n'],
+
+        // R ecosystem
+        ['r','pbi'], ['r','tab'],
+
+        // Data manipulation core
+        ['pandas','numpy'], ['pandas','sklearn'],
+        ['pandas','mpl'], ['pandas','sns'],
+        ['pandas','sql'], ['pandas','st'],
         ['numpy','sklearn'], ['numpy','pt'], ['numpy','tf'],
-        ['sklearn','mpl'], ['sklearn','sns'],
-        ['mpl','sns'],
-        ['pt','tf'], ['pt','hf'], ['tf','hf'],
-        ['sql','mysql'], ['sql','aws'], ['sql','gcp'],
-        ['sql','pbi'], ['sql','tab'],
-        ['mysql','aws'], ['aws','gcp'], ['aws','st'],
-        ['pbi','tab'],
-        ['n8n','agentai'], ['agentai','lc'], ['agentai','crew'],
-        ['lc','hf'], ['lc','crew'], ['crew','hf'],
-        ['n8n','aws'], ['n8n','gcp'], ['n8n','lc'],
+
+        // Visualization libraries
+        ['mpl','sns'], ['sklearn','mpl'],
+        ['st','mpl'], ['st','sns'],
+
+        // Deep learning ↔ HuggingFace (PT/TF both back HF; not each other)
+        ['pt','hf'], ['tf','hf'],
+
+        // Databases & cloud (clouds host the DBs; not connected to each other)
+        ['sql','mysql'],
+        ['sql','aws'], ['sql','gcp'],
+        ['mysql','aws'], ['mysql','gcp'],
+        ['st','gcp'],
+
+        // BI tools connect to data sources, not each other
+        ['pbi','sql'], ['tab','sql'],
+
+        // Agentic stack
+        ['agentai','lc'], ['agentai','crew'], ['agentai','n8n'],
+        ['lc','crew'], ['lc','hf'], ['crew','hf'],
+        ['n8n','lc'],
     ];
 
     const links = linkPairs.map(([s, t]) => ({ source: s, target: t }));
@@ -526,15 +585,16 @@ if (heroTitle && heroSection) {
     }
 
     function render() {
+        const round = (v) => v.toFixed(1);
         for (const l of links) {
             const a = nodeMap.get(l.source), b = nodeMap.get(l.target);
-            l.el.setAttribute('x1', a.x);
-            l.el.setAttribute('y1', a.y);
-            l.el.setAttribute('x2', b.x);
-            l.el.setAttribute('y2', b.y);
+            l.el.setAttribute('x1', round(a.x));
+            l.el.setAttribute('y1', round(a.y));
+            l.el.setAttribute('x2', round(b.x));
+            l.el.setAttribute('y2', round(b.y));
         }
         for (const n of nodes) {
-            n.el.setAttribute('transform', `translate(${n.x}, ${n.y})`);
+            n.el.setAttribute('transform', `translate(${round(n.x)}, ${round(n.y)})`);
         }
     }
 
@@ -554,6 +614,21 @@ if (heroTitle && heroSection) {
     nodes.forEach(n => {
         n.el.addEventListener('pointerenter', () => highlight(n.id));
         n.el.addEventListener('pointerleave', clearHighlight);
+        // Touch support: tap a node to toggle its highlight
+        n.el.addEventListener('click', (e) => {
+            e.stopPropagation();
+            highlight(n.id);
+        });
+    });
+
+    // Touch users: tap outside any node clears the highlight
+    svg.addEventListener('click', (e) => {
+        // Bail if the click landed inside a node group (node click handler already ran with stopPropagation)
+        if (e.target.closest('g[data-id]')) return;
+        clearHighlight();
+    });
+    document.addEventListener('click', (e) => {
+        if (!svg.contains(e.target)) clearHighlight();
     });
 
     function highlight(id) {
