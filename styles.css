@@ -59,12 +59,14 @@
 /* Scroll fade-in (toggled by IntersectionObserver in script.js) */
 .fade-up {
     opacity: 0;
+    visibility: hidden;
     transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .fade-up.is-visible {
     opacity: 1;
+    visibility: visible;
     transform: translateY(0);
 }
 
@@ -80,6 +82,21 @@ body {
     background-color: var(--bg-main);
     min-height: 100vh;
     overflow-x: hidden;
+}
+
+.icon-sprite {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+.icon {
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    vertical-align: -0.125em;
+    flex-shrink: 0;
 }
 
 .container {
@@ -177,6 +194,18 @@ body {
 .mobile-toggle:hover {
     transform: translate(-2px, -2px);
     box-shadow: var(--shadow-hover);
+}
+
+.mobile-toggle .icon-close {
+    display: none;
+}
+
+.mobile-toggle.is-open .icon-menu {
+    display: none;
+}
+
+.mobile-toggle.is-open .icon-close {
+    display: inline-block;
 }
 
 /* ==========================================
@@ -407,7 +436,7 @@ body {
 
 .btn-secondary:hover {
     background: var(--secondary);
-    color: white;
+    color: var(--text-primary);
     transform: translate(-2px, -2px);
     box-shadow: var(--shadow-hover);
 }
@@ -574,6 +603,10 @@ section {
     font-size: 3rem;
     color: var(--text-primary);
     transition: transform var(--transition-smooth);
+}
+
+.project-placeholder .project-icon {
+    display: block;
 }
 
 .project-card:hover .project-placeholder {
@@ -862,7 +895,7 @@ section {
     transform: translateY(0) scale(1);
 }
 
-.back-to-top i {
+.back-to-top .icon {
     font-size: 1.1rem;
 }
 
@@ -949,7 +982,7 @@ section {
     color: var(--accent);
 }
 
-.rocket i {
+.rocket .rocket-icon {
     animation: rocketPulse 2s ease-in-out infinite;
 }
 
@@ -1066,13 +1099,13 @@ section {
    ANIMATIONS
    ========================================== */
 @keyframes slideInLeft {
-    from { opacity: 0; transform: translateX(-50px); }
-    to { opacity: 1; transform: translateX(0); }
+    from { transform: translateX(-50px); }
+    to { transform: translateX(0); }
 }
 
 @keyframes slideInRight {
-    from { opacity: 0; transform: translateX(50px); }
-    to { opacity: 1; transform: translateX(0); }
+    from { transform: translateX(50px); }
+    to { transform: translateX(0); }
 }
 
 @keyframes bounce {
@@ -1529,7 +1562,7 @@ section {
     transition: all var(--transition-fast);
 }
 
-.resume-btn:hover i {
+.resume-btn:hover .icon {
     transform: translateY(-3px);
 }
 
@@ -1648,6 +1681,13 @@ section {
 
 .skills-graph .node { transition: opacity 0.2s ease; }
 .skills-graph .node.dim { opacity: 0.25; }
+.skills-graph .node:focus {
+    outline: none;
+}
+.skills-graph .node:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 6px;
+}
 
 .skills-graph .node-circle {
     stroke: var(--border);
@@ -1657,6 +1697,10 @@ section {
     transition: transform 0.2s ease;
 }
 .skills-graph .node:hover .node-circle { transform: scale(1.08); }
+.skills-graph .node:focus-visible .node-circle {
+    stroke-width: 5;
+    transform: scale(1.08);
+}
 
 .skills-graph .node-lang  .node-circle { fill: var(--secondary); }
 .skills-graph .node-mllib .node-circle { fill: var(--primary); }

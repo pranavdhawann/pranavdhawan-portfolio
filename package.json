@@ -1,0 +1,16 @@
+{
+  "name": "pranavdhawan-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:html": "html-validate index.html",
+    "check:headers": "node tests/check-netlify-headers.mjs",
+    "check": "npm run test:html && npm run check:headers && npm test"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.54.2",
+    "html-validate": "^9.5.3"
+  }
+}

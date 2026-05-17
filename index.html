@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pranav Dhawan — AI Engineer & Data Scientist</title>
+    <title>Pranav Dhawan — AI Engineer &amp; Data Scientist</title>
     <meta name="description" content="Portfolio of Pranav Dhawan — AI Workforce Engineer at the American Chemical Society, MS in Data Science from George Washington University. Building ML systems across computer vision, NLP, and agentic AI.">
     <meta name="author" content="Pranav Dhawan">
     <link rel="canonical" href="https://pranavdhawan.netlify.app/">
@@ -27,15 +27,9 @@
     <link rel="stylesheet" href="styles.css">
 
     <!-- Preconnect hints for third-party origins -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha384-3B6NwesSXE7YJlcLI9RpRqGf2p/EgVH8BgoKTaUrmKNDkHPStTQ3EyoYjCGXaOTS"
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer">
     <!-- Google Fonts CSS rotates per-browser; SRI not recommended (Google docs) -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
@@ -43,14 +37,62 @@
 </head>
 
 <body>
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+        <symbol id="icon-menu" viewBox="0 0 24 24">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+        </symbol>
+        <symbol id="icon-stream" viewBox="0 0 24 24">
+            <path d="M4 7h9M4 12h16M11 17h9" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+            <path d="M16 4l4 3-4 3M8 14l-4 3 4 3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
+        </symbol>
+        <symbol id="icon-chart-line" viewBox="0 0 24 24">
+            <path d="M4 19h16M5 17l4-5 4 3 6-8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"/>
+            <path d="M18 7h2v2" fill="none" stroke="currentColor" stroke-width="2.2"/>
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+            <path d="M12 3l8 3v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V6l8-3z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
+            <path d="M9 12l2 2 4-5" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+        </symbol>
+        <symbol id="icon-cloud" viewBox="0 0 24 24">
+            <path d="M7 18h10a4 4 0 0 0 .5-8 6 6 0 0 0-11.2 1.8A3.2 3.2 0 0 0 7 18z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
+        </symbol>
+        <symbol id="icon-external" viewBox="0 0 24 24">
+            <path d="M8 6h10v10M18 6L7 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+            <path d="M6 10v8h8" fill="none" stroke="currentColor" stroke-width="2.2"/>
+        </symbol>
+        <symbol id="icon-github" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 .3C5.4.3 0 5.7 0 12.3c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 .1.7 2 2.7 1.5.1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6C20.6 22.1 24 17.6 24 12.3 24 5.7 18.6.3 12 .3z"/>
+        </symbol>
+        <symbol id="icon-download" viewBox="0 0 24 24">
+            <path d="M12 4v10M8 10l4 4 4-4M5 19h14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square" stroke-linejoin="miter"/>
+        </symbol>
+        <symbol id="icon-envelope" viewBox="0 0 24 24">
+            <path d="M4 6h16v12H4z" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M5 7l7 6 7-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
+        </symbol>
+        <symbol id="icon-linkedin" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3.1-1.9-3.1s-2.2 1.5-2.2 3v5.7H9.2V9h3.4v1.6h.1c.5-.9 1.6-1.9 3.3-1.9 3.6 0 4.2 2.4 4.2 5.4v6.4zM5.3 7.4a2.1 2.1 0 1 1 0-4.2 2.1 2.1 0 0 1 0 4.2zM7.1 20.5H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.8v20.4C0 23.2.8 24 1.8 24h20.4c1 0 1.8-.8 1.8-1.8V1.8C24 .8 23.2 0 22.2 0z"/>
+        </symbol>
+        <symbol id="icon-arrow-up" viewBox="0 0 24 24">
+            <path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter"/>
+        </symbol>
+        <symbol id="icon-rocket" viewBox="0 0 24 24">
+            <path d="M13 3c3.5 1 6 3.5 8 8l-6 6c-4.5-2-7-4.5-8-8l6-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/>
+            <path d="M7 9l-4 2 4 2M15 17l-2 4-2-4M15 6h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+        </symbol>
+    </svg>
 
     <!-- Top Navigation Bar -->
     <nav class="navbar" id="navbar">
         <div class="nav-logo">
             <a href="#home">PRANAV DHAWAN</a>
         </div>
-        <button class="mobile-toggle" id="mobileToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
-            <i class="fas fa-bars" aria-hidden="true"></i>
+        <button class="mobile-toggle" id="mobileToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+            <svg class="icon icon-menu" aria-hidden="true" focusable="false"><use href="#icon-menu"></use></svg>
+            <svg class="icon icon-close" aria-hidden="true" focusable="false"><use href="#icon-close"></use></svg>
         </button>
         <ul class="nav-menu" id="navMenu">
             <li class="nav-item">
@@ -131,7 +173,7 @@
 
         <section id="skills" class="skills">
             <div class="container">
-                <h2 class="section-title">SKILLS & TECHNOLOGIES</h2>
+                <h2 class="section-title">SKILLS &amp; TECHNOLOGIES</h2>
                 <p class="skills-graph-hint">Hover or tap any node to highlight connections</p>
                 <div class="skills-graph-legend">
                     <span class="legend-item"><span class="legend-dot legend-lang"></span>Language</span>
@@ -141,9 +183,9 @@
                     <span class="legend-item"><span class="legend-dot legend-agent"></span>AI Agents</span>
                 </div>
                 <div class="skills-graph-wrapper">
-                    <svg id="skillsGraph" class="skills-graph" role="img" aria-labelledby="skillsGraphTitle skillsGraphDesc">
+                    <svg id="skillsGraph" class="skills-graph" role="group" aria-labelledby="skillsGraphTitle skillsGraphDesc">
                         <title id="skillsGraphTitle">Skills graph</title>
-                        <desc id="skillsGraphDesc">Interactive graph showing relationships between my skills: programming languages (Python, R); ML and data libraries (Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, PyTorch, TensorFlow, HuggingFace); databases and cloud platforms (SQL, MySQL, AWS, GCP); visualization tools (Power BI, Tableau, Streamlit); and AI agent frameworks (n8n, Agentic AI, LangChain, CrewAI).</desc>
+                        <desc id="skillsGraphDesc">Static graph showing relationships between my skills: programming languages (Python, R); ML and data libraries (Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, PyTorch, TensorFlow, HuggingFace); databases and cloud platforms (SQL, MySQL, AWS, GCP); visualization tools (Power BI, Tableau, Streamlit); and AI agent frameworks (n8n, Agentic AI, LangChain, CrewAI). Nodes can be hovered, tapped, or focused with the keyboard to highlight connections.</desc>
                         <g class="links"></g>
                         <g class="nodes"></g>
                     </svg>
@@ -158,7 +200,7 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <i class="fas fa-stream" aria-hidden="true"></i>
+                                <svg class="icon project-icon" aria-hidden="true" focusable="false"><use href="#icon-stream"></use></svg>
                             </div>
                         </div>
                         <div class="project-content">
@@ -176,7 +218,7 @@
                             <div class="project-links">
                                 <a href="https://stock-screen-25476982226.us-central1.run.app/" class="project-link"
                                     target="_blank" rel="noopener noreferrer">
-                                    <i class="fas fa-external-link-alt" aria-hidden="true"></i> View
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg> View
                                 </a>
                             </div>
                         </div>
@@ -185,7 +227,7 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <i class="fas fa-chart-line" aria-hidden="true"></i>
+                                <svg class="icon project-icon" aria-hidden="true" focusable="false"><use href="#icon-chart-line"></use></svg>
                             </div>
                         </div>
                         <div class="project-content">
@@ -203,7 +245,7 @@
                             <div class="project-links">
                                 <a href="https://github.com/pranavdhawann/spring-2026-group4" class="project-link"
                                     target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github" aria-hidden="true"></i> Code
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
                                 </a>
                             </div>
                         </div>
@@ -212,11 +254,11 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <i class="fas fa-shield-alt" aria-hidden="true"></i>
+                                <svg class="icon project-icon" aria-hidden="true" focusable="false"><use href="#icon-shield"></use></svg>
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3>PII Detection & Censoring System</h3>
+                            <h3>PII Detection &amp; Censoring System</h3>
                             <p>Achieved 98.1% F1-score and 97.9% recall across 54 PII entity types by architecting and
                                 benchmarking 4 transformer architectures, selecting DeBERTa as the production model and
                                 deploying via ONNX for &lt;100ms inference.</p>
@@ -228,7 +270,7 @@
                             <div class="project-links">
                                 <a href="https://github.com/pranavdhawann/Final-Project-Group4" class="project-link"
                                     target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github" aria-hidden="true"></i> Code
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
                                 </a>
                             </div>
                         </div>
@@ -237,7 +279,7 @@
                     <div class="project-card">
                         <div class="project-image">
                             <div class="project-placeholder">
-                                <i class="fas fa-cloud" aria-hidden="true"></i>
+                                <svg class="icon project-icon" aria-hidden="true" focusable="false"><use href="#icon-cloud"></use></svg>
                             </div>
                         </div>
                         <div class="project-content">
@@ -253,7 +295,7 @@
                             <div class="project-links">
                                 <a href="https://github.com/pranavdhawann/serverless-weather-etl" class="project-link"
                                     target="_blank" rel="noopener noreferrer">
-                                    <i class="fab fa-github" aria-hidden="true"></i> Code
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
                                 </a>
                             </div>
                         </div>
@@ -355,7 +397,7 @@
                                 <div class="coursework">
                                     <h5>Relevant Coursework:</h5>
                                     <div class="course-tags">
-                                        <span class="course-tag">Algorithms & Data Structures</span>
+                                        <span class="course-tag">Algorithms &amp; Data Structures</span>
                                         <span class="course-tag">Database Management Systems</span>
                                     </div>
                                 </div>
@@ -410,12 +452,12 @@
                         <div class="timeline-content">
                             <div class="timeline-date">May 2023 - July 2023</div>
                             <h3>Summer Intern</h3>
-                            <h4>Ernst & Young | Gurgaon, India</h4>
+                            <h4>Ernst &amp; Young | Gurgaon, India</h4>
                             <div class="timeline-details">
                                 <div class="achievements">
                                     <div class="achievement-item">
                                         <div class="achievement-text">
-                                            Consolidated Sales & HR KPI reporting into <strong>4 Power BI
+                                            Consolidated Sales &amp; HR KPI reporting into <strong>4 Power BI
                                                 dashboards</strong>—covering revenue trends and attrition rates—cutting
                                             cross-functional reporting turnaround and supporting strategic planning for
                                             senior leadership.
@@ -506,20 +548,20 @@
                     <div class="contact-info">
                         <div class="resume-download">
                             <a href="Pranav_Dhawan_Resume.pdf" class="resume-btn" download="Pranav_Dhawan_Resume.pdf">
-                                <i class="fas fa-download" aria-hidden="true"></i>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
                                 <span>Download Resume</span>
                             </a>
                         </div>
 
                         <div class="social-links">
                             <a href="mailto:dhawanpranav02@gmail.com" class="social-link" aria-label="Email Me">
-                                <i class="fas fa-envelope" aria-hidden="true"></i>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-envelope"></use></svg>
                             </a>
                             <a href="https://github.com/pranavdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
-                                <i class="fab fa-github" aria-hidden="true"></i>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg>
                             </a>
                             <a href="https://linkedin.com/in/pranavvdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
-                                <i class="fab fa-linkedin" aria-hidden="true"></i>
+                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-linkedin"></use></svg>
                             </a>
                         </div>
                     </div>
@@ -536,7 +578,7 @@
     </main>
 
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
-        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"></use></svg>
     </button>
 
     <script src="script.js"></script>

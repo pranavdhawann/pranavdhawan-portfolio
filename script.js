@@ -1,5 +1,19 @@
 // Global: respect reduced-motion preference
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const XLINK_NS = 'http://www.w3.org/1999/xlink';
+
+function createSvgIcon(symbolId, className = 'icon') {
+    const icon = document.createElementNS(SVG_NS, 'svg');
+    icon.setAttribute('class', className);
+    icon.setAttribute('aria-hidden', 'true');
+    icon.setAttribute('focusable', 'false');
+    const use = document.createElementNS(SVG_NS, 'use');
+    use.setAttribute('href', `#${symbolId}`);
+    use.setAttributeNS(XLINK_NS, 'href', `#${symbolId}`);
+    icon.appendChild(use);
+    return icon;
+}
 
 // Inject decorative hero particles + rockets only on desktop and only if motion is OK.
 // Keeps mobile DOM lean and respects accessibility preferences.
@@ -22,10 +36,7 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
     for (let i = 1; i <= 8; i++) {
         const r = document.createElement('div');
         r.className = `rocket rocket-${i}`;
-        const icon = document.createElement('i');
-        icon.className = 'fas fa-rocket';
-        icon.setAttribute('aria-hidden', 'true');
-        r.appendChild(icon);
+        r.appendChild(createSvgIcon('icon-rocket', 'icon rocket-icon'));
         rockets.appendChild(r);
     }
 
@@ -40,12 +51,8 @@ const navMenu = document.getElementById('navMenu');
 function setMenuOpen(open) {
     if (!navMenu || !mobileToggle) return;
     navMenu.classList.toggle('active', open);
+    mobileToggle.classList.toggle('is-open', open);
     mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    const icon = mobileToggle.querySelector('i');
-    if (icon) {
-        icon.classList.toggle('fa-times', open);
-        icon.classList.toggle('fa-bars', !open);
-    }
 }
 
 if (mobileToggle) {
@@ -151,7 +158,7 @@ const scrollObserver = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
-document.querySelectorAll('.project-card, .timeline-item, .contact-content-centered').forEach(el => {
+document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
     el.classList.add('fade-up');
     scrollObserver.observe(el);
 });
@@ -413,14 +420,14 @@ if (heroTitle && heroSection) {
 })();
 
 /* ==========================================
-   SKILLS GRAPH (static)
+   SKILLS GRAPH (static layout)
    ========================================== */
 (() => {
     const svg = document.getElementById('skillsGraph');
     if (!svg) return;
-    const NS = 'http://www.w3.org/2000/svg';
     const linksLayer = svg.querySelector('.links');
     const nodesLayer = svg.querySelector('.nodes');
+    if (!linksLayer || !nodesLayer) return;
 
     const nodes = [
         { id: 'python',  label: 'Python',       group: 'lang' },
@@ -495,20 +502,23 @@ if (heroTitle && heroSection) {
     links.forEach(l => { addNeighbor(l.source, l.target); addNeighbor(l.target, l.source); });
 
     links.forEach(l => {
-        const el = document.createElementNS(NS, 'line');
+        const el = document.createElementNS(SVG_NS, 'line');
         el.setAttribute('class', 'link');
         l.el = el;
         linksLayer.appendChild(el);
     });
 
     nodes.forEach(n => {
-        const g = document.createElementNS(NS, 'g');
+        const g = document.createElementNS(SVG_NS, 'g');
         g.setAttribute('class', `node node-${n.group}`);
+        g.setAttribute('tabindex', '0');
+        g.setAttribute('role', 'button');
+        g.setAttribute('aria-label', `Highlight ${n.label} skill connections`);
         g.dataset.id = n.id;
-        const c = document.createElementNS(NS, 'circle');
+        const c = document.createElementNS(SVG_NS, 'circle');
         c.setAttribute('class', 'node-circle');
         g.appendChild(c);
-        const t = document.createElementNS(NS, 'text');
+        const t = document.createElementNS(SVG_NS, 'text');
         t.setAttribute('class', 'node-label');
         t.setAttribute('font-size', 13);
         t.setAttribute('dy', '0.35em');
@@ -529,59 +539,60 @@ if (heroTitle && heroSection) {
         });
     }
 
-    function simulate(W, H) {
-        nodes.forEach((n, i) => {
-            const a = (i / nodes.length) * Math.PI * 2;
-            n.x = W / 2 + Math.cos(a) * Math.min(W, H) * 0.32;
-            n.y = H / 2 + Math.sin(a) * Math.min(W, H) * 0.32;
-            n.vx = 0; n.vy = 0;
+    const desktopLayout = {
+        python: [550, 335],
+        r: [220, 335],
+        pandas: [420, 220],
+        numpy: [520, 170],
+        sklearn: [650, 210],
+        mpl: [380, 420],
+        sns: [500, 500],
+        pt: [710, 320],
+        tf: [820, 420],
+        hf: [860, 260],
+        sql: [250, 510],
+        mysql: [170, 420],
+        aws: [190, 210],
+        gcp: [330, 125],
+        pbi: [90, 300],
+        tab: [90, 585],
+        st: [650, 540],
+        n8n: [1000, 210],
+        agentai: [990, 350],
+        lc: [910, 500],
+        crew: [760, 600],
+    };
+
+    const narrowLayout = {
+        python: [280, 420],
+        r: [85, 410],
+        pandas: [230, 210],
+        numpy: [350, 180],
+        sklearn: [445, 285],
+        mpl: [205, 520],
+        sns: [320, 555],
+        pt: [385, 555],
+        tf: [455, 675],
+        hf: [385, 790],
+        sql: [220, 675],
+        mysql: [95, 670],
+        aws: [75, 215],
+        gcp: [150, 90],
+        pbi: [80, 510],
+        tab: [90, 875],
+        st: [210, 805],
+        n8n: [470, 105],
+        agentai: [460, 425],
+        lc: [315, 905],
+        crew: [465, 905],
+    };
+
+    function applyCoordinates(layoutMap, W, H) {
+        nodes.forEach(n => {
+            const point = layoutMap[n.id] || [W / 2, H / 2];
+            n.x = point[0];
+            n.y = point[1];
         });
-
-        const ITER = 500;
-        const REPULSION = 16000;
-        const SPRING = 0.035;
-        const REST = Math.min(W, H) * 0.18;
-        const CENTER = 0.006;
-        const DAMP = 0.82;
-
-        for (let it = 0; it < ITER; it++) {
-            for (let a = 0; a < nodes.length; a++) {
-                for (let b = a + 1; b < nodes.length; b++) {
-                    const na = nodes[a], nb = nodes[b];
-                    let dx = nb.x - na.x, dy = nb.y - na.y;
-                    let d2 = dx * dx + dy * dy;
-                    if (d2 < 0.01) { dx = Math.random(); dy = Math.random(); d2 = dx*dx+dy*dy; }
-                    const d = Math.sqrt(d2);
-                    const f = REPULSION / d2;
-                    let fx = (f * dx) / d, fy = (f * dy) / d;
-                    const minDist = na.r + nb.r + 12;
-                    if (d < minDist) {
-                        const push = (minDist - d) * 0.6;
-                        fx += (dx / d) * push;
-                        fy += (dy / d) * push;
-                    }
-                    na.vx -= fx; na.vy -= fy;
-                    nb.vx += fx; nb.vy += fy;
-                }
-            }
-            for (const l of links) {
-                const a = nodeMap.get(l.source), b = nodeMap.get(l.target);
-                const dx = b.x - a.x, dy = b.y - a.y;
-                const d = Math.sqrt(dx * dx + dy * dy) + 0.01;
-                const f = SPRING * (d - REST);
-                const fx = (f * dx) / d, fy = (f * dy) / d;
-                a.vx += fx; a.vy += fy;
-                b.vx -= fx; b.vy -= fy;
-            }
-            for (const n of nodes) {
-                n.vx += (W / 2 - n.x) * CENTER;
-                n.vy += (H / 2 - n.y) * CENTER;
-                n.vx *= DAMP; n.vy *= DAMP;
-                n.x += n.vx; n.y += n.vy;
-                n.x = Math.max(n.r + 6, Math.min(W - n.r - 6, n.x));
-                n.y = Math.max(n.r + 6, Math.min(H - n.r - 6, n.y));
-            }
-        }
     }
 
     function render() {
@@ -604,7 +615,7 @@ if (heroTitle && heroSection) {
         const H = narrow ? 980 : 690;
         svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
         measureRadii();
-        simulate(W, H);
+        applyCoordinates(narrow ? narrowLayout : desktopLayout, W, H);
         render();
     }
 
@@ -618,6 +629,15 @@ if (heroTitle && heroSection) {
         n.el.addEventListener('click', (e) => {
             e.stopPropagation();
             highlight(n.id);
+        });
+        n.el.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                highlight(n.id);
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                clearHighlight();
+            }
         });
     });
 
