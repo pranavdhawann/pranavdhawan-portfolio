@@ -122,7 +122,13 @@ const sectionRatios = new Map();
 
 const setActiveLink = (id) => {
     navLinks.forEach(link => {
-        link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        const isActive = link.getAttribute('href') === `#${id}`;
+        link.classList.toggle('active', isActive);
+        if (isActive) {
+            link.setAttribute('aria-current', 'location');
+        } else {
+            link.removeAttribute('aria-current');
+        }
     });
 };
 
@@ -160,6 +166,9 @@ const scrollObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
     el.classList.add('fade-up');
+    if (el.classList.contains('timeline-item')) {
+        el.classList.add('js-fade');
+    }
     scrollObserver.observe(el);
 });
 
@@ -441,7 +450,6 @@ if (heroTitle && heroSection) {
         { id: 'tf',      label: 'TensorFlow',   group: 'mllib' },
         { id: 'hf',      label: 'HuggingFace',  group: 'mllib' },
         { id: 'sql',     label: 'SQL',          group: 'cloud' },
-        { id: 'mysql',   label: 'MySQL',        group: 'cloud' },
         { id: 'aws',     label: 'AWS',          group: 'cloud' },
         { id: 'gcp',     label: 'GCP',          group: 'cloud' },
         { id: 'pbi',     label: 'Power BI',     group: 'viz' },
@@ -478,9 +486,7 @@ if (heroTitle && heroSection) {
         ['pt','hf'], ['tf','hf'],
 
         // Databases & cloud (clouds host the DBs; not connected to each other)
-        ['sql','mysql'],
         ['sql','aws'], ['sql','gcp'],
-        ['mysql','aws'], ['mysql','gcp'],
         ['st','gcp'],
 
         // BI tools connect to data sources, not each other
@@ -514,6 +520,7 @@ if (heroTitle && heroSection) {
         g.setAttribute('tabindex', '0');
         g.setAttribute('role', 'button');
         g.setAttribute('aria-label', `Highlight ${n.label} skill connections`);
+        g.setAttribute('aria-pressed', 'false');
         g.dataset.id = n.id;
         const c = document.createElementNS(SVG_NS, 'circle');
         c.setAttribute('class', 'node-circle');
@@ -551,7 +558,6 @@ if (heroTitle && heroSection) {
         tf: [820, 420],
         hf: [860, 260],
         sql: [250, 510],
-        mysql: [170, 420],
         aws: [190, 210],
         gcp: [330, 125],
         pbi: [90, 300],
@@ -575,7 +581,6 @@ if (heroTitle && heroSection) {
         tf: [455, 675],
         hf: [385, 790],
         sql: [220, 675],
-        mysql: [95, 670],
         aws: [75, 215],
         gcp: [150, 90],
         pbi: [80, 510],
@@ -641,19 +646,16 @@ if (heroTitle && heroSection) {
         });
     });
 
-    // Touch users: tap outside any node clears the highlight
-    svg.addEventListener('click', (e) => {
-        // Bail if the click landed inside a node group (node click handler already ran with stopPropagation)
-        if (e.target.closest('g[data-id]')) return;
-        clearHighlight();
-    });
     document.addEventListener('click', (e) => {
         if (!svg.contains(e.target)) clearHighlight();
     });
 
     function highlight(id) {
         const connected = new Set([id, ...(neighbors.get(id) || [])]);
-        nodes.forEach(n => n.el.classList.toggle('dim', !connected.has(n.id)));
+        nodes.forEach(n => {
+            n.el.classList.toggle('dim', !connected.has(n.id));
+            n.el.setAttribute('aria-pressed', n.id === id ? 'true' : 'false');
+        });
         links.forEach(l => {
             const isActive = l.source === id || l.target === id;
             l.el.classList.toggle('active', isActive);
@@ -661,7 +663,10 @@ if (heroTitle && heroSection) {
         });
     }
     function clearHighlight() {
-        nodes.forEach(n => n.el.classList.remove('dim'));
+        nodes.forEach(n => {
+            n.el.classList.remove('dim');
+            n.el.setAttribute('aria-pressed', 'false');
+        });
         links.forEach(l => { l.el.classList.remove('active'); l.el.classList.remove('dim'); });
     }
 

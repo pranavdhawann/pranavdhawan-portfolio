@@ -70,6 +70,11 @@
     transform: translateY(0);
 }
 
+/* JS-applied hidden baseline: keeps content readable if script.js never runs */
+.js-fade {
+    opacity: 0;
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -695,7 +700,6 @@ section {
     position: relative;
     margin-bottom: 4rem;
     padding-left: 0;
-    opacity: 0;
 }
 
 .timeline-item:last-child {
@@ -743,6 +747,7 @@ section {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     border: 2px solid var(--border);
+    box-shadow: 2px 2px 0px var(--border);
 }
 
 .current-badge {
@@ -1557,11 +1562,6 @@ section {
     box-shadow: 2px 2px 0px var(--border);
 }
 
-.resume-btn i {
-    font-size: 1.3rem;
-    transition: all var(--transition-fast);
-}
-
 .resume-btn:hover .icon {
     transform: translateY(-3px);
 }
@@ -1588,9 +1588,6 @@ section {
         font-size: 0.95rem;
     }
 
-    .resume-btn i {
-        font-size: 1.1rem;
-    }
 }
 
 /* ==========================================

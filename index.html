@@ -143,7 +143,7 @@
                     </div>
                 </div>
             </div>
-            <div class="scroll-indicator">
+            <div class="scroll-indicator" aria-hidden="true">
                 <div class="scroll-arrow"></div>
             </div>
         </section>
@@ -154,7 +154,7 @@
                 <div class="about-content">
                     <div class="about-text">
                         <p>
-                            I’m an AI Engineer and Data Scientist building production ML systems. I hold a Master’s in
+                            I’m an AI Engineer and Data Scientist working on production systems and model pipelines. I hold a Master’s in
                             Data Science from George Washington University and a Bachelor’s in Computer Science and
                             Engineering. My experience spans computer vision, natural language processing (NLP), and
                             analytics, with a focus on transforming messy data into reliable, scalable solutions.
@@ -162,10 +162,9 @@
                         <p>
                             I’ve recently been working on AI agents, context compression, and workflow automation. I’m
                             drawn to problems that involve navigating ambiguity, optimizing under constraints, and
-                            building systems people actually use — improving model performance, engineering features
-                            from data, and deploying pipelines on the cloud.
+                            building systems people actually use.
                         </p>
-                        <p>Always open to connecting with others working on interesting problems.</p>
+                        <p>Always open to connecting with others working on interesting problems so feel free to reach out.</p>
                     </div>
                 </div>
             </div>
@@ -174,18 +173,17 @@
         <section id="skills" class="skills">
             <div class="container">
                 <h2 class="section-title">SKILLS &amp; TECHNOLOGIES</h2>
-                <p class="skills-graph-hint">Hover or tap any node to highlight connections</p>
                 <div class="skills-graph-legend">
                     <span class="legend-item"><span class="legend-dot legend-lang"></span>Language</span>
-                    <span class="legend-item"><span class="legend-dot legend-mllib"></span>ML / Data Library</span>
+                    <span class="legend-item"><span class="legend-dot legend-mllib"></span>ML</span>
                     <span class="legend-item"><span class="legend-dot legend-cloud"></span>Data &amp; Cloud</span>
                     <span class="legend-item"><span class="legend-dot legend-viz"></span>Visualization</span>
-                    <span class="legend-item"><span class="legend-dot legend-agent"></span>AI Agents</span>
+                    <span class="legend-item"><span class="legend-dot legend-agent"></span>AI</span>
                 </div>
                 <div class="skills-graph-wrapper">
                     <svg id="skillsGraph" class="skills-graph" role="group" aria-labelledby="skillsGraphTitle skillsGraphDesc">
                         <title id="skillsGraphTitle">Skills graph</title>
-                        <desc id="skillsGraphDesc">Static graph showing relationships between my skills: programming languages (Python, R); ML and data libraries (Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, PyTorch, TensorFlow, HuggingFace); databases and cloud platforms (SQL, MySQL, AWS, GCP); visualization tools (Power BI, Tableau, Streamlit); and AI agent frameworks (n8n, Agentic AI, LangChain, CrewAI). Nodes can be hovered, tapped, or focused with the keyboard to highlight connections.</desc>
+                        <desc id="skillsGraphDesc">Static graph showing relationships between my skills: programming languages (Python, R); ML and data libraries (Pandas, NumPy, scikit-learn, Matplotlib, Seaborn, PyTorch, TensorFlow, HuggingFace); databases and cloud platforms (SQL, AWS, GCP); visualization tools (Power BI, Tableau, Streamlit); and AI agent frameworks (n8n, Agentic AI, LangChain, CrewAI). Nodes can be hovered, tapped, or focused with the keyboard to highlight connections.</desc>
                         <g class="links"></g>
                         <g class="nodes"></g>
                     </svg>
@@ -205,11 +203,7 @@
                         </div>
                         <div class="project-content">
                             <h3>Stock Screen</h3>
-                            <p>An AI-powered terminal that unifies stock analysis, real-time news sentiment, and company
-                                filing insights into one interface. It aggregates and scores financial news, summarizes
-                                regulatory filings, and visualizes future trends through charts. Designed for investors,
-                                it streamlines decision-making with data-driven insights and predictive forecasting
-                                capabilities.</p>
+                            <p>A real-time AI-powered terminal that unifies stock analysis, private and public news sentiment, company filings, and market insights into a single interface. It also includes a paid tier where tested algorithmic models specializing in stock forecasting are available to use. Designed for investors, it streamlines decision-making through data-driven insights and predictive forecasting capabilities.</p>
                             <div class="project-tech">
                                 <span class="tech-tag">GCP</span>
                                 <span class="tech-tag">Python</span>
@@ -231,11 +225,10 @@
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3>Multimodal Financial Stock Forecasting</h3>
-                            <p>A comparative study of diverse model architectures for financial stock forecasting,
-                                analyzing their performance across multiple data representations. It further explores
-                                multimodal fusion by integrating time-series data, textual signals, and financial
-                                reports to enhance predictive accuracy. </p>
+                            <h3>Multimodal Techniques for Financial Time Series Forecasting</h3>
+                            <p>Conducted a benchmark study on the FinMultiTime dataset using time-series and text modalities, evaluating 10+ 
+standalone, multimodal, and ensemble models; achieved strong predictive performance, with LSTM delivering highly 
+competitive standalone results, and submitted the findings in a research paper and technical report.  </p>
                             <div class="project-tech">
                                 <span class="tech-tag">Python</span>
                                 <span class="tech-tag">LSTM</span>
@@ -258,7 +251,7 @@
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3>PII Detection &amp; Censoring System</h3>
+                            <h3>Edge-Based PII Detection &amp; Censoring System</h3>
                             <p>Achieved 98.1% F1-score and 97.9% recall across 54 PII entity types by architecting and
                                 benchmarking 4 transformer architectures, selecting DeBERTa as the production model and
                                 deploying via ONNX for &lt;100ms inference.</p>
@@ -308,16 +301,26 @@
             <div class="container">
                 <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
                 <div class="timeline-container">
-                    <div class="timeline-item timeline-internship">
+                    <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">May 2026 - Present</div>
                             <div class="timeline-badge current-badge">Current</div>
-                            <h3>AI Workforce Engineer</h3>
+                            <h3>AI Workplace Engineer</h3>
                             <h4>American Chemical Society | Washington, DC</h4>
+                            <div class="timeline-details">
+                                <div class="achievements">
+                                    <div class="achievement-item">
+                                        <div class="achievement-text">
+                                            Building <strong>AI agents</strong> and <strong>workflows</strong> to automate service desk and ticketing processes end-to-end, from ticket creation to 
+fulfillment, streamlining internal operations. 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-education">
+                    <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">August 2024 - May 2026</div>
                             <div class="timeline-badge education-badge">Graduated</div>
@@ -340,7 +343,7 @@
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-internship">
+                    <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">February 2024 - August 2024</div>
                             <h3>Machine Learning Engineer</h3>
@@ -386,7 +389,7 @@
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-education">
+                    <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">August 2020 - July 2024</div>
                             <div class="timeline-badge education-badge">Graduated</div>
@@ -405,7 +408,7 @@
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-internship">
+                    <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">July 2023 - September 2023</div>
                             <h3>Machine Learning Intern</h3>
@@ -448,7 +451,7 @@
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-internship">
+                    <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">May 2023 - July 2023</div>
                             <h3>Summer Intern</h3>
@@ -484,7 +487,7 @@
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-internship">
+                    <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">Aug 2021 – Sept 2021</div>
                             <h3>Full Stack Intern</h3>
@@ -511,7 +514,7 @@
                         </div>
                     </div>
 
-                    <div class="timeline-item timeline-internship">
+                    <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">Jun 2021 – Aug 2021</div>
                             <h3>Front-End Intern</h3>
@@ -581,7 +584,7 @@
         <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"></use></svg>
     </button>
 
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>
