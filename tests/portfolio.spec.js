@@ -18,8 +18,52 @@ test('desktop page loads nav and renders skills graph', async ({ page }) => {
   await expect(page.getByRole('link', { name: 'HOME' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'SKILLS' })).toBeVisible();
   await expect(page.locator('#skillsGraph')).toBeVisible();
-  await expect(page.locator('#skillsGraph .node')).toHaveCount(21);
+  await expect(page.locator('#skillsGraph .node')).toHaveCount(20);
   await expect(page.locator('#skillsGraph .link')).not.toHaveCount(0);
+});
+
+test('dashboard project links to weather dashboard repository', async ({ page }) => {
+  await openPortfolio(page);
+
+  await expect(page.getByRole('link', { name: 'Code' }).nth(2)).toHaveAttribute(
+    'href',
+    'https://github.com/pranavdhawann/weather-dashboard'
+  );
+});
+
+test('american chemical society experience includes RAG and Teams bot impact', async ({ page }) => {
+  await openPortfolio(page);
+
+  await expect(
+    page.getByText(/Created a RAG system with a local running Qwen model/)
+  ).toBeVisible();
+  await expect(page.getByText(/tickets being resolved/)).toBeVisible();
+  await expect(page.getByText('30% faster')).toBeVisible();
+});
+
+test('education sections include academic project and paper highlights', async ({ page }) => {
+  await openPortfolio(page);
+
+  await expect(page.getByText(/Published a journal paper from the Multimodal Techniques/)).toBeVisible();
+  await expect(page.getByText(/U\.S\. government health, CBP\.gov, and WMATA datasets/)).toBeVisible();
+  await expect(page.getByText(/comparative analysis paper on transformer models versus LSTM/)).toBeVisible();
+  await expect(page.getByText(/sentiment classification across the X platform/)).toBeVisible();
+});
+
+test('coursework sections use the same top spacing as technology sections', async ({ page }) => {
+  await openPortfolio(page);
+
+  const spacing = await page.evaluate(() => {
+    const coursework = document.querySelector('.coursework');
+    const techStack = document.querySelector('.tech-stack');
+
+    return {
+      coursework: window.getComputedStyle(coursework).marginTop,
+      techStack: window.getComputedStyle(techStack).marginTop
+    };
+  });
+
+  expect(spacing.coursework).toBe(spacing.techStack);
 });
 
 test('mobile hamburger menu toggles expanded state', async ({ page }) => {
