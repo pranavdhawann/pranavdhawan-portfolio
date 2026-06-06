@@ -1,6 +1,6 @@
 # pranavdhawan-portfolio
 
-Static portfolio site for Pranav Dhawan — AI Workforce Engineer @ American Chemical Society, MS Data Science from GWU.
+Static portfolio site for Pranav Dhawan — AI Workplace Engineer @ American Chemical Society, MS Data Science from GWU.
 
 **Live:** https://pranavdhawan.netlify.app/
 
@@ -46,7 +46,7 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 
 ## Develop
 
-Open `index.html` directly, or for accurate relative paths:
+Serve the site over HTTP so local behavior matches the deployed origin and headers more closely:
 
 ```
 python -m http.server 8000

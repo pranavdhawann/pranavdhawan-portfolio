@@ -1,9 +1,69 @@
 const { test, expect } = require('@playwright/test');
 const { AxeBuilder } = require('@axe-core/playwright');
+const fs = require('node:fs');
+const http = require('node:http');
 const path = require('node:path');
-const { pathToFileURL } = require('node:url');
 
-const pageUrl = pathToFileURL(path.join(__dirname, '..', 'index.html')).href;
+const rootDir = path.join(__dirname, '..');
+let server;
+let pageUrl;
+
+function readTomlString(content, key) {
+  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const match = content.match(new RegExp(`^${escapedKey}\\s*=\\s*"([^"]*)"`, 'm'));
+  return match ? match[1] : undefined;
+}
+
+function readConfiguredHeaders() {
+  const content = fs.readFileSync(path.join(rootDir, 'netlify.toml'), 'utf8');
+  return {
+    'Content-Security-Policy': readTomlString(content, 'Content-Security-Policy'),
+    'Strict-Transport-Security': readTomlString(content, 'Strict-Transport-Security'),
+    'X-Frame-Options': readTomlString(content, 'X-Frame-Options'),
+    'X-Content-Type-Options': readTomlString(content, 'X-Content-Type-Options'),
+    'Referrer-Policy': readTomlString(content, 'Referrer-Policy'),
+    'Permissions-Policy': readTomlString(content, 'Permissions-Policy')
+  };
+}
+
+const contentTypes = {
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
+  '.png': 'image/png',
+  '.pdf': 'application/pdf'
+};
+
+test.beforeAll(async () => {
+  const configuredHeaders = readConfiguredHeaders();
+  server = http.createServer((request, response) => {
+    const requestPath = decodeURIComponent(new URL(request.url, 'http://127.0.0.1').pathname);
+    const relativePath = requestPath === '/' ? 'index.html' : requestPath.slice(1);
+    const filePath = path.resolve(rootDir, relativePath);
+    const isInRoot = filePath === rootDir || filePath.startsWith(rootDir + path.sep);
+
+    if (!isInRoot || !fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
+      response.writeHead(404, configuredHeaders);
+      response.end('Not found');
+      return;
+    }
+
+    response.writeHead(200, {
+      ...configuredHeaders,
+      'Content-Type': contentTypes[path.extname(filePath)] || 'application/octet-stream'
+    });
+    fs.createReadStream(filePath).pipe(response);
+  });
+
+  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
+  pageUrl = `http://127.0.0.1:${server.address().port}/`;
+});
+
+test.afterAll(async () => {
+  if (server) {
+    await new Promise((resolve) => server.close(resolve));
+  }
+});
 
 async function openPortfolio(page) {
   await page.goto(pageUrl);
@@ -22,6 +82,14 @@ test('desktop page loads nav and renders skills graph', async ({ page }) => {
   await expect(page.locator('#skillsGraph .link')).not.toHaveCount(0);
 });
 
+test('test harness serves the page over HTTP with configured security headers', async ({ page }) => {
+  expect(new URL(pageUrl).protocol).toBe('http:');
+
+  const response = await page.goto(pageUrl);
+  expect(response.headers()['content-security-policy']).toContain("script-src 'self'");
+  expect(response.headers()['x-content-type-options']).toBe('nosniff');
+});
+
 test('dashboard project links to weather dashboard repository', async ({ page }) => {
   await openPortfolio(page);
 
@@ -35,10 +103,28 @@ test('american chemical society experience includes RAG and Teams bot impact', a
   await openPortfolio(page);
 
   await expect(
-    page.getByText(/Created a RAG system with a local running Qwen model/)
+    page.getByText(/Created a RAG proof of concept with a locally hosted Qwen model/)
   ).toBeVisible();
-  await expect(page.getByText(/tickets being resolved/)).toBeVisible();
+  await expect(page.getByText(/tickets get resolved/)).toBeVisible();
   await expect(page.getByText('30% faster')).toBeVisible();
+});
+
+test('portfolio copy uses workplace engineer consistently', async ({ page }) => {
+  await openPortfolio(page);
+
+  const metaDescription = page.locator('meta[name="description"]');
+  await expect(metaDescription).toHaveAttribute('content', /AI Workplace Engineer/);
+  await expect(page.getByText('AI Workplace Engineer')).toBeVisible();
+  await expect(page.locator('body')).not.toContainText('AI Workforce Engineer');
+});
+
+test('stock screen copy avoids unverified paid-tier language', async ({ page }) => {
+  await openPortfolio(page);
+
+  const card = page.locator('.project-card').filter({ hasText: 'Stock Screen' });
+  await expect(card).toContainText('forecasting workflows');
+  await expect(card).not.toContainText('paid tier');
+  await expect(card).not.toContainText('tested algorithmic models');
 });
 
 test('education sections include academic project and paper highlights', async ({ page }) => {
