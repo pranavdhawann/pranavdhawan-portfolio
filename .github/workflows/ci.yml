@@ -38,4 +38,5 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --verbose --exclude-mail --accept 200,204,206,301,302,429 index.html README.md
+          # Mail links are excluded by default since lychee v0.16 (--exclude-mail was removed in v0.23)
+          args: --no-progress --verbose --accept 200,204,206,301,302,429 index.html README.md
