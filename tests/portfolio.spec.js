@@ -208,6 +208,45 @@ test('font awesome stylesheet is not loaded', async ({ page }) => {
   await expect(page.locator('link[href*="font-awesome"]')).toHaveCount(0);
 });
 
+test('timeline dates all use the same full-month format', async ({ page }) => {
+  await openPortfolio(page);
+
+  const month = '(?:January|February|March|April|May|June|July|August|September|October|November|December)';
+  const datePattern = new RegExp(`^${month} \\d{4} - (?:${month} \\d{4}|Present)$`);
+
+  const dates = await page.locator('.timeline-date').allTextContents();
+  expect(dates.length).toBeGreaterThan(0);
+  for (const date of dates) {
+    expect(date.trim()).toMatch(datePattern);
+  }
+});
+
+test('footer is a contentinfo landmark outside main', async ({ page }) => {
+  await openPortfolio(page);
+
+  await expect(page.getByRole('contentinfo')).toBeVisible();
+  await expect(page.locator('main footer')).toHaveCount(0);
+});
+
+test('structured data describes the site owner as a Person', async ({ page }) => {
+  await openPortfolio(page);
+
+  const json = await page.locator('script[type="application/ld+json"]').textContent();
+  const data = JSON.parse(json);
+  expect(data['@type']).toBe('Person');
+  expect(data.name).toBe('Pranav Dhawan');
+  expect(data.sameAs).toContain('https://github.com/pranavdhawann');
+});
+
+test('hash navigation clears the fixed navbar via scroll padding', async ({ page }) => {
+  await openPortfolio(page);
+
+  const scrollPaddingTop = await page.evaluate(
+    () => getComputedStyle(document.documentElement).scrollPaddingTop
+  );
+  expect(scrollPaddingTop).toBe('80px');
+});
+
 test('github and linkedin icons use brand paths instead of text placeholders', async ({ page }) => {
   await openPortfolio(page);
 

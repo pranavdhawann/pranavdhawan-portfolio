@@ -166,9 +166,6 @@ const scrollObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
     el.classList.add('fade-up');
-    if (el.classList.contains('timeline-item')) {
-        el.classList.add('js-fade');
-    }
     scrollObserver.observe(el);
 });
 
@@ -630,7 +627,7 @@ if (heroTitle && heroSection) {
     nodes.forEach(n => {
         n.el.addEventListener('pointerenter', () => highlight(n.id));
         n.el.addEventListener('pointerleave', clearHighlight);
-        // Touch support: tap a node to toggle its highlight
+        // Touch support: tap a node to highlight it; tapping outside the graph clears
         n.el.addEventListener('click', (e) => {
             e.stopPropagation();
             highlight(n.id);

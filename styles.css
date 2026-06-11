@@ -66,21 +66,10 @@
     transform: translateY(0);
 }
 
-.timeline-item.fade-up {
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* JS-applied hidden baseline: keeps content readable if script.js never runs */
-.js-fade {
-    opacity: 1;
-}
-
-.fade-up.js-fade.is-visible {
-    opacity: 1;
-}
-
 html {
     scroll-behavior: smooth;
+    /* Keeps section headings clear of the fixed navbar when landing on a #hash URL directly */
+    scroll-padding-top: var(--nav-height);
     font-size: 16px;
 }
 
