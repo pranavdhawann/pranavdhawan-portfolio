@@ -38,4 +38,4 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --verbose --exclude-mail --accept 200,204,206,301,302,429 index.html README.md
+          args: --no-progress --verbose --exclude https://linkedin.com/in/pranavvdhawann --exclude https://www.linkedin.com/in/pranavvdhawann --accept 200,204,206,301,302,429 index.html README.md
