@@ -739,6 +739,7 @@ if (heroTitle && heroSection) {
         appendMessage(question, 'user');
         input.value = '';
         const typing = appendMessage('•••', 'typing');
+        let serverMessage = '';
 
         try {
             const response = await fetch('/.netlify/functions/ask', {
@@ -749,13 +750,16 @@ if (heroTitle && heroSection) {
             const data = await response.json().catch(() => ({}));
             typing.remove();
             if (!response.ok || !data.answer) {
+                if (typeof data.error === 'string') {
+                    serverMessage = data.error;
+                }
                 throw new Error('Request failed');
             }
             appendMessage(data.answer, 'bot');
             history.push({ role: 'user', content: question }, { role: 'assistant', content: data.answer });
         } catch {
             typing.remove();
-            appendMessage('Something went wrong — try again in a moment, or reach me through the contact section below.', 'bot');
+            appendMessage(serverMessage || 'Something went wrong — try again in a moment, or reach me through the contact section below.', 'bot');
         } finally {
             pending = false;
         }
