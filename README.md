@@ -19,7 +19,9 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 | `index.html` | Single page: hero / about / skills / projects / experience / contact |
 | `styles.css` | Design tokens + responsive breakpoints (1400 / 1024 / 768 / 480 / 360) |
 | `script.js` | All interactive behavior, single IIFE per module |
-| `netlify.toml` | Netlify security headers |
+| `netlify.toml` | Netlify security headers + functions directory |
+| `netlify/functions/ask.mjs` | Serverless proxy to Groq (`llama-3.1-8b-instant`) for the chat widget |
+| `netlify/functions/knowledge.mjs` | Curated first-person knowledge base embedded in the chat system prompt |
 | `package.json`, `tests/` | Local validation, Playwright smoke tests, and axe accessibility checks |
 | `photo.png` (487×476), `eye.png` | Drive the cursor-tracking avatar eyes |
 | `Pranav_Dhawan_Resume.pdf` | Download target |
@@ -35,6 +37,7 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 7. **Avatar eye tracking** — desktop follows cursor through anisotropic radii (hardcoded for the 487×476 photo); touch/coarse-pointer runs a slow `requestAnimationFrame` orbit instead.
 8. **Hero decorations** — 10 particles + 8 flying rockets injected dynamically, only on desktop + motion-OK viewports. Zero DOM cost on mobile.
 9. **Skills graph** — static SVG layout with explicit desktop/mobile coordinate maps. Hover, tap, or keyboard-focus a node to highlight its neighborhood; tap/click outside or press Escape to clear.
+10. **Ask-Pranav chat widget** — floating bubble opens a `<dialog>` panel; questions POST to `/.netlify/functions/ask` with the last 6 turns of history; typing indicator, friendly error fallback, Escape-to-close with focus return.
 
 ## Accessibility
 
@@ -59,6 +62,19 @@ Automated checks:
 npm install
 npm run check
 ```
+
+## Chat widget setup
+
+The "Ask Pranav" chat needs a free Groq API key:
+
+1. Create a key at https://console.groq.com.
+2. Netlify → Site configuration → Environment variables → add `GROQ_API_KEY`.
+3. Local end-to-end testing: `npx netlify dev` with `GROQ_API_KEY` in the shell
+   environment (the static server alone returns the chat's friendly error).
+
+Without the key the site works normally and the chat shows its fallback
+message. Knowledge lives in `netlify/functions/knowledge.mjs` — edit and
+redeploy to update what the bot knows.
 
 ## Deploy
 
