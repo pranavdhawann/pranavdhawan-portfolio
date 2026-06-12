@@ -647,10 +647,6 @@ fulfillment, streamlining internal operations.
         </div>
     </footer>
 
-    <button class="chat-bubble" id="chatBubble" type="button" aria-label="Chat with Pranav" aria-expanded="false" aria-controls="chatPanel">
-        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-sparkle"></use></svg>
-    </button>
-
     <dialog class="chat-panel" id="chatPanel" aria-label="Chat with Pranav">
         <header class="chat-header">
             <p class="chat-title">Ask me anything</p>
@@ -666,14 +662,16 @@ fulfillment, streamlining internal operations.
             <button class="chat-chip" type="button">Tell me about your RAG project</button>
             <button class="chat-chip" type="button">What's your tech stack?</button>
         </div>
-        <form class="chat-form" id="chatForm">
-            <label class="visually-hidden" for="chatInput">Your question</label>
-            <input class="chat-input" id="chatInput" type="text" maxlength="500" placeholder="Ask a question…" autocomplete="off">
-            <button class="chat-send" type="submit" aria-label="Send question">
-                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-send"></use></svg>
-            </button>
-        </form>
     </dialog>
+
+    <form class="chat-pill" id="chatForm">
+        <svg class="icon chat-pill-icon" aria-hidden="true" focusable="false"><use href="#icon-sparkle"></use></svg>
+        <label class="visually-hidden" for="chatInput">Ask Pranav a question</label>
+        <input class="chat-pill-input" id="chatInput" type="text" maxlength="500" placeholder="Ask me anything…" autocomplete="off">
+        <button class="chat-send" type="submit" aria-label="Send question">
+            <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-send"></use></svg>
+        </button>
+    </form>
 
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"></use></svg>
