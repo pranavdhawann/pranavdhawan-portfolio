@@ -680,3 +680,96 @@ if (heroTitle && heroSection) {
         }, 150);
     }, { passive: true });
 })();
+
+// Chat Widget — "Ask Pranav" floating assistant
+(() => {
+    const bubble = document.getElementById('chatBubble');
+    const panel = document.getElementById('chatPanel');
+    if (!bubble || !panel || typeof panel.show !== 'function') return;
+
+    const log = document.getElementById('chatLog');
+    const form = document.getElementById('chatForm');
+    const input = document.getElementById('chatInput');
+    const closeButton = document.getElementById('chatClose');
+    const suggestions = document.getElementById('chatSuggestions');
+    const history = [];
+    let pending = false;
+
+    const appendMessage = (text, variant) => {
+        const message = document.createElement('div');
+        message.className = `chat-message chat-message--${variant}`;
+        message.textContent = text;
+        log.appendChild(message);
+        log.scrollTop = log.scrollHeight;
+        return message;
+    };
+
+    const openPanel = () => {
+        panel.show();
+        bubble.setAttribute('aria-expanded', 'true');
+        input.focus();
+    };
+
+    const closePanel = () => {
+        panel.close();
+        bubble.setAttribute('aria-expanded', 'false');
+        bubble.focus();
+    };
+
+    bubble.addEventListener('click', () => {
+        if (panel.open) {
+            closePanel();
+        } else {
+            openPanel();
+        }
+    });
+
+    closeButton.addEventListener('click', closePanel);
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && panel.open) {
+            closePanel();
+        }
+    });
+
+    const send = async (question) => {
+        if (pending || !question) return;
+        pending = true;
+        suggestions.hidden = true;
+        appendMessage(question, 'user');
+        input.value = '';
+        const typing = appendMessage('•••', 'typing');
+
+        try {
+            const response = await fetch('/.netlify/functions/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ question, history: history.slice(-6) })
+            });
+            const data = await response.json().catch(() => ({}));
+            typing.remove();
+            if (!response.ok || !data.answer) {
+                throw new Error('Request failed');
+            }
+            appendMessage(data.answer, 'bot');
+            history.push({ role: 'user', content: question }, { role: 'assistant', content: data.answer });
+        } catch {
+            typing.remove();
+            appendMessage('Something went wrong — try again in a moment, or reach me through the contact section below.', 'bot');
+        } finally {
+            pending = false;
+        }
+    };
+
+    form.addEventListener('submit', (event) => {
+        event.preventDefault();
+        send(input.value.trim());
+    });
+
+    suggestions.addEventListener('click', (event) => {
+        const chip = event.target.closest('.chat-chip');
+        if (chip) {
+            send(chip.textContent.trim());
+        }
+    });
+})();
