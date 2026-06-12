@@ -120,6 +120,12 @@
             <path d="M13 3c3.5 1 6 3.5 8 8l-6 6c-4.5-2-7-4.5-8-8l6-6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="miter"/>
             <path d="M7 9l-4 2 4 2M15 17l-2 4-2-4M15 6h.01" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
         </symbol>
+        <symbol id="icon-sparkle" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 2l1.9 5.7a2 2 0 0 0 1.27 1.26L20.8 11l-5.63 2.04a2 2 0 0 0-1.2 1.2L12 19.8l-1.97-5.56a2 2 0 0 0-1.2-1.2L3.2 11l5.63-2.04a2 2 0 0 0 1.27-1.26L12 2zM19 16l.95 2.55L22.5 19.5l-2.55.95L19 23l-.95-2.55-2.55-.95 2.55-.95L19 16z"/>
+        </symbol>
+        <symbol id="icon-send" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M3 11l18-8-8 18-2.5-7.5L3 11z"/>
+        </symbol>
     </svg>
 
     <!-- Top Navigation Bar -->
@@ -640,6 +646,34 @@ fulfillment, streamlining internal operations.
             <p>&copy; 2026 Pranav Dhawan | All rights reserved.</p>
         </div>
     </footer>
+
+    <button class="chat-bubble" id="chatBubble" type="button" aria-label="Chat with Pranav" aria-expanded="false" aria-controls="chatPanel">
+        <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-sparkle"></use></svg>
+    </button>
+
+    <dialog class="chat-panel" id="chatPanel" aria-label="Chat with Pranav">
+        <header class="chat-header">
+            <p class="chat-title">Ask me anything</p>
+            <button class="chat-close" id="chatClose" type="button" aria-label="Close chat">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-close"></use></svg>
+            </button>
+        </header>
+        <div class="chat-log" id="chatLog" aria-live="polite">
+            <div class="chat-message chat-message--bot">Hi! I'm Pranav — well, an AI version of me. Ask about my work, projects, or background.</div>
+        </div>
+        <div class="chat-suggestions" id="chatSuggestions">
+            <button class="chat-chip" type="button">What do you do at ACS?</button>
+            <button class="chat-chip" type="button">Tell me about your RAG project</button>
+            <button class="chat-chip" type="button">What's your tech stack?</button>
+        </div>
+        <form class="chat-form" id="chatForm">
+            <label class="visually-hidden" for="chatInput">Your question</label>
+            <input class="chat-input" id="chatInput" type="text" maxlength="500" placeholder="Ask a question…" autocomplete="off">
+            <button class="chat-send" type="submit" aria-label="Send question">
+                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-send"></use></svg>
+            </button>
+        </form>
+    </dialog>
 
     <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">
         <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"></use></svg>
