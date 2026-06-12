@@ -21,7 +21,7 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 | `script.js` | All interactive behavior, single IIFE per module |
 | `netlify.toml` | Netlify security headers + functions directory |
 | `netlify/functions/ask.mjs` | Serverless proxy to Groq (`llama-3.1-8b-instant`) for the chat widget |
-| `netlify/functions/knowledge.mjs` | Curated first-person knowledge base embedded in the chat system prompt |
+| `netlify/functions/lib/knowledge.mjs` | Curated first-person knowledge base embedded in the chat system prompt |
 | `package.json`, `tests/` | Local validation, Playwright smoke tests, and axe accessibility checks |
 | `photo.png` (487×476), `eye.png` | Drive the cursor-tracking avatar eyes |
 | `Pranav_Dhawan_Resume.pdf` | Download target |
@@ -73,7 +73,7 @@ The "Ask Pranav" chat needs a free Groq API key:
    environment (the static server alone returns the chat's friendly error).
 
 Without the key the site works normally and the chat shows its fallback
-message. Knowledge lives in `netlify/functions/knowledge.mjs` — edit and
+message. Knowledge lives in `netlify/functions/lib/knowledge.mjs` — edit and
 redeploy to update what the bot knows.
 
 ## Deploy

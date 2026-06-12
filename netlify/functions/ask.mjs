@@ -1,4 +1,4 @@
-import { KNOWLEDGE } from './knowledge.mjs';
+import { KNOWLEDGE } from './lib/knowledge.mjs';
 
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
 const MODEL = 'llama-3.1-8b-instant';
