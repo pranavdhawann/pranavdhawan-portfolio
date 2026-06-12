@@ -5,8 +5,9 @@
   "scripts": {
     "test": "playwright test",
     "test:html": "html-validate index.html",
+    "test:function": "node --test tests/ask-function.test.mjs",
     "check:headers": "node tests/check-netlify-headers.mjs",
-    "check": "npm run test:html && npm run check:headers && npm test"
+    "check": "npm run test:html && npm run check:headers && npm run test:function && npm test"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
