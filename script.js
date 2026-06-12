@@ -681,19 +681,19 @@ if (heroTitle && heroSection) {
     }, { passive: true });
 })();
 
-// Chat Widget — "Ask Pranav" floating assistant
+// Chat Widget — "Ask Pranav" floating pill assistant
 (() => {
-    const bubble = document.getElementById('chatBubble');
+    const form = document.getElementById('chatForm');
     const panel = document.getElementById('chatPanel');
-    if (!bubble || !panel || typeof panel.show !== 'function') return;
+    if (!form || !panel || typeof panel.show !== 'function') return;
 
     const log = document.getElementById('chatLog');
-    const form = document.getElementById('chatForm');
     const input = document.getElementById('chatInput');
     const closeButton = document.getElementById('chatClose');
     const suggestions = document.getElementById('chatSuggestions');
     const history = [];
     let pending = false;
+    let suppressOpen = false;
 
     const appendMessage = (text, variant) => {
         const message = document.createElement('div');
@@ -705,26 +705,23 @@ if (heroTitle && heroSection) {
     };
 
     const openPanel = () => {
+        if (suppressOpen || panel.open) return;
         panel.show();
-        bubble.setAttribute('aria-expanded', 'true');
         input.focus();
     };
 
-    const closePanel = () => {
+    const closePanel = (refocus = true) => {
+        if (!panel.open) return;
         panel.close();
-        bubble.setAttribute('aria-expanded', 'false');
-        bubble.focus();
+        if (refocus) {
+            suppressOpen = true;
+            input.focus();
+            suppressOpen = false;
+        }
     };
 
-    bubble.addEventListener('click', () => {
-        if (panel.open) {
-            closePanel();
-        } else {
-            openPanel();
-        }
-    });
-
-    closeButton.addEventListener('click', closePanel);
+    input.addEventListener('focus', openPanel);
+    closeButton.addEventListener('click', () => closePanel());
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && panel.open) {
@@ -732,9 +729,16 @@ if (heroTitle && heroSection) {
         }
     });
 
+    document.addEventListener('pointerdown', (event) => {
+        if (panel.open && !panel.contains(event.target) && !form.contains(event.target)) {
+            closePanel(false);
+        }
+    });
+
     const send = async (question) => {
         if (pending || !question) return;
         pending = true;
+        openPanel();
         suggestions.hidden = true;
         appendMessage(question, 'user');
         input.value = '';
