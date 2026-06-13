@@ -81,6 +81,13 @@ test('clicking outside the panel closes it', async ({ page }) => {
   await expect(page.locator('#chatPanel')).toBeHidden();
 });
 
+test('close button closes the panel and it stays closed', async ({ page }) => {
+  await openChat(page);
+  await page.locator('#chatClose').click();
+  await page.waitForTimeout(350);
+  await expect(page.locator('#chatPanel')).toBeHidden();
+});
+
 test('typing a question and pressing Enter renders the stubbed answer', async ({ page }) => {
   await page.route('**/.netlify/functions/ask', async (route) => {
     expect(route.request().postDataJSON().question).toBe('Who are you?');

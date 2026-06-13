@@ -712,15 +712,18 @@ if (heroTitle && heroSection) {
 
     const closePanel = (refocus = true) => {
         if (!panel.open) return;
+        suppressOpen = true;
         panel.close();
         if (refocus) {
-            suppressOpen = true;
             input.focus();
-            suppressOpen = false;
         }
+        setTimeout(() => {
+            suppressOpen = false;
+        }, 250);
     };
 
     input.addEventListener('focus', openPanel);
+    input.addEventListener('input', openPanel);
     closeButton.addEventListener('click', () => closePanel());
 
     document.addEventListener('keydown', (event) => {
