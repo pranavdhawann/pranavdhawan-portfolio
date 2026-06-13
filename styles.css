@@ -50,8 +50,7 @@
     }
 
     .particles-container,
-    .hero-rockets,
-    .scroll-indicator {
+    .hero-rockets {
         display: none !important;
     }
 }
@@ -474,22 +473,6 @@ body {
 .avatar-wrapper.is-auto-orbit .eye-pupil {
     transition: none;
 }
-.scroll-indicator {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    animation: bounce 2s infinite;
-}
-
-.scroll-arrow {
-    width: 20px;
-    height: 20px;
-    border-right: 3px solid var(--border);
-    border-bottom: 3px solid var(--border);
-    transform: rotate(45deg);
-}
-
 /* ==========================================
    SECTION STYLES
    ========================================== */
@@ -1345,17 +1328,6 @@ section {
     to { transform: translateX(0); }
 }
 
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateX(-50%) translateY(0);
-    }
-    40% {
-        transform: translateX(-50%) translateY(-10px);
-    }
-    60% {
-        transform: translateX(-50%) translateY(-5px);
-    }
-}
 
 
 
