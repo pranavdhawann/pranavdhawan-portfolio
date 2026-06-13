@@ -10,3 +10,8 @@ playwright-report/
 # Local env for netlify dev (never commit)
 .env
 netlify-dev.log
+
+# Private notes and local artifacts
+info.txt
+deno.lock
+output/
