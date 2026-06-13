@@ -136,3 +136,43 @@ test('page with pill and open panel has no axe violations', async ({ page }) => 
   const results = await new AxeBuilder({ page }).analyze();
   expect(results.violations).toEqual([]);
 });
+
+test('mobile chat controls leave room for the back-to-top button', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(pageUrl);
+  await page.evaluate(() => window.scrollTo(0, 700));
+  await expect(page.locator('#backToTop')).toBeVisible();
+
+  await page.locator('#chatInput').focus();
+  await expect(page.locator('#chatPanel')).toBeVisible();
+
+  const layout = await page.evaluate(() => {
+    const rect = (selector) => {
+      const box = document.querySelector(selector).getBoundingClientRect();
+      return {
+        left: box.left,
+        right: box.right,
+        top: box.top,
+        bottom: box.bottom
+      };
+    };
+    const overlaps = (a, b) =>
+      a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+
+    const pill = rect('#chatForm');
+    const panel = rect('#chatPanel');
+    const backToTop = rect('#backToTop');
+
+    return {
+      pill,
+      panel,
+      backToTop,
+      pillOverlapsBackToTop: overlaps(pill, backToTop),
+      panelOverlapsPill: overlaps(panel, pill)
+    };
+  });
+
+  expect(layout.pillOverlapsBackToTop).toBe(false);
+  expect(layout.panelOverlapsPill).toBe(false);
+  expect(layout.pill.right).toBeLessThanOrEqual(layout.backToTop.left - 8);
+});
