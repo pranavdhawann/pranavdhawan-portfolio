@@ -58,6 +58,7 @@ test('returns 500 when GROQ_API_KEY is missing', async () => {
 test('returns the model answer on success', async () => {
   const response = await ask({ question: 'Who are you?' });
   assert.equal(response.status, 200);
+  assert.equal(response.headers.get('Cache-Control'), 'no-store');
   const data = await response.json();
   assert.equal(data.answer, 'stub answer');
 });
@@ -72,8 +73,10 @@ test('sends system prompt plus history plus question to Groq', async () => {
   });
   const { body } = fetchCalls[0];
   assert.equal(body.model, 'llama-3.1-8b-instant');
+  assert.equal(body.max_tokens, 300);
   assert.equal(body.messages[0].role, 'system');
   assert.ok(body.messages[0].content.includes('ABOUT ME'));
+  assert.ok(body.messages[0].content.includes('NEVER generate content'));
   assert.deepEqual(
     body.messages.slice(1).map((m) => m.role),
     ['user', 'assistant', 'user']
