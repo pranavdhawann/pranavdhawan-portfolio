@@ -55,37 +55,52 @@ test.afterAll(async () => {
 
 async function openChat(page) {
   await page.goto(pageUrl);
-  await page.locator('#chatBubble').click();
+  await page.locator('#chatInput').focus();
   await expect(page.locator('#chatPanel')).toBeVisible();
 }
 
-test('chat bubble opens and closes the panel with focus management', async ({ page }) => {
+test('focusing the pill opens the panel and Escape closes it', async ({ page }) => {
   await page.goto(pageUrl);
-  const bubble = page.locator('#chatBubble');
-  await expect(bubble).toBeVisible();
-  await expect(bubble).toHaveAttribute('aria-expanded', 'false');
+  const pill = page.locator('#chatForm');
+  const input = page.locator('#chatInput');
+  await expect(pill).toBeVisible();
+  await expect(page.locator('#chatPanel')).toBeHidden();
 
-  await bubble.click();
+  await input.focus();
   await expect(page.locator('#chatPanel')).toBeVisible();
-  await expect(bubble).toHaveAttribute('aria-expanded', 'true');
-  await expect(page.locator('#chatInput')).toBeFocused();
+  await expect(input).toBeFocused();
 
   await page.keyboard.press('Escape');
   await expect(page.locator('#chatPanel')).toBeHidden();
-  await expect(bubble).toHaveAttribute('aria-expanded', 'false');
-  await expect(bubble).toBeFocused();
+  await expect(input).toBeFocused();
 });
 
-test('sending a question renders the stubbed answer', async ({ page }) => {
+test('clicking outside the panel closes it', async ({ page }) => {
+  await openChat(page);
+  await page.mouse.click(40, 200);
+  await expect(page.locator('#chatPanel')).toBeHidden();
+});
+
+test('typing a question and pressing Enter renders the stubbed answer', async ({ page }) => {
   await page.route('**/.netlify/functions/ask', async (route) => {
-    const body = route.request().postDataJSON();
-    expect(body.question).toBe('What do you do at ACS?');
-    await route.fulfill({ json: { answer: 'I build AI agents at ACS.' } });
+    expect(route.request().postDataJSON().question).toBe('Who are you?');
+    await route.fulfill({ json: { answer: 'I am Pranav.' } });
   });
 
   await openChat(page);
+  await page.locator('#chatInput').fill('Who are you?');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.chat-message--user')).toHaveText('Who are you?');
+  await expect(page.locator('.chat-message--bot').last()).toHaveText('I am Pranav.');
+});
+
+test('suggestion chip sends its question', async ({ page }) => {
+  await page.route('**/.netlify/functions/ask', (route) =>
+    route.fulfill({ json: { answer: 'I build AI agents at ACS.' } })
+  );
+
+  await openChat(page);
   await page.getByRole('button', { name: 'What do you do at ACS?' }).click();
-  await expect(page.locator('.chat-message--user')).toHaveText('What do you do at ACS?');
   await expect(page.locator('.chat-message--bot').last()).toHaveText('I build AI agents at ACS.');
 });
 
@@ -94,12 +109,23 @@ test('failed requests show the friendly error message', async ({ page }) => {
 
   await openChat(page);
   await page.locator('#chatInput').fill('Hello?');
-  await page.locator('.chat-send').click();
+  await page.keyboard.press('Enter');
   await expect(page.locator('.chat-message--bot').last()).toContainText('Something went wrong');
 });
 
-test('open chat panel has no axe violations', async ({ page }) => {
+test('server-provided error messages are shown to the visitor', async ({ page }) => {
+  await page.route('**/.netlify/functions/ask', (route) =>
+    route.fulfill({ status: 502, json: { error: "I'm getting a lot of questions right now — give it a few seconds and ask again." } })
+  );
+
   await openChat(page);
-  const results = await new AxeBuilder({ page }).include('#chatPanel').analyze();
+  await page.locator('#chatInput').fill('Busy?');
+  await page.keyboard.press('Enter');
+  await expect(page.locator('.chat-message--bot').last()).toContainText('a lot of questions');
+});
+
+test('page with pill and open panel has no axe violations', async ({ page }) => {
+  await openChat(page);
+  const results = await new AxeBuilder({ page }).analyze();
   expect(results.violations).toEqual([]);
 });
