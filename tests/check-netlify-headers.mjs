@@ -14,11 +14,12 @@ const expectedCsp = {
   'default-src': ["'self'"],
   'style-src': ["'self'", 'https://fonts.googleapis.com'],
   'font-src': ["'self'", 'https://fonts.gstatic.com'],
-  'img-src': ["'self'", 'data:'],
-  'script-src': ["'self'"],
+  'img-src': ["'self'", 'data:', 'https://pranavdhawan.goatcounter.com'],
+  'script-src': ["'self'", 'https://gc.zgo.at'],
   'object-src': ["'none'"],
   'base-uri': ["'self'"],
-  'frame-ancestors': ["'none'"]
+  'frame-ancestors': ["'none'"],
+  'connect-src': ["'self'", 'https://pranavdhawan.goatcounter.com']
 };
 
 function readTomlString(key) {
