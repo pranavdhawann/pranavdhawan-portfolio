@@ -3,3 +3,15 @@
 node_modules/
 test-results/
 playwright-report/
+
+# Local Netlify folder
+.netlify
+
+# Local env for netlify dev (never commit)
+.env
+netlify-dev.log
+
+# Private notes and local artifacts
+info.txt
+deno.lock
+output/
