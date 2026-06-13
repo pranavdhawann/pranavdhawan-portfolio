@@ -37,7 +37,7 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 7. **Avatar eye tracking** — desktop follows cursor through anisotropic radii (hardcoded for the 487×476 photo); touch/coarse-pointer runs a slow `requestAnimationFrame` orbit instead.
 8. **Hero decorations** — 10 particles + 8 flying rockets injected dynamically, only on desktop + motion-OK viewports. Zero DOM cost on mobile.
 9. **Skills graph** — static SVG layout with explicit desktop/mobile coordinate maps. Hover, tap, or keyboard-focus a node to highlight its neighborhood; tap/click outside or press Escape to clear.
-10. **Ask-Pranav chat widget** — floating bubble opens a `<dialog>` panel; questions POST to `/.netlify/functions/ask` with the last 6 turns of history; typing indicator, friendly error fallback, Escape-to-close with focus return.
+10. **Ask-Pranav chat pill** — bottom-center glassmorphic pill is the chat input; focusing it opens the conversation `<dialog>` above (log + suggestion chips); Enter sends to `/.netlify/functions/ask` with the last 6 turns of history; Escape or outside-click closes.
 
 ## Accessibility
 
