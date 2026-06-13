@@ -76,6 +76,15 @@ Without the key the site works normally and the chat shows its fallback
 message. Knowledge lives in `netlify/functions/lib/knowledge.mjs` — edit and
 redeploy to update what the bot knows.
 
+## Analytics
+
+Pageviews are tracked with [GoatCounter](https://www.goatcounter.com) (free,
+no cookies, GDPR-friendly). The dashboard lives at
+https://pranavdhawan.goatcounter.com — sign in with the account that owns the
+`pranavdhawan` site code. `count.js` ignores localhost, so local dev and tests
+don't pollute the numbers. CSP allows exactly `gc.zgo.at` (script) and
+`pranavdhawan.goatcounter.com` (beacon).
+
 ## Deploy
 
 Push to `main`; Netlify rebuilds from repo root automatically.
