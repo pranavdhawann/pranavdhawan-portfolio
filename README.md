@@ -1,6 +1,6 @@
 # pranavdhawan-portfolio
 
-Static portfolio site for Pranav Dhawan — AI Workplace Engineer @ American Chemical Society, MS Data Science from GWU.
+Static portfolio site for Pranav Dhawan
 
 **Live:** https://pranavdhawan.netlify.app/
 
@@ -26,68 +26,11 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 | `photo.png` (487×476), `eye.png` | Drive the cursor-tracking avatar eyes |
 | `Pranav_Dhawan_Resume.pdf` | Download target |
 
-## What `script.js` does
-
-1. **Mobile nav** — hamburger toggle with `aria-expanded` sync, outside-click close.
-2. **Smooth scroll** — captures `a[href^="#"]`; gated on `prefers-reduced-motion`.
-3. **Back-to-top button** — shows past 500px scroll.
-4. **Active link highlighter** — IntersectionObserver picks the section with the largest visible ratio.
-5. **Fade-up reveal** — `.fade-up` toggled on `.project-card`, `.timeline-item`, etc.
-6. **Hero title 3D tilt** — fine-pointer + hero-visible only; detaches when off-screen or reduced-motion.
-7. **Avatar eye tracking** — desktop follows cursor through anisotropic radii (hardcoded for the 487×476 photo); touch/coarse-pointer runs a slow `requestAnimationFrame` orbit instead.
-8. **Hero decorations** — 10 particles + 8 flying rockets injected dynamically, only on desktop + motion-OK viewports. Zero DOM cost on mobile.
-9. **Skills graph** — static SVG layout with explicit desktop/mobile coordinate maps. Hover, tap, or keyboard-focus a node to highlight its neighborhood; tap/click outside or press Escape to clear.
-10. **Ask-Pranav chat pill** — bottom-center glassmorphic pill is the chat input; focusing it opens the conversation `<dialog>` above (log + suggestion chips); Enter sends to `/.netlify/functions/ask` with the last 6 turns of history; Escape or outside-click closes.
-
-## Accessibility
-
-- `prefers-reduced-motion` honored in CSS (`* { animation-duration: 0.001ms }`) and JS (smooth-scroll, hero tilt, decoration injection all check).
-- `aria-hidden="true"` on every decorative inline SVG icon.
-- `aria-label` on every icon-only link/button.
-- SVG skills graph carries `<title>` + `<desc>` enumerating the skills for screen readers.
-- Focus-visible outlines preserved on interactive controls.
-
-## Develop
-
-Serve the site over HTTP so local behavior matches the deployed origin and headers more closely:
-
-```
-python -m http.server 8000
-# → http://localhost:8000
-```
-
-Automated checks:
-
-```
-npm install
-npm run check
-```
-
-## Chat widget setup
-
-The "Ask Pranav" chat needs a free Groq API key:
-
-1. Create a key at https://console.groq.com.
-2. Netlify → Site configuration → Environment variables → add `GROQ_API_KEY`.
-3. Local end-to-end testing: `npx netlify dev` with `GROQ_API_KEY` in the shell
-   environment (the static server alone returns the chat's friendly error).
-
-Without the key the site works normally and the chat shows its fallback
-message. Knowledge lives in `netlify/functions/lib/knowledge.mjs` — edit and
-redeploy to update what the bot knows.
-
 ## Analytics
 
 Pageviews are tracked with [GoatCounter](https://www.goatcounter.com) (free,
 no cookies, GDPR-friendly). The dashboard lives at
-https://pranavdhawan.goatcounter.com — sign in with the account that owns the
-`pranavdhawan` site code. `count.js` ignores localhost, so local dev and tests
-don't pollute the numbers. CSP allows exactly `gc.zgo.at` (script) and
-`pranavdhawan.goatcounter.com` (beacon).
-
-## Deploy
-
-Push to `main`; Netlify rebuilds from repo root automatically.
+https://pranavdhawan.goatcounter.com
 
 ---
 *Personal portfolio — content © Pranav Dhawan.*
