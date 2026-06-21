@@ -148,7 +148,7 @@ test('professional experience reflects updated role history', async ({ page }) =
   await expect(firstTimelineItem.getByText('June 2026 - Present')).toBeVisible();
   await expect(firstTimelineItem.getByRole('heading', { name: 'AI Independent Contractor' })).toBeVisible();
   await expect(firstTimelineItem.getByText('Siva Info LLC | New York, NY | Part-time, Remote')).toBeVisible();
-  await expect(firstTimelineItem.getByText(/part-time AI independent contractor/)).toBeVisible();
+  await expect(firstTimelineItem.getByText(/AI-driven document processing/)).toBeVisible();
   await expect(firstTimelineItem.getByText(/document workflows and computer vision pipelines/)).toBeVisible();
   await expect(firstTimelineItem.locator('.tech-tag', { hasText: 'Document Workflows' })).toBeVisible();
 
