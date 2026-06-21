@@ -99,14 +99,79 @@ test('dashboard project links to weather dashboard repository', async ({ page })
   );
 });
 
-test('american chemical society experience includes RAG and Teams bot impact', async ({ page }) => {
+test('project cards render named screenshots inside the existing image frames', async ({ page }) => {
   await openPortfolio(page);
 
-  await expect(
-    page.getByText(/Created a RAG proof of concept with a locally hosted Qwen model/)
-  ).toBeVisible();
-  await expect(page.getByText(/tickets get resolved/)).toBeVisible();
-  await expect(page.getByText('30% faster')).toBeVisible();
+  const expectedImages = [
+    ['Stock Screen', 'images/stockscreen.png'],
+    ['Multimodal Techniques for Financial Time Series Forecasting', 'images/multimodal.png'],
+    ['Edge-Based PII Detection & Censoring System', 'images/pii.png'],
+    ['Serverless ETL — Weather Dashboard', 'images/weather-dashboard.png']
+  ];
+
+  for (const [projectName, imagePath] of expectedImages) {
+    const card = page.locator('.project-card').filter({ hasText: projectName });
+    const frame = card.locator('.project-image');
+    const image = frame.locator('img.project-photo');
+
+    await expect(image).toBeVisible();
+    await expect(image).toHaveAttribute('src', imagePath);
+    await expect(image).toHaveAttribute('alt', projectName);
+    await expect(frame.locator('.project-icon')).toHaveCount(0);
+
+    const layout = await image.evaluate((img) => {
+      const imageBox = img.getBoundingClientRect();
+      const frame = img.closest('.project-image');
+      const styles = getComputedStyle(img);
+
+      return {
+        imageWidth: Math.round(imageBox.width),
+        imageHeight: Math.round(imageBox.height),
+        frameWidth: frame.clientWidth,
+        frameHeight: frame.clientHeight,
+        objectFit: styles.objectFit
+      };
+    });
+
+    expect(layout.imageWidth).toBe(layout.frameWidth);
+    expect(layout.imageHeight).toBe(layout.frameHeight);
+    expect(layout.objectFit).toBe('cover');
+  }
+});
+
+test('professional experience reflects updated role history', async ({ page }) => {
+  await openPortfolio(page);
+
+  const experience = page.locator('#experience');
+  const firstTimelineItem = experience.locator('.timeline-item').first();
+
+  await expect(firstTimelineItem.getByText('June 2026 - Present')).toBeVisible();
+  await expect(firstTimelineItem.getByRole('heading', { name: 'AI Independent Contractor' })).toBeVisible();
+  await expect(firstTimelineItem.getByText('Siva Info LLC | New York, NY | Part-time, Remote')).toBeVisible();
+  await expect(firstTimelineItem.getByText(/part-time AI independent contractor/)).toBeVisible();
+  await expect(firstTimelineItem.getByText(/document workflows and computer vision pipelines/)).toBeVisible();
+  await expect(firstTimelineItem.locator('.tech-tag', { hasText: 'Document Workflows' })).toBeVisible();
+
+  await expect(experience.getByRole('heading', { name: 'AI Workplace Engineer Intern' })).toBeVisible();
+  await expect(experience.getByText('American Chemical Society | Washington, DC | Full-time, Hybrid')).toBeVisible();
+  await expect(experience.getByText(/Building agentic AI workflows to automate service desk/)).toBeVisible();
+  await expect(experience.getByText(/workflow orchestration, knowledge retrieval, and human-in-the-loop automation/)).toBeVisible();
+
+  await expect(experience.getByRole('heading', { name: 'Machine Learning Engineer' })).toBeVisible();
+  await expect(experience.getByText(/detect and extract complex equations from 10,000\+ unstructured documents/)).toBeVisible();
+  await expect(experience.getByText(/Operationalized machine learning workloads on AWS SageMaker/)).toBeVisible();
+
+  await expect(experience.getByText('HCLTech | Noida, India | Internship, Hybrid')).toBeVisible();
+  await expect(experience.getByText(/Built predictive workforce analytics models/)).toBeVisible();
+
+  await expect(experience.getByText('EY | Gurugram, India | Internship, Hybrid')).toBeVisible();
+  await expect(experience.getByText(/Automated ETL workflows using Alteryx/)).toBeVisible();
+
+  await expect(experience.getByText('LEARNOVATE ECOMMERCE | Remote | Internship')).toBeVisible();
+  await expect(experience.getByText(/Developed responsive web interfaces using HTML, CSS, and JavaScript/)).toBeVisible();
+
+  await expect(experience.getByText(/Education 4 ol \| Remote \| Internship/)).toBeVisible();
+  await expect(experience.getByText(/Built reusable frontend components using HTML, CSS, and JavaScript/)).toBeVisible();
 });
 
 test('portfolio copy uses workplace engineer consistently', async ({ page }) => {
@@ -150,6 +215,42 @@ test('coursework sections use the same top spacing as technology sections', asyn
   });
 
   expect(spacing.coursework).toBe(spacing.techStack);
+});
+
+test('coursework tags follow the same visual style as technology tags', async ({ page }) => {
+  await openPortfolio(page);
+
+  const tagStyles = await page.evaluate(() => {
+    const coursework = document.querySelector('.course-tag');
+    const tech = document.querySelector('.tech-tag');
+    const properties = ['backgroundColor', 'color', 'fontSize', 'fontWeight', 'paddingTop', 'paddingRight', 'borderTopWidth'];
+
+    return Object.fromEntries(
+      properties.map((property) => [
+        property,
+        {
+          coursework: window.getComputedStyle(coursework)[property],
+          tech: window.getComputedStyle(tech)[property]
+        }
+      ])
+    );
+  });
+
+  for (const { coursework, tech } of Object.values(tagStyles)) {
+    expect(coursework).toBe(tech);
+  }
+});
+
+test('contact actions sit close beneath the get in touch heading', async ({ page }) => {
+  await openPortfolio(page);
+
+  const gap = await page.evaluate(() => {
+    const title = document.querySelector('#contact .section-title').getBoundingClientRect();
+    const action = document.querySelector('#contact .resume-btn').getBoundingClientRect();
+    return action.top - title.bottom;
+  });
+
+  expect(gap).toBeLessThanOrEqual(28);
 });
 
 test('mobile hamburger menu toggles expanded state', async ({ page }) => {

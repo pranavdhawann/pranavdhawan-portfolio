@@ -25,6 +25,9 @@
     /* Spacing & Layout */
     --container-width: 1200px;
     --nav-height: 80px;
+    --chat-resting-bottom: 20px;
+    --chat-bottom-offset: var(--chat-resting-bottom);
+    --chat-panel-lift: 67px;
 
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -580,18 +583,11 @@ section {
     background: var(--coral);
 }
 
-.project-placeholder {
-    font-size: 3rem;
-    color: var(--text-primary);
-    transition: transform var(--transition-smooth);
-}
-
-.project-placeholder .project-icon {
+.project-photo {
     display: block;
-}
-
-.project-card:hover .project-placeholder {
-    transform: scale(1.1);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .project-content {
@@ -620,15 +616,6 @@ section {
     flex-wrap: wrap;
     gap: 0.6rem;
     margin-bottom: 1.5rem;
-}
-
-.tech-tag {
-    background: var(--primary);
-    color: var(--text-primary);
-    padding: 0.35rem 0.85rem;
-    font-size: 0.8rem;
-    font-weight: 600;
-    border: 2px solid var(--border);
 }
 
 .project-links {
@@ -789,12 +776,13 @@ section {
     gap: 0.6rem;
 }
 
-.course-tag {
-    background: var(--bg-main);
+.course-tag,
+.tech-tag {
+    background: var(--primary);
     color: var(--text-primary);
-    padding: 0.4rem 0.9rem;
-    font-size: 0.85rem;
-    font-weight: 500;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.8rem;
+    font-weight: 600;
     border: 2px solid var(--border);
 }
 
@@ -911,7 +899,7 @@ section {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 1.25rem;
+    bottom: var(--chat-bottom-offset);
     width: min(420px, calc(100vw - 2rem));
     display: flex;
     align-items: center;
@@ -972,12 +960,12 @@ section {
     position: fixed;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 5.25rem;
+    bottom: calc(var(--chat-bottom-offset) + var(--chat-panel-lift));
     top: auto;
     right: auto;
     margin: 0;
     width: min(420px, calc(100vw - 2rem));
-    max-height: min(540px, calc(100vh - 8rem));
+    max-height: min(540px, calc(100vh - var(--chat-bottom-offset) - var(--chat-panel-lift) - 2.75rem));
     padding: 0;
     border: 3px solid var(--border);
     border-radius: 20px;
@@ -1139,8 +1127,12 @@ section {
     position: relative;
 }
 
+#contact .section-title {
+    margin-bottom: 0.6rem;
+}
+
 .contact-info {
-    padding: 3rem;
+    padding: 0.6rem 3rem 3rem;
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -1388,6 +1380,11 @@ section {
 
 /* Mobile */
 @media (max-width: 768px) {
+    :root {
+        --chat-resting-bottom: 12px;
+        --chat-panel-lift: 58px;
+    }
+
     .container {
         padding: 0 15px;
     }
@@ -1565,17 +1562,20 @@ section {
         left: 0.75rem;
         transform: none;
         width: calc(100vw - 2.25rem - 52px);
-        bottom: 0.75rem;
     }
 
     .chat-panel {
         width: calc(100vw - 1.5rem);
-        bottom: 4.4rem;
     }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
+    :root {
+        --chat-resting-bottom: 10px;
+        --chat-panel-lift: 56px;
+    }
+
     .container {
         padding: 0 10px;
     }
@@ -1686,12 +1686,10 @@ section {
         left: 0.6rem;
         transform: none;
         width: calc(100vw - 1.95rem - 48px);
-        bottom: 0.6rem;
     }
 
     .chat-panel {
         width: calc(100vw - 1.2rem);
-        bottom: 4.1rem;
         max-height: min(480px, calc(100vh - 6rem));
     }
 }
@@ -1756,7 +1754,7 @@ section {
    RESUME DOWNLOAD STYLES
    ========================================== */
 .resume-download {
-    margin: 2rem 0;
+    margin: 0 0 1.5rem;
     padding: 0;
     background: transparent;
     border: none;
@@ -1800,8 +1798,8 @@ section {
 /* Mobile resume button */
 @media (max-width: 768px) {
     .resume-download {
-        margin: 1.5rem 0;
-        padding: 1rem;
+        margin: 0 0 1rem;
+        padding: 0.5rem 0 0;
     }
 
     .resume-btn {

@@ -176,3 +176,35 @@ test('mobile chat controls leave room for the back-to-top button', async ({ page
   expect(layout.panelOverlapsPill).toBe(false);
   expect(layout.pill.right).toBeLessThanOrEqual(layout.backToTop.left - 8);
 });
+
+test('floating chat controls stop above the footer', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto(pageUrl);
+  await page.evaluate(() => {
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.documentElement.scrollTop = document.documentElement.scrollHeight;
+    document.body.scrollTop = document.body.scrollHeight;
+  });
+  await page.waitForFunction(() => window.scrollY > 0);
+  await page.locator('#chatInput').focus();
+  await expect(page.locator('#chatPanel')).toBeVisible();
+
+  const layout = await page.evaluate(() => {
+    const rect = (selector) => {
+      const box = document.querySelector(selector).getBoundingClientRect();
+      return {
+        top: box.top,
+        bottom: box.bottom
+      };
+    };
+
+    return {
+      footer: rect('.footer'),
+      pill: rect('#chatForm'),
+      panel: rect('#chatPanel')
+    };
+  });
+
+  expect(layout.pill.bottom).toBeLessThanOrEqual(layout.footer.top - 12);
+  expect(layout.panel.bottom).toBeLessThanOrEqual(layout.pill.top - 12);
+});

@@ -691,9 +691,38 @@ if (heroTitle && heroSection) {
     const input = document.getElementById('chatInput');
     const closeButton = document.getElementById('chatClose');
     const suggestions = document.getElementById('chatSuggestions');
+    const footer = document.querySelector('.footer');
+    const root = document.documentElement;
     const history = [];
     let pending = false;
     let suppressOpen = false;
+    let positionFrame = null;
+
+    const updateFooterOffset = () => {
+        if (!footer) return;
+
+        const styles = getComputedStyle(root);
+        const restingOffset = Number.parseFloat(styles.getPropertyValue('--chat-resting-bottom')) || 20;
+        const footerClearance = 12;
+        const footerTop = footer.getBoundingClientRect().top;
+        const liftedOffset = window.innerHeight - footerTop + footerClearance;
+        const nextOffset = Math.max(restingOffset, liftedOffset);
+
+        root.style.setProperty('--chat-bottom-offset', `${Math.ceil(nextOffset)}px`);
+    };
+
+    const scheduleFooterOffset = () => {
+        if (positionFrame !== null) return;
+
+        positionFrame = requestAnimationFrame(() => {
+            positionFrame = null;
+            updateFooterOffset();
+        });
+    };
+
+    updateFooterOffset();
+    window.addEventListener('scroll', scheduleFooterOffset, { passive: true });
+    window.addEventListener('resize', scheduleFooterOffset, { passive: true });
 
     const appendMessage = (text, variant) => {
         const message = document.createElement('div');
