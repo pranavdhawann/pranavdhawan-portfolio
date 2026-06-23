@@ -5,7 +5,7 @@
   "scripts": {
     "test": "playwright test",
     "test:html": "html-validate index.html blog/*.html",
-    "test:function": "node --test tests/ask-function.node.mjs tests/knowledge-sync.node.mjs",
+    "test:function": "node --test tests/ask-function.node.mjs tests/knowledge-sync.node.mjs tests/ci-workflow.node.mjs",
     "check:headers": "node tests/check-netlify-headers.mjs",
     "check": "npm run test:html && npm run check:headers && npm run test:function && npm test"
   },
