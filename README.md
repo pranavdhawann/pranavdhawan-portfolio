@@ -23,7 +23,7 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 | `netlify/functions/ask.mjs` | Serverless proxy to Groq (`llama-3.1-8b-instant`) for the chat widget |
 | `netlify/functions/lib/knowledge.mjs` | Curated first-person knowledge base embedded in the chat system prompt |
 | `package.json`, `tests/` | Local validation, Playwright smoke tests, and axe accessibility checks |
-| `photo.png` (487×476), `eye.png` | Drive the cursor-tracking avatar eyes |
+| `images/photo.png` (487×476), `images/eye.png` | Drive the cursor-tracking avatar eyes |
 | `Pranav_Dhawan_Resume.pdf` | Download target |
 
 ## Analytics

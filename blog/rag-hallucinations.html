@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why I split my legal RAG into two models — Pranav Dhawan</title>
+    <meta name="description" content="A short war story: how ~3 in 10 generated outputs hallucinated dates that looked real, and why routing factual fields to extractive QA fixed it.">
+    <meta name="author" content="Pranav Dhawan">
+    <meta name="theme-color" content="#FFD600">
+    <link rel="canonical" href="https://pranavdhawan.netlify.app/blog/rag-hallucinations.html">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD600' stroke='%231A1A1A' stroke-width='6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Space Grotesk,sans-serif' font-size='42' font-weight='800' fill='%231A1A1A'%3EP%3C/text%3E%3C/svg%3E">
+    <script src="../theme-init.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <main class="main-content article">
+        <article class="container article-body">
+            <p class="article-back"><a href="../index.html#writing">&larr; Back to writing</a></p>
+            <p class="article-meta">Retrieval-Augmented Generation &middot; 4 min read</p>
+            <h1>Why I split my legal RAG into two models</h1>
+
+            <p>While building a Retrieval-Augmented Generation system for legal document search, I
+                hit a failure mode that has stuck with me ever since. The pipeline retrieved the
+                right court documents and then summarised them — and roughly 3 in 10 outputs
+                contained dates that looked completely realistic but did not appear anywhere in the
+                source document. Filing dates, in particular, were being invented.</p>
+
+            <h2>Why it happened</h2>
+            <p>I had used BART for everything. BART is a generative, abstractive model: it predicts
+                the most plausible next token. That is exactly what you want for a case summary, and
+                exactly what you do not want for a filing date. A plausible-looking date is still
+                wrong, and in a legal context "plausible but wrong" is worse than "I don't know."</p>
+
+            <h2>The fix: route by query type</h2>
+            <p>I stopped treating every question the same way. After retrieval (Sentence
+                Transformers embeddings into a FAISS index, top-5 chunks by cosine similarity), I
+                routed by what the question was asking for:</p>
+            <ul>
+                <li><strong>Case summaries</strong> &rarr; BART, for fluent abstractive generation.</li>
+                <li><strong>Specific fields</strong> (plaintiff names, filing dates) &rarr; a BERT
+                    extractive QA model that can only return spans that actually exist in the
+                    document. It physically cannot hallucinate a date, because it is selecting text,
+                    not generating it.</li>
+            </ul>
+            <p>That single change — extractive models for factual fields — essentially eliminated
+                the invented-date problem, and dropped query time for counsel teams from minutes to
+                under five seconds.</p>
+
+            <h2>The lesson</h2>
+            <p>Picking the right <em>type</em> of model matters as much as any hyperparameter.
+                Generation and extraction are different tools; the trick was recognising that one
+                question type needed each. The system ended up "hybrid" twice over: retrieval plus
+                generation, and extractive plus abstractive.</p>
+
+            <p class="article-back"><a href="../index.html#writing">&larr; Back to writing</a></p>
+        </article>
+    </main>
+</body>
+
+</html>

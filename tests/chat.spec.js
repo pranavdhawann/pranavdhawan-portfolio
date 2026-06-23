@@ -1,50 +1,14 @@
 const { test, expect } = require('@playwright/test');
 const { AxeBuilder } = require('@axe-core/playwright');
-const fs = require('node:fs');
-const http = require('node:http');
 const path = require('node:path');
+const { readConfiguredHeaders, startStaticServer } = require('./helpers/static-server.cjs');
 
 const rootDir = path.join(__dirname, '..');
 let server;
 let pageUrl;
 
-function readTomlString(content, key) {
-  const escapedKey = key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const match = content.match(new RegExp(`^${escapedKey}\\s*=\\s*"([^"]*)"`, 'm'));
-  return match ? match[1] : undefined;
-}
-
-const contentTypes = {
-  '.html': 'text/html; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8',
-  '.png': 'image/png'
-};
-
 test.beforeAll(async () => {
-  const toml = fs.readFileSync(path.join(rootDir, 'netlify.toml'), 'utf8');
-  const csp = readTomlString(toml, 'Content-Security-Policy');
-  server = http.createServer((request, response) => {
-    const requestPath = decodeURIComponent(new URL(request.url, 'http://127.0.0.1').pathname);
-    const relativePath = requestPath === '/' ? 'index.html' : requestPath.slice(1);
-    const filePath = path.resolve(rootDir, relativePath);
-    const isInRoot = filePath === rootDir || filePath.startsWith(rootDir + path.sep);
-
-    if (!isInRoot || !fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
-      response.writeHead(404, { 'Content-Security-Policy': csp });
-      response.end('Not found');
-      return;
-    }
-
-    response.writeHead(200, {
-      'Content-Security-Policy': csp,
-      'Content-Type': contentTypes[path.extname(filePath)] || 'application/octet-stream'
-    });
-    fs.createReadStream(filePath).pipe(response);
-  });
-
-  await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve));
-  pageUrl = `http://127.0.0.1:${server.address().port}/`;
+  ({ server, url: pageUrl } = await startStaticServer(rootDir, readConfiguredHeaders(rootDir)));
 });
 
 test.afterAll(async () => {

@@ -3,6 +3,13 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const XLINK_NS = 'http://www.w3.org/1999/xlink';
 
+// Fire a GoatCounter event (no-op if the script isn't loaded, e.g. local/CI).
+function trackEvent(name) {
+    if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+        window.goatcounter.count({ path: name, title: name, event: true });
+    }
+}
+
 function createSvgIcon(symbolId, className = 'icon') {
     const icon = document.createElementNS(SVG_NS, 'svg');
     icon.setAttribute('class', className);
@@ -33,7 +40,8 @@ function createSvgIcon(symbolId, className = 'icon') {
     const rockets = document.createElement('div');
     rockets.className = 'hero-rockets';
     rockets.setAttribute('aria-hidden', 'true');
-    for (let i = 1; i <= 8; i++) {
+    // Dialed back from 8 to keep the hero lively but less busy.
+    for (let i = 1; i <= 3; i++) {
         const r = document.createElement('div');
         r.className = `rocket rocket-${i}`;
         r.appendChild(createSvgIcon('icon-rocket', 'icon rocket-icon'));
@@ -694,6 +702,8 @@ if (heroTitle && heroSection) {
     const footer = document.querySelector('.footer');
     const root = document.documentElement;
     const history = [];
+    // Mirrors MAX_HISTORY_MESSAGES in netlify/functions/ask.mjs (server re-clamps).
+    const HISTORY_LIMIT = 6;
     let pending = false;
     let suppressOpen = false;
     let positionFrame = null;
@@ -728,6 +738,10 @@ if (heroTitle && heroSection) {
         const message = document.createElement('div');
         message.className = `chat-message chat-message--${variant}`;
         message.textContent = text;
+        // Keep the "•••" typing dots out of the aria-live region.
+        if (variant === 'typing') {
+            message.setAttribute('aria-hidden', 'true');
+        }
         log.appendChild(message);
         log.scrollTop = log.scrollHeight;
         return message;
@@ -773,6 +787,7 @@ if (heroTitle && heroSection) {
         openPanel();
         suggestions.hidden = true;
         appendMessage(question, 'user');
+        trackEvent('chat-question');
         input.value = '';
         const typing = appendMessage('•••', 'typing');
         let serverMessage = '';
@@ -781,7 +796,7 @@ if (heroTitle && heroSection) {
             const response = await fetch('/.netlify/functions/ask', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ question, history: history.slice(-6) })
+                body: JSON.stringify({ question, history: history.slice(-HISTORY_LIMIT) })
             });
             const data = await response.json().catch(() => ({}));
             typing.remove();
@@ -811,5 +826,108 @@ if (heroTitle && heroSection) {
         if (chip) {
             send(chip.textContent.trim());
         }
+    });
+})();
+
+// Theme toggle (light/dark) — persists the choice in localStorage
+(() => {
+    const toggle = document.getElementById('themeToggle');
+    if (!toggle) return;
+    const root = document.documentElement;
+
+    const syncLabel = () => {
+        const dark = root.getAttribute('data-theme') === 'dark';
+        toggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
+        toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    };
+
+    syncLabel();
+
+    toggle.addEventListener('click', () => {
+        const dark = root.getAttribute('data-theme') === 'dark';
+        if (dark) {
+            root.removeAttribute('data-theme');
+        } else {
+            root.setAttribute('data-theme', 'dark');
+        }
+        try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) { /* ignore */ }
+        syncLabel();
+        trackEvent('theme-' + (dark ? 'light' : 'dark'));
+    });
+})();
+
+// Experience timeline — reveal/hide earlier (2021) roles
+(() => {
+    const toggle = document.getElementById('timelineToggle');
+    const extra = document.getElementById('timelineExtra');
+    if (!toggle || !extra) return;
+
+    toggle.addEventListener('click', () => {
+        const isHidden = extra.hasAttribute('hidden');
+        if (isHidden) {
+            extra.removeAttribute('hidden');
+            toggle.textContent = 'Hide earlier roles';
+            toggle.setAttribute('aria-expanded', 'true');
+        } else {
+            extra.setAttribute('hidden', '');
+            toggle.textContent = 'Show earlier roles (2021)';
+            toggle.setAttribute('aria-expanded', 'false');
+        }
+    });
+})();
+
+// Contact — copy email, and submit the form to Netlify without a page reload
+(() => {
+    const copyButton = document.querySelector('.contact-copy');
+    if (copyButton) {
+        copyButton.addEventListener('click', async () => {
+            const email = copyButton.dataset.copy || '';
+            try {
+                await navigator.clipboard.writeText(email);
+            } catch (e) {
+                return;
+            }
+            const original = copyButton.textContent;
+            copyButton.textContent = 'Copied';
+            copyButton.classList.add('is-copied');
+            trackEvent('email-copy');
+            setTimeout(() => {
+                copyButton.textContent = original;
+                copyButton.classList.remove('is-copied');
+            }, 1600);
+        });
+    }
+
+    const form = document.querySelector('.contact-form');
+    const status = document.getElementById('contactStatus');
+    if (!form || !status) return;
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        status.classList.remove('is-error');
+        status.textContent = 'Sending…';
+
+        try {
+            const response = await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: new URLSearchParams(new FormData(form)).toString()
+            });
+            if (!response.ok) throw new Error('Request failed');
+            form.reset();
+            status.textContent = "Thanks — I'll get back to you soon.";
+            trackEvent('contact-sent');
+        } catch (e) {
+            status.classList.add('is-error');
+            status.textContent = 'Something went wrong. Please email me directly at dhawanpranav02@gmail.com.';
+        }
+    });
+})();
+
+// Lightweight outbound / CTA click tracking via data-analytics attributes
+(() => {
+    document.addEventListener('click', (event) => {
+        const el = event.target.closest('[data-analytics]');
+        if (el) trackEvent(el.getAttribute('data-analytics'));
     });
 })();

@@ -7,6 +7,36 @@ const MAX_HISTORY_MESSAGES = 6;
 const MAX_HISTORY_CONTENT_LENGTH = 1500;
 const FRIENDLY_ERROR = "I couldn't answer right now — try again in a moment, or reach Pranav through the contact section.";
 
+// Only allow browser calls from the site itself. Requests with no Origin (curl,
+// server-to-server, unit tests) fall through to the rate limiter below.
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://pranavdhawan.netlify.app')
+  .split(',')
+  .map((origin) => origin.trim())
+  .filter(Boolean);
+
+// In-memory IP throttle. This protects warm instances against bursts; it does
+// not survive cold starts or span regions, so pair it with Netlify's platform
+// rate limiting (dashboard) for production-grade protection.
+const RATE_LIMIT_WINDOW_MS = 60_000;
+const RATE_LIMIT_MAX = 15;
+const recentHits = new Map();
+
+const clientIp = (request) =>
+  request.headers.get('x-nf-client-connection-ip') ||
+  request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ||
+  'unknown';
+
+const isRateLimited = (ip) => {
+  const now = Date.now();
+  const hits = (recentHits.get(ip) || []).filter((time) => now - time < RATE_LIMIT_WINDOW_MS);
+  hits.push(now);
+  recentHits.set(ip, hits);
+  return hits.length > RATE_LIMIT_MAX;
+};
+
+// Test-only hook so the throttle does not leak state across cases.
+export const resetRateLimit = () => recentHits.clear();
+
 const SYSTEM_PROMPT = `You are Pranav Dhawan, speaking in the first person on your portfolio website. Visitors ask you questions to learn about you.
 
 Rules:
@@ -44,6 +74,15 @@ const sanitizeHistory = (history) => {
 export default async function handler(request) {
   if (request.method !== 'POST') {
     return json({ error: 'Method not allowed.' }, 405);
+  }
+
+  const origin = request.headers.get('origin');
+  if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+    return json({ error: 'Forbidden.' }, 403);
+  }
+
+  if (isRateLimited(clientIp(request))) {
+    return json({ error: "I'm getting a lot of questions right now — give it a few seconds and ask again." }, 429);
   }
 
   let payload;

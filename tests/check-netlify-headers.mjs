@@ -1,4 +1,5 @@
 import { readFileSync } from 'node:fs';
+import { readTomlString, parseCsp } from './helpers/toml.cjs';
 
 const content = readFileSync(new URL('../netlify.toml', import.meta.url), 'utf8');
 
@@ -19,31 +20,20 @@ const expectedCsp = {
   'object-src': ["'none'"],
   'base-uri': ["'self'"],
   'frame-ancestors': ["'none'"],
+  'form-action': ["'self'"],
   'connect-src': ["'self'", 'https://pranavdhawan.goatcounter.com']
 };
-
-function readTomlString(key) {
-  const match = content.match(new RegExp(`^${key.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}\\s*=\\s*"([^"]*)"`, 'm'));
-  return match ? match[1] : undefined;
-}
-
-function parseCsp(policy) {
-  return Object.fromEntries(policy.split(';').map((part) => {
-    const [directive, ...values] = part.trim().split(/\s+/);
-    return [directive, values];
-  }));
-}
 
 const problems = [];
 
 for (const [header, expected] of Object.entries(expectedHeaders)) {
-  const actual = readTomlString(header);
+  const actual = readTomlString(content, header);
   if (actual !== expected) {
     problems.push(`${header}: expected "${expected}", got "${actual ?? 'missing'}"`);
   }
 }
 
-const csp = parseCsp(readTomlString('Content-Security-Policy') || '');
+const csp = parseCsp(readTomlString(content, 'Content-Security-Policy') || '');
 for (const [directive, expected] of Object.entries(expectedCsp)) {
   const actual = csp[directive];
   if (!actual || actual.join(' ') !== expected.join(' ')) {

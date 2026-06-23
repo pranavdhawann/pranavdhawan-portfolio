@@ -1,6 +1,6 @@
 import { test, beforeEach, afterEach } from 'node:test';
 import assert from 'node:assert/strict';
-import handler from '../netlify/functions/ask.mjs';
+import handler, { resetRateLimit } from '../netlify/functions/ask.mjs';
 
 const realFetch = globalThis.fetch;
 let fetchCalls;
@@ -27,6 +27,7 @@ function ask(body, method = 'POST') {
 beforeEach(() => {
   fetchCalls = [];
   process.env.GROQ_API_KEY = 'test-key';
+  resetRateLimit();
   stubGroq(groqOk());
 });
 
@@ -34,9 +35,35 @@ afterEach(() => {
   globalThis.fetch = realFetch;
 });
 
+function askWith(headers, body = { question: 'Who are you?' }) {
+  return handler(new Request('http://localhost/.netlify/functions/ask', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...headers },
+    body: JSON.stringify(body)
+  }));
+}
+
 test('rejects non-POST requests with 405', async () => {
   const response = await ask(null, 'GET');
   assert.equal(response.status, 405);
+});
+
+test('rejects requests from a disallowed Origin with 403', async () => {
+  const response = await askWith({ Origin: 'https://evil.example' });
+  assert.equal(response.status, 403);
+});
+
+test('allows requests from the configured Origin', async () => {
+  const response = await askWith({ Origin: 'https://pranavdhawan.netlify.app' });
+  assert.equal(response.status, 200);
+});
+
+test('throttles a burst of requests from one IP with 429', async () => {
+  let status = 200;
+  for (let i = 0; i < 20; i++) {
+    status = (await askWith({ 'x-forwarded-for': '203.0.113.7' })).status;
+  }
+  assert.equal(status, 429);
 });
 
 test('rejects missing question with 400', async () => {

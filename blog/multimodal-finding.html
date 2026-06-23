@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>When the simple model wins — Pranav Dhawan</title>
+    <meta name="description" content="My graduate thesis benchmarked 10+ models for financial time-series forecasting. The surprise: a standalone LSTM stayed highly competitive with fused multimodal models.">
+    <meta name="author" content="Pranav Dhawan">
+    <meta name="theme-color" content="#FFD600">
+    <link rel="canonical" href="https://pranavdhawan.netlify.app/blog/multimodal-finding.html">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD600' stroke='%231A1A1A' stroke-width='6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Space Grotesk,sans-serif' font-size='42' font-weight='800' fill='%231A1A1A'%3EP%3C/text%3E%3C/svg%3E">
+    <script src="../theme-init.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <main class="main-content article">
+        <article class="container article-body">
+            <p class="article-back"><a href="../index.html#writing">&larr; Back to writing</a></p>
+            <p class="article-meta">Time Series &middot; Multimodal ML &middot; 4 min read</p>
+            <h1>When the simple model wins</h1>
+
+            <p>For my graduate thesis I ran a benchmark study on the FinMultiTime dataset, asking a
+                question that sounds like it has an obvious answer: does stock prediction improve
+                when you fuse modalities — price time series, news sentiment, and SEC filings?</p>
+
+            <h2>What I built</h2>
+            <p>I evaluated 10+ models across standalone, multimodal, and ensemble categories. The
+                architecture I explored used LSTM for prices, FinBERT for sentiment, TabNet for
+                filings, a graph neural network for inter-sector relationships, and attention-based
+                late fusion to combine them.</p>
+
+            <h2>The surprising result</h2>
+            <p>The intuition going in was "more signal must mean better predictions." But a
+                <strong>standalone LSTM on price data alone stayed highly competitive</strong> with
+                the fused multimodal models. The added modalities did not deliver the clear, consistent
+                gains the complexity implied they should.</p>
+
+            <h2>The lesson</h2>
+            <p>Complexity has to be justified by clear empirical gains — not by how sophisticated the
+                pipeline looks on a diagram. A multimodal system carries real costs: more data
+                plumbing, more failure modes, more things to maintain. If a single-modality model
+                matches it, that simplicity is a feature, not a shortcoming. I packaged the findings
+                into a research paper and a technical report.</p>
+
+            <p class="article-back"><a href="../index.html#writing">&larr; Back to writing</a></p>
+        </article>
+    </main>
+</body>
+
+</html>

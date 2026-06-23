@@ -15,7 +15,7 @@
     <meta property="og:url" content="https://pranavdhawan.netlify.app/">
     <meta property="og:title" content="Pranav Dhawan — AI Engineer & Data Scientist">
     <meta property="og:description" content="AI Workplace Engineer Intern | MS Data Science @ GWU. Building ML systems across computer vision, NLP, and agentic AI.">
-    <meta property="og:image" content="https://pranavdhawan.netlify.app/photo.png">
+    <meta property="og:image" content="https://pranavdhawan.netlify.app/images/photo.png">
     <meta property="og:image:width" content="487">
     <meta property="og:image:height" content="476">
     <meta property="og:image:alt" content="Illustrated avatar of Pranav Dhawan">
@@ -24,12 +24,18 @@
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Pranav Dhawan — AI Engineer & Data Scientist">
     <meta name="twitter:description" content="AI Workplace Engineer Intern | MS Data Science @ GWU. Building ML systems across computer vision, NLP, and agentic AI.">
-    <meta name="twitter:image" content="https://pranavdhawan.netlify.app/photo.png">
+    <meta name="twitter:image" content="https://pranavdhawan.netlify.app/images/photo.png">
     <meta name="twitter:image:alt" content="Illustrated avatar of Pranav Dhawan">
 
     <!-- Favicon: inline SVG, neobrutalism yellow with 'P' -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD600' stroke='%231A1A1A' stroke-width='6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Space Grotesk,sans-serif' font-size='42' font-weight='800' fill='%231A1A1A'%3EP%3C/text%3E%3C/svg%3E">
+
+    <!-- Sets the colour theme before paint (separate file to satisfy CSP) -->
+    <script src="theme-init.js"></script>
     <link rel="stylesheet" href="styles.css">
+
+    <!-- Preload the LCP hero avatar so it paints sooner -->
+    <link rel="preload" as="image" href="images/photo.png" fetchpriority="high">
 
     <!-- Preconnect hints for third-party origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +53,7 @@
         "@type": "Person",
         "name": "Pranav Dhawan",
         "url": "https://pranavdhawan.netlify.app/",
-        "image": "https://pranavdhawan.netlify.app/photo.png",
+        "image": "https://pranavdhawan.netlify.app/images/photo.png",
         "jobTitle": "AI Workplace Engineer Intern",
         "worksFor": {
             "@type": "Organization",
@@ -126,6 +132,13 @@
         <symbol id="icon-send" viewBox="0 0 24 24">
             <path fill="currentColor" d="M3 11l18-8-8 18-2.5-7.5L3 11z"/>
         </symbol>
+        <symbol id="icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+        </symbol>
+        <symbol id="icon-moon" viewBox="0 0 24 24">
+            <path d="M20 13.5A8 8 0 1 1 10.5 4a6.5 6.5 0 0 0 9.5 9.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
+        </symbol>
     </svg>
 
     <!-- Top Navigation Bar -->
@@ -133,30 +146,39 @@
         <div class="nav-logo">
             <a href="#home">PRANAV DHAWAN</a>
         </div>
-        <button class="mobile-toggle" id="mobileToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
-            <svg class="icon icon-menu" aria-hidden="true" focusable="false"><use href="#icon-menu"></use></svg>
-            <svg class="icon icon-close" aria-hidden="true" focusable="false"><use href="#icon-close"></use></svg>
-        </button>
-        <ul class="nav-menu" id="navMenu">
-            <li class="nav-item">
-                <a href="#home" class="nav-link">HOME</a>
-            </li>
-            <li class="nav-item">
-                <a href="#about" class="nav-link">ABOUT</a>
-            </li>
-            <li class="nav-item">
-                <a href="#skills" class="nav-link">SKILLS</a>
-            </li>
-            <li class="nav-item">
-                <a href="#projects" class="nav-link">PROJECTS</a>
-            </li>
-            <li class="nav-item">
-                <a href="#experience" class="nav-link">EXPERIENCE</a>
-            </li>
-            <li class="nav-item">
-                <a href="#contact" class="nav-link">CONTACT</a>
-            </li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="#home" class="nav-link">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#about" class="nav-link">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#skills" class="nav-link">SKILLS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#projects" class="nav-link">PROJECTS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#writing" class="nav-link">WRITING</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#experience" class="nav-link">EXPERIENCE</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#contact" class="nav-link">CONTACT</a>
+                </li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+                <svg class="icon icon-sun" aria-hidden="true" focusable="false"><use href="#icon-sun"></use></svg>
+                <svg class="icon icon-moon" aria-hidden="true" focusable="false"><use href="#icon-moon"></use></svg>
+            </button>
+            <button class="mobile-toggle" id="mobileToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+                <svg class="icon icon-menu" aria-hidden="true" focusable="false"><use href="#icon-menu"></use></svg>
+                <svg class="icon icon-close" aria-hidden="true" focusable="false"><use href="#icon-close"></use></svg>
+            </button>
+        </div>
     </nav>
 
     <!-- Main Content Area -->
@@ -167,11 +189,18 @@
 
             <div class="hero-container">
                 <div class="hero-content">
+                    <p class="hero-availability">
+                        <span class="status-dot" aria-hidden="true"></span>
+                        Open to full-time AI / ML Engineer roles
+                    </p>
                     <h1 class="hero-title">
                         Hi, I'm <span class="highlight">Pranav Dhawan</span>
                     </h1>
                     <p class="hero-description">
-                        AI Engineer | MS Data Science
+                        I build <strong>production AI agents and ML systems</strong>. Currently building
+                        agentic automation at the American Chemical Society; previously shipped computer
+                        vision and RAG pipelines at Lumina Datamatics. MS in Data Science from George
+                        Washington University.
                     </p>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -180,9 +209,9 @@
                 </div>
                 <div class="hero-image">
                     <div class="avatar-wrapper" id="avatarWrapper">
-                        <img src="photo.png" alt="Pranav Dhawan" class="avatar-img" id="avatarImg" width="487" height="476" draggable="false">
-                        <img src="eye.png" alt="" class="eye-pupil" id="eyeLeft" draggable="false">
-                        <img src="eye.png" alt="" class="eye-pupil" id="eyeRight" draggable="false">
+                        <img src="images/photo.png" alt="Pranav Dhawan" class="avatar-img" id="avatarImg" width="487" height="476" fetchpriority="high" draggable="false">
+                        <img src="images/eye.png" alt="" class="eye-pupil" id="eyeLeft" draggable="false">
+                        <img src="images/eye.png" alt="" class="eye-pupil" id="eyeRight" draggable="false">
                     </div>
                 </div>
             </div>
@@ -205,6 +234,15 @@
                             building systems people actually use.
                         </p>
                         <p>Always open to connecting with others working on interesting problems so feel free to reach out.</p>
+                    </div>
+                    <div class="org-strip">
+                        <span class="org-strip-label">Experience with</span>
+                        <ul class="org-list">
+                            <li>American Chemical Society</li>
+                            <li>EY</li>
+                            <li>HCLTech</li>
+                            <li>Lumina Datamatics</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -249,8 +287,8 @@
                             </div>
                             <div class="project-links">
                                 <a href="https://stock-screen-25476982226.us-central1.run.app/" class="project-link"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg> View
+                                    target="_blank" rel="noopener noreferrer" data-analytics="project-demo:stock-screen">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg> Live demo
                                 </a>
                             </div>
                         </div>
@@ -324,6 +362,27 @@ different model architectures and ensembles delivered findings in a research pap
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="writing" class="writing">
+            <div class="container">
+                <h2 class="section-title">WRITING</h2>
+                <p class="writing-intro">Short notes on lessons from my projects — the kind of trade-offs that don't make it into a résumé bullet.</p>
+                <div class="writing-grid">
+                    <a class="writing-card" href="blog/rag-hallucinations.html" data-analytics="writing:rag-hallucinations">
+                        <span class="writing-tag">Retrieval-Augmented Generation</span>
+                        <h3>Why I split my legal RAG into two models</h3>
+                        <p>~3 in 10 generated outputs invented realistic-looking filing dates. Here's why routing factual fields to extractive QA fixed it.</p>
+                        <span class="writing-readmore">Read &rarr;</span>
+                    </a>
+                    <a class="writing-card" href="blog/multimodal-finding.html" data-analytics="writing:multimodal-finding">
+                        <span class="writing-tag">Time Series &middot; Multimodal ML</span>
+                        <h3>When the simple model wins</h3>
+                        <p>My thesis benchmarked 10+ models for stock forecasting. The surprise: a standalone LSTM stayed competitive with fused multimodal models.</p>
+                        <span class="writing-readmore">Read &rarr;</span>
+                    </a>
                 </div>
             </div>
         </section>
@@ -576,6 +635,11 @@ different model architectures and ensembles delivered findings in a research pap
                         </div>
                     </div>
 
+                    <button class="timeline-toggle" id="timelineToggle" type="button" aria-expanded="false" aria-controls="timelineExtra">
+                        Show earlier roles (2021)
+                    </button>
+
+                    <div class="timeline-extra" id="timelineExtra" hidden>
                     <div class="timeline-item">
                         <div class="timeline-content">
                             <div class="timeline-date">August 2021 - September 2021</div>
@@ -637,6 +701,7 @@ different model architectures and ensembles delivered findings in a research pap
                             </div>
                         </div>
                     </div>
+                    </div>
 
                 </div>
             </div>
@@ -648,23 +713,50 @@ different model architectures and ensembles delivered findings in a research pap
                 <div class="contact-content-centered">
                     <div class="contact-info">
                         <div class="resume-download">
-                            <a href="Pranav_Dhawan_Resume.pdf" class="resume-btn" download="Pranav_Dhawan_Resume.pdf">
+                            <a href="Pranav_Dhawan_Resume.pdf" class="resume-btn" download="Pranav_Dhawan_Resume.pdf" data-analytics="resume-download">
                                 <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
                                 <span>Download Resume</span>
                             </a>
                         </div>
 
+                        <p class="contact-email">
+                            <a href="mailto:dhawanpranav02@gmail.com" class="contact-email-link" data-analytics="email-link">dhawanpranav02@gmail.com</a>
+                            <button class="contact-copy" type="button" data-copy="dhawanpranav02@gmail.com" aria-label="Copy email address">Copy</button>
+                        </p>
+
                         <div class="social-links">
-                            <a href="mailto:dhawanpranav02@gmail.com" class="social-link" aria-label="Email Me">
+                            <a href="mailto:dhawanpranav02@gmail.com" class="social-link" aria-label="Email Me" data-analytics="email-icon">
                                 <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-envelope"></use></svg>
                             </a>
-                            <a href="https://github.com/pranavdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile">
+                            <a href="https://github.com/pranavdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" data-analytics="github">
                                 <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg>
                             </a>
-                            <a href="https://linkedin.com/in/pranavvdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile">
+                            <a href="https://linkedin.com/in/pranavvdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" data-analytics="linkedin">
                                 <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-linkedin"></use></svg>
                             </a>
                         </div>
+
+                        <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+                            <p class="contact-form-title">Or send me a message directly</p>
+                            <input type="hidden" name="form-name" value="contact">
+                            <p class="contact-hp" hidden>
+                                <label>Leave this empty if you're human: <input type="text" name="bot-field"></label>
+                            </p>
+                            <div class="contact-field">
+                                <label for="cf-name">Name</label>
+                                <input id="cf-name" name="name" type="text" autocomplete="name" required>
+                            </div>
+                            <div class="contact-field">
+                                <label for="cf-email">Email</label>
+                                <input id="cf-email" name="email" type="email" autocomplete="email" required>
+                            </div>
+                            <div class="contact-field">
+                                <label for="cf-message">Message</label>
+                                <textarea id="cf-message" name="message" rows="4" required></textarea>
+                            </div>
+                            <button class="btn btn-primary contact-submit" type="submit" data-analytics="contact-submit">Send message</button>
+                            <p class="contact-status" id="contactStatus" role="status" aria-live="polite"></p>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -693,6 +785,7 @@ different model architectures and ensembles delivered findings in a research pap
             <button class="chat-chip" type="button">Tell me about your RAG project</button>
             <button class="chat-chip" type="button">What's your tech stack?</button>
         </div>
+        <p class="chat-built-by">An AI version of me — built by Pranav with Groq + Llama 3.1</p>
     </dialog>
 
     <form class="chat-pill" id="chatForm" aria-label="Ask Pranav">
