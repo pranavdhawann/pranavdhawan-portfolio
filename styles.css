@@ -2214,6 +2214,37 @@ section {
 
 .contact-status.is-error { color: var(--coral); }
 
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+    width: 100%;
+    max-width: 920px;
+    text-align: left;
+}
+
+.contact-grid .contact-info {
+    padding: 0;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.contact-grid .resume-download { text-align: left; }
+
+.contact-grid .contact-form {
+    margin: 0;
+    max-width: none;
+    width: 100%;
+}
+
+@media (max-width: 768px) {
+    .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
 /* ==========================================
    TIMELINE TOGGLE
    ========================================== */

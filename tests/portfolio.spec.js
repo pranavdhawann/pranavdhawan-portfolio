@@ -56,7 +56,7 @@ test('project cards render named screenshots inside the existing image frames', 
 
   const expectedImages = [
     ['Stock Screen', 'images/stockscreen.png'],
-    ['Multimodal Techniques for Financial Time Series Forecasting', 'images/multimodal.png'],
+    ['Multimodal Techniques for Equity Forecasting', 'images/multimodal.png'],
     ['Edge-Based PII Detection & Censoring System', 'images/pii.png'],
     ['Serverless ETL — Weather Dashboard', 'images/weather-dashboard.png']
   ];

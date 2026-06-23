@@ -139,6 +139,13 @@
         <symbol id="icon-moon" viewBox="0 0 24 24">
             <path d="M20 13.5A8 8 0 1 1 10.5 4a6.5 6.5 0 0 0 9.5 9.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
         </symbol>
+        <symbol id="icon-handshake" viewBox="0 0 24 24">
+            <path d="m11 17 2 2a1 1 0 1 0 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="m21 3 1 11h-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M3 4h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </symbol>
     </svg>
 
     <!-- Top Navigation Bar -->
@@ -161,7 +168,7 @@
                     <a href="#projects" class="nav-link">PROJECTS</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#writing" class="nav-link">WRITING</a>
+                    <a href="blog/index.html" class="nav-link">BLOG</a>
                 </li>
                 <li class="nav-item">
                     <a href="#experience" class="nav-link">EXPERIENCE</a>
@@ -191,15 +198,13 @@
                 <div class="hero-content">
                     <p class="hero-availability">
                         <span class="status-dot" aria-hidden="true"></span>
-                        Open to full-time AI / ML Engineer roles
+                        Open to roles in Artificial Intelligence and Machine Learning
                     </p>
                     <h1 class="hero-title">
                         Hi, I'm <span class="highlight">Pranav Dhawan</span>
                     </h1>
                     <p class="hero-description">
-                        I build <strong>production AI agents and ML systems</strong>. Currently building
-                        agentic automation at the American Chemical Society; previously shipped computer
-                        vision and RAG pipelines at Lumina Datamatics. MS in Data Science from George
+                        Currently building <strong>agentic automation</strong> at American Chemical Society, Washington DC. MS in Data Science from George
                         Washington University.
                     </p>
                     <div class="hero-buttons">
@@ -296,10 +301,10 @@
 
                     <div class="project-card">
                         <div class="project-image">
-                            <img class="project-photo" src="images/multimodal.png" alt="Multimodal Techniques for Financial Time Series Forecasting" width="567" height="646" loading="lazy">
+                            <img class="project-photo" src="images/multimodal.png" alt="Multimodal Techniques for Equity Forecasting" width="567" height="646" loading="lazy">
                         </div>
                         <div class="project-content">
-                            <h3>Multimodal Techniques for Financial Time Series Forecasting</h3>
+                            <h3>Multimodal Techniques for Equity Forecasting</h3>
                             <p>Conducted a benchmark study on the FinMultiTime dataset using multiple data modalities, evaluating 10+
 different model architectures and ensembles delivered findings in a research paper and technical report.  </p>
                             <div class="project-tech">
@@ -362,27 +367,6 @@ different model architectures and ensembles delivered findings in a research pap
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="writing" class="writing">
-            <div class="container">
-                <h2 class="section-title">WRITING</h2>
-                <p class="writing-intro">Short notes on lessons from my projects — the kind of trade-offs that don't make it into a résumé bullet.</p>
-                <div class="writing-grid">
-                    <a class="writing-card" href="blog/rag-hallucinations.html" data-analytics="writing:rag-hallucinations">
-                        <span class="writing-tag">Retrieval-Augmented Generation</span>
-                        <h3>Why I split my legal RAG into two models</h3>
-                        <p>~3 in 10 generated outputs invented realistic-looking filing dates. Here's why routing factual fields to extractive QA fixed it.</p>
-                        <span class="writing-readmore">Read &rarr;</span>
-                    </a>
-                    <a class="writing-card" href="blog/multimodal-finding.html" data-analytics="writing:multimodal-finding">
-                        <span class="writing-tag">Time Series &middot; Multimodal ML</span>
-                        <h3>When the simple model wins</h3>
-                        <p>My thesis benchmarked 10+ models for stock forecasting. The surprise: a standalone LSTM stayed competitive with fused multimodal models.</p>
-                        <span class="writing-readmore">Read &rarr;</span>
-                    </a>
                 </div>
             </div>
         </section>
@@ -636,7 +620,7 @@ different model architectures and ensembles delivered findings in a research pap
                     </div>
 
                     <button class="timeline-toggle" id="timelineToggle" type="button" aria-expanded="false" aria-controls="timelineExtra">
-                        Show earlier roles (2021)
+                        Show earlier roles
                     </button>
 
                     <div class="timeline-extra" id="timelineExtra" hidden>
@@ -711,29 +695,34 @@ different model architectures and ensembles delivered findings in a research pap
             <div class="container">
                 <h2 class="section-title">GET IN TOUCH</h2>
                 <div class="contact-content-centered">
-                    <div class="contact-info">
-                        <div class="resume-download">
-                            <a href="Pranav_Dhawan_Resume.pdf" class="resume-btn" download="Pranav_Dhawan_Resume.pdf" data-analytics="resume-download">
-                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
-                                <span>Download Resume</span>
-                            </a>
-                        </div>
+                    <div class="contact-grid">
+                        <div class="contact-info">
+                            <div class="resume-download">
+                                <a href="Pranav_Dhawan_Resume.pdf" class="resume-btn" download="Pranav_Dhawan_Resume.pdf" data-analytics="resume-download">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-download"></use></svg>
+                                    <span>Download Resume</span>
+                                </a>
+                            </div>
 
-                        <p class="contact-email">
-                            <a href="mailto:dhawanpranav02@gmail.com" class="contact-email-link" data-analytics="email-link">dhawanpranav02@gmail.com</a>
-                            <button class="contact-copy" type="button" data-copy="dhawanpranav02@gmail.com" aria-label="Copy email address">Copy</button>
-                        </p>
+                            <p class="contact-email">
+                                <a href="mailto:dhawanpranav02@gmail.com" class="contact-email-link" data-analytics="email-link">dhawanpranav02@gmail.com</a>
+                                <button class="contact-copy" type="button" data-copy="dhawanpranav02@gmail.com" aria-label="Copy email address">Copy</button>
+                            </p>
 
-                        <div class="social-links">
-                            <a href="mailto:dhawanpranav02@gmail.com" class="social-link" aria-label="Email Me" data-analytics="email-icon">
-                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-envelope"></use></svg>
-                            </a>
-                            <a href="https://github.com/pranavdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" data-analytics="github">
-                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg>
-                            </a>
-                            <a href="https://linkedin.com/in/pranavvdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" data-analytics="linkedin">
-                                <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-linkedin"></use></svg>
-                            </a>
+                            <div class="social-links">
+                                <a href="mailto:dhawanpranav02@gmail.com" class="social-link" aria-label="Email Me" data-analytics="email-icon">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-envelope"></use></svg>
+                                </a>
+                                <a href="https://github.com/pranavdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" data-analytics="github">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg>
+                                </a>
+                                <a href="https://linkedin.com/in/pranavvdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" data-analytics="linkedin">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-linkedin"></use></svg>
+                                </a>
+                                <a href="https://app.joinhandshake.com/profiles/pranavvdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Handshake Profile" data-analytics="handshake">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-handshake"></use></svg>
+                                </a>
+                            </div>
                         </div>
 
                         <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">

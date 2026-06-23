@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — Pranav Dhawan</title>
+    <meta name="description" content="Short notes from Pranav Dhawan on lessons from his AI and ML projects — RAG, multimodal forecasting, and the trade-offs behind them.">
+    <meta name="author" content="Pranav Dhawan">
+    <meta name="theme-color" content="#FFD600">
+    <link rel="canonical" href="https://pranavdhawan.netlify.app/blog/">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD600' stroke='%231A1A1A' stroke-width='6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Space Grotesk,sans-serif' font-size='42' font-weight='800' fill='%231A1A1A'%3EP%3C/text%3E%3C/svg%3E">
+    <script src="../theme-init.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
+        crossorigin="anonymous">
+</head>
+
+<body>
+    <main class="main-content">
+        <section class="writing">
+            <div class="container">
+                <p class="article-back"><a href="../index.html">&larr; Back to portfolio</a></p>
+                <h1 class="section-title">BLOG</h1>
+                <p class="writing-intro">Short notes on lessons from my projects — the kind of trade-offs that don't make it into a résumé bullet.</p>
+                <div class="writing-grid">
+                    <a class="writing-card" href="rag-hallucinations.html" data-analytics="blog:rag-hallucinations">
+                        <span class="writing-tag">Retrieval-Augmented Generation</span>
+                        <h3>Why I split my legal RAG into two models</h3>
+                        <p>~3 in 10 generated outputs invented realistic-looking filing dates. Here's why routing factual fields to extractive QA fixed it.</p>
+                        <span class="writing-readmore">Read &rarr;</span>
+                    </a>
+                    <a class="writing-card" href="multimodal-finding.html" data-analytics="blog:multimodal-finding">
+                        <span class="writing-tag">Time Series &middot; Multimodal ML</span>
+                        <h3>When the simple model wins</h3>
+                        <p>My thesis benchmarked 10+ models for stock forecasting. The surprise: a standalone LSTM stayed competitive with fused multimodal models.</p>
+                        <span class="writing-readmore">Read &rarr;</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
