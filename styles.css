@@ -1128,7 +1128,7 @@ section {
 }
 
 #contact .section-title {
-    margin-bottom: 0.6rem;
+    margin-bottom: 1.5rem;
 }
 
 .contact-info {
@@ -2115,6 +2115,72 @@ section {
 .writing-readmore {
     font-weight: 700;
     color: var(--text-primary);
+}
+
+.ai-news-title {
+    margin-top: 5rem;
+}
+
+.writing-date {
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.newsletter {
+    max-width: 560px;
+    margin: 4rem auto 0;
+    padding: 2rem;
+    text-align: center;
+    background: var(--bg-card);
+    border: 3px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.newsletter-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.newsletter-copy {
+    margin: 0.75rem 0 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.newsletter-row {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.newsletter-row input {
+    flex: 1;
+    min-width: 200px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.95rem;
+    color: var(--text-primary);
+    background: var(--bg-primary);
+    border: 3px solid var(--border);
+    padding: 0.7rem 0.85rem;
+}
+
+.newsletter-row input:focus {
+    outline: 3px solid var(--accent);
+    outline-offset: 1px;
+}
+
+.newsletter-submit {
+    min-width: 0;
+    padding: 12px 28px;
+}
+
+.newsletter .contact-status {
+    margin-top: 0.9rem;
 }
 
 /* ==========================================

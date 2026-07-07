@@ -30,8 +30,13 @@ async function startStaticServer(rootDir, headers) {
   const server = http.createServer((request, response) => {
     const requestPath = decodeURIComponent(new URL(request.url, 'http://127.0.0.1').pathname);
     const relativePath = requestPath === '/' ? 'index.html' : requestPath.slice(1);
-    const filePath = path.resolve(rootDir, relativePath);
+    let filePath = path.resolve(rootDir, relativePath);
     const isInRoot = filePath === rootDir || filePath.startsWith(rootDir + path.sep);
+
+    // Directory requests resolve to their index.html, matching Netlify.
+    if (isInRoot && fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
+      filePath = path.join(filePath, 'index.html');
+    }
 
     if (!isInRoot || !fs.existsSync(filePath) || !fs.statSync(filePath).isFile()) {
       response.writeHead(404, headers);

@@ -100,17 +100,20 @@ test('professional experience reflects updated role history', async ({ page }) =
   await expect(firstTimelineItem.getByText('June 2026 - Present')).toBeVisible();
   await expect(firstTimelineItem.getByRole('heading', { name: 'AI Independent Contractor' })).toBeVisible();
   await expect(firstTimelineItem.getByText('Siva Info LLC | New York, NY | Part-time, Remote')).toBeVisible();
-  await expect(firstTimelineItem.getByText(/AI-driven document processing/)).toBeVisible();
-  await expect(firstTimelineItem.getByText(/document workflows and computer vision pipelines/)).toBeVisible();
-  await expect(firstTimelineItem.locator('.tech-tag', { hasText: 'Document Workflows' })).toBeVisible();
+  await expect(firstTimelineItem.getByText(/AI-driven document processing workflows/)).toBeVisible();
+  await expect(firstTimelineItem.getByText(/change-manifest tooling/)).toBeVisible();
+  await expect(firstTimelineItem.locator('.tech-tag', { hasText: 'Local LLMs' })).toBeVisible();
 
   await expect(experience.getByRole('heading', { name: 'AI Workplace Engineer Intern' })).toBeVisible();
   await expect(experience.getByText('American Chemical Society | Washington, DC | Full-time, Hybrid')).toBeVisible();
-  await expect(experience.getByText(/Building agentic AI workflows to automate service desk/)).toBeVisible();
-  await expect(experience.getByText(/workflow orchestration, knowledge retrieval, and human-in-the-loop automation/)).toBeVisible();
+  await expect(experience.getByText(/~70% of monthly Ivanti Neurons service desk tickets/)).toBeVisible();
+  await expect(experience.getByText(/Copilot Studio pilot program/)).toBeVisible();
+  await expect(experience.getByText(/AI governance blueprint/)).toBeVisible();
 
   await expect(experience.getByRole('heading', { name: 'Machine Learning Engineer' })).toBeVisible();
   await expect(experience.getByText(/detect and extract complex equations from 10,000\+ unstructured documents/)).toBeVisible();
+  await expect(experience.getByText(/fine-tuned BART\/BERT-based models/)).toBeVisible();
+  await expect(experience.getByText(/reducing inference latency by 0\.3 seconds per page/)).toBeVisible();
   await expect(experience.getByText(/Operationalized machine learning workloads on AWS SageMaker/)).toBeVisible();
 
   await expect(experience.getByText('HCLTech | Noida, India | Internship, Hybrid')).toBeVisible();
@@ -196,7 +199,7 @@ test('coursework tags follow the same visual style as technology tags', async ({
   }
 });
 
-test('contact actions sit close beneath the get in touch heading', async ({ page }) => {
+test('contact actions sit a balanced distance beneath the get in touch heading', async ({ page }) => {
   await openPortfolio(page);
 
   const gap = await page.evaluate(() => {
@@ -205,7 +208,10 @@ test('contact actions sit close beneath the get in touch heading', async ({ page
     return action.top - title.bottom;
   });
 
-  expect(gap).toBeLessThanOrEqual(28);
+  // The title's underline hangs ~16px below its box, so the gap needs room
+  // to breathe without drifting back to a full section-title margin.
+  expect(gap).toBeGreaterThanOrEqual(20);
+  expect(gap).toBeLessThanOrEqual(40);
 });
 
 test('mobile hamburger menu toggles expanded state', async ({ page }) => {

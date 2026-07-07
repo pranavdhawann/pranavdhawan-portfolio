@@ -1,0 +1,1805 @@
+{
+  "updated": "2026-07-07",
+  "items": [
+    {
+      "title": "LeRobot v0.6.0: Imagine, Evaluate, Improve",
+      "url": "https://huggingface.co/blog/lerobot-release-v060",
+      "date": "2026-07-07",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Research"
+    },
+    {
+      "title": "Building Safeguards For Claude",
+      "url": "https://www.anthropic.com/news/building-safeguards-for-claude",
+      "date": "2026-07-06",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Alberta Government Claude Cybersecurity",
+      "url": "https://www.anthropic.com/news/alberta-government-claude-cybersecurity",
+      "date": "2026-07-06",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "PRX Part 4: Our Data Strategy",
+      "url": "https://huggingface.co/blog/Photoroom/prx-part4-data",
+      "date": "2026-07-06",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Toward a future that preserves benefits of neurotechnology for all",
+      "url": "https://news.mit.edu/2026/toward-future-preserves-benefits-neurotechnology-for-all-0706",
+      "date": "2026-07-06",
+      "summary": "PhD student Rachel Sava, winner of the Envisioning the Future of Computing Prize, explores transformative improvements and dystopian risks of neural technology.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "🤗 Kernels: Major Updates",
+      "url": "https://huggingface.co/blog/revamped-kernels",
+      "date": "2026-07-06",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Product Update"
+    },
+    {
+      "title": "Visible Extended Thinking",
+      "url": "https://www.anthropic.com/news/visible-extended-thinking",
+      "date": "2026-07-03",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Anthropics Responsible Scaling Policy",
+      "url": "https://www.anthropic.com/news/anthropics-responsible-scaling-policy",
+      "date": "2026-07-03",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Fable Safeguards Jailbreak Framework",
+      "url": "https://www.anthropic.com/news/fable-safeguards-jailbreak-framework",
+      "date": "2026-07-03",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Claude Sonnet 5",
+      "url": "https://www.anthropic.com/news/claude-sonnet-5",
+      "date": "2026-07-03",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Google DeepMind and A24 announce first-of-its-kind research partnership",
+      "url": "https://deepmind.google/blog/google-deepmind-and-a24-announce-first-of-its-kind-research-partnership/",
+      "date": "2026-07-03",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Leanstral 1.5: Proof Abundance for All",
+      "url": "https://mistral.ai/news/leanstral-1-5/",
+      "date": "2026-07-02",
+      "summary": "",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Distributed Attacks in Persistent-State AI Control",
+      "url": "https://arxiv.org/abs/2607.02514v1",
+      "date": "2026-07-02",
+      "summary": "As AI coding agents become more autonomous, they increasingly ship code iteratively, with the codebase persisting across sessions. This persistence creates a new attack surface: a misaligned or prompt-injected agent can distribute attacks across pull requests (PRs) and time its payload for the PR with the best natural cover. To study the resulting dynamics, we introduce Iterative VibeCoding, a setting for AI control, the study of safely deploying capable but potentially untrusted AI. In Iterative VibeCoding, a coding agent builds software over a sequence of PRs in a persistent codebase while pursuing a covert side task. Our benchmark includes two task families: CLI tools and Flask web services, across 20 total task variations. We use Claude Sonnet 4.5 as the attack agent and GPT-4o as the monitor. We compare gradual attacks, which distribute the side task across PRs, against non-gradual attacks concentrated in a single PR. No single monitor is robust to both: which strategy evades best (success while evading the monitor) depends on the monitor type, so a defender cannot close off both gradual and non-gradual attacks with any one monitor. High evasion (>= 65%) generalizes across model attack agent backends (Sonnet 4.5, Gemini 3.1 Pro, Kimi K2.5), confirming this is a property of the persistent-state attack surface rather than a single model's capability. Evasion also remains high across state-of-the-art monitor models and the gap between gradual and non-gradual evasion widens for more capable models. We introduce a stateful link-tracker monitor that tracks suspicious buildup across PRs. On both task families, it detects gradual attacks substantially better than diff monitors that merely see more accumulated history. Combining this stronger monitor with trajectory monitors in a four-monitor ensemble reduces gradual-attack evasion from 93% under the weakest standard diff monitor to 47%.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "LACUNA: A Testbed for Evaluating Localization Precision for LLM Unlearning",
+      "url": "https://arxiv.org/abs/2607.02513v1",
+      "date": "2026-07-02",
+      "summary": "LLMs memorize sensitive training data, including personally identifiable information (PII), creating a pressing need for reliable post hoc removal methods. Unlearning has emerged as a promising solution, with state-of-the-art(SOTA) methods often following a localize-first, unlearn-second paradigm that targets specific model parameters. However, existing benchmarks evaluate unlearning solely at the output level, leaving open the question of whether unlearning truly erases knowledge from a model's parameters or merely obfuscates it, a concern reinforced by the success of resurfacing attacks. To bridge this gap, we introduce LACUNA: the first unlearning testbed with ground-truth parameter-level localization. LACUNA injects PII of synthetic individuals into predefined parameters of 1B and 7B OLMo-based models via masked continual pretraining, enabling direct evaluation of whether unlearning targets the weights responsible for knowledge storage. We use LACUNA to benchmark current SOTA unlearning methods and find that, despite strong output-level performance, existing methods are highly imprecise and susceptible to resurfacing attacks. We further show that when localization is successful, even a simple gradient-based unlearning method achieves strong erasure and robustness to resurfacing attacks, highlighting the importance of precise unlearning. We release LACUNA to complement behavioral evaluations and drive further advances in robust, localization-based unlearning.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Program-as-Weights: A Programming Paradigm for Fuzzy Functions",
+      "url": "https://arxiv.org/abs/2607.02512v1",
+      "date": "2026-07-02",
+      "summary": "Many everyday programming tasks resist clean rule-based implementation, such as alerting on important log lines, repairing malformed JSON, or ranking search results by intent, and are increasingly outsourced to large language model APIs at the cost of locality, reproducibility, and price. We propose fuzzy-function programming: compiling such a function from a natural-language specification into a compact, locally-executable neural artifact. We instantiate this paradigm with Program-as-Weights (PAW), in which a 4B compiler trained on FuzzyBench, a 10M-example dataset we release, emits parameter-efficient adapters for a frozen, lightweight interpreter. A 0.6B Qwen3 interpreter executing PAW programs matches the performance of direct prompting of Qwen3-32B, while using roughly one fiftieth of the inference memory and running at 30 tokens/s on a MacBook M3. PAW reframes the foundation model from a per-input problem solver into a tool builder: invoked once per function definition, it produces a small reusable artifact whose subsequent calls per function application are cheap and offline.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Model Release"
+    },
+    {
+      "title": "Online Safety Monitoring for LLMs",
+      "url": "https://arxiv.org/abs/2607.02510v1",
+      "date": "2026-07-02",
+      "summary": "Despite alignment training, LLMs remain prone to generating unsafe outputs at deployment time. Monitoring outputs online and raising an alarm when safety can no longer be assumed is therefore critical. We study a simple real-time monitor that turns a verifier signal from an external model into an alarm decision by thresholding, with the threshold calibrated via risk control. In experiments on mathematical reasoning and red teaming datasets, we show that this simple design is competitive with more advanced monitors based on sequential hypothesis testing.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "ReContext: Recursive Evidence Replay as LLM Harness for Long-Context Reasoning",
+      "url": "https://arxiv.org/abs/2607.02509v1",
+      "date": "2026-07-02",
+      "summary": "Understanding and reasoning over long contexts has become a key requirement for deploying large language models (LLMs) in realistic applications. Although recent LLMs support increasingly long context windows, they often fail to use relevant evidence that is already present in the input, revealing a gap between context access and effective context utilization. In this work, we propose Recursive Evidence Replay as LLM Harness for Long-Context Reasoning (RECONTEXT), a training-free inference method for improving long-context reasoning. RECONTEXT uses model-internal relevance signals to construct a query-conditioned evidence pool and replays it before final generation while preserving the full original context. This recursive selection process separates evidence organization from answer generation without training, external memory, or context pruning. We also provide a theoretical analysis based on associative memory, which characterizes the context as a memory store, the question as a retrieval cue, attention as cue-trace association, and replay as trace reactivation. Experiments on eight long-context datasets with 128K context length show that RECONTEXT consistently improves evidence utilization across Qwen3-4B, Qwen3-8B, and Llama3-8B, achieving the best average rank on all three backbones. Code is available at https://github.com/Yanjun-Zhao/ReContext.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "What LLM Agents Say When No One Is Watching: Social Structure and Latent Objective Emergence in Multi-Agent Debates",
+      "url": "https://arxiv.org/abs/2607.02507v1",
+      "date": "2026-07-02",
+      "summary": "LLM agents will increasingly act in socially structured settings where role, audience, and relational context can shape what is advantageous or costly to say. We study whether such social structure, without any explicit objective in the prompt, changes what an agent expresses publicly relative to an off-the-record (OTR) channel elicited under the same condition. We introduce a dual-channel debate framework in which agents produce public utterances that enter the shared history alongside OTR responses that are recorded but never shown to the other participant. Across 10 models, 3 scenarios, and 5 variations within each scenario, alignment-inducing settings produce systematic public-OTR divergence in the targeted agent, with its decision divergence rising from a $\\sim$3% baseline to roughly 40%. The effect is consistent across four aggregate analyses: stance, semantic similarity, natural language inference, and survey responses. In some cases, the OTR response explicitly attributes public accommodation to relational pressures, such as career risk or sponsorship obligation. The findings suggest that agent evaluation should extend beyond explicit goals and detect emergent objectives. We present a dual-channel evaluation framework and complementary behavioral measures that operationalize this assessment.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Reasoning LLM Improves Speaker Recognition in Long-form TV Dramas",
+      "url": "https://arxiv.org/abs/2607.02504v1",
+      "date": "2026-07-02",
+      "summary": "Long-form TV dramas present a formidable challenge for comprehensive video understanding, where deciphering complex storyline often relies on \\textbf{speaker recognition}, the task of accurately attributing each spoken utterance to its respective character. In this paper, we advance this field through two primary contributions. (1) We introduce \\textbf{DramaSR-532K}, a large-scale benchmark comprising 532K annotated dialogue lines across more than 900 unique characters, necessitating the integration of auditory, linguistic, and visual cues for speaker recognition. (2) We propose \\textbf{DramaSR-LRM}, a robust approach built upon a large reasoning model (LRM). DramaSR-LRM is designed to autonomously aggregate contextual evidence via multimodal tool-use, synthesizing diverse inputs to achieve high-fidelity attribution. Experimental results demonstrate that DramaSR-LRM significantly outperforms existing baselines, particularly on short utterances where acoustic biometrics are inherently unreliable. \\textit{All the data and code will be made publicly available at the project page: https://www.github.com/198808xc/DramaSR-LRM.}",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "DemoPSD: Disagreement-Modulated Policy Self-Distillation",
+      "url": "https://arxiv.org/abs/2607.02502v1",
+      "date": "2026-07-02",
+      "summary": "On-policy self-distillation (OPSD) has emerged as a practical method for training large language models (LLMs) to reason, where a single model acts as both the teacher and the student with different levels of information access. However, recent studies have found that the teacher's dense token-level supervision, conditioned on privileged information, can lead to overfitting to in-domain patterns, suppress exploration, and hurt cross-domain generalization, while also introducing a more fundamental issue: *privileged information leakage*, where the student encodes answer-dependent shortcuts that are unavailable at test time. We introduce **DemoPSD**, a novel framework that resolves such problems through the idea of *selective adoption of teacher guidance*. Instead of fitting the full teacher distribution, DemoPSD steers the student toward a *reverse-KL barycenter target*, a weighted geometric combination of the teacher and student distributions, that naturally balances learning from the teacher with preserving the student's own reasoning capacity. We measure the difference between their distributions and use such a discrepancy to adaptively control the blending at each token position. We provably show that DemoPSD achieves **(1)** *leakage attenuation*, i.e., effective mitigation of privileged information leakage; and **(2)** *exploration preservation*, i.e., preservation of exploration capacity under dense token-level distillation. Extensive experiments on SciKnowEval across four scientific fields show that DemoPSD outperforms both GRPO and SDPO while maintaining higher training entropy and robustly generalizing to out-of-distribution GPQA benchmarks.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Redeploying Fable 5",
+      "url": "https://www.anthropic.com/news/redeploying-fable-5",
+      "date": "2026-07-01",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Claude Fable 5 Mythos 5",
+      "url": "https://www.anthropic.com/news/claude-fable-5-mythos-5",
+      "date": "2026-07-01",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Claude Science AI Workbench",
+      "url": "https://www.anthropic.com/news/claude-science-ai-workbench",
+      "date": "2026-07-01",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "The latest AI news we announced in June 2026",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-june-2026/",
+      "date": "2026-07-01",
+      "summary": "Here are Google’s latest AI updates from June 2026.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "New York City educators and industry leaders gathered at Google’s offices to shape the future of AI in classrooms.",
+      "url": "https://blog.google/products-and-platforms/products/education/nyc-ai-summit/",
+      "date": "2026-07-01",
+      "summary": "Google, the New York Jobs CEO Council and Urban Assembly hosted an AI summit for 150 education and industry leaders.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Hugging Face and Cerebras bring Gemma 4 to real-time voice AI",
+      "url": "https://huggingface.co/blog/cerebras-gemma4-voice-ai",
+      "date": "2026-07-01",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "2026 BAIR Graduate Showcase",
+      "url": "https://bair.berkeley.edu/blog/2026/07/01/grads-2026/",
+      "date": "2026-07-01",
+      "summary": "Congratulations to the Berkeley Artificial Intelligence Research (BAIR) Lab class of 2026! This year, BAIR celebrates another remarkable group of Ph.D. graduates whose curiosity, creativity, and perseverance have pushed the frontiers of artificial intelligence and machine learning. Their work spans the breadth of modern AI — robotics and embodied intelligence, large language models and reasoning, computer vision, generative modeling, AI safety, human-AI interaction, AI for science and healthcare, and much more. Along the way, they have published influential research, built systems with real-world impact, mentored their peers, and shaped the BAIR community for the better. Now they are headed everywhere ideas travel: to faculty and postdoctoral positions, to industry research labs, and to startups of their own founding — and several are still exploring what comes next and would love to hear from you. Please join us in celebrating the achievements of these wonderful graduates. We are proud of everything they have accomplished at Berkeley, and we can’t wait to see what they do next! Thank you to our friends at the Stanford AI Lab for this idea! Baifeng Shi Email: baifeng_shi@berkeley.edu Website: https://bfshi.github.io/ Advisor(s): Trevor Darrell Research Blurb: I work on building generalist vision and robotic models. What's next: Member of Technical Staff at Physical Intelligence Charlie Snell Email: csnell22@berkeley.edu Website: https://sea-snell.github.io Advisor(s): Dan Klein Research Blurb: My work aims to understand when and how the different LLM scaling paradigms can be traded off and interchanged. In particular, test-time scaling treats each prompt independently, drawing long chains of inferences and then forgetting them entirely between prompts. This differs critically from pretraining, which instead learns a compressed representation from a large dataset. I believe bridging the gap between these methods of scaling computation, presents a key open challenge in the field: how can we develop methods which turn the inferences drawn at test-time back into learned representations that the model can hold onto across interactions. Devin Guillory Email: dguillory@berkeley.edu Website: https://devinguillory.com Advisor(s): Trevor Darrell Research Blurb: Accounting for data shifts in computer vision models What's next: Building collaborative AI systems, looking for conspirators. Eve Fleisig Email: efleisig@berkeley.edu Website: https://efleisig.com Advisor(s): Dan Klein Research Blurb: I design language models to work reliably and fairly for the broad range of real LLM users. First, my research leverages disagreement among user preferences as signal, in order to train and evaluate LLMs for entire populations of users. Second, I work on designing rigorous evaluations to extricate challenging LLM harms that diverse users face. Finally, I work on core technical failures of LLMs, like miscalibrated confidence, to reduce downstream risks when models are deployed to users with different needs. Combined, these interventions facilitate building LLMs that minimize societal harms, and maximize benefits to a wider range of real-world users. What's next: Postdoctoral fellow at Princeton CITP Grace Luo Email: graceluo@berkeley.edu Website: https://graceluo.net Advisor(s): Trevor Darrell Research Blurb: My research is on interpreting and controlling generative models. For example, I've worked on re-purposing image generators for computer vision tasks, and meta-modeling language activations for better LLM probing and steering. What's next: Research scientist in industry Hanlin Zhu Email: hanlinzhu@berkeley.edu Website: https://hanlinzhu.com/ Advisor(s): Stuart Russell, Jiantao Jiao Research Blurb: My research centers on understanding and improving the reasoning capabilities of large language models (LLMs). What's next: Member of Technical Staff at OpenAI Haozhi Qi Email: hqi@berkeley.edu Website: https://haozhi.io/ Advisor(s): Jitendra Malik, Yi Ma Research Blurb: Dexterous Manipulation and Robot Learning What's next: Research scientist at Amazon; Faculty at University of Chicago J.D. Zamfirescu-Pereira Email: zamfi@berkeley.edu Website: https://zamfi.net Advisor(s): Bjoern Hartmann Research Blurb: My research focuses on effective human-AI co-design. I study the boundaries of language interfaces as a medium for interacting with AI, creating systems that blend language-focused interactions with structured user interfaces that draw on different levels of abstraction. I focus on language-oriented technologies, like LLMs and text-to-image models, that are powerful mediators of design processes. These technologies enable humans to describe their desires at almost any level of abstraction, from high-level goals vaguely specified (“I’d like a game to help my kid learn to read”) to low-level corrections of undesired outputs (“Don’t say ‘I know because I’ve tasted it’ when about a recipe substitution's taste”). What's next: Assistant Professor, Computer Science, UCLA Jiachen Lian Email: jiachenlian@berkeley.edu Website: https://jlian2.github.io Advisor(s): Gopala Anumanchipalli Research Blurb: My research focuses on human-centered AI across speech, healthcare, and systems. Looking for: Look for AI talents to join our startup Josh Kang Email: minwoo_kang@berkeley.edu Website: https://joshuaminwookang.github.io/ Advisor(s): John Canny Research Blurb: I study language modeling and related topics in NLP; specific interests are human user simulation and building conversational, collaborative AI agents. What's next: AI Scientist at Mistral AI Junhao (Bear) Xiong Email: junhao_xiong@berkeley.edu Website: https://www.linkedin.com/in/junhao-bear-xiong Advisor(s): Jennifer Listgarten, Yun Song Research Blurb: Junhao (Bear) Xiong is a PhD candidate at UC Berkeley, advised by Jennifer Listgarten and Yun S. Song. His work focuses on machine learning methods for biology, with an emphasis on generative modeling for proteins. Previously, he studied Applied Math and Computer Science at Johns Hopkins. Looking for: Research scientist Kaylo Littlejohn Email: kaylo_littlejohn@berkeley.edu Website: https://kaylolittlejohn.com Advisor(s): Gopala Anumanchipalli Research Blurb: My research is focused on speech modeling and natural language processing. I co-led the development of multimodal AI tools to accurately translate brain activity into text, audible personalized speech, and a high-fidelity \"digital talking avatar\" (Nature 2023, Nature Neuroscience 2025). I am also tech lead for voice modeling at Roblox. Looking for: Research Scientist / Engineer Kent Chang Email: kentkchang@berkeley.edu Website: https://kentkc.org Advisor(s): David Bamman Research Blurb: I work on NLP and multimodal machine learning, with a focus on evaluating large language models and building multimodal systems for understanding dialogue, narrative, and social interaction. My research includes benchmarks for LLM memorization, multimodal datasets sourced from feature films and television, and studies of model behavior. I'm interested in bridging computational methods with questions from the humanities and social sciences about whose voices get represented in AI systems, and about AI's broader impact. My work has appeared at EMNLP and ACL, among others. Looking for: (teaching) faculty, Research Scientist, ML/AI SWE Kevin Black Email: kvablack@berkeley.edu Website: https://kevin.black Advisor(s): Sergey Levine Research Blurb: I work on large-scale robot learning: including imitation learning, reinforcement learning, generative modeling, real-time control, and whatever else it takes to make robots work in the real world! What's next: Research Scientist of Physical Intelligence Kunhe Yang Email: kunheyang@berkeley.edu Website: https://www.kunheyang.com/ Advisor(s): Nika Haghtalab Research Blurb: My research focuses on the theoretical foundations of designing and evaluating AI algorithms in environments shaped by human incentives and AI agency. My work spans human-centric policy learning, incentive-aware evaluation, and multi-agent collaboration and information transmission, drawing on tools from machine learning theory and computational economics. What's next: Postdoc Research at Stanford Lisa Dunlap Email: lisabdunlap@berkeley.edu Website: https://lisabdunlap.com Advisor(s): Joseph Gonzalez, Trevor Darrell Research Blurb: Auditing generative models. What's next: Research Engineer at Anthropic Long (Tony) Lian Email: longlian@berkeley.edu Website: https://tonylian.com/ Advisor(s): Trevor Darrell, Adam Yala Research Blurb: My research primarily focuses on developing real-time multi-modal multi-agent systems and parallel reasoning systems through end-to-end RL. What's next: Member of Technical Staff at Thinking Machines Lab Maulik Bhatt Email: maulikbhatt@berkeley.edu Website: https://maulikb.com Advisor(s): Negar Mehr Research Blurb: My research develops autonomous robots that can safely coordinate with humans and other robots in shared environments. I build scalable algorithms grounded in game theory and diffusion models that let agents reason about the intent and behavior of others around them. My work spans real-time multi-agent trajectory planning and imitation learning in the presence of multi-modality. I've validated these methods on hardware platforms ranging from quadrotors to manipulators, with the goal of making multi-agent coordination robust, interpretable, and deployable in the real world. What's next: Joining Toyota Woven's end-to-end autonomous driving team. Michael Psenka Email: psenka@berkeley.edu Website: https://www.michaelpsenka.io/ Advisor(s): Aditi Krishnapriyan Research Blurb: Work in various domains (reinforcement learning, world models, AI+bio/chem), generally working on longer-horizon and out-of-distribution problems in planning and interpolation (e.g. robot manipulation from start state to goal, molecular dynamics of proteins between ground states). My thesis took a variational approach (think calculus of variations) directly from deep generative models of the environment, framing path-finding as minimizing a functional induced by the learned model itself (its score, its critic, or its dynamics). Through my research I've gained insight on how to properly handle dynamics in deep learning systems, and I plan to continue developing systems that are dynamic and adaptive. What's next: Lead Research Scientist at Baseten Nathan Lichtlé Email: nathan.lichtle@gmail.com Website: https://nathanlichtle.com Advisor(s): Alexandre M. Bayen Research Blurb: RL for autonomous driving. What's next: Chief Scientist &amp; Co-founder at Yumi Health Neerja Thakkar Email: nthakkar@berkeley.edu Website: https://neerja.me/ Advisor(s): Jitendra Malik Research Blurb: My research focuses on scaling predictive world models to handle the complexity of in-the-wild motion. Using autoregressive and diffusion frameworks, I develop better representations for real-world prediction and propose methods to efficiently adapt these models to new domains. Looking for: Research scientist Nikita Mehandru Email: nmehandru@berkeley.edu Website: https://n-mehandru.github.io/ Advisor(s): Ahmed Alaa and David Bamman Research Blurb: My research develops and applies machine learning methods for clinical reasoning and disease progression modeling using unstructured text and time series data from electronic health records. In collaboration with physicians at UCSF, I bridge method development and clinical validation with the intention to build reliable, interpretable AI systems in medicine. Looking for: Research Scientist Niklas Lauffer Email: nlauffer@berkeley.edu Website: https://niklaslauffer.github.io/ Advisor(s): Stuart Russell and Sanjit Seshia Research Blurb: Niklas's research is focused on AI safety and reinforcement learning, particularly in the area of multi-agent interaction and LM agents. He's worked on enabling adversarial learning in cooperative and mixed-motive settings, solving issues of covariate shift in training LM agents on long-horizon tasks, as well as evaluating safety risks posed by LM agents in multi-agent settings. What's next: Research Scientist at Google Deepmind Qiyang Li Email: qcli@berkeley.edu Website: https://colinqiyangli.github.io/ Advisor(s): Sergey Levine Research Blurb: Recent progress in robotic manipulation policy learning has been largely driven by (1) the increasing availability of large-scale prior datasets and (2) the success of action chunking, where the policy predicts a short sequence of future actions rather than a single one. However, most action chunking policies are trained via supervised imitation learning, because efficient online self-improvement with reinforcement learning (RL) remains challenging—limiting real-world applicability. My PhD research studied how we could leverage prior data to optimize action-chunking policies with RL, combining empirical results with theoretical insights. Looking for: Post-doc/research scientist for RL in robotics and LLMs! Sampada Deglurkar Email: sampada_deglurkar@berkeley.edu Website: https://sdeglurkar.github.io/ Advisor(s): Prof Claire Tomlin Research Blurb: My research is in providing safety assurances for AI-enabled autonomous systems, ranging from robots to autonomous vehicles to aviation systems. For this, I have worked with uncertainty quantification for machine learning models, decision-making under uncertainty algorithms, and tools for producing probabilistic guarantees on system operation. Looking for: Research scientist, Research engineer Vinamra Benara Email: vbenara@berkeley.edu Website: https://cs.berkeley.edu/~vbenara Advisor(s): Ion Stoica Research Blurb: My research focuses on LLM post-training, including data curation, RLHF, RLVR with VLMs, evaluations, reasoning, agentic workflows, and interpretability. I also have strong expertise in systems infrastructure for distributed computing. Looking for: Research scientist / Research Engineer Vongani Maluleke Email: vongani_maluleke@berkeley.edu Website: https://people.eecs.berkeley.edu/~vongani_maluleke/ Advisor(s): Jitendra Malik and Angjoo Kanazawa Research Blurb: Vongani Maluleke is a PhD candidate at UC Berkeley (BAIR, advised by Jitendra Malik and Angjoo Kanazawa), where she led the development of MAGNet, a unified multi-agent motion generation framework that supports a wide range of motion generation tasks without retraining or architectural changes, outperforming task-specialized state-of-the-art baselines. She is currently extending this work by deploying it on a Unitree G1 humanoid to make it embody social intelligence. Before her PhD, she was a Senior AI Consultant at Deloitte, awarded Exceptional Performer two consecutive years, leading AI system development across media, telecommunications, retail, and financial services. Looking for: Research scientist Wei-Jer Chang Email: weijer_chang@berkeley.edu Website: https://weijer-chang.github.io/ Advisor(s): Masayoshi Tomizuka Research Blurb: My research focuses on developing safe and intelligent autonomous systems for complex, human-centered environments. I work at the intersection of machine learning, generative models, and reinforcement learning, with applications in autonomy. My work addresses challenges in multi-agent interaction, interactive human behavior, and long-tail safety-critical scenarios at scale. Looking for: Research Scientist, Applied Scientist, Roboticist Xiuyu Li Email: xiuyu@berkeley.edu Website: https://xiuyuli.com/ Advisor(s): Kurt Keutzer Research Blurb: My research focuses on developing scalable and self-improving large language model agents, with emphasis on coding agents for complex, long-horizon tasks. This direction builds on my work in parallel reasoning, and on broader expertise in making generative models more efficient in training and inference across language and vision. What's next: Member of Technical Staff at xAI Yichen Xie Email: yichenxie0928@gmail.com Website: https://yichen928.github.io/ Advisor(s): Masayoshi Tomizuka Research Blurb: My research focuses on building multimodal foundation models and world models that understand and interact with complex physical environments. I aim to develop unified representations across modalities, enabling AI systems to reason over space, time, and dynamics toward general-purpose embodied intelligence. What's next: Research Scientist at Luma AI Yigit Efe Erginbas Email: erginbas@berkeley.edu Website: https://www.linkedin.com/in/erginbas/ Advisor(s): Kannan Ramchandran, Thomas A. Courtade Research Blurb: My PhD research spans two threads: online learning in large-scale markets, and interpretability of large machine learning models. In the first, I work on sequential decision-making with applications to recommendation, pricing, and assortment selection. My focus is on designing algorithms with provable guarantees for welfare maximization, revenue maximization, and stability. In the second, I develop scalable attribution methods that exploit the sparse, low-degree structure of real-world interactions, using tools from signal processing and information theory. More recently, I have been exploring principled ways to evaluate the faithfulness of model self-explanations. What's next: Researcher at Hudson River Trading's AI Labs (HAIL) Yiheng Li Email: yhli@berkeley.edu Website: https://Yihengli.com Advisor(s): Masayoshi Tomizuka Research Blurb: I am working on vision world modeling, with prior experience in diffusion model's efficiency as well as in autonomous driving. What's next: Research Scientist at Waymo Zhe Fu Email: zhefu@berkeley.edu Website: https://fu-zhe.com/ Advisor(s): Alexandre Bayen Research Blurb: My research focuses on physics-informed learning and control for mixed-autonomy systems, with applications in transportation. I design physics-informed neural networks to learn solutions of nonlinear partial differential equations, enabling accurate and data-efficient prediction of traffic dynamics. Building on these models, I develop both model-based and learning-based control strategies that coordinate automated vehicles to improve system-level performance. My work bridges machine learning, control, and real-world deployment, and has been validated in large-scale field experiments. More broadly, I aim to advance trustworthy, interpretable AI for decision-making in complex, real-world systems. What's next: I will be an Energy Fellow at Stanford after graduation. Also looking for Faculty, or research scientist positions in AI, control, and autonomy.",
+      "sourceId": "bair",
+      "sourceName": "Berkeley AI Research",
+      "category": "Research"
+    },
+    {
+      "title": "MIT in the media: Innovating and educating for the next 250 years of America",
+      "url": "https://news.mit.edu/2026/mit-media-innovating-and-educating-next-250-years-america",
+      "date": "2026-07-01",
+      "summary": "During a \"Washington Post Live\" panel discussion with ASU President Michael Crow, President Sally Kornbluth explored how universities are preparing the next generation of scientists to lead in America’s rapidly changing technological landscape.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "How ChatGPT adoption has expanded",
+      "url": "https://openai.com/index/how-chatgpt-adoption-has-expanded",
+      "date": "2026-06-30",
+      "summary": "New OpenAI Signals data shows how ChatGPT adoption is growing globally, with users increasing usage, exploring more capabilities, and driving growth across regions and languages.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Inside Genebench-Pro",
+      "url": "https://openai.com/index/genebench-pro/case-studies",
+      "date": "2026-06-30",
+      "summary": "",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing GeneBench-Pro",
+      "url": "https://openai.com/index/introducing-genebench-pro",
+      "date": "2026-06-30",
+      "summary": "Introducing GeneBench-Pro, a new benchmark testing AI performance in genomics, biology, and scientific research using complex, real-world datasets.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Core dump epidemiology: fixing an 18-year-old bug",
+      "url": "https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug",
+      "date": "2026-06-30",
+      "summary": "OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Start building with Nano Banana 2 Lite and Gemini Omni Flash",
+      "url": "https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash/",
+      "date": "2026-06-30",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Unlocking Britain’s next era of productivity: Building a nation of AI trailblazers",
+      "url": "https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/unlocking-britains-next-era-of-productivity-building-a-nation-of-ai-trailblazers/",
+      "date": "2026-06-30",
+      "summary": "Google UK shares its latest Economic Impact Report and how to enable more people to unlock the benefits of AI-powered technologies.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration",
+      "url": "https://huggingface.co/blog/ibm-research/scarfbench",
+      "date": "2026-06-30",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Product Update"
+    },
+    {
+      "title": "Why Specialization Is Inevitable",
+      "url": "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
+      "date": "2026-06-30",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Featuring Every Eval Ever Results on Hugging Face Model Pages",
+      "url": "https://huggingface.co/blog/eee-community-evals",
+      "date": "2026-06-30",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Q&A: What is agentic AI today, and what do we want it to be?",
+      "url": "https://news.mit.edu/2026/agentic-ai-and-what-do-we-want-it-be-0630",
+      "date": "2026-06-30",
+      "summary": "Computer scientist Phillip Isola cuts through the hype to explain how AI agents work and what the future might hold for this rapidly advancing technology.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Mapping Europe’s AI Workforce Opportunity",
+      "url": "https://openai.com/index/mapping-ai-jobs-transition-eu",
+      "date": "2026-06-29",
+      "summary": "A new OpenAI report maps how AI could reshape jobs across the EU, highlighting which occupations may face automation, growth, or workflow changes.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Ask an AI expert: What exactly is the full stack?",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/full-stack-ai-explainer/",
+      "date": "2026-06-29",
+      "summary": "A Google expert explains what it means to take a full-stack approach to AI and why it’s been the foundation of our AI work for so long.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "DiScoFormer: One transformer for density and score, across distributions",
+      "url": "https://huggingface.co/blog/allenai/discoformer",
+      "date": "2026-06-29",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Inaugural Music Technology Research Showcase celebrates work of new graduate program’s initial students",
+      "url": "https://news.mit.edu/2026/inaugural-mit-music-technology-research-showcase-celebrates-work-students-0629",
+      "date": "2026-06-29",
+      "summary": "Associate Professor Anna Huang delivers the keynote address, “In Search of Human-AI Resonance,” to a capacity crowd.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "3 Questions: Beyond data-driven aesthetics",
+      "url": "https://news.mit.edu/2026/3-questions-beyond-data-driven-aesthetics-alexandros-haridis-0629",
+      "date": "2026-06-29",
+      "summary": "In a new Keller Gallery exhibition, Alexandros Haridis SM ’17, PhD ’22 traces centuries of ideas about aesthetic judgment and explores how design can make complex computational systems visible.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "HP Inc. launches Frontier strategic partnership with OpenAI",
+      "url": "https://openai.com/index/hp-frontier-partnership",
+      "date": "2026-06-28",
+      "summary": "HP Inc. scales its OpenAI Frontier partnership to deploy AI across customer experiences, software development, and enterprise operations.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "reunios2024/cortex-sentinel-trading-nexus — trending AI repo",
+      "url": "https://github.com/reunios2024/cortex-sentinel-trading-nexus",
+      "date": "2026-06-28",
+      "summary": "Self-Tuning Multi-Agent AI Trading System 2026: 8-Source Signal Fusion & Kronos Model (★ 152)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
+    },
+    {
+      "title": "grandgaming9321-prog/reality-engine — trending AI repo",
+      "url": "https://github.com/grandgaming9321-prog/reality-engine",
+      "date": "2026-06-28",
+      "summary": "Top Dynamic AI World Simulation & Storytelling Tools 2026 (★ 152)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
+    },
+    {
+      "title": "Previewing GPT-5.6 Sol: a next-generation model",
+      "url": "https://openai.com/index/previewing-gpt-5-6-sol",
+      "date": "2026-06-26",
+      "summary": "OpenAI previews GPT-5.6 Sol, a next-generation model with stronger capabilities in coding, science, and cybersecurity, paired with its most advanced safety stack.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Core Views ON AI Safety",
+      "url": "https://www.anthropic.com/news/core-views-on-ai-safety",
+      "date": "2026-06-26",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Claude Corps",
+      "url": "https://www.anthropic.com/news/claude-corps",
+      "date": "2026-06-26",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Dxc Anthropic Alliance",
+      "url": "https://www.anthropic.com/news/dxc-anthropic-alliance",
+      "date": "2026-06-26",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Run a vLLM Server on HF Jobs in One Command",
+      "url": "https://huggingface.co/blog/vllm-jobs",
+      "date": "2026-06-26",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "David Autor named head of the Department of Economics",
+      "url": "https://news.mit.edu/2026/david-autor-named-head-department-economics-0626",
+      "date": "2026-06-26",
+      "summary": "A faculty member since 1999, Autor is a leading researcher in artificial intelligence and the work of the future.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "LLMs help robots understand vague instructions and focus on key details",
+      "url": "https://news.mit.edu/2026/llms-help-robots-understand-vague-instructions-and-focus-key-details-0626",
+      "date": "2026-06-26",
+      "summary": "To help robots do chores in places like homes and factories, a new approach from MIT uses one language model to clarify users’ instructions, then another to ignore irrelevant info.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "How agents are transforming work",
+      "url": "https://openai.com/index/how-agents-are-transforming-work",
+      "date": "2026-06-25",
+      "summary": "A new OpenAI research paper shows how AI agents are transforming work, enabling longer, more complex tasks and expanding productivity across roles.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Our latest Google Finance upgrades, including a new app",
+      "url": "https://blog.google/products-and-platforms/products/search/google-finance-updates-june-2026/",
+      "date": "2026-06-25",
+      "summary": "The new Google Finance is coming out of beta and launching a new Android app.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "MIT in the media: Exploring how curiosity-driven science is an essential ingredient in America’s success",
+      "url": "https://news.mit.edu/2026/mit-media-exploring-how-curiosity-driven-science-essential-ingredient-americas-success",
+      "date": "2026-06-25",
+      "summary": "“Scientific American” showcases the history and future of America’s scientific engine, highlighting promising young scientists and icons at MIT and beyond.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Improving the speed and energy-efficiency of AI agents",
+      "url": "https://news.mit.edu/2026/improving-ai-agent-speed-and-energy-efficiency-0625",
+      "date": "2026-06-25",
+      "summary": "A new system, known as Murakkab, optimizes the design and deployment of multistep workflows that power AI applications.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "OpenAI and Broadcom unveil LLM-optimized inference chip",
+      "url": "https://openai.com/index/openai-broadcom-jalapeno-inference-chip",
+      "date": "2026-06-24",
+      "summary": "OpenAI and Broadcom introduce Jalapeño, a custom AI chip built for LLM inference to improve performance, efficiency, and scale across AI systems.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "Introducing computer use in Gemini 3.5 Flash",
+      "url": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
+      "date": "2026-06-24",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Model Release"
+    },
+    {
+      "title": "Bringing more control over your connectors",
+      "url": "https://mistral.ai/news/more-control-over-connectors/",
+      "date": "2026-06-24",
+      "summary": "",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel",
+      "url": "https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel",
+      "date": "2026-06-24",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Introducing the FFASR Leaderboard: Benchmarking ASR in the Real World",
+      "url": "https://huggingface.co/blog/ffasr-leaderboard",
+      "date": "2026-06-24",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Helping build shared standards for advanced AI",
+      "url": "https://openai.com/index/helping-build-shared-standards-for-advanced-ai",
+      "date": "2026-06-23",
+      "summary": "OpenAI helps build shared standards for advanced AI, supporting evaluation frameworks, safety practices, and global cooperation through the Appia Foundation.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "How GPT-5 helped immunologist Derya Unutmaz solve a 3-year-old mystery",
+      "url": "https://openai.com/index/gpt-5-immunology-mystery",
+      "date": "2026-06-23",
+      "summary": "GPT-5 Pro helped solve a 3-year-old immunology mystery, offering insights into T cell behavior. The breakthrough could support cancer and autoimmune research.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "How Omio is building the future of conversational travel",
+      "url": "https://openai.com/index/omio",
+      "date": "2026-06-23",
+      "summary": "Discover how Omio uses OpenAI to power conversational travel experiences, accelerate product development, and transform into an AI-native company.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Launch of Meta’s Small Business Growth Academy Across Asia-Pacific to Boost AI Adoption and Digital Skills",
+      "url": "https://about.fb.com/news/2026/06/launch-of-metas-small-business-growth-academy-across-asia-pacific/",
+      "date": "2026-06-23",
+      "summary": "Meta's Small Business Growth Academy will provide practical AI tools, advertising, and cross-border growth training to help small businesses scale across Asia-Pacific. The post Launch of Meta’s Small Business Growth Academy Across Asia-Pacific to Boost AI Adoption and Digital Skills appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing Mistral OCR 4",
+      "url": "https://mistral.ai/news/ocr-4/",
+      "date": "2026-06-23",
+      "summary": "Mistral OCR 4 delivers enterprise document AI with 170-language support, bounding boxes, and self-hosted deployment.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Shipping huggingface_hub every week with AI, open tools, and a human in the loop",
+      "url": "https://huggingface.co/blog/huggingface-hub-release-ci",
+      "date": "2026-06-23",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Experimenting with the proposed Cross-Origin Storage API in Transformers.js",
+      "url": "https://huggingface.co/blog/cross-origin-storage",
+      "date": "2026-06-23",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Product Update"
+    },
+    {
+      "title": "Exploring the societal impacts of AI",
+      "url": "https://news.mit.edu/2026/exploring-societal-impacts-of-ai-0623",
+      "date": "2026-06-23",
+      "summary": "During the AI and Society Forum, leading MIT researchers examined critical questions about AI’s influence on employment and democracy.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "New chip could help tiny robots traverse complex environments",
+      "url": "https://news.mit.edu/2026/new-chip-could-help-tiny-robots-traverse-complex-environments-0623",
+      "date": "2026-06-23",
+      "summary": "Researchers combined an efficient algorithm with dedicated hardware to rapidly generate 3D maps for navigation using minimal memory and power.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "Reyzowter/Hello-Agents — trending AI repo",
+      "url": "https://github.com/Reyzowter/Hello-Agents",
+      "date": "2026-06-23",
+      "summary": "🤖 Building AI Agent Systems from Scratch — A comprehensive, practical tutorial from fundamentals to production-grade multi-agent applications (★ 141)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
+    },
+    {
+      "title": "Patch the Planet: a Daybreak initiative to support open source maintainers",
+      "url": "https://openai.com/index/patch-the-planet",
+      "date": "2026-06-22",
+      "summary": "OpenAI introduces Patch the Planet, a Daybreak initiative helping open-source maintainers find, validate, and fix vulnerabilities with AI and expert review.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Open Source"
+    },
+    {
+      "title": "Daybreak: Tools for securing every organization in the world",
+      "url": "https://openai.com/index/daybreak-securing-the-world",
+      "date": "2026-06-22",
+      "summary": "OpenAI introduces new Daybreak tools, including Codex Security and GPT-5.5-Cyber, to help organizations find, validate, and patch vulnerabilities at scale.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Codex-maxxing for long-running work",
+      "url": "https://openai.com/index/codex-maxxing-long-running-work",
+      "date": "2026-06-22",
+      "summary": "Learn how Jason Liu uses Codex to preserve context, manage complex projects, and help work continue beyond a single prompt.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters",
+      "url": "https://huggingface.co/blog/PaddlePaddle/pp-ocrv6",
+      "date": "2026-06-22",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "We got local models to triage the OpenClaw repo for FREE!*",
+      "url": "https://huggingface.co/blog/local-models-pr-triage",
+      "date": "2026-06-22",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Samsung Electronics brings ChatGPT and Codex to employees",
+      "url": "https://openai.com/index/samsung-electronics-chatgpt-codex-deployment",
+      "date": "2026-06-21",
+      "summary": "Samsung Electronics deploys ChatGPT Enterprise and Codex to employees worldwide, marking one of OpenAI’s largest enterprise AI rollouts.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "A better way to model the behavior of metal alloys",
+      "url": "https://news.mit.edu/2026/better-way-to-model-metal-alloys-behavior-0619",
+      "date": "2026-06-19",
+      "summary": "MIT researchers’ approach captures subtle atomic patterns, improving predictions of material properties.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "New usage analytics and updated spend controls for enterprises",
+      "url": "https://openai.com/index/chatgpt-enterprise-spend-controls",
+      "date": "2026-06-18",
+      "summary": "OpenAI introduces new spend controls and usage analytics for ChatGPT Enterprise, helping organizations manage costs and scale AI with confidence.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Improving health intelligence in ChatGPT",
+      "url": "https://openai.com/index/improving-health-intelligence-in-chatgpt",
+      "date": "2026-06-18",
+      "summary": "Learn how GPT-5.5 Instant improves ChatGPT’s health and wellness responses with stronger reasoning, better context, clearer communication, and physician-informed evaluations.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Using AI to help physicians diagnose rare genetic diseases affecting children",
+      "url": "https://openai.com/index/diagnose-rare-childhood-diseases",
+      "date": "2026-06-18",
+      "summary": "Researchers used an OpenAI reasoning model to help diagnose rare diseases, identifying 18 new diagnoses in previously unsolved cases.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "MosaicLeaks: Can your research agent keep a secret?",
+      "url": "https://huggingface.co/blog/ServiceNow/mosaicleaks",
+      "date": "2026-06-18",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Research"
+    },
+    {
+      "title": "Beyond LoRA: Can you beat the most popular fine-tuning technique?",
+      "url": "https://huggingface.co/blog/peft-beyond-lora",
+      "date": "2026-06-18",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Is it agentic enough? Benchmarking open models on your own tooling",
+      "url": "https://huggingface.co/blog/is-it-agentic-enough",
+      "date": "2026-06-18",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "MIT in the media: For the future of tech, \"Massachusetts can absolutely lead\"",
+      "url": "https://news.mit.edu/2026/mit-media-future-tech-massachusetts-can-absolutely-lead",
+      "date": "2026-06-18",
+      "summary": "Leaders, faculty across MIT discuss fostering innovation and talent in Greater Boston in special series of articles published alongside the outlet's annual list of 'Tech Power Players'",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "A near-autonomous AI chemist improves a challenging reaction in medicinal chemistry",
+      "url": "https://openai.com/index/ai-chemist-improves-reaction",
+      "date": "2026-06-17",
+      "summary": "OpenAI and Molecule.one show how a near-autonomous AI chemist using GPT-5.4 improved a key drug-making reaction, advancing medicinal chemistry research.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Introducing LifeSciBench",
+      "url": "https://openai.com/index/introducing-life-sci-bench",
+      "date": "2026-06-17",
+      "summary": "Introducing LifeSciBench, an expert-authored, expert-reviewed benchmark for evaluating how AI systems handle real-world life science research tasks and decisions.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "New research shows how AMIE, our medical AI, could help manage health conditions.",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/amie-for-disease-management-in-nature/",
+      "date": "2026-06-17",
+      "summary": "Research in “Nature” shows our conversational AI system matches primary care physicians in complex disease management.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Research"
+    },
+    {
+      "title": "From the Hugging Face Hub to robot hardware with Strands Agents and LeRobot",
+      "url": "https://huggingface.co/blog/amazon/strands-lerobot-hub-to-hardware",
+      "date": "2026-06-17",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "GLM-5.2: Built for Long-Horizon Tasks",
+      "url": "https://huggingface.co/blog/zai-org/glm-52-blog",
+      "date": "2026-06-17",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Agentic Resource Discovery: Let agents search",
+      "url": "https://huggingface.co/blog/agentic-resource-discovery-launch",
+      "date": "2026-06-17",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "In game theory, generalists sometimes win out over specialists",
+      "url": "https://news.mit.edu/2026/game-theory-generalists-sometimes-win-out-over-specialists-0617",
+      "date": "2026-06-17",
+      "summary": "Researchers show that for certain kinds of games, an overlooked class of algorithms performs much better than expected.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Could AI tell you where you left your keys?",
+      "url": "https://news.mit.edu/2026/could-ai-tell-you-where-you-left-your-keys-0617",
+      "date": "2026-06-17",
+      "summary": "A new spatial memory system for robots efficiently captures details about the objects they see while exploring their environment.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Predicting model behavior before release by simulating deployment",
+      "url": "https://openai.com/index/deployment-simulation",
+      "date": "2026-06-16",
+      "summary": "OpenAI introduces Deployment Simulation, a method to predict AI model behavior before deployment using real conversation data to improve safety and evaluation accuracy.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Unlocking UK house-building with AI-accelerated planning",
+      "url": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
+      "date": "2026-06-16",
+      "summary": "UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Securing the future of AI agents",
+      "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
+      "date": "2026-06-16",
+      "summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "MIT’s Initiative for New Manufacturing builds momentum",
+      "url": "https://news.mit.edu/2026/mit-initiative-for-new-manufacturing-builds-momentum-0616",
+      "date": "2026-06-16",
+      "summary": "In its first year, INM has worked across research, workforce development, and industry engagement to help accelerate new manufacturing technologies and their real-world deployment.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "We’re strengthening our presence in Alabama through new investments and community support.",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
+      "date": "2026-06-15",
+      "summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "New AI Tools to Help You Make Things Happen on Facebook",
+      "url": "https://about.fb.com/news/2026/06/new-ai-tools-to-help-you-make-things-happen-on-facebook/",
+      "date": "2026-06-15",
+      "summary": "We’re introducing new AI-powered Facebook features to help you connect, create, and find what you’re looking for. The post New AI Tools to Help You Make Things Happen on Facebook appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing the OpenAI Partner Network",
+      "url": "https://openai.com/index/introducing-openai-partner-network",
+      "date": "2026-06-14",
+      "summary": "OpenAI launches the Partner Network, investing $150M to help global partners accelerate enterprise AI adoption, deployment, and transformation.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "New OpenAI Academy courses for the next era of work",
+      "url": "https://openai.com/index/academy-courses-applying-ai-at-work",
+      "date": "2026-06-12",
+      "summary": "OpenAI introduces three Academy courses that help people build practical AI skills, create repeatable workflows, and apply agents in everyday work.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How Preply combines AI and human tutors to personalize learning",
+      "url": "https://openai.com/index/preply",
+      "date": "2026-06-12",
+      "summary": "Preply uses OpenAI to launch AI-generated lesson summaries, providing personalised feedback and language learning exercises.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How an astrophysicist uses Codex to help simulate black holes",
+      "url": "https://openai.com/index/using-codex-to-simulate-black-holes",
+      "date": "2026-06-11",
+      "summary": "Discover how astrophysicist Chi-kwan Chan uses Codex to build black hole simulations, helping scientists study extreme physics and test Einstein’s theory of general relativity.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "OpenAI to acquire Ona",
+      "url": "https://openai.com/index/openai-to-acquire-ona",
+      "date": "2026-06-11",
+      "summary": "OpenAI plans to acquire Ona to expand Codex with secure, persistent cloud environments, enabling long-running AI agents across enterprise workflows.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "BBVA puts AI at the core of banking with OpenAI",
+      "url": "https://openai.com/index/bbva",
+      "date": "2026-06-11",
+      "summary": "Learn how BBVA scaled ChatGPT Enterprise to 100,000 employees and partnered with OpenAI to accelerate AI-powered banking transformation worldwide.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Supporting Europe’s work in ensuring a trustworthy AI ecosystem",
+      "url": "https://openai.com/index/supporting-eu-trustworthy-ai-ecosystem",
+      "date": "2026-06-11",
+      "summary": "OpenAI supports the EU Code of Practice on AI content transparency, advancing provenance standards and tools to help people understand AI-generated content.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Our new community investments in Virginia support local jobs and expand energy affordability.",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/virginia-community-investments/",
+      "date": "2026-06-11",
+      "summary": "We’re helping build the state’s next-generation workforce and investing in energy programs.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Profiling in PyTorch (Part 2): From nn.Linear to a Fused MLP",
+      "url": "https://huggingface.co/blog/torch-mlp-fusion",
+      "date": "2026-06-11",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Jinhua Zhao named head of the Department of Urban Studies and Planning",
+      "url": "https://news.mit.edu/2026/jinhua-zhao-named-head-department-urban-studies-planning-0611",
+      "date": "2026-06-11",
+      "summary": "An expert in behavioral science and transportation, Zhao combines these studies with AI and public policy to address some of the most urgent challenges facing cities.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "When it comes to predicting people’s preferences, it pays to consider “the power of three”",
+      "url": "https://news.mit.edu/2026/when-predicting-preferences-it-pays-to-consider-power-of-three-0611",
+      "date": "2026-06-11",
+      "summary": "MIT researchers provide a major upgrade to the nearly century-old idea of random utility models.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "MIT affiliates win 2026 Hertz Foundation Fellowships",
+      "url": "https://news.mit.edu/2026/hertz-foundation-fellowships-0611",
+      "date": "2026-06-11",
+      "summary": "The fellowships in applied sciences, engineering, and mathematics recognize doctoral students who are pursuing solutions to the most pressing challenges in science and technology.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Access OpenAI models and Codex through your Oracle cloud commitment",
+      "url": "https://openai.com/index/openai-on-oracle-cloud",
+      "date": "2026-06-10",
+      "summary": "Access OpenAI models and Codex through Oracle Cloud, using existing commitments to build and deploy AI with enterprise security and governance.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "PRC-linked influence operations are targeting AI debates in the US",
+      "url": "https://openai.com/index/prc-linked-influence-operations-ai-debates",
+      "date": "2026-06-10",
+      "summary": "A new report from OpenAI details PRC-linked influence operations using AI to target U.S. tech debates, data center narratives, tariffs, and false claims about ChatGPT.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "From data to decisions: how LSEG is scaling trusted AI",
+      "url": "https://openai.com/index/lseg",
+      "date": "2026-06-10",
+      "summary": "See how LSEG uses OpenAI to scale trusted AI across its global business, accelerating insights, shrinking release cycles, and empowering 4,000 employees.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "DiffusionGemma: 4x faster text generation",
+      "url": "https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation/",
+      "date": "2026-06-10",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Investing in multi-agent AI safety research",
+      "url": "https://deepmind.google/blog/investing-in-multi-agent-ai-safety-research/",
+      "date": "2026-06-10",
+      "summary": "Google DeepMind and partners announce a $10M funding call for multi-agent safety research.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Startup’s nuclear-inspired cooling system could make data centers more sustainable",
+      "url": "https://news.mit.edu/2026/nuclear-inspired-cooling-system-ferveret-could-make-data-centers-more-sustainable-0610",
+      "date": "2026-06-10",
+      "summary": "Founded by two researchers from MIT, Ferveret reduces the amount of energy and water required to cool the chips that power AI.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "How engineers at Nextdoor use Codex to build without limits",
+      "url": "https://openai.com/index/nextdoor",
+      "date": "2026-06-09",
+      "summary": "How engineers at Nextdoor use Codex with GPT-5.5 to investigate hard-to-reproduce issues, build across platforms, and focus on product outcomes.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "What Codex unlocks for Notion",
+      "url": "https://openai.com/index/notion",
+      "date": "2026-06-09",
+      "summary": "How Notion uses Codex to one-shot specs, build AI Voice Input for the web, and multiply engineering power across small teams.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Industrial policy for the Intelligence Age",
+      "url": "https://openai.com/index/industrial-policy-for-the-intelligence-age",
+      "date": "2026-06-09",
+      "summary": "Explore our ambitious, people-first industrial policy ideas for the AI era—focused on expanding opportunity, sharing prosperity, and building resilient institutions as advanced intelligence evolves.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Fluid, natural voice translation with Gemini 3.5 Live Translate",
+      "url": "https://deepmind.google/blog/fluid-natural-voice-translation-with-gemini-35-live-translate/",
+      "date": "2026-06-09",
+      "summary": "Gemini 3.5 Live Translate brings near real-time, natural speech translation to Google AI Studio, Google Translate and Google Meet.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Introducing Gemma 4 12B: a unified, encoder-free multimodal model",
+      "url": "https://deepmind.google/blog/introducing-gemma-4-12b-a-unified-encoder-free-multimodal-model/",
+      "date": "2026-06-09",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Model Release"
+    },
+    {
+      "title": "Powering the future of robotics in Europe",
+      "url": "https://deepmind.google/blog/powering-the-future-of-robotics-in-europe/",
+      "date": "2026-06-09",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "How an Agent Built a 3D Paris Gallery by Chaining Two Hugging Face Spaces",
+      "url": "https://huggingface.co/blog/mishig/spaces-agents-md",
+      "date": "2026-06-09",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Migrating Your GitHub CI to Hugging Face Jobs",
+      "url": "https://huggingface.co/blog/github-ci-hf-jobs",
+      "date": "2026-06-09",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "The consequences of relying on AI for accurate news",
+      "url": "https://news.mit.edu/2026/consequences-of-relying-on-ai-for-accurate-news-0609",
+      "date": "2026-06-09",
+      "summary": "A Media Lab study shows that, much like how GPS has weakened our navigation skills, AI can make us worse at detecting fake news.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Confidential submission of draft S-1 to the SEC",
+      "url": "https://openai.com/index/openai-submits-confidential-s-1",
+      "date": "2026-06-08",
+      "summary": "OpenAI confirms a confidential S-1 submission to the SEC and has not yet determined timing for further action.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Built to benefit everyone: our plan",
+      "url": "https://openai.com/index/built-to-benefit-everyone-our-plan",
+      "date": "2026-06-08",
+      "summary": "A vision for the future of AI, focusing on access, safety, and shared prosperity as OpenAI works to ensure AGI benefits everyone.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing the OpenAI Economic Research Exchange",
+      "url": "https://openai.com/index/economic-research-exchange",
+      "date": "2026-06-08",
+      "summary": "OpenAI launches the Economic Research Exchange to study AI’s impact on jobs, productivity, and the economy. Applications are now open for selected research projects.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Measuring the impact of learning with AI in Sierra Leone and beyond",
+      "url": "https://deepmind.google/blog/measuring-the-impact-of-learning-with-ai-in-sierra-leone-and-beyond/",
+      "date": "2026-06-08",
+      "summary": "Results from a randomized controlled trial show the potential of Gemini’s Guided Learning feature to boost engagement and accelerate learning.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Product Update"
+    },
+    {
+      "title": "The Open Source Community is backing OpenEnv for Agentic RL",
+      "url": "https://huggingface.co/blog/openenv-agentic-rl",
+      "date": "2026-06-08",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "The latest AI news we announced in May 2026",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-may-2026/",
+      "date": "2026-06-05",
+      "summary": "Here are Google’s latest AI updates from May 2026",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "The crucial human component in computing and AI",
+      "url": "https://news.mit.edu/2026/crucial-human-component-computing-and-ai-0605",
+      "date": "2026-06-05",
+      "summary": "The MIT Ethics of Computing Research Symposium brought together experts and researchers working at the heart of ethical and social impact in technology.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "How Endava is redesigning software delivery around AI agents",
+      "url": "https://openai.com/index/endava-frontiers",
+      "date": "2026-06-04",
+      "summary": "Learn how Endava is using AI agents, ChatGPT Enterprise, and Codex to accelerate software delivery, automate workflows, and build an AI-native culture across the enterprise.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Dreaming: Better memory for a more helpful ChatGPT",
+      "url": "https://openai.com/index/chatgpt-memory-dreaming",
+      "date": "2026-06-04",
+      "summary": "ChatGPT introduces a new memory system to better remember preferences, keeping context fresh and relevant across conversations.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Biodefense in the Intelligence Age",
+      "url": "https://openai.com/index/biodefense-in-the-intelligence-age",
+      "date": "2026-06-04",
+      "summary": "An action plan for AI-powered biological resilience",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Nemotron 3.5 Content Safety: Customizable Multimodal Safety for Global Enterprise AI",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-3-5-content-safety",
+      "date": "2026-06-04",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Product Update"
+    },
+    {
+      "title": "Designing the hf CLI as an agent-optimized way to work with the Hub",
+      "url": "https://huggingface.co/blog/hf-cli-for-agents",
+      "date": "2026-06-04",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "PATH to boost AI training and career opportunities for industry-aligned jobs",
+      "url": "https://news.mit.edu/2026/mit-raise-georgia-state-university-announce-path-0604",
+      "date": "2026-06-04",
+      "summary": "MIT RAISE and Georgia State University announce an initiative to connect universities, community colleges, industry, and government to expand industry-aligned AI training and career pathways.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "NSF renews support for MIT-led AI and physics institute, expanding a new model for discovery",
+      "url": "https://news.mit.edu/2026/nsf-renews-support-mit-led-ai-and-physics-institute-0604",
+      "date": "2026-06-04",
+      "summary": "IAIFI enters its second phase with increased funding, broader ambitions, and a growing community at the frontier of AI and fundamental physics.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Introducing new capabilities to GPT-Rosalind",
+      "url": "https://openai.com/index/introducing-new-capabilities-to-gpt-rosalind",
+      "date": "2026-06-03",
+      "summary": "GPT-Rosalind advances life sciences research with enhanced biological reasoning, medicinal chemistry expertise, genomics analysis, and experimental workflow capabilities.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Model Release"
+    },
+    {
+      "title": "How Wasmer used Codex to build a Node.js runtime for the edge",
+      "url": "https://openai.com/index/wasmer",
+      "date": "2026-06-03",
+      "summary": "See how Wasmer used Codex with GPT-5.5 to build a Node.js runtime for the edge, accelerating development 10x to 20x and shipping in weeks instead of months.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "OpenAI public policy agenda",
+      "url": "https://openai.com/index/public-policy-agenda",
+      "date": "2026-06-03",
+      "summary": "OpenAI outlines its public policy agenda for AI, including safety, youth protection, workforce transition, and global standards to ensure AI benefits society.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "A blueprint for democratic governance of frontier AI",
+      "url": "https://openai.com/index/frontier-safety-blueprint",
+      "date": "2026-06-03",
+      "summary": "OpenAI outlines a blueprint for U.S. governance of frontier AI, proposing a federal framework for safety, resilience, and national security.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "5 ways Google Search can level up your thrift and vintage shopping",
+      "url": "https://blog.google/products-and-platforms/products/search/thrifting-tips/",
+      "date": "2026-06-03",
+      "summary": "Uncover second-hand scores with AI tools in Google Search and Shopping.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Direct Preference Optimization Beyond Chatbots",
+      "url": "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
+      "date": "2026-06-03",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Adding MCP Tools to Reachy Mini",
+      "url": "https://huggingface.co/blog/adding-mcp-tools-to-reachy-mini",
+      "date": "2026-06-03",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Teaching AI agents to ask better questions by playing “Battleship”",
+      "url": "https://news.mit.edu/2026/teaching-ai-agents-ask-better-questions-playing-battleship-0603",
+      "date": "2026-06-03",
+      "summary": "MIT researchers use the classic game as a test bed for AI agents, finding a small AI model can outperform the biggest ones at 1 percent of the cost.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Tod Machover receives George Peabody Medal for contributions to music and technology",
+      "url": "https://news.mit.edu/2026/tod-machover-receives-george-peabody-medal-0603",
+      "date": "2026-06-03",
+      "summary": "The George Peabody Medal is the highest honor bestowed by the Peabody Institute of the Johns Hopkins University.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "MIT researchers teach AI models to interpret charts",
+      "url": "https://news.mit.edu/2026/mit-researchers-teach-ai-models-to-interpret-charts-0603",
+      "date": "2026-06-03",
+      "summary": "The new ChartNet training dataset could improve the accuracy of vision-language models that help analyze business trends or interpret scientific figures.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Travelers deploys AI-powered claims countrywide with OpenAI",
+      "url": "https://openai.com/index/travelers",
+      "date": "2026-06-02",
+      "summary": "Travelers built an AI-powered Claim Assistant with OpenAI to guide customers through filing claims, provide 24/7 support, and scale operations during peak demand.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Codex for every role, tool, and workflow",
+      "url": "https://openai.com/index/codex-for-every-role-tool-workflow",
+      "date": "2026-06-02",
+      "summary": "Discover new Codex plugins, sites, and annotations that help analysts, marketers, designers, investors, and other teams get more done with AI.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Advancing youth safety and opportunity through global leadership",
+      "url": "https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership",
+      "date": "2026-06-02",
+      "summary": "OpenAI calls for global action on youth AI safety, proposing an international institute to strengthen safeguards, standards, and opportunities for young people.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Codex is becoming a productivity tool for everyone",
+      "url": "https://openai.com/index/codex-for-knowledge-work",
+      "date": "2026-06-02",
+      "summary": "The Next Era of Knowledge Work report explores how Codex is transforming productivity through AI-powered research, data analysis, workflow automation, and content creation.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Holo3.1: Fast & Local Computer Use Agents",
+      "url": "https://huggingface.co/blog/Hcompany/holo31",
+      "date": "2026-06-02",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Our views on AI policy and political advocacy",
+      "url": "https://openai.com/index/our-views-on-ai-policy-and-political-advocacy",
+      "date": "2026-06-01",
+      "summary": "Our approach to AI policy and political advocacy, transparency, support for thoughtful regulation and AI safety, and that no outside political group speaks on the company’s behalf.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Building the infrastructure for the Intelligence Age in Michigan",
+      "url": "https://openai.com/index/stargate-michigan-data-center",
+      "date": "2026-06-01",
+      "summary": "OpenAI breaks ground on a 1GW data center project in Michigan as part of Stargate, building AI infrastructure to expand access, create jobs, and support communities.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "OpenAI frontier models and Codex are now available on AWS",
+      "url": "https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws",
+      "date": "2026-06-01",
+      "summary": "OpenAI frontier models and Codex are now generally available on AWS, giving enterprises a new path to build with OpenAI through the AWS environments, controls, and procurement workflows they already use. Customers can get started with OpenAI on AWS and move faster from evaluation to production.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "How we used Gemini to build Google I/O 2026",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
+      "date": "2026-06-01",
+      "summary": "Learn how Googlers used AI to produce Google I/O 2026.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing Mellum2: A 12B Mixture-of-Experts Model by JetBrains",
+      "url": "https://huggingface.co/blog/JetBrains/mellum2-launch",
+      "date": "2026-06-01",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Model Release"
+    },
+    {
+      "title": "Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic",
+      "url": "https://huggingface.co/blog/ibm-research/agent-logic-and-scalable-ai-adoption",
+      "date": "2026-06-01",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Product Update"
+    },
+    {
+      "title": "Boston Children’s uses AI to unlock new diagnoses",
+      "url": "https://openai.com/index/boston-childrens-hospital",
+      "date": "2026-05-29",
+      "summary": "Boston Children’s Hospital uses OpenAI technology to improve patient care, reduce operational burden, and help diagnose more than 40 rare disease cases.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How Braintrust turns customer requests into code with Codex",
+      "url": "https://openai.com/index/braintrust",
+      "date": "2026-05-29",
+      "summary": "How Braintrust engineers use Codex with GPT-5.5 to run experiments and code faster.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Strengthening societal resilience with Rosalind Biodefense",
+      "url": "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense",
+      "date": "2026-05-29",
+      "summary": "OpenAI launches Rosalind Biodefense, expanding trusted access to GPT-Rosalind for vetted developers and U.S. government partners advancing biodefense, public health, and pandemic preparedness through frontier AI.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Model Release"
+    },
+    {
+      "title": "A shared playbook for trustworthy third party evaluations",
+      "url": "https://openai.com/index/trustworthy-third-party-evaluations-foundations",
+      "date": "2026-05-29",
+      "summary": "OpenAI shares guidance on third-party AI evaluations, covering how to assess model capabilities, safeguards, and validity for frontier systems.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Take our I/O 2026 quiz, vibe coded in Google AI Studio.",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/",
+      "date": "2026-05-29",
+      "summary": "We used Google AI Studio to vibe code a quiz about our top I/O 2026 announcements.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "9 demos of Gemini Omni and Gemini 3.5 in action",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/",
+      "date": "2026-05-29",
+      "summary": "Watch 9 videos showing the capabilities of Gemini Omni and Gemini 3.5, announced at Google I/O 2026.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Check out real-life AI prototypes from the Futures Lab.",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/",
+      "date": "2026-05-29",
+      "summary": "University of Waterloo students develop AI prototypes like sign language tutors to reshape the future of education and work.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Profiling in PyTorch (Part 1): A Beginner's Guide to torch.profiler",
+      "url": "https://huggingface.co/blog/torch-profiler",
+      "date": "2026-05-29",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "How Endava builds an agentic organization with Codex",
+      "url": "https://openai.com/index/endava",
+      "date": "2026-05-28",
+      "summary": "Learn how Endava uses Codex to build an agentic organization, accelerating software delivery and reducing requirements analysis from weeks to hours.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "MUFG aims to become AI-native with OpenAI",
+      "url": "https://openai.com/index/mufg",
+      "date": "2026-05-28",
+      "summary": "MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "OpenAI’s Frontier Governance Framework",
+      "url": "https://openai.com/index/openai-frontier-governance-framework",
+      "date": "2026-05-28",
+      "summary": "Explore OpenAI’s Frontier Governance Framework and how our AI safety, security, and risk practices align with emerging EU and California regulations.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Catch up on 12 major I/O 2026 moments",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-keynote-moment-videos/",
+      "date": "2026-05-28",
+      "summary": "Here are 12 of the biggest Google I/O 2026 keynote moments, including news about Gemini Omni, Gemini 3.5 Flash and more.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "AI Now Summit 2026",
+      "url": "https://mistral.ai/news/ai-now-summit-2026/",
+      "date": "2026-05-28",
+      "summary": "Innovations for global enterprises solving the world’s hardest problems.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Vibe gets to work.",
+      "url": "https://mistral.ai/news/vibe-agent/",
+      "date": "2026-05-28",
+      "summary": "The unified agent for long-horizon productivity and coding, launching with Work and Code modes. Plus, a new Vibe VS Code extension.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Introducing Search Toolkit",
+      "url": "https://mistral.ai/news/search-toolkit/",
+      "date": "2026-05-28",
+      "summary": "Search Toolkit is a composable framework for building production search pipelines for AI applications.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Media Advisory: MIT to establish regional quantum hub",
+      "url": "https://news.mit.edu/2026/media-advisory-mit-establish-regional-quantum-hub",
+      "date": "2026-05-28",
+      "summary": "With $25 million investment from the Commonwealth of Massachusetts, MIT to build a new shared-use facility to serve as a statewide quantum toolbox.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "ATOM00blue/machine-learning-library — trending AI repo",
+      "url": "https://github.com/ATOM00blue/machine-learning-library",
+      "date": "2026-05-28",
+      "summary": "A hand-curated, topic-organized library of the best ML education — 923 docs (391 arXiv papers, 474 Stanford/MIT/Karpathy/fast.ai lectures, 58 explainer articles), normalized to Markdown with full provenance. Open it in Obsidian or point your agent at it. A clean ML corpus for learning, RAG & fine-tuning. (★ 143)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
+    },
+    {
+      "title": "Cisco and OpenAI redefine enterprise engineering with Codex",
+      "url": "https://openai.com/index/cisco",
+      "date": "2026-05-27",
+      "summary": "Cisco and OpenAI are redefining enterprise engineering with Codex, helping Cisco scale AI-native development, accelerate AI Defense work, and automate defect remediation.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Building self-improving tax agents with Codex",
+      "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex",
+      "date": "2026-05-27",
+      "summary": "See how OpenAI, Thrive, and Crete built a self-improving tax agent with Codex, automating filings, improving accuracy, and accelerating workflows.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Warp’s big bet on building open source with GPT-5.5",
+      "url": "https://openai.com/index/warp",
+      "date": "2026-05-27",
+      "summary": "Warp uses GPT-5.5 and OpenAI models to coordinate coding agents across local, cloud, and open-source development workflows.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Open Source"
+    },
+    {
+      "title": "Election information and safeguards in 2026",
+      "url": "https://openai.com/index/election-safeguards-2026",
+      "date": "2026-05-27",
+      "summary": "Ahead of global elections, we’re helping people access information, supporting cyber defenders, and increasing AI transparency",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing physics AI at Mistral: the foundation for engineering acceleration.",
+      "url": "https://mistral.ai/news/introducing-physics-ai-at-mistral/",
+      "date": "2026-05-27",
+      "summary": "A new class of AI models that predict the behavior of physical systems, powering the engineers and hardware products of tomorrow.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Physics AI research that’s shaping the industry.",
+      "url": "https://mistral.ai/news/physics-ai-research/",
+      "date": "2026-05-27",
+      "summary": "Published breakthroughs pushing the state of the art.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Research"
+    },
+    {
+      "title": "Reachy Mini goes fully local",
+      "url": "https://huggingface.co/blog/local-reachy-mini-conversation",
+      "date": "2026-05-27",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Shipping a Trillion Parameters With a Hub Bucket: Delta Weight Sync in TRL",
+      "url": "https://huggingface.co/blog/delta-weight-sync",
+      "date": "2026-05-27",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "fancyboi999/ai-engineering-from-scratch-zh — trending AI repo",
+      "url": "https://github.com/fancyboi999/ai-engineering-from-scratch-zh",
+      "date": "2026-05-26",
+      "summary": "Agent工程师最全学习路径 · 从零精通 AI 工程 · 20 阶段 503 课 · 中文全量翻译 + 配套站点 + 动画讲解视频 · 如何成为 AI Agent 工程师的修成指南 (★ 767)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
+    },
+    {
+      "title": "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership",
+      "url": "https://openai.com/index/grupo-folha-grupo-uol-partnership",
+      "date": "2026-05-25",
+      "summary": "OpenAI partners with Grupo Folha and Grupo UOL to bring trusted Brazilian journalism to ChatGPT, expanding access to news with attribution and transparency.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
+      "url": "https://huggingface.co/blog/agent-glossary",
+      "date": "2026-05-25",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Tejas-TA/predikit — trending AI repo",
+      "url": "https://github.com/Tejas-TA/predikit",
+      "date": "2026-05-25",
+      "summary": "The missing bridge between your ML models and your AI agents. (★ 446)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
+    },
+    {
+      "title": "Emmi joins Mistral to accelerate the AI-native industry",
+      "url": "https://mistral.ai/news/accelerate-ai-native-industry/",
+      "date": "2026-05-23",
+      "summary": "",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "How Virgin Atlantic ships faster with Codex",
+      "url": "https://openai.com/index/virgin-atlantic",
+      "date": "2026-05-22",
+      "summary": "How Virgin Atlantic used Codex to ship its revamped mobile app on a fixed holiday travel deadline, reaching near-total unit test coverage and zero P1 defects.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "OpenAI named a Leader in enterprise coding agents by Gartner",
+      "url": "https://openai.com/index/gartner-2026-agentic-coding-leader",
+      "date": "2026-05-22",
+      "summary": "OpenAI is named a leader in the 2026 Gartner Magic Quadrant for Enterprise AI Coding Agents, with Codex recognized for innovation and enterprise-scale deployment.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Catch up on the Dialogues stage at Google I/O 2026.",
+      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-dialogues-recap/",
+      "date": "2026-05-22",
+      "summary": "A recap of the 2026 I/O Dialogues, where leaders discuss the future of AI, quantum computing, robotics and creativity.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Remote agents in Vibe. Powered by Mistral Medium 3.5.",
+      "url": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5/",
+      "date": "2026-05-22",
+      "summary": "Introducing Mistral Medium 3.5, remote coding agents in Vibe, plus new Work mode in Le Chat for complex tasks.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Connect the dots: Build with built-in and custom MCPs in Studio",
+      "url": "https://mistral.ai/news/connectors/",
+      "date": "2026-05-22",
+      "summary": "Connect enterprise data to your AI applications with reusable connectors, direct tool calling, and human-in-the-loop approval controls.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "AdventHealth advances whole-person care with OpenAI",
+      "url": "https://openai.com/index/adventhealth",
+      "date": "2026-05-21",
+      "summary": "AdventHealth is using ChatGPT for Healthcare to streamline workflows, reduce administrative burden, and return more time to patient care.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "We’re launching the Google DeepMind Accelerator program in Asia Pacific to tackle environmental risks",
+      "url": "https://deepmind.google/blog/were-launching-the-google-deepmind-accelerator-program-in-asia-pacific-to-tackle-environmental-risks/",
+      "date": "2026-05-21",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Technology usually creates jobs for young, skilled workers. Will AI do the same?",
+      "url": "https://news.mit.edu/2026/technology-creates-jobs-young-skilled-workers-ai-0521",
+      "date": "2026-05-21",
+      "summary": "A new study of the postwar U.S. shows which kinds of workers historically filled new tech-enabled jobs.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    }
+  ]
+}

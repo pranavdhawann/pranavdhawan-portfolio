@@ -19,12 +19,26 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 | `index.html` | Single page: hero / about / skills / projects / experience / contact |
 | `styles.css` | Design tokens + responsive breakpoints (1400 / 1024 / 768 / 480 / 360) |
 | `script.js` | All interactive behavior, single IIFE per module |
+| `blog/` | Blog index + posts; the "AI This Week" digest section is regenerated weekly (see below) |
+| `scripts/fetch-ai-news.mjs` | Zero-dependency generator for the weekly AI news digest |
 | `netlify.toml` | Netlify security headers + functions directory |
 | `netlify/functions/ask.mjs` | Serverless proxy to Groq (`llama-3.1-8b-instant`) for the chat widget |
 | `netlify/functions/lib/knowledge.mjs` | Curated first-person knowledge base embedded in the chat system prompt |
 | `package.json`, `tests/` | Local validation, Playwright smoke tests, and axe accessibility checks |
 | `images/photo.png` (487×476), `images/eye.png` | Drive the cursor-tracking avatar eyes |
 | `Pranav_Dhawan_Resume.pdf` | Download target |
+
+## Weekly AI news digest
+
+The blog page carries an auto-curated "AI This Week" section, statically
+regenerated every Monday by a GitHub Actions cron
+(`.github/workflows/update-ai-news.yml`) that fetches official lab feeds,
+arXiv, and GitHub, then commits the updated HTML — Netlify redeploys on push.
+Run it locally with `npm run news:update`. The blog page also has a
+newsletter signup (Netlify Forms); the same weekly workflow emails the digest
+to subscribers once SMTP + Netlify secrets are configured (`npm run
+news:send` locally). Details, source list, newsletter setup, and how to
+add/remove sources: [docs/ai-news-pipeline.md](docs/ai-news-pipeline.md).
 
 ## Analytics
 

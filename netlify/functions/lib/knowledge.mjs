@@ -18,18 +18,29 @@ EDUCATION
   Database Management Systems.
 
 CURRENT ROLE — SIVA INFO LLC (AI Independent Contractor, June 2026–present, part-time, remote)
-I work part-time and remotely on document workflows and computer vision
-pipelines for AI-driven document processing.
+I build AI-driven document processing workflows for journals, academic papers,
+and books using rule-based scripting, local LLMs, and document comparison
+pipelines. I developed change-manifest tooling that compares two versions of
+source files, identifies content and formatting changes, and guides updates
+across downstream deliverables like presentations, reports, and publication
+materials — automating repetitive change-detection work that used to be manual
+review for high-volume academic and publishing content.
 
 CURRENT ROLE — AMERICAN CHEMICAL SOCIETY (AI Workplace Engineer Intern, May 2026–present, full-time, hybrid, Washington DC)
-I build AI agents and automation workflows to streamline service desk and
-ticketing operations end-to-end — from ticket creation to fulfillment. I use
-n8n for orchestration and CrewAI and LangChain for agent design, all running on
-an LLM backbone. The goal is to take repetitive internal operations and run
-them without manual handoffs, freeing the team for more complex work. ACS is
-over 150 years old, publishes some of the most cited journals in chemistry, and
-supports the global scientific community — building internal tools for an org
-like that carries a different weight than a typical tech role.
+I automated about 70% of monthly Ivanti Neurons service desk tickets by
+connecting email intake to a RAG-enabled workflow: it classifies requests,
+drafts responses for information tickets, and routes complex issues to staff
+with suggested solutions and relevant SharePoint/Wiki sources. I also designed
+and implemented a Copilot Studio pilot program to evaluate enterprise AI use
+cases, build internal workflow prototypes, and support M365 Copilot adoption
+for service desk and workplace automation. Alongside that I established an AI
+governance blueprint covering data protection, secure knowledge-base access,
+human-in-the-loop review, token misuse prevention, and responsible deployment
+standards for internal AI workflows. For orchestration and agent design I've
+worked with n8n, CrewAI, and LangChain. ACS is over 150 years old, publishes
+some of the most cited journals in chemistry, and supports the global
+scientific community — building internal tools for an org like that carries a
+different weight than a typical tech role.
 
 On agents vs. scripts: a script follows fixed rules; an agent can reason about
 a task, decide which tools to use, and adapt. Service desk requests vary a lot,
@@ -40,11 +51,12 @@ Lumina Datamatics — Machine Learning Engineer (Feb–Aug 2024)
 - Fine-tuned computer vision models to detect and extract complex equations
   from 10,000+ unstructured documents, eliminating manual post-processing.
 - Replaced LayoutParser with a custom YOLO-based document layout pipeline,
-  improving extraction accuracy by 16% and cutting inference latency by 0.3ms
-  per page. LayoutParser is solid general-purpose but wasn't built for our
-  highly technical layouts at that volume.
-- Built a hybrid RAG system for legal document search that cut query time from
-  minutes to under 5 seconds for counsel teams.
+  improving extraction accuracy by 16% and cutting inference latency by 0.3
+  seconds per page. LayoutParser is solid general-purpose but wasn't built for
+  our highly technical layouts at that volume.
+- Built a hybrid RAG system for legal document search across 10,000+ documents
+  using fine-tuned BART/BERT-based models, optimized embeddings, and FAISS
+  indexing — cut query time from minutes to under 5 seconds for counsel teams.
 - When I joined, AI deployment was new territory for the team — no playbook for
   AWS or deploying models at scale. Within a few weeks I had endpoints live
   processing 10,000+ documents a day. I learn by doing: documentation, testing,
@@ -118,9 +130,9 @@ cadence, with results surfaced through an interactive dashboard.
 
 SKILLS
 Languages/ML: Python, R, pandas, NumPy, scikit-learn, Matplotlib, Seaborn,
-PyTorch, TensorFlow, Hugging Face. Agents/LLM: n8n, CrewAI, LangChain, agentic
-AI, RAG. Data/Cloud/Viz: SQL, MySQL, AWS, Google Cloud Platform, Power BI,
-Tableau, Streamlit.
+PyTorch, TensorFlow, Hugging Face. Agents/LLM: n8n, CrewAI, LangChain, Copilot
+Studio, agentic AI, RAG, local LLMs. Data/Cloud/Viz: SQL, MySQL, AWS, Google
+Cloud Platform, Power BI, Tableau, Streamlit.
 
 WHAT DRIVES ME
 I'm most drawn to environments where the work has impact beyond a product
