@@ -56,6 +56,78 @@
       "category": "Product Update"
     },
     {
+      "title": "Graph Classification via Network Usable Information: From Representation Evaluation to Structure Selection",
+      "url": "https://arxiv.org/abs/2607.03587v1",
+      "date": "2026-07-03",
+      "summary": "We propose NetinfoGC, a framework for graph classification that extends the Network Usable Information (NUI) paradigm to graph-level learning. Unlike conventional graph neural network approaches that rely on end-to-end training of black-box embeddings, NetinfoGC constructs a family of permutation-invariant graph representations derived from propagation-based mechanisms and classical structural descriptors, including graph centrality measures. To evaluate representation quality, we introduce a training-free NUI estimation procedure based on clustering consistency with ground-truth labels, providing a proxy for task-relevant information without supervised learning. We further exploit the same representations using sparse-group LASSO regularization, enabling automatic selection of informative structural descriptors while suppressing redundant ones. Experiments on benchmark datasets show that classical centrality measures are highly competitive with learned propagation-based representations, and in several cases yield superior performance. Moreover, we observe a strong correlation between estimated NUI and downstream classification accuracy, validating NUI as an effective measure of representation utility. Overall, NetinfoGC provides a unified and interpretable framework for evaluating and exploiting graph representations without requiring end-to-end neural training.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Modular Foundation Models for Time-Series Perception in Digital Twins",
+      "url": "https://arxiv.org/abs/2607.03585v1",
+      "date": "2026-07-03",
+      "summary": "Engineering Digital Twins and Prognostics and Health Management (PHM) systems rely on robust perception modules to extract actionable information from heterogeneous and non-stationary time-series data. However, most existing approaches remain task-specific, data-hungry, and difficult to integrate into scalable monitoring and decision-making pipelines. Moreover, purely data-driven models often lack robustness and transferability across varying operating conditions. To address these challenges, this paper proposes a modular foundation model for time-series perception based on a collection of pretrained representation encoders. The framework leverages self-supervised learning on heterogeneous datasets to learn transferable and task-agnostic representations, which can be reused across multiple PHM tasks. A gating mechanism is introduced to dynamically select relevant encoders for a given target dataset, enabling conditional computation and adaptive model composition. The selected representations are projected into a shared latent space and aggregated using a Transformer-based self-attention module that explicitly models cross-encoder interactions. The resulting architecture supports multiple downstream tasks, including imputation, long-term forecasting, and few-shot learning, through lightweight task-specific heads, while keeping pretrained encoders frozen during adaptation. Extensive ablation studies demonstrate the complementary roles of self-supervised pretraining, encoder selection, representation alignment, and adaptive aggregation. Experimental results on the ETT benchmark show competitive performance across tasks, while a real-world industrial case study on virtual sensing for hydro-generator rotor temperature highlights the practical relevance of the approach.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "PLGSA-Transformer: Periocular Landmark-Guided Attention with Occlusion-Adaptive Cosine Thresholding for Cross-Modal Masked and Unmasked Face Recognition",
+      "url": "https://arxiv.org/abs/2607.03581v1",
+      "date": "2026-07-03",
+      "summary": "The widespread adoption of facial masks, accelerated by COVID-19 and mandated in security-sensitive settings, has exposed limitations of conventional face recognition systems. Existing approaches relying on fixed cosine thresholds, non-adaptive CNNs, and purely data-driven features fail to generalize when facial regions are occluded, creating a gap between lab performance and real-world deployability. This paper proposes PLGSA-Transformer, a cross-modal face matching framework with three contributions. First, Periocular Landmark-Guided Spatial Attention (PLGSA) uses MediaPipe landmarks to compute Gaussian heatmaps over the eye, brow, and forehead regions, fusing them with EfficientNetB3 features via a learnable residual gate to direct attention toward discriminative visible regions. Second, a Hybrid CNN-Transformer Branch reshapes feature maps into tokens processed by a two-layer Multi-Head Self-Attention encoder, enabling cross-regional dependency modelling. Third, the Occlusion-Adaptive Cosine Threshold (OACT) is a jointly trained head that raises the matching threshold in proportion to predicted occlusion severity. The model is evaluated on 858 images from Zenodo MDMFR (60%), Kaggle CelebA-HQ masked collection (25%), and author-collected images (15%), spanning both genders, ages 21-75, with varied mask types, trained via a unified loss combining contrastive verification, identity classification, and occlusion cross-entropy. PLGSA-Transformer achieves 97.22% pair verification accuracy with ROC AUC 1.0000, surpassing VGG-16-based MUFM (Abdullah et al., 2025; 95.0%), HOG classifiers (Adnan et al., 2020; 85.0%), and Feature-based Structural Measure (Shnain et al., 2017; 86.61%). These results confirm that encoding periocular geometry into attention, with Transformer modelling and occlusion-adaptive thresholds, yields a robust, scalable solution for cross-modal masked face recognition.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "When Geometry Aligns: Dihedral Hidden-State Transformations in UNet, ViT, and DiT Architectures",
+      "url": "https://arxiv.org/abs/2607.03580v1",
+      "date": "2026-07-03",
+      "summary": "Diffusion architectures now encompass convolutional UNets as well as transformer-based designs such as Diffusion Transformers (DiTs), inspired by Vision Transformers (ViTs), yet the effects of structured geometric perturbations within these architectures remain poorly understood. We study this question through a unified framework that applies reflection-based elements of the dihedral group to intermediate hidden states as controlled internal interventions, contrasting geometrically consistent and inconsistent variants. Using activation-level diagnostics, including Self-Consistency Shift (SCS), Activation Mass Scatter (AMS), and Drift, we analyze feature stability and geometric drift. We find that consistent transformations improve stability, while inconsistent ones induce predictable, architecture-specific failures. In the main Stable Diffusion 2.1 U-Net study, we evaluate seven intervention modes over three seeds and complement the internal diagnostics with image-level FID, KID, CLIP score, and LPIPS diversity. Taken together with supporting ViT and controlled DiT analyses, these results establish geometric consistency as a key principle for stable hidden-state interventions in spatially structured vision and diffusion models.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Differentiate the Evaluator, Not the Program: An Efficient Runtime Representation for Neuro-Symbolic Learning",
+      "url": "https://arxiv.org/abs/2607.03574v1",
+      "date": "2026-07-03",
+      "summary": "AI systems increasingly propose executable scientific models whose value depends on both their symbolic structure and their fitted continuous parameters. This makes parameter calibration the bottleneck of program-and-parameter co-search: an outer loop can generate thousands of candidate programs, but each needs an inner gradient-based optimization before it can be assessed. Staging each candidate into its own differentiable graph makes individual models fast but sacrifices the program-as-data property that keeps search fluid; interpreter-based approaches preserve programs as runtime data but pay interpreter overhead that dominates the numerical work. We present the Native Differentiable Virtual Machine (NDVM), a runtime representation that differentiates executable programs without compiling each candidate into a separate graph. NDVM separates symbolic structure from differentiable numeric state: tags, symbols, environments, and control remain native runtime data, while numeric payloads live in dense batched buffers with exact reverse-mode gradients recorded along the realized execution trace, so one evaluator walk is amortized across large populations of parameter vectors. A locked cost model of a real differentiable self-hosted Scheme interpreter motivates the design. We realize NDVM as a native runtime with forward and gradient equivalence to the reference backend, about 60x per-lane batch amortization, near-linear multicore scaling, and two independent front ends. In fixed-budget co-search over LLM-proposed programs, NDVM reaches high-quality solutions about 24x sooner in wall-clock time, suggesting runtime differentiation as a practical systems foundation for scientific discovery workflows.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Teacher Supervision over Representation Equivalence Classes",
+      "url": "https://arxiv.org/abs/2607.03572v1",
+      "date": "2026-07-03",
+      "summary": "Knowledge distillation is usually framed as a choice of what to match in the teacher - its logits, hidden features, or sample relations - which presupposes that the teacher's representation has absolute coordinates to match. It does not: a pretrained representation is identifiable only up to an orthogonal-and-isotropic-scaling equivalence class, so a student should learn the teacher's equivalence class, not its features. The organizing fact is that capability is the teacher's output function, a class invariant that factors through the quotient by the class action, so an objective recovers capability exactly when it is defined there. This makes absolute feature matching ill-posed, and admissible supervision a matter of targeting class invariants (Gram structure, CKA, principal subspaces) or aligning coordinates first, unifying feature matching, relational distillation, alignment, and grafting in one geometric account. We validate our framework on Qwen2.5 and Llama-3.1. A restoration study recovers a corrupted model's representation (CKA ~ 0.99) but not its capability, and an ablation isolates the cause: output-function (logit) matching drives capability, while matching hidden representations aligns geometry without restoring function. Recovery is confined to the corpus-covered region, and a graft study confirms that boundary overlap predicts transplant success but is necessary, not sufficient.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "EPRA U-Net: An Efficient Pyramid Residual Attention Framework for Accurate Infarct Segmentation in Diffusion-Weighted MRI",
+      "url": "https://arxiv.org/abs/2607.03568v1",
+      "date": "2026-07-03",
+      "summary": "Objective: Accurate identification of acute ischemic infarcts on diffusion-weighted magnetic resonance imaging (DWI) is a critical prerequisite for reliable lesion quantification and effective clinical decision support in the management of cerebrovascular events. Methods: This study presents EPRA U-Net (Efficient Pyramid Residual Attention U-Net), a task-specific integrated architecture for efficient and accurate infarct segmentation of DWI images. In the proposed architecture, an EfficientNet-based encoder was used as a hierarchical feature extractor with a minimized parameterization. In addition, a Residual-Recurrent (R2) block (recurrent unrolling step t = 2, following the original formulation) and Atrous Spatial Pyramid Pooling (ASPP) were integrated to enhance the performance of spatial dependency modeling. Additionally, a dual attention mechanism was incorporated to highlight lesion-related activations while concurrently enabling the suppression of extraneous background responses. To prioritize lesion detection consistent with clinical imperative, a Tversky loss function was adopted, emphasizing the sensitivity of detection over its specificity during the optimization process. Results: Experimental evaluations were conducted utilizing an in-house dataset comprising 167 patients with 4,895 DWI slices; subsequently, the performance of the proposed EPRA U-Net was assessed in comparison with state-of-the-art models, specifically UNet++, DeepLabV3+, and TransUNet. The experimental results suggest that EPRA U-Net attained superior performance, evidenced by a pixel-aggregated Dice of 0.8984, a per-sample Dice of 0.9469, an IoU of 0.8155, a Recall of 0.8887, a Lesion F1 of 0.9378, and an HD95 of 11.62 px. Furthermore, a clear reduction in the rate of missed lesions, specifically by 16%, 25%, and 29%, was observed when compared with UNet++, DeepLabV3+, and TransUNet, respectively.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "How to Avoid Debate: Scalable AI Safety via Doubly-Efficient Interactive Proofs",
+      "url": "https://arxiv.org/abs/2607.03561v1",
+      "date": "2026-07-03",
+      "summary": "As AI models continue to develop powerful capabilities, it becomes critical that we are able to verify that their output is aligned with our intentions. A recent line of work focuses on verification via debate, a model of interactive proofs where two competing powerful provers, or AI models, debate each other to convince a weak verifier, or a human, of the correctness of their claim. However, debate assumes that the two AI models possess equal abilities and that one of them is truthful, which may not be realistic. In this work, we show \\emph{how to avoid debate}: we initiate the study of \\emph{single-prover} interactive proofs for AI safety. Prior results in single-prover interactive proofs do not immediately carry over to the AI safety setting: for example, they do not work when the computation has access to an oracle, such as to human judgment or an external database such as the web. We present doubly-efficient single-prover interactive proofs and arguments for oracle-aided computations (also known as relativizing proofs), in the settings where (1) the computation is robust, in the sense that the output does not change if at most a small fraction of the answers to oracle queries are incorrect, or (2) the oracle is a low-degree polynomial. These results suggest that interactive verification is possible even without debate, under structured or noise-tolerant oracle access.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
       "title": "Visible Extended Thinking",
       "url": "https://www.anthropic.com/news/visible-extended-thinking",
       "date": "2026-07-03",
@@ -1728,78 +1800,6 @@
       "sourceId": "mistral",
       "sourceName": "Mistral AI",
       "category": "Model Release"
-    },
-    {
-      "title": "How Virgin Atlantic ships faster with Codex",
-      "url": "https://openai.com/index/virgin-atlantic",
-      "date": "2026-05-22",
-      "summary": "How Virgin Atlantic used Codex to ship its revamped mobile app on a fixed holiday travel deadline, reaching near-total unit test coverage and zero P1 defects.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "OpenAI named a Leader in enterprise coding agents by Gartner",
-      "url": "https://openai.com/index/gartner-2026-agentic-coding-leader",
-      "date": "2026-05-22",
-      "summary": "OpenAI is named a leader in the 2026 Gartner Magic Quadrant for Enterprise AI Coding Agents, with Codex recognized for innovation and enterprise-scale deployment.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Catch up on the Dialogues stage at Google I/O 2026.",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-dialogues-recap/",
-      "date": "2026-05-22",
-      "summary": "A recap of the 2026 I/O Dialogues, where leaders discuss the future of AI, quantum computing, robotics and creativity.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Remote agents in Vibe. Powered by Mistral Medium 3.5.",
-      "url": "https://mistral.ai/news/vibe-remote-agents-mistral-medium-3-5/",
-      "date": "2026-05-22",
-      "summary": "Introducing Mistral Medium 3.5, remote coding agents in Vibe, plus new Work mode in Le Chat for complex tasks.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Connect the dots: Build with built-in and custom MCPs in Studio",
-      "url": "https://mistral.ai/news/connectors/",
-      "date": "2026-05-22",
-      "summary": "Connect enterprise data to your AI applications with reusable connectors, direct tool calling, and human-in-the-loop approval controls.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "AdventHealth advances whole-person care with OpenAI",
-      "url": "https://openai.com/index/adventhealth",
-      "date": "2026-05-21",
-      "summary": "AdventHealth is using ChatGPT for Healthcare to streamline workflows, reduce administrative burden, and return more time to patient care.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "We’re launching the Google DeepMind Accelerator program in Asia Pacific to tackle environmental risks",
-      "url": "https://deepmind.google/blog/were-launching-the-google-deepmind-accelerator-program-in-asia-pacific-to-tackle-environmental-risks/",
-      "date": "2026-05-21",
-      "summary": "",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Research"
-    },
-    {
-      "title": "Technology usually creates jobs for young, skilled workers. Will AI do the same?",
-      "url": "https://news.mit.edu/2026/technology-creates-jobs-young-skilled-workers-ai-0521",
-      "date": "2026-05-21",
-      "summary": "A new study of the postwar U.S. shows which kinds of workers historically filled new tech-enabled jobs.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
     }
   ]
 }
