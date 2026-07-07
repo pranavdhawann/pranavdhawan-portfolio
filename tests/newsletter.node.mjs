@@ -6,6 +6,7 @@ import {
   buildEmailHtml,
   buildEmailText,
   buildSubject,
+  cleanEnv,
   extractSubscribers,
   shouldSend,
 } from '../scripts/send-newsletter.mjs';
@@ -53,6 +54,12 @@ test('plain-text version carries title, link, and unsubscribe note', () => {
   assert.ok(text.includes('https://lab.test/x?a=1&b=2'));
   assert.ok(/unsubscribe/i.test(text));
   assert.equal(buildSubject('2026-07-06'), 'AI This Week — Jul 6, 2026');
+});
+
+test('cleanEnv strips the BOM and whitespace that shell pipes can add to secrets', () => {
+  assert.equal(cleanEnv('﻿tok3n\n'), 'tok3n');
+  assert.equal(cleanEnv('  plain  '), 'plain');
+  assert.equal(cleanEnv(undefined), '');
 });
 
 test('subscriberRows dedupes by email keeping the earliest signup', () => {

@@ -33,6 +33,11 @@ const BCC_BATCH_SIZE = 50;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+/** Env values can pick up BOMs/whitespace when set via shell pipes — sanitize. */
+export function cleanEnv(value) {
+  return String(value || '').replace(/^﻿/, '').trim();
+}
+
 /** Dedupe and validate emails from Netlify form submissions. */
 export function extractSubscribers(submissions) {
   const seen = new Set();
@@ -134,7 +139,9 @@ async function loadJson(file, fallback) {
 }
 
 async function main() {
-  const { NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS } = process.env;
+  const [NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS] =
+    ['NETLIFY_AUTH_TOKEN', 'NETLIFY_SITE_ID', 'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS']
+      .map((name) => cleanEnv(process.env[name]));
   const missing = Object.entries({ NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID, SMTP_HOST, SMTP_USER, SMTP_PASS })
     .filter(([, v]) => !v).map(([k]) => k);
   if (missing.length > 0) {
@@ -171,7 +178,7 @@ async function main() {
     auth: { user: SMTP_USER, pass: SMTP_PASS },
   });
 
-  const from = process.env.NEWSLETTER_FROM || SMTP_USER;
+  const from = cleanEnv(process.env.NEWSLETTER_FROM) || SMTP_USER;
   const updatedIso = archive.updated || now.toISOString().slice(0, 10);
   const message = {
     from,

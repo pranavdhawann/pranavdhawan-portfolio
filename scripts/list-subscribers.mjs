@@ -17,7 +17,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-import { fetchSubmissions } from './send-newsletter.mjs';
+import { cleanEnv, fetchSubmissions } from './send-newsletter.mjs';
 
 const SITE_ID = '6b50b36e-317b-455b-b48a-279212bafbf8'; // pranavdhawan.netlify.app
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -58,8 +58,8 @@ async function localNetlifyToken() {
 }
 
 async function main() {
-  const token = process.env.NETLIFY_AUTH_TOKEN || await localNetlifyToken();
-  const siteId = process.env.NETLIFY_SITE_ID || SITE_ID;
+  const token = cleanEnv(process.env.NETLIFY_AUTH_TOKEN) || await localNetlifyToken();
+  const siteId = cleanEnv(process.env.NETLIFY_SITE_ID) || SITE_ID;
   if (!token) {
     console.error('No Netlify credentials: set NETLIFY_AUTH_TOKEN or run `npx netlify-cli login`.');
     process.exitCode = 1;
