@@ -32,6 +32,11 @@ test('httpsUrl upgrades plain http feed links', () => {
   assert.equal(httpsUrl('https://already.fine/x'), 'https://already.fine/x');
 });
 
+test('httpsUrl rejects non-web feed links', () => {
+  assert.equal(httpsUrl('javascript:alert(1)'), '');
+  assert.equal(httpsUrl('data:text/html,<h1>x</h1>'), '');
+});
+
 test('generated digest never links over plain http', async () => {
   const page = await readFile(new URL('../blog/index.html', import.meta.url), 'utf8');
   const region = page.split('<!-- AI-NEWS:START -->')[1].split('<!-- AI-NEWS:END -->')[0];
@@ -120,6 +125,31 @@ test('renderDigest escapes item text and links every card to its source', () => 
   assert.ok(!html.includes('<script>'), 'markup in titles must be escaped');
   assert.ok(html.includes('href="https://a.test/x?a=1&amp;b=2"'));
   assert.ok(html.includes('rel="noopener noreferrer"'));
+});
+
+test('renderDigest skips items with unsafe links', () => {
+  const html = renderDigest([
+    {
+      title: 'Bad link',
+      url: 'javascript:alert(1)',
+      date: '2026-07-01',
+      summary: 'Should be skipped',
+      sourceName: 'Lab',
+      sourceId: 'lab',
+      category: 'Research',
+    },
+    {
+      title: 'Good link',
+      url: 'https://a.test/safe',
+      date: '2026-07-01',
+      summary: 'Should render',
+      sourceName: 'Lab',
+      sourceId: 'lab',
+      category: 'Research',
+    },
+  ], '2026-07-06');
+  assert.ok(!html.includes('javascript:'), 'unsafe links must not be rendered');
+  assert.ok(html.includes('href="https://a.test/safe"'));
 });
 
 test('injectDigest replaces only the marked region and rejects missing markers', () => {

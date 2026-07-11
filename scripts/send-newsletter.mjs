@@ -21,7 +21,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-import { selectForPage, formatDate, escapeHtml, truncate } from './fetch-ai-news.mjs';
+import { selectForPage, formatDate, escapeHtml, httpsUrl, truncate } from './fetch-ai-news.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DATA_FILE = path.join(ROOT, 'blog', 'data', 'ai-news.json');
@@ -63,8 +63,14 @@ export function buildSubject(updatedIso) {
   return `AI This Week — ${formatDate(updatedIso)}`;
 }
 
+function safeItems(items) {
+  return items
+    .map((item) => ({ ...item, url: httpsUrl(item.url) }))
+    .filter((item) => item.url);
+}
+
 export function buildEmailHtml(items, updatedIso) {
-  const rows = items.map((item) => `
+  const rows = safeItems(items).map((item) => `
     <tr><td style="padding:0 0 22px 0;">
       <div style="font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#b8860b;">
         ${escapeHtml(item.category)} &middot; ${escapeHtml(item.sourceName)}</div>
@@ -99,7 +105,7 @@ export function buildEmailHtml(items, updatedIso) {
 }
 
 export function buildEmailText(items, updatedIso) {
-  const lines = items.map((item) => [
+  const lines = safeItems(items).map((item) => [
     `[${item.category} - ${item.sourceName}] ${item.title}`,
     truncate(item.summary || 'Read the full story at the source.'),
     `${formatDate(item.date)} — ${item.url}`,

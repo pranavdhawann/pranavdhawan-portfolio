@@ -115,7 +115,16 @@ export function truncate(str, max = 220) {
 
 /** Some feeds (e.g. BAIR) publish http:// links; serve https on an https site. */
 export function httpsUrl(url) {
-  return String(url).replace(/^http:\/\//i, 'https://');
+  try {
+    const parsed = new URL(String(url).trim());
+    if (parsed.protocol === 'http:') {
+      parsed.protocol = 'https:';
+      return parsed.href;
+    }
+    return parsed.protocol === 'https:' ? parsed.href : '';
+  } catch {
+    return '';
+  }
 }
 
 /** Canonical form of a URL for dedup: no tracking params, hash, or trailing slash. */
@@ -274,17 +283,20 @@ export function formatDate(iso) {
 }
 
 export function renderDigest(items, updatedIso) {
-  const cards = items.map((item) => {
-    const host = new URL(item.url).hostname.replace(/^www\./, '');
-    return [
-      `                    <a class="writing-card" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">`,
-      `                        <span class="writing-tag">${escapeHtml(item.category)} &middot; ${escapeHtml(item.sourceName)}</span>`,
-      `                        <h3>${escapeHtml(item.title)}</h3>`,
-      `                        <p>${escapeHtml(truncate(item.summary || 'Read the full story at the source.'))}</p>`,
-      `                        <span class="writing-readmore"><span class="writing-date">${escapeHtml(formatDate(item.date))}</span> &middot; ${escapeHtml(host)} &rarr;</span>`,
-      '                    </a>',
-    ].join('\n');
-  }).join('\n');
+  const cards = items
+    .map((item) => ({ ...item, url: httpsUrl(item.url) }))
+    .filter((item) => item.url)
+    .map((item) => {
+      const host = new URL(item.url).hostname.replace(/^www\./, '');
+      return [
+        `                    <a class="writing-card" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">`,
+        `                        <span class="writing-tag">${escapeHtml(item.category)} &middot; ${escapeHtml(item.sourceName)}</span>`,
+        `                        <h3>${escapeHtml(item.title)}</h3>`,
+        `                        <p>${escapeHtml(truncate(item.summary || 'Read the full story at the source.'))}</p>`,
+        `                        <span class="writing-readmore"><span class="writing-date">${escapeHtml(formatDate(item.date))}</span> &middot; ${escapeHtml(host)} &rarr;</span>`,
+        '                    </a>',
+      ].join('\n');
+    }).join('\n');
   return [
     START_MARKER,
     `                <p class="writing-intro">A weekly, auto-curated digest of AI developments — pulled straight from official lab blogs, arXiv, and GitHub. Every card links to its original source. Updated ${escapeHtml(formatDate(updatedIso))}.</p>`,
@@ -315,7 +327,9 @@ async function loadArchive() {
 async function main() {
   const now = new Date();
   const archive = await loadArchive();
-  archive.items = archive.items.map((i) => ({ ...i, url: httpsUrl(i.url) }));
+  archive.items = archive.items
+    .map((i) => ({ ...i, url: httpsUrl(i.url) }))
+    .filter((i) => i.url);
   const seenUrls = new Set(archive.items.map((i) => normalizeUrl(i.url)));
   const seenTitles = new Set(archive.items.map((i) => titleKey(i.title)));
 
@@ -329,7 +343,8 @@ async function main() {
         sourceId: source.id,
         sourceName: source.name,
         category: categorize(item, source.category),
-      }));
+      }))
+      .filter((item) => item.url);
   }));
 
   let fetched = [];

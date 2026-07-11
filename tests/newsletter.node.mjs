@@ -49,6 +49,14 @@ test('email html escapes item text and links to sources', () => {
   assert.ok(/unsubscribe/i.test(html), 'must tell readers how to unsubscribe');
 });
 
+test('email builders skip unsafe item links', () => {
+  const unsafeItems = [{ ...ITEMS[0], url: 'javascript:alert(1)' }];
+  const html = buildEmailHtml(unsafeItems, '2026-07-06');
+  const text = buildEmailText(unsafeItems, '2026-07-06');
+  assert.ok(!html.includes('javascript:'), 'unsafe links must not be rendered in HTML email');
+  assert.ok(!text.includes('javascript:'), 'unsafe links must not be rendered in text email');
+});
+
 test('plain-text version carries title, link, and unsubscribe note', () => {
   const text = buildEmailText(ITEMS, '2026-07-06');
   assert.ok(text.includes('https://lab.test/x?a=1&b=2'));
