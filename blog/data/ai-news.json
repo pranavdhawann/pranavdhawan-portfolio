@@ -1,6 +1,411 @@
 {
-  "updated": "2026-07-07",
+  "updated": "2026-07-13",
   "items": [
+    {
+      "title": "New method aims to keep kids safe from illegal AI-generated content",
+      "url": "https://news.mit.edu/2026/new-method-keeps-kids-safe-from-illegal-ai-generated-content-0713",
+      "date": "2026-07-13",
+      "summary": "Researchers developed an auditing technique to test generative AI models for malicious capabilities, without prompting them for illegal outputs.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "How Deutsche Telekom is rewiring telecommunications with AI",
+      "url": "https://openai.com/index/deutsche-telekom",
+      "date": "2026-07-10",
+      "summary": "How Deutsche Telekom is becoming an AI-native telco with OpenAI-transforming customer service, employee workflows, network operations, and the future of voice.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Ust Claude",
+      "url": "https://www.anthropic.com/news/ust-claude",
+      "date": "2026-07-10",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Profiling in PyTorch (Part 3): Attention is all you profile",
+      "url": "https://huggingface.co/blog/torch-attention-profile",
+      "date": "2026-07-10",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "PHINN-EEG: Topological Time-Series Analysis of Dream-State EEG -- Dynamic Betti Curves for Dream Content Classification and Topology-Conditioned Neural Signal Synthesis",
+      "url": "https://arxiv.org/abs/2607.09662v1",
+      "date": "2026-07-10",
+      "summary": "Current electroencephalography (EEG)-based dream detection relies on power spectral density (PSD) and statistical moment features, achieving a state-of-the-art area under the receiver operating characteristic curve (AUC) of approximately 0.70 on the DREAM database (Wong et al., 2025, Nature Communications). We introduce PHINN-EEG (Persistent Homology Inspired Neural Network for EEG), the first topological time-series framework for dream mentation analysis. Using sliding-window Takens delay embeddings and Vietoris-Rips filtrations on multichannel pre-awakening EEG epochs, we extract Dynamic Betti Curves that characterize the geometric architecture of neural activity, not merely its energy. These topological invariants, combined with topology-conditioned flow matching, are analytically projected to outperform existing PSD and catch22 benchmarks, targeting AUC = 0.82-0.90 on the 1,462-awakening open-access subset of the DREAM database (drawn from a full registry of 3,191 total awakenings from 263 participants across 20 independent laboratories). We further introduce a topology-conditioned rectified flow model for dream-state EEG synthesis-with a spectral-conditioned flow model of comparable feature dimensionality as an additional ablation baseline to isolate the value of topological conditioning specifically-and propose a set of candidate Betti transition archetypes linking topology to phenomenological dream report categories, presented as an exploratory hypothesis space pending empirical validation. If validated, this work represents a paradigm shift from spectral energy to phase-space geometry in neural rare-event detection, with potential future implications for wearable BCI dream monitoring.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Product Update"
+    },
+    {
+      "title": "Scalable Visual Pretraining for Language Intelligence",
+      "url": "https://arxiv.org/abs/2607.09657v1",
+      "date": "2026-07-10",
+      "summary": "The rapid progress of large foundation models has been driven predominantly by pretraining on large-scale text corpora. However, many forms of knowledge are conveyed through visual representations, where figures, typeset equations, and page layouts carry rich information that cannot be faithfully or completely captured by text alone. Yet current pretraining approaches discard these visual cues by converting visually rich sources, such as documents and web pages, into plain text for learning language intelligence. This paper challenges the default assumption that language models must be trained on text-only representations and shows that Visual Pretraining is a scalable learner for foundation model intelligence. To this end, we conduct a systematic study of unsupervised visual pretraining paradigms that directly leverage visual documents without text extraction. Across multiple backbones and benchmarks, visual pretraining on the same underlying corpora consistently outperforms text-only pretraining, offering an efficient pathway to scalable language intelligence.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Evolution of Accuracy and Visual-Cognitive Errors in a Decade of Vision-Language AI Models",
+      "url": "https://arxiv.org/abs/2607.09654v1",
+      "date": "2026-07-10",
+      "summary": "Vision language models (VLMs) have made remarkable progress in visual reasoning during the last decade. Most evaluations have used simple scenes (MS-COCO) that do not showcase complex human interactions or behaviors, only a handful of non-curated human descriptions as a benchmark, and have not focused on understanding the model's error types. Here, we introduce the Complex Social Behavior (CSB) dataset, containing 100 images depicting complex social interactions/behaviors. We analyze the progression of scene descriptions over a decade (2017-2025) of VLMs (four pre-Multimodal Large Language Models, MLLMs, and five MLLMs). We evaluate the accuracy of the models and 20 human descriptions relative to a gold standard on the CSB dataset and on a sample from MS-COCO. We analyzed five visual-cognitive error types: object detection, recognition, hallucination, scene understanding, and spatial dependence. The CSB dataset showed a more pronounced improvement than MS-COCO in scene description accuracy, with pre-MLLMs achieving much lower accuracy than the bottom-ranked human descriptions and MLLMs attaining accuracies similar to the top-ranked human descriptions. We show that MLLMs have eliminated the gap in scene description accuracy between simpler MS-COCO scenes and scenes depicting complex behaviors (CSB). MLLMs have almost eliminated all error types in our tested datasets, except for occasionally relying on different image regions for scene descriptions than humans do (spatial dependence error). We also show that detection, recognition, and hallucination errors have the highest impact on scene description accuracy. Together, our findings provide a more thorough evaluation of how visual language models have advanced over the last decade.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "VEXAIoT: Autonomous IoT Vulnerability EXploitation using AI Agents",
+      "url": "https://arxiv.org/abs/2607.09653v1",
+      "date": "2026-07-10",
+      "summary": "Internet of Things (IoT) systems are inherently vulnerable due to constrained hardware, outdated firmware, and insecure default configurations, creating a need for scalable and adaptive security testing approaches. While recent adoptions of Large Language Model (LLM) agents have demonstrated promise in penetration testing and Capture-the-Flag (CTF) environments, their application to IoT specific vulnerabilities remains unexplored. This paper presents an autonomous multi-agent framework, referred to as Vulnerability EXploitation using AI Agents (VEXAIoT), for vulnerability discovery and exploitation in IoT environments using LLM-based reasoning and offensive security tools. The framework combines a vulnerability detection agent and an attack execution agent to perform reconnaissance, plan attack sequences, and execute exploits against vulnerable IoT services. The system is evaluated in IoTGoat and Metasploitable environments across ten attack scenarios mapped to OWASP IoT vulnerabilities. Experimental results show attack success rate of up to 100% with low token overhead and average execution times under two minutes for most attacks. Across 260 attack executions, VEXAIoT achieves a 95.0% overall success rate, including 94.5% success in IoTGoat and 96.7% success in Metasploitable2. These results demonstrate the potential for LLM-driven agents to automate IoT vulnerability assessment and offensive security workflows in controlled environments",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "ConceptSMILE: Auditing the Trustworthiness of Concept-Based Explainable AI",
+      "url": "https://arxiv.org/abs/2607.09649v1",
+      "date": "2026-07-10",
+      "summary": "Concept-based explainable artificial intelligence (AI) can make model reasoning more human-understandable, but concept-level outputs are not automatically trustworthy. We introduce ConceptSMILE, a model-agnostic perturbation-based auditing framework for evaluating the reliability of concept-based explanations. Rather than replacing SMILE, ConceptSMILE extends its perturbation-based logic from feature- or region-level attribution to the auditing of human-understandable concept explanations. The framework perturbs input regions, measures concept-response shifts, applies locality weighting, and fits an XGBoost surrogate to approximate local concept behaviour. Reliability is assessed through attribution accuracy, surrogate fidelity, faithfulness, stability, and consistency. We evaluate ConceptSMILE on retinal fundus images by comparing MedSAM-derived visual concepts with VLM-based semantic concepts. Results show that reliability varies across concepts and pathways: MedSAM achieves stronger spatial attribution and the highest surrogate fidelity ($R^2 = 0.8503$, $R_w^2 = 0.8465$), while the VLM pathway shows stronger vessel faithfulness and stronger stability under selected artefact conditions. ConceptSMILE provides an independent audit layer for evaluating the trustworthiness of concept-based XAI.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Deep Gaussian Processes on Directed Acyclic Graphs",
+      "url": "https://arxiv.org/abs/2607.09645v1",
+      "date": "2026-07-10",
+      "summary": "Many real-world processes can be represented as compositions of functions along a directed acyclic graph (DAG). In causal modelling, these correspond to the underlying mechanisms; in engineering, to multiple fidelity levels; and in gene-regulatory networks, to transcription factors. These functions are partially observed across the DAG, with noisy and heterogeneously sampled measurements, posing significant challenges for reconstruction, uncertainty propagation, and inference. To tackle these challenges, we place priors over functions and naturally arrive at Deep Gaussian Processes over DAGs. We theoretically study their prior-collapse behaviour, and the effect of graph topology and intermediate observations on the preservation of information. We obtain almost-sure lower bounds on the asymptotic frequency of depths at which the distinction between inputs is preserved, identify broad kernel classes for which these hold, and prove an observation by \\cite{dunlop2018} on the role of input connections. We offer a structured variational approximation that retains graph dependencies, preserves compositional uncertainty, and captures the explaining-away behaviour of colliders. Finally, we empirically validate our theoretical results and our methodology, and model a latent-collider DAG, a protein signalling network, and a multi-fidelity heavy-ion collision emulation task, attaining state-of-the-art performance while recovering low-fidelity contributions and yielding interpretability of the simulator hierarchy.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Semantic Pareto-DQN: A Multi-Objective Reinforcement Learning Framework for Financial Anomaly Detection",
+      "url": "https://arxiv.org/abs/2607.09641v1",
+      "date": "2026-07-10",
+      "summary": "Financial anomaly detection suffers from extreme class imbalance, causing traditional single-objective algorithms to exhibit ``fraud collapse'', defaulting to the majority class and failing to balance anomaly interdiction with customer friction. To overcome this without distortive data resampling, we propose the Semantic Pareto-DQN, a multi-objective reinforcement learning framework. Our approach synthesizes heterogeneous transaction features into cohesive natural-language narratives, encoded by large language models, thereby producing a robust, scale-invariant state representation. The agent optimizes a vectorial reward that explicitly decouples financial efficacy, operational friction, and semantic discovery. By mapping the continuous Pareto frontier, the system dynamically navigates the asymmetric costs of missed anomalies versus false positives. Empirical evaluations across E-Commerce fraud and UCI Credit datasets show that semantic Pareto-DQN successfully shatters the zero-recall trap. It achieves superior minority-class recall compared to scalarized baselines, providing an alternative to trade bounded operational friction for financial anomaly discovery.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Lean-QIT: Towards a Formal Infrastructure for Quantum Information Theory",
+      "url": "https://arxiv.org/abs/2607.09632v1",
+      "date": "2026-07-10",
+      "summary": "Quantum information theory (QIT) characterizes the capabilities and fundamental limits of quantum information processing, underpinning quantum communication, computation, and error correction. Formalizing its coding theorems requires connecting finite-block protocols, analytic inequalities, and asymptotic limits within a unified machine-checked framework. Existing developments, however, lack a reusable operational layer that defines codes, error criteria, achievable rates, and capacities independently of their information-theoretic characterizations. In this work, we present LeanQIT, a Lean 4 library for finite-dimensional QIT. It provides composable, kernel-checked interfaces for quantum states and channels, source and channel codes, finite-block performance criteria, hypothesis testing, one-shot quantities, and asymptotic rate constructions. Using this infrastructure, we formalize Schumacher's quantum source-coding theorem, the Holevo--Schumacher--Westmoreland classical-capacity theorem, and the entanglement-assisted classical-capacity theorem together with its strong converse. By separating operational definitions from analytic characterizations and exposing reusable achievability, converse, and asymptotic components, Lean-QIT provides a machine-readable foundation for formal QIT and a compositional knowledge substrate for emerging AI-assisted formalization, automated proof search, and agentic reasoning in quantum information and computation.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "GPT-5.6 is now the preferred model in Microsoft 365 Copilot",
+      "url": "https://openai.com/index/gpt-5-6-preferred-model-microsoft-365-copilot",
+      "date": "2026-07-09",
+      "summary": "Learn how GPT-5.6 powers Microsoft 365 Copilot with stronger AI capabilities across Word, Excel, PowerPoint, Chat, and Cowork for faster, higher-quality work.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "GPT-5.6: Frontier intelligence that scales with your ambition",
+      "url": "https://openai.com/index/gpt-5-6",
+      "date": "2026-07-09",
+      "summary": "More intelligence from every token, stronger performance per dollar, and more capability on demand for your hardest work.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "ChatGPT is now a partner for your most ambitious work",
+      "url": "https://openai.com/index/chatgpt-for-your-most-ambitious-work",
+      "date": "2026-07-09",
+      "summary": "ChatGPT Work is an agent that can take action across your apps and files, stay with a project for hours if needed, and turn a goal into finished work.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "GPT-5.5 Bio Bug Bounty",
+      "url": "https://openai.com/index/bio-bug-bounty",
+      "date": "2026-07-09",
+      "summary": "Details about the OpenAI Bio Bounty program",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Golden Gate Claude",
+      "url": "https://www.anthropic.com/news/golden-gate-claude",
+      "date": "2026-07-09",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "The Long Term Benefit Trust",
+      "url": "https://www.anthropic.com/news/the-long-term-benefit-trust",
+      "date": "2026-07-09",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Ben Bernanke",
+      "url": "https://www.anthropic.com/news/ben-bernanke",
+      "date": "2026-07-09",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Hard Questions",
+      "url": "https://www.anthropic.com/news/hard-questions",
+      "date": "2026-07-09",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Reflect With Claude",
+      "url": "https://www.anthropic.com/news/reflect-with-claude",
+      "date": "2026-07-09",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Your Prompts and Skills need a system of record.",
+      "url": "https://mistral.ai/news/manage-prompts-and-skills-in-studio/",
+      "date": "2026-07-09",
+      "summary": "Studio provides a system of record for AI prompts and skills—versioned, owned, and traceable. Iterate fast, ship with control, and ensure consistent AI behavior.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Tiny robot boats build floating structures",
+      "url": "https://news.mit.edu/2026/tiny-robot-boats-build-floating-structures-0709",
+      "date": "2026-07-09",
+      "summary": "MIT researchers developed FloatForm, a swarm of small aquatic robots that snap together like ants forming a raft, assembling into reconfigurable structures on the water.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Our approach to government and national security partnerships",
+      "url": "https://openai.com/index/government-national-security-partnerships",
+      "date": "2026-07-08",
+      "summary": "Learn how OpenAI approaches government and national security partnerships, with principles for responsible AI use, democratic accountability, and public safety.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Separating signal from noise in coding evaluations",
+      "url": "https://openai.com/index/separating-signal-from-noise-coding-evaluations",
+      "date": "2026-07-08",
+      "summary": "A new analysis from OpenAI reveals issues in SWE-Bench Pro, a popular coding benchmark, raising concerns about reliability and accuracy in evaluating AI models.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Helping K–12 educators build practical AI skills",
+      "url": "https://openai.com/index/k-12-educators-practical-skills",
+      "date": "2026-07-08",
+      "summary": "OpenAI Academy and the Walton Family Foundation are bringing hands-on AI Skills Jams to help K–12 educators build practical AI skills for the classroom.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing GPT-Live",
+      "url": "https://openai.com/index/introducing-gpt-live",
+      "date": "2026-07-08",
+      "summary": "A new generation of voice models for natural human-AI interaction, now powering ChatGPT Voice.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Strategic Warning For AI Risk Progress And Insights From Our Frontier Red Team",
+      "url": "https://www.anthropic.com/news/strategic-warning-for-ai-risk-progress-and-insights-from-our-frontier-red-team",
+      "date": "2026-07-08",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Frontier Threats Red Teaming For AI Safety",
+      "url": "https://www.anthropic.com/news/frontier-threats-red-teaming-for-ai-safety",
+      "date": "2026-07-08",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Charting A Path TO AI Accountability",
+      "url": "https://www.anthropic.com/news/charting-a-path-to-ai-accountability",
+      "date": "2026-07-08",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Breaking Ground on Meta’s First Data Center in Canada",
+      "url": "https://about.fb.com/news/2026/07/breaking-ground-on-metas-first-data-center-in-canada/",
+      "date": "2026-07-08",
+      "summary": "We’re breaking ground on a new 1GW, AI-optimized data center in Sturgeon County, Alberta — our first data center in Canada and 33rd in our global fleet. The post Breaking Ground on Meta’s First Data Center in Canada appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "Introducing Robostral Navigate",
+      "url": "https://mistral.ai/news/robostral-navigate/",
+      "date": "2026-07-08",
+      "summary": "Introducing Robostral Navigate: 8B model achieving 76.6% on R2R-CE with just a single RGB camera. No depth sensors, LiDAR, or multiple cameras needed.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Data for Agents",
+      "url": "https://huggingface.co/blog/nvidia/open-data-for-agents",
+      "date": "2026-07-08",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Native-speed vLLM transformers modeling backend",
+      "url": "https://huggingface.co/blog/native-speed-vllm-transformers-backend",
+      "date": "2026-07-08",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Australian Payments Plus moves faster with ChatGPT and Codex",
+      "url": "https://openai.com/index/australian-payments-plus",
+      "date": "2026-07-07",
+      "summary": "See how Australian Payments Plus uses ChatGPT Enterprise and Codex to move faster through payments complexity. AP+ saves time, improves quality, and keeps human judgment central.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Expanding Managed Agents in Gemini API: background tasks, remote MCP and more",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api/",
+      "date": "2026-07-07",
+      "summary": "We’re announcing new capabilities in Managed Agents in Gemini API so developers can build reliable, production-ready agents.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Meta’s AI Glasses: Your Questions Answered",
+      "url": "https://about.fb.com/news/2026/07/metas-ai-glasses-your-questions-answered/",
+      "date": "2026-07-07",
+      "summary": "We’re answering frequently asked questions about our AI glasses and sharing the features we’ve built to help both the wearers of our glasses and the people around them feel comfortable. The post Meta’s AI Glasses: Your Questions Answered appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing Muse Image: Image Generation Built for Your World",
+      "url": "https://about.fb.com/news/2026/07/introducing-muse-image-meta-ai/",
+      "date": "2026-07-07",
+      "summary": "Muse Image is the first image generation model from Meta Superintelligence Labs, now available in Meta AI. The post Introducing Muse Image: Image Generation Built for Your World appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Model Release"
+    },
+    {
+      "title": "Our Work to Fight Child Exploitation on Our Apps",
+      "url": "https://about.fb.com/news/2026/07/our-work-to-fight-child-exploitation-on-our-apps/",
+      "date": "2026-07-07",
+      "summary": "Child exploitation is a horrific crime and every day, we work aggressively to fight this kind of abuse both on and off our platforms. We’re aware of recent news reports about Instagram ads in India that violated our policies against child exploitation. And we want to be clear: we take these concerns seriously, we never want this content on our platforms, and we’re committed to improving our efforts to combat it. Before these cases were brought to our attention, our enforcement systems had already identified and disabled several of the violating ads and the accounts behind them. Our subsequent investigation led to additional action, including removing further ads, disabling accounts, and blocking URLs linked to policy-violating content. It is categorically inaccurate to suggest that we’d knowingly and deliberately target ads featuring children to people based on an inappropriate interest in children. Quite the opposite; we use technology to identify accounts that have shown potentially suspicious activity related to children, and we automatically removed over 4 million of these accounts last year. How Our Ad Review Process Works We recognise that no system is perfect and that determined criminals will continue to try to exploit our platform, including through our advertising systems. Our review process may not catch every violation, but we’re continuously working to stay ahead of bad actors through our robust ad review process. We use automated and manual reviews to enforce our policies. Beyond reviewing individual ads, we also monitor and investigate advertiser behavior, and may restrict advertiser accounts that don’t follow our Advertising Standards, Community Standards or other Meta policies and terms. Our ad review system automatically checks ads for policy violations before they run. Anyone on our platforms can report ads if they believe they violate our policies. Ads also remain subject to review and re-review at all times and may be rejected or restricted for violation of our policies at any time. The review covers all ad components, including but not limited to, images, video, and text. We also review and take action on an advertiser’s Business Account or its assets (ad accounts, Pages and user accounts). If a violation is found at any point in the review process, the ad will be rejected, and the Business Account or its assets may be restricted. If a Business Account or its assets is restricted, that account or asset can’t be used to advertise across our technologies. We’re committed to keeping bad actors off our platforms and are constantly evolving our systems to stay ahead of them. Protecting people who use our platforms remains at the centre of how we build and enforce our advertising standards. Our Zero Tolerance Approach We have detailed and robust policies against child nudity, abuse, and exploitation — which includes the sharing or soliciting of child exploitation imagery, inappropriate interactions with teens, and the sexualisation of minors. As noted in our Ad Standards, all ads must comply with our Community Standards on Child Sexual Exploitation, Abuse, and Nudity. Ads must not contain content that sexually exploits or endangers children. How We’re Fighting Back — The Numbers Last year, we shared the positive results of the changes we made to focus our proactive enforcement toward illegal and the most severe content on our platforms like child exploitation. We also shared that we’ve been experimenting with more advanced AI systems for content enforcement covering languages spoken by 98% of people online — far beyond our previous coverage of around 80 languages. We’re in a constant battle with criminals who hide among our 3.5 billion users and try to evade our detection. Here is what our enforcement looks like in practice: Globally, last year alone, thanks to improvements to our technology, we automatically removed more than 4 million suspicious accounts from Facebook and Instagram, on top of the 36 million pieces of content we removed for child exploitation. We have advanced AI detection tools set up to identify when individuals post suspicious off-platform links in coordination with other signals indicating child exploitative activity. In the last six months alone, this led to the removal of 160,000 accounts in India. Globally when we become aware of apparent child exploitation, we report it to local law enforcement authorities through the National Center for Missing and Exploited Children (NCMEC) in compliance with applicable law. In India, in compliance with the Protection Of Children from Sexual Offences (POCSO) Act, 2021 and accompanying Rules, Meta ensures that such content is reported by NCMEC to the national cyber-crime reporting portal on behalf of Meta. Thanks to our continued investment in detection and reporting, we report more to law enforcement authorities than anyone else in the industry, something that is also acknowledged in the recent news reporting. Transparency Report – Meta publishes its Community Standards Enforcement Report (CSER) regularly — a global transparency report that details how we enforce our policies across Facebook and Instagram. The report covers multiple policy areas, including child nudity and sexual exploitation, and provides data on the volume of violating content actioned, proactive detection rates, and prevalence. We use sophisticated technology to proactively identify child exploitation content on our platforms. Between October and December 2025, we removed 13 million pieces of child sexual exploitation content from Facebook and Instagram — over 96% of which we found and proactively addressed, before anyone reported it. The full report is available at transparency.meta.com India Monthly Transparency report: Meta publishes monthly transparency reports as required under Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021 (“IT Rules 2021”). We’ve been publishing these reports since June 2021. This report covers multiple policy areas, including child nudity and sexual exploitation and provides data on the volume of violating content actioned, and proactive detection rates. The report contains information on (1) actions taken against violating content on Facebook, Instagram and Threads for content created by users in India and proactive detection rates, and (2) information on grievances received from users in India via the grievance mechanisms and (3) orders received from Grievance Appellate Committee (GAC). Statutory officers appointed as per IT Rules: In compliance with the IT Rules 2021, Meta has appointed a Chief Compliance Officer, Grievance Officer, and Nodal Contact Person. Supporting Industry-wide Efforts As part of our commitment to child safety, we also work to strengthen reporting frameworks that support others in their efforts. In 2019, we played an integral role in establishing India’s relationship with NCMEC by enabling local law enforcement authorities to receive reports and take action on violating activity. We know that predators don’t limit themselves to any one platform. That’s why we’ve also spent years developing technology that is now used across the industry to help address online child sexual exploitation: Cross-platform intelligence sharing: We’re a founding member of Lantern, a program from the Tech Coalition that enables tech companies to share signals about predatory accounts and behaviours. Participating companies can use this information to conduct investigations on their own platforms and take action – and in doing so helps keep the whole internet safer. Meta provided and continues to maintain the technical infrastructure that enables the Lantern program. By the end of 2025, 2M+ signals had been shared through Lantern, supporting over 350k platform enforcement actions. Lantern’s 2025 Transparent Report is available here Blocking links to violating websites: We continue to fight this abuse across the internet by blocking links to third-party websites that host this material – and we share these violating URLs with our peer platforms through Lantern too. Our aggressive fight to remove millions of violating accounts against child exploitation makes it significantly harder for criminals to share this content on our platforms. As a result, predators are increasingly forced to try to share links to off-platform content instead. Take It Down: We supported NCMEC to create the Take It Down tool, which helps prevent the spread of young people’s intimate images online. Our Ongoing Commitment This work is ongoing. Our teams are constantly improving our defences – developing new technology, blocking violating links, and sharing intelligence across the industry – but we know there is more to do. We will continue investing in every resource needed to keep young people safe, strengthen our ad review processes, and work with law enforcement to hold criminals accountable. The post Our Work to Fight Child Exploitation on Our Apps appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "From Hugging Face to Amazon SageMaker Studio in one click",
+      "url": "https://huggingface.co/blog/amazon/one-click-to-sagemaker-studio",
+      "date": "2026-07-07",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Hugging Face Models on Foundry Managed Compute",
+      "url": "https://huggingface.co/blog/microsoft/foundry-managed-compute",
+      "date": "2026-07-07",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "Run AI workloads on any cloud, store on Hugging Face: zero-egress storage with SkyPilot",
+      "url": "https://huggingface.co/blog/skypilot-hf-storage",
+      "date": "2026-07-07",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Intelligence is Free, Now What? Data Systems for, of, and by Agents",
+      "url": "https://bair.berkeley.edu/blog/2026/07/07/intelligence-is-free-now-what/",
+      "date": "2026-07-07",
+      "summary": "... government of the people, by the people, for the people ... &mdash; Abraham Lincoln, Gettysburg Address (1863) The cost of AI is dropping rapidly. GPT-4-class capabilities cost roughly $30 per million tokens in early 2023; today the same runs under $1 , and some providers are pushing costs below $0.10 . Across benchmarks, inference prices have fallen between 9x and 900x per year , with a median decline near 50x. Even frontier models are getting dramatically cheaper each generation, with open-source models following closely behind. And crucially, even if “Nobel-Prize-winning genius-level” intelligence isn’t here yet, the intelligence that suffices for the vast majority of knowledge work is here today, and getting cheaper by the month. At this rate, we are soon entering the era of virtually free intelligence —the kind that is more than enough for everyday knowledge work. Disclosure: This post is a perspective led by Aditya G. Parameswaran &mdash;an Associate Professor of EECS and co-director of the EPIC Data Lab at UC Berkeley&mdash;together with his collaborators. It is part landscape survey and part perspective, and several of the research directions discussed below (including agentic speculation, structured memory, and synthesizing custom data systems from scratch) draw on the authors' own ongoing work. So, what does this new era of near-free intelligence mean for data systems? We believe three new challenges—and opportunities—stem from near-zero inference costs: Data Systems For Agents. Agents will soon become the dominant workload for data systems—with swarms of agents spun up in response to each end-user request. Given differences in characteristics between agents and humans—or applications acting on their behalf— how should we redesign data systems for such agentic users? Data Systems Of Agents. As agents start taking on the bulk of knowledge work, a new substrate is needed for thousands of agents to manage state over long-running tasks, coordinate and reach consensus, and deal with failures. What do data systems that reliably and efficiently run and manage agent swarms look like? Data Systems By Agents. Agents are rapidly becoming capable of synthesizing entire data systems in one go—meaning we can rebuild custom systems for each new workload. Verifying that such systems match intended behavior is a challenge. What does it take to let agents synthesize data systems we can actually trust? Data Systems For, Of, and By Agents Next, we will discuss each in more detail, followed by discussing the intertwined future of data systems and agents, especially as the three challenges intersect. Data Systems For Agents An agent querying a database doesn’t behave like a person or a BI tool. It performs what we call agentic speculation : a high-volume, heterogeneous stream of work spanning schema introspection, columnar exploration, partial and then full query formulation. With multiple agents each exploring portions of the hypothesis space, each user request could amount to 1000s of individual SQL queries. Now, users can issue ‘high-level’ data tasks, e.g., root-cause analysis—e.g., ‘why did coffee sales in Berkeley drop this year’—or exploratory cohort analysis—e.g., ‘which user segments are most likely to churn next quarter’—each involving a combinatorial space of potential joins, aggregations, and filter combinations. Data Systems Redesigned to More Effectively Support Agentic Speculation The requests from these agents have various opportunities for optimization. For instance, on a text-to-SQL benchmark with multiple agents attempting each task, only 10-20% of the sub-plans are distinct. Thus, 80-90% of sub-queries perform duplicate work. The same experiments show task success rates significantly increasing with more agentic attempts—so the redundancy is actually helpful. But from the data system perspective it’s wasted work. An agent-first data system can exploit such properties to help agents make progress faster. It can reuse results across overlapping sub-plans, drawing on ideas from decades-old literature on multi-query optimization and shared scans . Or the data system can try to satisfice , returning approximate answers that are good enough for agents to make progress, leveraging work from the AQP literature —or streaming the results of the final or intermediate operators to help agents decide if seeing the rest is necessary or helpful. Another opportunity here is to rethink the query interface entirely: instead of agents issuing a single SQL query at a time, they could instead issue a batch of queries, each with its own approximation requirements. Since enumerating an exponential search space (as in the root cause or cohort analysis examples above) isn’t a good use of agentic reasoning ability, perhaps data systems should support higher-level primitives rather than requiring agents to list each SQL query explicitly. One idea here is to draw on DBT-style Jinja macros to provide looping-based primitives for agents to interact with data systems. A Caffeinated Army of Agents Ready to Tirelessly Complete Your Data Tasks A final opportunity here is to stop thinking of data systems as passive executors of queries; data systems could be proactive , as they possess more grounding in data and system characteristics that agents may lack a priori—they could steer agents in different directions, provide results for related queries, and also provide performance-level feedback (e.g., instead of executing an expensive query, the system could first provide the agent a latency estimate). The reason we can do this now as opposed to the past is that an agent can accept any form of textual feedback and isn’t expecting a strict SQL query result. In fact, the data system could also prepare both materialized and virtual views for an agent in advance, provided to the agent as part of context, as this may be cheaper or more effective than having an agent author or use them. Data Systems Of Agents Previously, we focused on how agents interact with data systems. Now, we consider everything else agents need to keep working: where they live, how they remember, how they coordinate with each other, and how they deal with failures of each other. This agentic substrate is separate from the inference stack powering raw intelligence. However, the inference stack itself is being abstracted away through APIs (e.g., from OpenAI or Anthropic), or, for open-weight models, through serving frameworks that hide low-level details. So far, the agentic substrate has been managed through harnesses like Claude Code and Codex , coupled with various mechanisms to store and retrieve memory. First, on the memory front, the current wisdom is that files are all you need ; agents write to unstructured markdown (MD) files, which can then be searched using grep, or via embedding-based retrieval. In fact, many argue that the solution to continual learning is having agents consume a lot (e.g., an entire codebase, slack, company wikis, …) and then write their learnings into MD files, which are then retrieved selectively on demand. Indeed, file systems, bash scripting, and MD files are and will still be important for agents. However, at scale, when agents are doing the vast majority of knowledge work, this approach will no longer be effective. Given limited context windows, retrieving all MD file fragments that may be relevant and stuffing it into the context will break down at some point. Even if context windows continue to grow, there are latency benefits to not put all information into context — and in many cases, e.g., when knowledge work involves interacting with large databases or code bases, it will be infeasible to serialize all relevant data into context. Data Systems As A Substrate for Multi-Agent Swarms One could use a knowledge graph representation , but knowledge graphs suffer from the same limitations as unstructured MD-based memory due to their lack of structured search. What one needs is to be able to retrieve only memory that is pertinent to the task, across multiple attributes (or facets) of interest. For example, an agent debugging a flaky test should be able to pull only the memories tagged with the relevant module, language, framework, and failure mode—rather retrieving based on keywords or embedding similarity. A separate issue is what to actually retrieve; raw agent traces with mistakes are not very useful as they will induce agents to repeat the same mistake—instead, we want the retrieved memory to be corrective. We recently explored a related notion of structured memory , where we organize memory across various attributes, each of which could be set as * to indicate universal applicability, or set as a list of values to be matched. For a data agent, the dimensions could include the columns and tables, type of operation, and finally, open-ended natural-language corrective instructions. So, we could include memory that only applies to a given type of operation (e.g., ‘when performing date-time operations, use fiscal year as opposed to calendar year conventions’), or a given table (e.g., ‘column product_cleaned is preferred over column product when querying on product name’). One open question is defining an application-specific structured memory —or what others have called world models for memory . We believe this is akin to defining a schema for each application—and perhaps agents themselves can help us define and refine it over time. One Possible Way To Store and Retrieve Structured Knowledge [From Here] Structured memory will be useful also for evolutionary frameworks to effectively manage search spaces. Indeed, storing, structuring, and mining large volumes of single and multi-agent traces can help future agents become much more efficient—potentially enabling effective recursive self-improvement through structured memory-based mechanisms. Another challenge is to support concurrent edits to shared memory, and concurrent edits in general, when there are many agents performing transformations. While there have been some useful attempts at supporting multiversioning and copy-on-write semantics , it isn’t clear that such techniques will suffice when thousands of agents are attempting to edit shared state at the same time. For instance, when agents are trying various potential transactions in response to a user request, the effects of the vast majority of these transactions need to be rolled back—with only the one ‘correct’ transaction’s result persisting. Work on supporting exactly-once semantics is relevant here, as are underlying techniques based on CRDTs and operational transformation. For updates to fuzzy mechanisms such as memory, we may be able to sacrifice on consistency for perfect correctness in the interest of latency. While agents can reason about semantics to compensate or roll back their actions to eventually finalize most tasks, the primary challenge lies in the degree to which they step on each other’s toes during the process. An important failure mode to be avoided is a form of “livelock,” where incessant compensating actions prevent any meaningful progress. Beyond shared state, other concerns emerge when trying to support an army of agents, including what to do when agents fail, how agents should communicate with each other (directly or through intermediate shared state), and how we should deal with straggler agents. There have been some developments in supporting durable multi-agent execution, such as Temporal , but it remains to be seen if such solutions will apply at scale across thousands of agents. On the topic of communication, we need mechanisms to enable agents to negotiate with each other. Imagine four developer agents attempting to reach consensus on a shared schema, with distinct but overlapping objectives. In a human setting, this would involve iterative discussion and compromise; for agentic swarms, we must define the mechanisms that allow them to converge on a design that reflects the underlying goals of their respective principals. Or if agents are all requiring access to a limited resource, again communication will be necessary. It remains to be seen if this is best done via centralized coordination, or if a decentralized approach is necessary. Data Systems By Agents Finally, if intelligence is effectively free, then we can employ this intelligence to synthesize new data systems from scratch. Indeed, in many settings, general-purpose data systems may be overkill, as they have to support every schema, query, and hardware target. Given a workload, recent work, including Bespoke OLAP and GenDB , has shown that one can use an agentic pipeline to synthesize a complete, workload-specific analytical engine—in minutes to a few hours, at a cost of a few dollars. The engines are disposable: when the workload shifts, one can simply regenerate them. Analogously, our work has shown that one can synthesize custom key-value stores from scratch, targeted to the workload. In fact, modern IDEs, such as Kiro , elevate specifications for systems development to be a first-class citizen. Agents Can Synthesize Custom Data Systems From Scratch The main issue, however, is that specifications are typically imperfect, and don’t cover all corner cases. Present-day agents will exploit the missing specifications to reward-hack their way to a high performance metric. In our custom key-value store work, we found that one way to alleviate this is to have auxiliary verification agents trying to generate test cases that catch the exploitation of corner cases, essentially expanding the specification. Yet another approach is to both generate a system and a proof for its correctness together, for which we have found some early success , but more needs to be done to solidify the approach. Further, it remains to be seen what is the best way to solicit human-written specifications for a system—can this be done in an iterative, human-in-the-loop manner, as opposed to a one-shot, incomplete one. Indeed, human-written specifications are incomplete even for manually authored software, so one would expect that future agents that are more aligned will increasingly exercise better judgement when making design decisions. One Possible Data System Synthesis Pipeline [From Here] Other questions here involve testing whether starting from a mature system (e.g., Postgres) and removing components/functionality can lead to higher performance or more user trust. Separately, is there an opportunity to make the design composable, comprising various verified components that are mixed and matched given a workload? For example, perhaps the workload hasn’t changed enough for the storage layer to be updated, but perhaps the query optimizer requires changes. A perhaps more viable proposition involves employing agents coupled with proof systems to target critical parts of the code associated with formal proofs, rather than doing so for the entire system. A final opportunity here is to move away from the traditional data systems stack with clearly-defined interfaces (e.g., parser, query optimizer, storage manager, …) — that were each largely the prerogative of a single human team to manage. Instead, agents can find new ways to “blend” these components together, perhaps identifying new optimization opportunities as a result. Agents can also fill in missing gaps in functionality to make existing systems much more feature-complete, or reach feature-parity with other competing systems—or analogously, continuously refining open-source systems in response to feature requests or issues (perhaps filed by other agents!) Doing so in a way that prioritizes correctness, long-term maintenance, and human interpretability will be a challenge. Looking Further Ahead In the era of near-free intelligence, data systems matter more than ever. As agents take on the bulk of knowledge work, the workload for data systems will change, the substrate they need to run on will have to be built, and increasingly, they will participate in designing data systems themselves. Each of these shifts opens up a new, exciting research agenda. Co-Evolution of Data Systems and Agents Looking further out, the boundaries between agents and data systems will likely start to blur. For instance, agents may design the data systems they themselves run on, defining both the interfaces as well as the system components underneath. Both the interfaces and internals can be evolved over time by agents in a form of recursive self-improvement. There is also an opportunity to rethink data systems as a holistic source of truth for the entirety of relevant state: including raw data, memory, and coordination state, further erasing the distinctions between the data that is being queried by agents and data generated as a result of agentic activity. Finally, data systems may themselves incorporate agentic components, fundamentally evolving from passive computation engines into intelligent, proactive, self-optimizing architectures. It is hard to predict what the future may hold. We’re in for a wild ride! Acknowledgments The perspective and ongoing work described in this post are the product of joint research and many discussions with wonderful collaborators at the EPIC Data Lab , Data Systems &amp; Foundations group, and the broader Berkeley AI-Systems community. Thank you all! BibTex for this post: @misc{intelligence-is-free-blog, title={Intelligence is Free, Now What? Data Systems for, of, and by Agents}, author={Aditya G. Parameswaran and Shubham Agarwal and Kerem Akillioglu and Shreya Shankar and Sepanta Zeighami and Rishabh Iyer and Matei Zaharia and Alvin Cheung and Natacha Crooks and Joseph Gonzalez and Joseph Hellerstein and Ion Stoica}, howpublished={\\url{https://bair.berkeley.edu/blog/2026/07/07/intelligence-is-free-now-what/}}, year={2026} }",
+      "sourceId": "bair",
+      "sourceName": "Berkeley AI Research",
+      "category": "Open Source"
+    },
+    {
+      "title": "How novice coders can develop AI programs for military applications",
+      "url": "https://news.mit.edu/2026/how-novice-coders-can-develop-ai-programs-for-military-applications-0707",
+      "date": "2026-07-07",
+      "summary": "A USAF cadet and a Lincoln Laboratory researcher found AI chatbots can help nontechnical service members produce viable software applications for their unique problems.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Jesse Thaler named director of the Laboratory for Nuclear Science",
+      "url": "https://news.mit.edu/2026/jesse-thaler-named-director-laboratory-nuclear-science-0707",
+      "date": "2026-07-07",
+      "summary": "The professor of physics and inaugural director of the NSF AI Institute for Artificial Intelligence and Fundamental Interactions will lead LNS and continue his research in particle physics.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
     {
       "title": "LeRobot v0.6.0: Imagine, Evaluate, Improve",
       "url": "https://huggingface.co/blog/lerobot-release-v060",
@@ -54,6 +459,15 @@
       "sourceId": "huggingface",
       "sourceName": "Hugging Face",
       "category": "Product Update"
+    },
+    {
+      "title": "eli-labz/Cognitive-Core-Skills — trending AI repo",
+      "url": "https://github.com/eli-labz/Cognitive-Core-Skills",
+      "date": "2026-07-05",
+      "summary": "A universal, industry-neutral taxonomy of cognitive core skills (perception, memory, reasoning, planning, action, verification, learning, governance) for LLMs, SLMs, AI agents, and world models — with schemas, 159 skill cards, benchmarks, and CI. (★ 274)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
     },
     {
       "title": "Graph Classification via Network Usable Information: From Representation Evaluation to Structure Selection",
@@ -459,6 +873,15 @@
       "sourceId": "mit-ai",
       "sourceName": "MIT News — AI",
       "category": "Research"
+    },
+    {
+      "title": "Aliu-AiRobot/ESEILANE — trending AI repo",
+      "url": "https://github.com/Aliu-AiRobot/ESEILANE",
+      "date": "2026-06-28",
+      "summary": "High-performance Knowledge Graph engine for AI, LLMs, and GraphRAG — built for the next generation of intelligent applications. (★ 137)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
     },
     {
       "title": "HP Inc. launches Frontier strategic partnership with OpenAI",
@@ -956,6 +1379,15 @@
       "category": "Research"
     },
     {
+      "title": "SantanderAI/autoguardrails — trending AI repo",
+      "url": "https://github.com/SantanderAI/autoguardrails",
+      "date": "2026-06-15",
+      "summary": "Alignment-research scaffold (autoresearch-style) for LLM guardrails: search over a single policy.md surface (★ 124)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
+    },
+    {
       "title": "We’re strengthening our presence in Alabama through new investments and community support.",
       "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
       "date": "2026-06-15",
@@ -1368,438 +1800,6 @@
       "sourceId": "openai",
       "sourceName": "OpenAI",
       "category": "Product Update"
-    },
-    {
-      "title": "A blueprint for democratic governance of frontier AI",
-      "url": "https://openai.com/index/frontier-safety-blueprint",
-      "date": "2026-06-03",
-      "summary": "OpenAI outlines a blueprint for U.S. governance of frontier AI, proposing a federal framework for safety, resilience, and national security.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "5 ways Google Search can level up your thrift and vintage shopping",
-      "url": "https://blog.google/products-and-platforms/products/search/thrifting-tips/",
-      "date": "2026-06-03",
-      "summary": "Uncover second-hand scores with AI tools in Google Search and Shopping.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Direct Preference Optimization Beyond Chatbots",
-      "url": "https://huggingface.co/blog/Dharma-AI/direct-preference-optimization-beyond-chatbots",
-      "date": "2026-06-03",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Adding MCP Tools to Reachy Mini",
-      "url": "https://huggingface.co/blog/adding-mcp-tools-to-reachy-mini",
-      "date": "2026-06-03",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Teaching AI agents to ask better questions by playing “Battleship”",
-      "url": "https://news.mit.edu/2026/teaching-ai-agents-ask-better-questions-playing-battleship-0603",
-      "date": "2026-06-03",
-      "summary": "MIT researchers use the classic game as a test bed for AI agents, finding a small AI model can outperform the biggest ones at 1 percent of the cost.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Tod Machover receives George Peabody Medal for contributions to music and technology",
-      "url": "https://news.mit.edu/2026/tod-machover-receives-george-peabody-medal-0603",
-      "date": "2026-06-03",
-      "summary": "The George Peabody Medal is the highest honor bestowed by the Peabody Institute of the Johns Hopkins University.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "MIT researchers teach AI models to interpret charts",
-      "url": "https://news.mit.edu/2026/mit-researchers-teach-ai-models-to-interpret-charts-0603",
-      "date": "2026-06-03",
-      "summary": "The new ChartNet training dataset could improve the accuracy of vision-language models that help analyze business trends or interpret scientific figures.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Travelers deploys AI-powered claims countrywide with OpenAI",
-      "url": "https://openai.com/index/travelers",
-      "date": "2026-06-02",
-      "summary": "Travelers built an AI-powered Claim Assistant with OpenAI to guide customers through filing claims, provide 24/7 support, and scale operations during peak demand.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Codex for every role, tool, and workflow",
-      "url": "https://openai.com/index/codex-for-every-role-tool-workflow",
-      "date": "2026-06-02",
-      "summary": "Discover new Codex plugins, sites, and annotations that help analysts, marketers, designers, investors, and other teams get more done with AI.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Advancing youth safety and opportunity through global leadership",
-      "url": "https://openai.com/index/advancing-youth-safety-and-opportunity-through-global-leadership",
-      "date": "2026-06-02",
-      "summary": "OpenAI calls for global action on youth AI safety, proposing an international institute to strengthen safeguards, standards, and opportunities for young people.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Codex is becoming a productivity tool for everyone",
-      "url": "https://openai.com/index/codex-for-knowledge-work",
-      "date": "2026-06-02",
-      "summary": "The Next Era of Knowledge Work report explores how Codex is transforming productivity through AI-powered research, data analysis, workflow automation, and content creation.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Holo3.1: Fast & Local Computer Use Agents",
-      "url": "https://huggingface.co/blog/Hcompany/holo31",
-      "date": "2026-06-02",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Our views on AI policy and political advocacy",
-      "url": "https://openai.com/index/our-views-on-ai-policy-and-political-advocacy",
-      "date": "2026-06-01",
-      "summary": "Our approach to AI policy and political advocacy, transparency, support for thoughtful regulation and AI safety, and that no outside political group speaks on the company’s behalf.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Building the infrastructure for the Intelligence Age in Michigan",
-      "url": "https://openai.com/index/stargate-michigan-data-center",
-      "date": "2026-06-01",
-      "summary": "OpenAI breaks ground on a 1GW data center project in Michigan as part of Stargate, building AI infrastructure to expand access, create jobs, and support communities.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Infrastructure"
-    },
-    {
-      "title": "OpenAI frontier models and Codex are now available on AWS",
-      "url": "https://openai.com/index/openai-frontier-models-and-codex-are-now-available-on-aws",
-      "date": "2026-06-01",
-      "summary": "OpenAI frontier models and Codex are now generally available on AWS, giving enterprises a new path to build with OpenAI through the AWS environments, controls, and procurement workflows they already use. Customers can get started with OpenAI on AWS and move faster from evaluation to production.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "How we used Gemini to build Google I/O 2026",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-google-ai/",
-      "date": "2026-06-01",
-      "summary": "Learn how Googlers used AI to produce Google I/O 2026.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Introducing Mellum2: A 12B Mixture-of-Experts Model by JetBrains",
-      "url": "https://huggingface.co/blog/JetBrains/mellum2-launch",
-      "date": "2026-06-01",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Model Release"
-    },
-    {
-      "title": "Beyond LLMs: Why Scalable Enterprise AI Adoption Depends on Agent Logic",
-      "url": "https://huggingface.co/blog/ibm-research/agent-logic-and-scalable-ai-adoption",
-      "date": "2026-06-01",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Product Update"
-    },
-    {
-      "title": "Boston Children’s uses AI to unlock new diagnoses",
-      "url": "https://openai.com/index/boston-childrens-hospital",
-      "date": "2026-05-29",
-      "summary": "Boston Children’s Hospital uses OpenAI technology to improve patient care, reduce operational burden, and help diagnose more than 40 rare disease cases.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How Braintrust turns customer requests into code with Codex",
-      "url": "https://openai.com/index/braintrust",
-      "date": "2026-05-29",
-      "summary": "How Braintrust engineers use Codex with GPT-5.5 to run experiments and code faster.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Strengthening societal resilience with Rosalind Biodefense",
-      "url": "https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense",
-      "date": "2026-05-29",
-      "summary": "OpenAI launches Rosalind Biodefense, expanding trusted access to GPT-Rosalind for vetted developers and U.S. government partners advancing biodefense, public health, and pandemic preparedness through frontier AI.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Model Release"
-    },
-    {
-      "title": "A shared playbook for trustworthy third party evaluations",
-      "url": "https://openai.com/index/trustworthy-third-party-evaluations-foundations",
-      "date": "2026-05-29",
-      "summary": "OpenAI shares guidance on third-party AI evaluations, covering how to assess model capabilities, safeguards, and validity for frontier systems.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Take our I/O 2026 quiz, vibe coded in Google AI Studio.",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-vibe-coded-quiz/",
-      "date": "2026-05-29",
-      "summary": "We used Google AI Studio to vibe code a quiz about our top I/O 2026 announcements.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "9 demos of Gemini Omni and Gemini 3.5 in action",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-omni-3-5-videos/",
-      "date": "2026-05-29",
-      "summary": "Watch 9 videos showing the capabilities of Gemini Omni and Gemini 3.5, announced at Google I/O 2026.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Check out real-life AI prototypes from the Futures Lab.",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/university-waterloo-labs/",
-      "date": "2026-05-29",
-      "summary": "University of Waterloo students develop AI prototypes like sign language tutors to reshape the future of education and work.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Profiling in PyTorch (Part 1): A Beginner's Guide to torch.profiler",
-      "url": "https://huggingface.co/blog/torch-profiler",
-      "date": "2026-05-29",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "How Endava builds an agentic organization with Codex",
-      "url": "https://openai.com/index/endava",
-      "date": "2026-05-28",
-      "summary": "Learn how Endava uses Codex to build an agentic organization, accelerating software delivery and reducing requirements analysis from weeks to hours.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "MUFG aims to become AI-native with OpenAI",
-      "url": "https://openai.com/index/mufg",
-      "date": "2026-05-28",
-      "summary": "MUFG uses ChatGPT Enterprise to build an AI-native organization, improve workflows, and deliver new AI-powered financial services at scale.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "OpenAI’s Frontier Governance Framework",
-      "url": "https://openai.com/index/openai-frontier-governance-framework",
-      "date": "2026-05-28",
-      "summary": "Explore OpenAI’s Frontier Governance Framework and how our AI safety, security, and risk practices align with emerging EU and California regulations.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Catch up on 12 major I/O 2026 moments",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/io-2026-keynote-moment-videos/",
-      "date": "2026-05-28",
-      "summary": "Here are 12 of the biggest Google I/O 2026 keynote moments, including news about Gemini Omni, Gemini 3.5 Flash and more.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "AI Now Summit 2026",
-      "url": "https://mistral.ai/news/ai-now-summit-2026/",
-      "date": "2026-05-28",
-      "summary": "Innovations for global enterprises solving the world’s hardest problems.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Vibe gets to work.",
-      "url": "https://mistral.ai/news/vibe-agent/",
-      "date": "2026-05-28",
-      "summary": "The unified agent for long-horizon productivity and coding, launching with Work and Code modes. Plus, a new Vibe VS Code extension.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Introducing Search Toolkit",
-      "url": "https://mistral.ai/news/search-toolkit/",
-      "date": "2026-05-28",
-      "summary": "Search Toolkit is a composable framework for building production search pipelines for AI applications.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Media Advisory: MIT to establish regional quantum hub",
-      "url": "https://news.mit.edu/2026/media-advisory-mit-establish-regional-quantum-hub",
-      "date": "2026-05-28",
-      "summary": "With $25 million investment from the Commonwealth of Massachusetts, MIT to build a new shared-use facility to serve as a statewide quantum toolbox.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "ATOM00blue/machine-learning-library — trending AI repo",
-      "url": "https://github.com/ATOM00blue/machine-learning-library",
-      "date": "2026-05-28",
-      "summary": "A hand-curated, topic-organized library of the best ML education — 923 docs (391 arXiv papers, 474 Stanford/MIT/Karpathy/fast.ai lectures, 58 explainer articles), normalized to Markdown with full provenance. Open it in Obsidian or point your agent at it. A clean ML corpus for learning, RAG & fine-tuning. (★ 143)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "Cisco and OpenAI redefine enterprise engineering with Codex",
-      "url": "https://openai.com/index/cisco",
-      "date": "2026-05-27",
-      "summary": "Cisco and OpenAI are redefining enterprise engineering with Codex, helping Cisco scale AI-native development, accelerate AI Defense work, and automate defect remediation.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Building self-improving tax agents with Codex",
-      "url": "https://openai.com/index/building-self-improving-tax-agents-with-codex",
-      "date": "2026-05-27",
-      "summary": "See how OpenAI, Thrive, and Crete built a self-improving tax agent with Codex, automating filings, improving accuracy, and accelerating workflows.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Warp’s big bet on building open source with GPT-5.5",
-      "url": "https://openai.com/index/warp",
-      "date": "2026-05-27",
-      "summary": "Warp uses GPT-5.5 and OpenAI models to coordinate coding agents across local, cloud, and open-source development workflows.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Open Source"
-    },
-    {
-      "title": "Election information and safeguards in 2026",
-      "url": "https://openai.com/index/election-safeguards-2026",
-      "date": "2026-05-27",
-      "summary": "Ahead of global elections, we’re helping people access information, supporting cyber defenders, and increasing AI transparency",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Introducing physics AI at Mistral: the foundation for engineering acceleration.",
-      "url": "https://mistral.ai/news/introducing-physics-ai-at-mistral/",
-      "date": "2026-05-27",
-      "summary": "A new class of AI models that predict the behavior of physical systems, powering the engineers and hardware products of tomorrow.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Physics AI research that’s shaping the industry.",
-      "url": "https://mistral.ai/news/physics-ai-research/",
-      "date": "2026-05-27",
-      "summary": "Published breakthroughs pushing the state of the art.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Research"
-    },
-    {
-      "title": "Reachy Mini goes fully local",
-      "url": "https://huggingface.co/blog/local-reachy-mini-conversation",
-      "date": "2026-05-27",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Shipping a Trillion Parameters With a Hub Bucket: Delta Weight Sync in TRL",
-      "url": "https://huggingface.co/blog/delta-weight-sync",
-      "date": "2026-05-27",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "fancyboi999/ai-engineering-from-scratch-zh — trending AI repo",
-      "url": "https://github.com/fancyboi999/ai-engineering-from-scratch-zh",
-      "date": "2026-05-26",
-      "summary": "Agent工程师最全学习路径 · 从零精通 AI 工程 · 20 阶段 503 课 · 中文全量翻译 + 配套站点 + 动画讲解视频 · 如何成为 AI Agent 工程师的修成指南 (★ 767)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "OpenAI, Grupo Folha and Grupo UOL announce strategic content partnership",
-      "url": "https://openai.com/index/grupo-folha-grupo-uol-partnership",
-      "date": "2026-05-25",
-      "summary": "OpenAI partners with Grupo Folha and Grupo UOL to bring trusted Brazilian journalism to ChatGPT, expanding access to news with attribution and transparency.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Harness, Scaffold, and the AI Agent Terms Worth Getting Right",
-      "url": "https://huggingface.co/blog/agent-glossary",
-      "date": "2026-05-25",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Tejas-TA/predikit — trending AI repo",
-      "url": "https://github.com/Tejas-TA/predikit",
-      "date": "2026-05-25",
-      "summary": "The missing bridge between your ML models and your AI agents. (★ 446)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "Emmi joins Mistral to accelerate the AI-native industry",
-      "url": "https://mistral.ai/news/accelerate-ai-native-industry/",
-      "date": "2026-05-23",
-      "summary": "",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
     }
   ]
 }
