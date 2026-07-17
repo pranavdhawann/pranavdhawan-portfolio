@@ -37,6 +37,8 @@ const MAX_ARCHIVE_ITEMS = 200;
  *       'arxiv'   — Atom via export.arxiv.org
  *       'github'  — repo search API (optionally authenticated, GITHUB_TOKEN)
  * category: default category when keyword heuristics don't match.
+ * fixedCategory: when true, always use `category` and skip the keyword
+ *         heuristics (for sources whose items are all one kind, e.g. arXiv).
  * filter: optional regex an item's title+summary must match to be kept
  *         (for broad feeds where only AI items are wanted).
  */
@@ -57,11 +59,11 @@ export const SOURCES = [
   { id: 'bair', name: 'Berkeley AI Research', type: 'feed', url: 'https://bair.berkeley.edu/blog/feed.xml', category: 'Research' },
   { id: 'mit-ai', name: 'MIT News — AI', type: 'feed', url: 'https://news.mit.edu/rss/topic/artificial-intelligence2', category: 'Research' },
   {
-    id: 'arxiv', name: 'arXiv', type: 'arxiv', category: 'Research',
+    id: 'arxiv', name: 'arXiv', type: 'arxiv', category: 'Research', fixedCategory: true,
     url: 'https://export.arxiv.org/api/query?search_query=cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=8',
   },
   {
-    id: 'github-trending', name: 'GitHub', type: 'github', category: 'Open Source',
+    id: 'github-trending', name: 'GitHub', type: 'github', category: 'Open Source', fixedCategory: true,
     // `created:>DATE` is appended at fetch time so the search window tracks the run date.
     url: 'https://api.github.com/search/repositories?sort=stars&order=desc&per_page=6&q=',
     query: 'topic:llm topic:machine-learning',
@@ -357,7 +359,7 @@ async function main() {
         url: httpsUrl(item.url),
         sourceId: source.id,
         sourceName: source.name,
-        category: categorize(item, source.category),
+        category: source.fixedCategory ? source.category : categorize(item, source.category),
       }))
       .filter((item) => item.url);
   }));

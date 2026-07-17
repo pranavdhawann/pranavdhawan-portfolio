@@ -20,10 +20,10 @@
       "category": "Product Update"
     },
     {
-      "title": "Ust Claude",
+      "title": "UST is bringing Claude to physical AI",
       "url": "https://www.anthropic.com/news/ust-claude",
       "date": "2026-07-10",
-      "summary": "",
+      "summary": "Anthropic is partnering with UST, training 20,000 of its engineers, architects, and consultants on Claude worldwide to bring Claude into semiconductor, manufacturing, and IoT validation pipelines.",
       "sourceId": "anthropic",
       "sourceName": "Anthropic",
       "category": "Product Update"
@@ -494,7 +494,7 @@
       "summary": "The widespread adoption of facial masks, accelerated by COVID-19 and mandated in security-sensitive settings, has exposed limitations of conventional face recognition systems. Existing approaches relying on fixed cosine thresholds, non-adaptive CNNs, and purely data-driven features fail to generalize when facial regions are occluded, creating a gap between lab performance and real-world deployability. This paper proposes PLGSA-Transformer, a cross-modal face matching framework with three contributions. First, Periocular Landmark-Guided Spatial Attention (PLGSA) uses MediaPipe landmarks to compute Gaussian heatmaps over the eye, brow, and forehead regions, fusing them with EfficientNetB3 features via a learnable residual gate to direct attention toward discriminative visible regions. Second, a Hybrid CNN-Transformer Branch reshapes feature maps into tokens processed by a two-layer Multi-Head Self-Attention encoder, enabling cross-regional dependency modelling. Third, the Occlusion-Adaptive Cosine Threshold (OACT) is a jointly trained head that raises the matching threshold in proportion to predicted occlusion severity. The model is evaluated on 858 images from Zenodo MDMFR (60%), Kaggle CelebA-HQ masked collection (25%), and author-collected images (15%), spanning both genders, ages 21-75, with varied mask types, trained via a unified loss combining contrastive verification, identity classification, and occlusion cross-entropy. PLGSA-Transformer achieves 97.22% pair verification accuracy with ROC AUC 1.0000, surpassing VGG-16-based MUFM (Abdullah et al., 2025; 95.0%), HOG classifiers (Adnan et al., 2020; 85.0%), and Feature-based Structural Measure (Shnain et al., 2017; 86.61%). These results confirm that encoding periocular geometry into attention, with Transformer modelling and occlusion-adaptive thresholds, yields a robust, scalable solution for cross-modal masked face recognition.",
       "sourceId": "arxiv",
       "sourceName": "arXiv",
-      "category": "Infrastructure"
+      "category": "Research"
     },
     {
       "title": "When Geometry Aligns: Dihedral Hidden-State Transformations in UNet, ViT, and DiT Architectures",
@@ -620,7 +620,7 @@
       "summary": "Many everyday programming tasks resist clean rule-based implementation, such as alerting on important log lines, repairing malformed JSON, or ranking search results by intent, and are increasingly outsourced to large language model APIs at the cost of locality, reproducibility, and price. We propose fuzzy-function programming: compiling such a function from a natural-language specification into a compact, locally-executable neural artifact. We instantiate this paradigm with Program-as-Weights (PAW), in which a 4B compiler trained on FuzzyBench, a 10M-example dataset we release, emits parameter-efficient adapters for a frozen, lightweight interpreter. A 0.6B Qwen3 interpreter executing PAW programs matches the performance of direct prompting of Qwen3-32B, while using roughly one fiftieth of the inference memory and running at 30 tokens/s on a MacBook M3. PAW reframes the foundation model from a per-input problem solver into a tool builder: invoked once per function definition, it produces a small reusable artifact whose subsequent calls per function application are cheap and offline.",
       "sourceId": "arxiv",
       "sourceName": "arXiv",
-      "category": "Model Release"
+      "category": "Research"
     },
     {
       "title": "Online Safety Monitoring for LLMs",

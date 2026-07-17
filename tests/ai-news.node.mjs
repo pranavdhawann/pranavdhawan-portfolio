@@ -196,3 +196,12 @@ test('source list covers the major labs plus research and code feeds', () => {
     assert.ok(ids.includes(id), `missing source: ${id}`);
   }
 });
+
+test('single-kind sources pin their category instead of using keyword rules', () => {
+  const arxiv = SOURCES.find((s) => s.id === 'arxiv');
+  const github = SOURCES.find((s) => s.id === 'github-trending');
+  assert.equal(arxiv.fixedCategory, true);
+  assert.equal(arxiv.category, 'Research');
+  assert.equal(github.fixedCategory, true);
+  assert.equal(github.category, 'Open Source');
+});

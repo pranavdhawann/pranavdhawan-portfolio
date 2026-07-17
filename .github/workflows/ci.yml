@@ -45,4 +45,6 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --verbose --exclude https://linkedin.com/in/pranavvdhawann --exclude https://www.linkedin.com/in/pranavvdhawann --exclude https://app.joinhandshake.com/profiles/pranavvdhawann --accept 200,204,206,301,302,429 index.html README.md
+          # 403 is accepted because several lab sites (openai.com, anthropic.com)
+          # serve bot walls to CI runners; dead links still fail via 404/timeouts.
+          args: --no-progress --verbose --exclude https://linkedin.com/in/pranavvdhawann --exclude https://www.linkedin.com/in/pranavvdhawann --exclude https://app.joinhandshake.com/profiles/pranavvdhawann --accept 200,204,206,301,302,403,429 index.html README.md blog/index.html blog/rag-hallucinations.html blog/multimodal-finding.html
