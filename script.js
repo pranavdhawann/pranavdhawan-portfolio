@@ -870,7 +870,7 @@ if (heroTitle && heroSection) {
             toggle.setAttribute('aria-expanded', 'true');
         } else {
             extra.setAttribute('hidden', '');
-            toggle.textContent = 'Show earlier roles (2021)';
+            toggle.textContent = 'Show earlier roles';
             toggle.setAttribute('aria-expanded', 'false');
         }
     });
