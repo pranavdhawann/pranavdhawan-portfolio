@@ -37,8 +37,7 @@ arXiv, and GitHub, then commits the updated HTML — Netlify redeploys on push.
 Run it locally with `npm run news:update`. The blog page also has a
 newsletter signup (Netlify Forms); the same weekly workflow emails the digest
 to subscribers once SMTP + Netlify secrets are configured (`npm run
-news:send` locally). Details, source list, newsletter setup, and how to
-add/remove sources: [docs/ai-news-pipeline.md](docs/ai-news-pipeline.md).
+news:send` locally). The feed source list lives in `scripts/fetch-ai-news.mjs`.
 
 ## Analytics
 

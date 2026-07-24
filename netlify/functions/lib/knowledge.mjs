@@ -5,7 +5,7 @@ ABOUT ME
 I'm Pranav Dhawan, based in Washington, DC. I'm an AI Workplace Engineer Intern
 at the American Chemical Society (ACS), where I build AI agents and automation
 workflows for internal service desk operations, and I also work part-time as an
-AI Independent Contractor for Siva Info LLC. I recently completed my Master of
+Independent Contractor - AI for Siva Info LLC. I recently completed my Master of
 Science in Data Science at George Washington University (GPA 3.74, May 2026),
 focusing on machine learning, NLP, and production AI systems.
 
@@ -17,14 +17,13 @@ EDUCATION
   GPA 8.51/10.0, graduated May 2024. Coursework: Algorithms & Data Structures,
   Database Management Systems.
 
-CURRENT ROLE — SIVA INFO LLC (AI Independent Contractor, June 2026–present, part-time, remote)
-I build AI-driven document processing workflows for journals, academic papers,
-and books using rule-based scripting, local LLMs, and document comparison
-pipelines. I developed change-manifest tooling that compares two versions of
-source files, identifies content and formatting changes, and guides updates
-across downstream deliverables like presentations, reports, and publication
-materials — automating repetitive change-detection work that used to be manual
-review for high-volume academic and publishing content.
+CURRENT ROLE — SIVA INFO LLC (Independent Contractor - AI, June 2026–present, part-time, remote)
+I developed change-manifest tooling that compares two versions of source files,
+identifies content and formatting changes, and guides updates across downstream
+deliverables like presentations, reports, and publication materials. I also
+redesigned the tagging and classification pipeline, raising process accuracy
+from 32% to 99% while reducing manual corrections and improving operational
+efficiency.
 
 CURRENT ROLE — AMERICAN CHEMICAL SOCIETY (AI Workplace Engineer Intern, May 2026–present, full-time, hybrid, Washington DC)
 I automated about 70% of monthly Ivanti Neurons service desk tickets by

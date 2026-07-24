@@ -14,7 +14,6 @@
  *                       (defaults to SMTP_USER)
  *   FORCE_SEND=1        bypass the "already sent this week" guard
  *
- * Docs: docs/ai-news-pipeline.md
  */
 
 import { readFile, writeFile } from 'node:fs/promises';
@@ -32,10 +31,10 @@ const SITE_URL = 'https://pranavdhawan.com';
 const MIN_DAYS_BETWEEN_SENDS = 6;
 
 // CAN-SPAM requires a valid physical postal address in marketing email, and
-// Gmail/Yahoo bulk-sender rules expect one. TODO: replace with a real mailing
-// address or P.O. box (set NEWSLETTER_ADDRESS to override without a code change).
+// Gmail/Yahoo bulk-sender rules expect one. NEWSLETTER_ADDRESS overrides this
+// default without a code change.
 const MAILING_ADDRESS = cleanEnv(process.env.NEWSLETTER_ADDRESS) ||
-  'Pranav Dhawan · [ADD MAILING ADDRESS] · Washington, DC, USA';
+  'Pranav Dhawan · 601 24th St NW · Washington, DC 20037, USA';
 
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 

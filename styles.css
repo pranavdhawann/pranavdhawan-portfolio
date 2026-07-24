@@ -1169,10 +1169,11 @@ section {
    ========================================== */
 .contact {
     position: relative;
+    padding-bottom: 6rem;
 }
 
 #contact .section-title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 3.5rem;
 }
 
 .contact-info {
@@ -1866,13 +1867,6 @@ section {
 /* ==========================================
    CONTACT CENTERED STYLES
    ========================================== */
-.contact-availability {
-    text-align: center;
-    max-width: 640px;
-    margin: 0 auto 2.5rem;
-    color: var(--text-secondary);
-}
-
 .contact-content-centered {
     display: flex;
     justify-content: center;
@@ -2119,7 +2113,7 @@ section {
     margin: 0 auto;
 }
 
-.client-work { padding: 6rem 0; background: var(--primary); }
+.client-work { padding: 6rem 0; background: transparent; }
 .client-work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; max-width: 920px; margin: 0 auto; }
 .client-card { background: var(--bg-card); border: 3px solid var(--border); box-shadow: var(--shadow-lg); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.85rem; }
 .client-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.45rem; }

@@ -9,7 +9,6 @@
  *
  * Zero npm dependencies — native fetch + small regex-based feed parsing.
  * Run:  node scripts/fetch-ai-news.mjs
- * Docs: docs/ai-news-pipeline.md
  */
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises';

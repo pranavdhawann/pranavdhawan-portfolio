@@ -9,7 +9,7 @@
  * when set; otherwise falls back to the token stored by `netlify login`.
  *
  * Privacy: subscriber emails are personal data — the CSV is gitignored;
- * never commit it. Docs: docs/ai-news-pipeline.md
+ * never commit it.
  */
 
 import { readFile, writeFile } from 'node:fs/promises';

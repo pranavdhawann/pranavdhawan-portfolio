@@ -25,7 +25,7 @@ test('knowledge base stays in sync with the page content', () => {
 
 test('knowledge base contains the verified career and education facts', () => {
   const verifiedFacts = [
-    'AI Independent Contractor',
+    'Independent Contractor - AI',
     'AI Workplace Engineer Intern',
     'Lumina Datamatics | Chennai, India',
     'graduated May 2024',

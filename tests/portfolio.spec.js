@@ -102,10 +102,10 @@ test('professional experience reflects updated role history', async ({ page }) =
   const firstTimelineItem = experience.locator('.timeline-item').first();
 
   await expect(firstTimelineItem.getByText('June 2026 - Present')).toBeVisible();
-  await expect(firstTimelineItem.getByRole('heading', { name: 'AI Independent Contractor' })).toBeVisible();
+  await expect(firstTimelineItem.getByRole('heading', { name: 'Independent Contractor - AI' })).toBeVisible();
   await expect(firstTimelineItem.getByText('Siva Info LLC | New York, NY | Part-time, Remote')).toBeVisible();
-  await expect(firstTimelineItem.getByText(/AI-driven document processing workflows/)).toBeVisible();
   await expect(firstTimelineItem.getByText(/change-manifest tooling/)).toBeVisible();
+  await expect(firstTimelineItem.getByText(/32% to 99%/)).toBeVisible();
   await expect(firstTimelineItem.locator('.tech-tag', { hasText: 'Local LLMs' })).toBeVisible();
 
   await expect(experience.getByRole('heading', { name: 'AI Workplace Engineer Intern' })).toBeVisible();
@@ -208,15 +208,15 @@ test('contact actions sit a balanced distance beneath the get in touch heading',
   await openPortfolio(page);
 
   const gap = await page.evaluate(() => {
-    const intro = document.querySelector('#contact .contact-availability').getBoundingClientRect();
+    const title = document.querySelector('#contact .section-title').getBoundingClientRect();
     const action = document.querySelector('#contact .resume-btn').getBoundingClientRect();
-    return action.top - intro.bottom;
+    return action.top - title.bottom;
   });
 
-  // The availability line sits directly above the actions; keep them a
-  // balanced distance apart without a full section-title margin gap.
-  expect(gap).toBeGreaterThanOrEqual(20);
-  expect(gap).toBeLessThanOrEqual(60);
+  // Deliberately generous breathing room beneath the heading before the
+  // contact actions begin.
+  expect(gap).toBeGreaterThanOrEqual(45);
+  expect(gap).toBeLessThanOrEqual(130);
 });
 
 test('mobile hamburger menu toggles expanded state', async ({ page }) => {
@@ -242,7 +242,7 @@ test('portfolio presents the verified career and education facts', async ({ page
   await openPortfolio(page);
 
   const experience = page.locator('#experience');
-  await expect(experience.getByRole('heading', { name: 'AI Independent Contractor' })).toBeVisible();
+  await expect(experience.getByRole('heading', { name: 'Independent Contractor - AI' })).toBeVisible();
   await expect(experience.getByText('AI Workplace Engineer Intern')).toBeVisible();
   await expect(experience.getByText('Lumina Datamatics | Chennai, India | Full-time, final-semester placement')).toBeVisible();
   await expect(experience.getByText('August 2020 - May 2024')).toBeVisible();
