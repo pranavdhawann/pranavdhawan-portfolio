@@ -174,16 +174,16 @@
                     <a href="#skills" class="nav-link">SKILLS</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#projects" class="nav-link">PROJECTS</a>
-                </li>
-                <li class="nav-item">
-                    <a href="blog/index.html" class="nav-link">BLOG</a>
-                </li>
-                <li class="nav-item">
                     <a href="#experience" class="nav-link">EXPERIENCE</a>
                 </li>
                 <li class="nav-item">
+                    <a href="#projects" class="nav-link">PROJECTS</a>
+                </li>
+                <li class="nav-item">
                     <a href="#contact" class="nav-link">CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog/index.html" class="nav-link">BLOG</a>
                 </li>
             </ul>
             <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
@@ -213,8 +213,8 @@
                         Hi, I'm <span class="highlight">Pranav Dhawan</span>
                     </h1>
                     <p class="hero-description">
-                        AI engineer focused on production automation: <strong>~70% of monthly service-desk tickets automated</strong>,
-                        <strong>98.1% F1 across 54 PII entity types</strong>, and ML pipelines for <strong>10,000+ documents</strong>.
+                        Currently building <strong>agentic automation</strong> at American Chemical Society, Washington DC. MS in Data Science from George
+                        Washington University.
                     </p>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -294,119 +294,6 @@
                         <g class="links"></g>
                         <g class="nodes"></g>
                     </svg>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="projects">
-            <div class="container">
-                <h2 class="section-title">FEATURED PROJECTS</h2>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <div class="project-image">
-                            <picture class="project-picture">
-                                <source srcset="images/stockscreen.avif" type="image/avif">
-                                <source srcset="images/stockscreen.webp" type="image/webp">
-                                <img class="project-photo" src="images/stockscreen.png" alt="Stock Screen" width="959" height="838" loading="lazy">
-                            </picture>
-                        </div>
-                        <div class="project-content">
-                            <h3>Stock Screen</h3>
-                            <p>A real-time AI-powered terminal that unifies stock analysis, market news, company filings, forecasting workflows, and market context into a single interface. Designed for investors, it helps compare signals quickly and turn live market data into actionable research.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">GCP</span>
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">ML</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://stock-screen-25476982226.us-central1.run.app/" class="project-link"
-                                    target="_blank" rel="noopener noreferrer" data-analytics="project-demo:stock-screen">
-                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg> Live demo
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <picture class="project-picture">
-                                <source srcset="images/multimodal.avif" type="image/avif">
-                                <source srcset="images/multimodal.webp" type="image/webp">
-                                <img class="project-photo" src="images/multimodal.png" alt="Multimodal Techniques for Equity Forecasting" width="567" height="646" loading="lazy">
-                            </picture>
-                        </div>
-                        <div class="project-content">
-                            <h3>Multimodal Techniques for Equity Forecasting</h3>
-                            <p>Conducted a benchmark study on the FinMultiTime dataset using multiple data modalities, evaluating 10+
-                            different model architectures and ensembles delivered findings in a published research paper and technical report.  </p>
-                            <div class="project-tech">
-                                <span class="tech-tag">Python</span>
-                                <span class="tech-tag">LSTM</span>
-                                <span class="tech-tag">FinBERT</span>
-                                <span class="tech-tag">Attention</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/pranavdhawann/spring-2026-group4" class="project-link"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <picture class="project-picture">
-                                <source srcset="images/pii.avif" type="image/avif">
-                                <source srcset="images/pii.webp" type="image/webp">
-                                <img class="project-photo" src="images/pii.png" alt="Edge-Based PII Detection &amp; Censoring System" width="615" height="277" loading="lazy">
-                            </picture>
-                        </div>
-                        <div class="project-content">
-                            <h3>Edge-Based PII Detection &amp; Censoring System</h3>
-                            <p>Achieved 98.1% F1-score and 97.9% recall across 54 PII entity types by architecting and
-                                benchmarking 4 transformer architectures, selecting DeBERTa as the production model and
-                                deploying via ONNX for &lt;100ms inference.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">DeBERTa</span>
-                                <span class="tech-tag">ONNX</span>
-                                <span class="tech-tag">Streamlit</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/pranavdhawann/Final-Project-Group4" class="project-link"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="project-card">
-                        <div class="project-image">
-                            <picture class="project-picture">
-                                <source srcset="images/weather-dashboard.avif" type="image/avif">
-                                <source srcset="images/weather-dashboard.webp" type="image/webp">
-                                <img class="project-photo" src="images/weather-dashboard.png" alt="Serverless ETL — Weather Dashboard" width="862" height="895" loading="lazy">
-                            </picture>
-                        </div>
-                        <div class="project-content">
-                            <h3>Serverless ETL — Weather Dashboard</h3>
-                            <p>Built a fully serverless ETL pipeline on AWS using Lambda and EventBridge to ingest and
-                                transform real-time weather data from the OpenWeather API on a scheduled cadence, with
-                                results surfaced through an interactive dashboard.</p>
-                            <div class="project-tech">
-                                <span class="tech-tag">AWS Lambda</span>
-                                <span class="tech-tag">EventBridge</span>
-                                <span class="tech-tag">OpenWeather API</span>
-                            </div>
-                            <div class="project-links">
-                                <a href="https://github.com/pranavdhawann/weather-dashboard" class="project-link"
-                                    target="_blank" rel="noopener noreferrer">
-                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
@@ -739,6 +626,119 @@
                     </div>
                     </div>
 
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">FEATURED PROJECTS</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <picture class="project-picture">
+                                <source srcset="images/stockscreen.avif" type="image/avif">
+                                <source srcset="images/stockscreen.webp" type="image/webp">
+                                <img class="project-photo" src="images/stockscreen.png" alt="Stock Screen" width="959" height="838" loading="lazy">
+                            </picture>
+                        </div>
+                        <div class="project-content">
+                            <h3>Stock Screen</h3>
+                            <p>A real-time AI-powered terminal that unifies stock analysis, market news, company filings, forecasting workflows, and market context into a single interface. Designed for investors, it helps compare signals quickly and turn live market data into actionable research.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">GCP</span>
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">ML</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://stock-screen-25476982226.us-central1.run.app/" class="project-link"
+                                    target="_blank" rel="noopener noreferrer" data-analytics="project-demo:stock-screen">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg> Live demo
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <picture class="project-picture">
+                                <source srcset="images/multimodal.avif" type="image/avif">
+                                <source srcset="images/multimodal.webp" type="image/webp">
+                                <img class="project-photo" src="images/multimodal.png" alt="Multimodal Techniques for Equity Forecasting" width="567" height="646" loading="lazy">
+                            </picture>
+                        </div>
+                        <div class="project-content">
+                            <h3>Multimodal Techniques for Equity Forecasting</h3>
+                            <p>Conducted a benchmark study on the FinMultiTime dataset using multiple data modalities, evaluating 10+
+                            different model architectures and ensembles delivered findings in a published research paper and technical report.  </p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Python</span>
+                                <span class="tech-tag">LSTM</span>
+                                <span class="tech-tag">FinBERT</span>
+                                <span class="tech-tag">Attention</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/pranavdhawann/spring-2026-group4" class="project-link"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <picture class="project-picture">
+                                <source srcset="images/pii.avif" type="image/avif">
+                                <source srcset="images/pii.webp" type="image/webp">
+                                <img class="project-photo" src="images/pii.png" alt="Edge-Based PII Detection &amp; Censoring System" width="615" height="277" loading="lazy">
+                            </picture>
+                        </div>
+                        <div class="project-content">
+                            <h3>Edge-Based PII Detection &amp; Censoring System</h3>
+                            <p>Achieved 98.1% F1-score and 97.9% recall across 54 PII entity types by architecting and
+                                benchmarking 4 transformer architectures, selecting DeBERTa as the production model and
+                                deploying via ONNX for &lt;100ms inference.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">DeBERTa</span>
+                                <span class="tech-tag">ONNX</span>
+                                <span class="tech-tag">Streamlit</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/pranavdhawann/Final-Project-Group4" class="project-link"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <picture class="project-picture">
+                                <source srcset="images/weather-dashboard.avif" type="image/avif">
+                                <source srcset="images/weather-dashboard.webp" type="image/webp">
+                                <img class="project-photo" src="images/weather-dashboard.png" alt="Serverless ETL — Weather Dashboard" width="862" height="895" loading="lazy">
+                            </picture>
+                        </div>
+                        <div class="project-content">
+                            <h3>Serverless ETL — Weather Dashboard</h3>
+                            <p>Built a fully serverless ETL pipeline on AWS using Lambda and EventBridge to ingest and
+                                transform real-time weather data from the OpenWeather API on a scheduled cadence, with
+                                results surfaced through an interactive dashboard.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">AWS Lambda</span>
+                                <span class="tech-tag">EventBridge</span>
+                                <span class="tech-tag">OpenWeather API</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/pranavdhawann/weather-dashboard" class="project-link"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
