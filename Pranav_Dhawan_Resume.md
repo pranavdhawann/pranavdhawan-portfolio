@@ -4,7 +4,7 @@ Washington, DC | <dhawanpranav02@gmail.com> | [LinkedIn](https://linkedin.com/in
 
 **EDUCATION**
 
-**George Washington University** Washington DC, USA
+**George Washington University** Washington, DC, USA
 
 _Master of Science, Data Science_ (GPA 3.74) May 2026
 
@@ -17,7 +17,7 @@ Relevant Coursework: _Algorithms & Data Structures, Database Management Systems_
 
 **PROFESSIONAL EXPERIENCE**
 
-**American Chemical Society, Washington DC, USA**
+**American Chemical Society, Washington, DC, USA**
 
 _AI Workplace Engineer Intern_ May 2026 - Present
 
@@ -61,7 +61,7 @@ _Summer Intern_ May 2023 - Jul 2023
 
 [Multimodal Techniques for Financial Time Series Forecasting](https://github.com/pranavdhawann/spring-2026-group4) Jan - May 2026
 
-- Published a benchmark study on the FinMultiTime dataset using multiple data modalities, evaluating 10+ different finetuned model architectures and ensembles delivered findings in a research paper and technical report.
+- Published a benchmark study on the FinMultiTime dataset using multiple data modalities, evaluating 10+ different fine-tuned model architectures and ensembles. The findings were published in a research paper and technical report.
 
 **PROFESSIONAL SKILLS**
 

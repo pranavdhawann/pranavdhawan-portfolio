@@ -22,7 +22,7 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
     <text x="130" y="128" font-size="26" font-weight="700" fill="#1A1A1A" letter-spacing="2">AI ENGINEER</text>
 
     <text x="108" y="250" font-size="82" font-weight="800" fill="#1A1A1A">Pranav Dhawan</text>
-    <text x="110" y="300" font-size="30" font-weight="500" fill="#4A4A4A">MS Data Science @ GWU &#183; Washington DC</text>
+    <text x="110" y="300" font-size="30" font-weight="500" fill="#4A4A4A">MS Data Science @ GWU &#183; Washington, DC</text>
 
     <g font-size="30" font-weight="600" fill="#1A1A1A">
       <text x="110" y="392">&#8226; ~70% of monthly service-desk tickets automated</text>

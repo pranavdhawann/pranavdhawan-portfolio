@@ -10,7 +10,7 @@ Science in Data Science at George Washington University (GPA 3.74, May 2026),
 focusing on machine learning, NLP, and production AI systems.
 
 EDUCATION
-- M.S. Data Science, George Washington University, Washington DC — GPA 3.74,
+- M.S. Data Science, George Washington University, Washington, DC — GPA 3.74,
   graduated May 2026. Coursework: Machine Learning, Deep Learning, NLP, Data
   Mining, Cloud Computing, Time Series Analysis.
 - B.Tech Computer Science and Engineering, Manipal University Jaipur, India —
@@ -25,7 +25,7 @@ redesigned the tagging and classification pipeline, raising process accuracy
 from 32% to 99% while reducing manual corrections and improving operational
 efficiency.
 
-CURRENT ROLE — AMERICAN CHEMICAL SOCIETY (AI Workplace Engineer Intern, May 2026–present, full-time, hybrid, Washington DC)
+CURRENT ROLE — AMERICAN CHEMICAL SOCIETY (AI Workplace Engineer Intern, May 2026–present, full-time, hybrid, Washington, DC)
 I automated about 70% of monthly Ivanti Neurons service desk tickets by
 connecting email intake to a RAG-enabled workflow: it classifies requests,
 drafts responses for information tickets, and routes complex issues to staff
