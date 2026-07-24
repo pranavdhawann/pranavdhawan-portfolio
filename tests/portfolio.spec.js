@@ -238,6 +238,21 @@ test('mobile hamburger menu toggles expanded state', async ({ page }) => {
   await expect(menu).not.toBeVisible();
 });
 
+// .hero sets overflow:hidden, so a hero wider than the viewport is clipped
+// instead of producing a scrollbar. Assert element widths rather than page
+// scrollWidth, which stays clean even while the text is being cut off.
+for (const width of [320, 375, 390]) {
+  test(`hero fits the viewport at ${width}px without clipping`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 812 });
+    await openPortfolio(page);
+
+    for (const selector of ['.hero-container', '.hero-content', '.hero-title', '.hero-image', '.avatar-wrapper']) {
+      const measured = await page.locator(selector).evaluate((el) => el.getBoundingClientRect().width);
+      expect(measured, `${selector} overflows the ${width}px viewport`).toBeLessThanOrEqual(width);
+    }
+  });
+}
+
 test('portfolio presents the verified career and education facts', async ({ page }) => {
   await openPortfolio(page);
 

@@ -380,6 +380,11 @@ body {
 
 .hero-container {
     max-width: 1200px;
+    /* .hero is a flex row, so this is a flex item: without an explicit width it
+       sizes to max-content and the fixed-width avatar pushes it past the
+       viewport, where .hero's overflow:hidden silently clips the text. */
+    width: 100%;
+    min-width: 0;
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -476,6 +481,9 @@ body {
 
 .hero-image {
     flex: 1;
+    /* Keeps the fixed-width .avatar-wrapper from overflowing the column layout
+       on mobile, where this item is sized to fit-content on the cross axis. */
+    max-width: 100%;
     display: flex;
     justify-content: flex-end;
     animation: slideInRight 1s ease-out;
