@@ -45,4 +45,4 @@ jobs:
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --verbose --exclude https://linkedin.com/in/pranavvdhawann --exclude https://www.linkedin.com/in/pranavvdhawann --exclude https://app.joinhandshake.com/profiles/pranavvdhawann --accept 200,204,206,301,302,429 index.html blog/*.html privacy.html README.md
+          args: --no-progress --verbose --exclude https://linkedin.com/in/pranavvdhawann --exclude https://www.linkedin.com/in/pranavvdhawann --exclude https://app.joinhandshake.com/profiles/pranavvdhawann --exclude https://openai.com/index/a-scorecard-for-the-ai-age --exclude https://pranavdhawan.com/privacy.html --accept 200,204,206,301,302,429 public/index.html public/blog/*.html public/privacy.html README.md

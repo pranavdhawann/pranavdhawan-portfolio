@@ -26,7 +26,9 @@ test('production deploy builds a limited publish directory', async () => {
 test('CI checks high-severity dependency advisories and every public HTML page', async () => {
   const workflow = await readFile(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
   assert.match(workflow, /npm audit --audit-level=high/);
-  assert.match(workflow, /index\.html blog\/\*\.html privacy\.html/);
+  assert.match(workflow, /public\/index\.html public\/blog\/\*\.html public\/privacy\.html README\.md/);
+  assert.match(workflow, /--exclude https:\/\/openai\.com\/index\/a-scorecard-for-the-ai-age/);
+  assert.match(workflow, /--exclude https:\/\/pranavdhawan\.com\/privacy\.html/);
 });
 
 test('CI runs the complete project verification and production build', async () => {
