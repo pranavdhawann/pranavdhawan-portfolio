@@ -1,3 +1,20 @@
+// Fire a GoatCounter event (no-op if the script isn't loaded, e.g. local/CI).
+// Mirrors trackEvent in script.js, which the blog pages don't load.
+function trackEvent(name) {
+    if (window.goatcounter && typeof window.goatcounter.count === 'function') {
+        window.goatcounter.count({ path: name, title: name, event: true });
+    }
+}
+
+// Outbound / CTA click tracking via data-analytics attributes (same contract
+// as script.js on the portfolio page).
+(() => {
+    document.addEventListener('click', (event) => {
+        const el = event.target.closest('[data-analytics]');
+        if (el) trackEvent(el.getAttribute('data-analytics'));
+    });
+})();
+
 // AJAX submit for the newsletter signup so visitors stay on the page.
 // Mirrors the contact form handler in script.js; Netlify Forms receives the
 // POST and stores the subscriber (dashboard: Forms -> newsletter).

@@ -4,6 +4,7 @@ import { test } from 'node:test';
 
 import {
   categorize,
+  decodeEntities,
   dedupe,
   escapeHtml,
   httpsUrl,
@@ -25,6 +26,20 @@ test('stripHtml unwraps CDATA before stripping tags', () => {
 
 test('stripHtml removes double-encoded markup from descriptions', () => {
   assert.equal(stripHtml('&lt;img src="https://x.test/a.webp"&gt;Here are the updates.'), 'Here are the updates.');
+});
+
+test('decodeEntities handles double-encoded named entities and bad code points', () => {
+  assert.equal(decodeEntities('for the people &amp;mdash; Lincoln'), 'for the people — Lincoln');
+  assert.equal(decodeEntities('a &ndash; b &hellip; &rsquo;'), 'a – b … ’');
+  assert.equal(decodeEntities('&unknown; stays'), '&unknown; stays');
+  assert.equal(decodeEntities('&#55296; stays raw'), '&#55296; stays raw');
+});
+
+test('categorize matches plural research keywords before product keywords', () => {
+  assert.equal(
+    categorize({ title: 'Outperforms existing benchmarks', summary: 'comparable feature dimensionality' }),
+    'Research'
+  );
 });
 
 test('httpsUrl upgrades plain http feed links', () => {
@@ -180,4 +195,13 @@ test('source list covers the major labs plus research and code feeds', () => {
   for (const id of ['openai', 'anthropic', 'deepmind', 'meta-ai', 'mistral', 'huggingface', 'arxiv', 'github-trending']) {
     assert.ok(ids.includes(id), `missing source: ${id}`);
   }
+});
+
+test('single-kind sources pin their category instead of using keyword rules', () => {
+  const arxiv = SOURCES.find((s) => s.id === 'arxiv');
+  const github = SOURCES.find((s) => s.id === 'github-trending');
+  assert.equal(arxiv.fixedCategory, true);
+  assert.equal(arxiv.category, 'Research');
+  assert.equal(github.fixedCategory, true);
+  assert.equal(github.category, 'Open Source');
 });

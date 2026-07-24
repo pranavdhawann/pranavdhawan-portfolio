@@ -36,6 +36,8 @@ const MAX_ARCHIVE_ITEMS = 200;
  *       'arxiv'   — Atom via export.arxiv.org
  *       'github'  — repo search API (optionally authenticated, GITHUB_TOKEN)
  * category: default category when keyword heuristics don't match.
+ * fixedCategory: when true, always use `category` and skip the keyword
+ *         heuristics (for sources whose items are all one kind, e.g. arXiv).
  * filter: optional regex an item's title+summary must match to be kept
  *         (for broad feeds where only AI items are wanted).
  */
@@ -56,11 +58,11 @@ export const SOURCES = [
   { id: 'bair', name: 'Berkeley AI Research', type: 'feed', url: 'https://bair.berkeley.edu/blog/feed.xml', category: 'Research' },
   { id: 'mit-ai', name: 'MIT News — AI', type: 'feed', url: 'https://news.mit.edu/rss/topic/artificial-intelligence2', category: 'Research' },
   {
-    id: 'arxiv', name: 'arXiv', type: 'arxiv', category: 'Research',
+    id: 'arxiv', name: 'arXiv', type: 'arxiv', category: 'Research', fixedCategory: true,
     url: 'https://export.arxiv.org/api/query?search_query=cat:cs.LG+OR+cat:cs.CL+OR+cat:cs.AI&sortBy=submittedDate&sortOrder=descending&max_results=8',
   },
   {
-    id: 'github-trending', name: 'GitHub', type: 'github', category: 'Open Source',
+    id: 'github-trending', name: 'GitHub', type: 'github', category: 'Open Source', fixedCategory: true,
     // `created:>DATE` is appended at fetch time so the search window tracks the run date.
     url: 'https://api.github.com/search/repositories?sort=stars&order=desc&per_page=6&q=',
     query: 'topic:llm topic:machine-learning',
@@ -71,21 +73,36 @@ const CATEGORY_RULES = [
   { category: 'Model Release', pattern: /\b(introducing|announcing|releas\w+|launch\w+|unveil\w+|preview of)\b.*\b(model|weights|gpt|claude|gemini|llama|mistral|sonnet|opus|haiku)\b|\bnew (flagship |frontier )?model\b/i },
   { category: 'Open Source', pattern: /\bopen[- ]sourc\w+|\bopen[- ]weights?\b|\bapache[- ]2|mit licen[cs]e|\brepo(sitor(y|ies))?\b/i },
   { category: 'Infrastructure', pattern: /\b(gpu|tpu|chip|cluster|data ?cent(er|re)|inference stack|training run|compute|super ?computer|silicon)\b/i },
-  { category: 'Research', pattern: /\b(paper|study|benchmark|evaluat\w+|interpretab\w+|arxiv|research|findings)\b/i },
-  { category: 'Product Update', pattern: /\b(api|pricing|feature|update\w*|available (now|today|in)|rolling out|integration|app|enterprise)\b/i },
+  { category: 'Research', pattern: /\b(papers?|stud(?:y|ies)|benchmarks?|evaluat\w+|interpretab\w+|arxiv|preprint|research\w*|findings?)\b/i },
+  { category: 'Product Update', pattern: /\b(api|pricing|features?|update\w*|available (now|today|in)|rolling out|integration|app|enterprise)\b/i },
 ];
+
+// Named entities that show up in feed text. Feeds often double-encode
+// (&amp;mdash;), so these run after the &amp; pass to catch both forms.
+const NAMED_ENTITIES = {
+  mdash: '—', ndash: '–', hellip: '…', middot: '·', bull: '•',
+  lsquo: '‘', rsquo: '’', ldquo: '“', rdquo: '”',
+  trade: '™', copy: '©', reg: '®', deg: '°',
+};
+
+const safeCodePoint = (n, fallback) => {
+  // Out-of-range or lone-surrogate references — keep the raw text.
+  if (!Number.isInteger(n) || n < 0 || n > 0x10ffff || (n >= 0xd800 && n <= 0xdfff)) return fallback;
+  return String.fromCodePoint(n);
+};
 
 export function decodeEntities(str) {
   return String(str)
     .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1')
-    .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
-    .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
+    .replace(/&#(\d+);/g, (m, n) => safeCodePoint(Number(n), m))
+    .replace(/&#x([0-9a-f]+);/gi, (m, n) => safeCodePoint(parseInt(n, 16), m))
     .replace(/&amp;/g, '&')
     .replace(/&lt;/g, '<')
     .replace(/&gt;/g, '>')
     .replace(/&quot;/g, '"')
     .replace(/&(apos|#39);/g, "'")
-    .replace(/&nbsp;/g, ' ');
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&([a-z]+);/gi, (m, name) => NAMED_ENTITIES[name.toLowerCase()] || m);
 }
 
 export function stripHtml(str) {
@@ -342,7 +359,7 @@ async function main() {
         url: httpsUrl(item.url),
         sourceId: source.id,
         sourceName: source.name,
-        category: categorize(item, source.category),
+        category: source.fixedCategory ? source.category : categorize(item, source.category),
       }))
       .filter((item) => item.url);
   }));
