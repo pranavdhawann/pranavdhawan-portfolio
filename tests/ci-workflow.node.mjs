@@ -29,6 +29,8 @@ test('CI checks high-severity dependency advisories and every public HTML page',
   assert.match(workflow, /public\/index\.html public\/blog\/\*\.html public\/privacy\.html README\.md/);
   assert.match(workflow, /--exclude https:\/\/openai\.com\/index\/a-scorecard-for-the-ai-age/);
   assert.match(workflow, /--exclude https:\/\/pranavdhawan\.com\/privacy\.html/);
+  assert.match(workflow, /--exclude https:\/\/pranavdhawan\.goatcounter\.com/);
+  assert.match(workflow, /--exclude https:\/\/www\.goatcounter\.com/);
 });
 
 test('CI runs the complete project verification and production build', async () => {
