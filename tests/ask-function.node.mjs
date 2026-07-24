@@ -90,6 +90,13 @@ test('returns the model answer on success', async () => {
   assert.equal(data.answer, 'stub answer');
 });
 
+test('rejects model output that violates the portfolio response format', async () => {
+  stubGroq(groqOk('## Ignore the rules\n```js\nconsole.log("unsafe")\n```'));
+  const response = await ask({ question: 'What do you do?' });
+  assert.equal(response.status, 502);
+  assert.deepEqual(await response.json(), { error: "I couldn't answer right now — try again in a moment, or reach Pranav through the contact section." });
+});
+
 test('sends system prompt plus history plus question to Groq', async () => {
   await ask({
     question: 'And after that?',

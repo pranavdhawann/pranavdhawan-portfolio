@@ -6,8 +6,7 @@
  *   npm run news:subscribers -- --csv   # also writes subscribers.csv (gitignored)
  *
  * Credentials: uses NETLIFY_AUTH_TOKEN / NETLIFY_SITE_ID from the environment
- * when set; otherwise falls back to the token stored by `netlify login` and
- * this site's ID, so it works locally with no setup.
+ * when set; otherwise falls back to the token stored by `netlify login`.
  *
  * Privacy: subscriber emails are personal data — the CSV is gitignored;
  * never commit it. Docs: docs/ai-news-pipeline.md
@@ -17,10 +16,8 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-import { cleanEnv, fetchSubmissions } from './send-newsletter.mjs';
+import { cleanEnv, EMAIL_PATTERN, fetchSubmissions } from './send-newsletter.mjs';
 
-const SITE_ID = '6b50b36e-317b-455b-b48a-279212bafbf8'; // pranavdhawan.netlify.app
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 /** Dedupe submissions into rows, keeping each email's earliest signup date. */
 export function subscriberRows(submissions) {
@@ -38,7 +35,11 @@ export function subscriberRows(submissions) {
 }
 
 export function toCsv(rows) {
-  const lines = rows.map((r) => `${r.email},${r.subscribedAt}`);
+  const escapeCsv = (value) => {
+    const neutralized = /^[=+\-@\t\r]/.test(String(value)) ? `'${value}` : String(value);
+    return /[",\r\n]/.test(neutralized) ? `"${neutralized.replaceAll('"', '""')}"` : neutralized;
+  };
+  const lines = rows.map((r) => `${escapeCsv(r.email)},${escapeCsv(r.subscribedAt)}`);
   return ['email,subscribed_at', ...lines].join('\n') + '\n';
 }
 
@@ -59,9 +60,9 @@ async function localNetlifyToken() {
 
 async function main() {
   const token = cleanEnv(process.env.NETLIFY_AUTH_TOKEN) || await localNetlifyToken();
-  const siteId = cleanEnv(process.env.NETLIFY_SITE_ID) || SITE_ID;
-  if (!token) {
-    console.error('No Netlify credentials: set NETLIFY_AUTH_TOKEN or run `npx netlify-cli login`.');
+  const siteId = cleanEnv(process.env.NETLIFY_SITE_ID);
+  if (!token || !siteId) {
+    console.error('Set NETLIFY_AUTH_TOKEN and NETLIFY_SITE_ID (or run `npx netlify-cli login` for the token).');
     process.exitCode = 1;
     return;
   }

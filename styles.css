@@ -1,10 +1,26 @@
+@font-face {
+    font-family: 'DM Sans';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 100 1000;
+    src: url('fonts/dm-sans-variable.woff2') format('woff2-variations');
+}
+
+@font-face {
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300 700;
+    src: url('fonts/space-grotesk-variable.woff2') format('woff2-variations');
+}
+
 /* Neobrutalism Design System */
 :root {
     /* Color Palette */
     --primary: #FFD600;
     --primary-dark: #FFAB00;
     --secondary: #FF6B9D;
-    --accent: #7C4DFF;
+    --accent: #6B3FE0;
     --teal: #00C9A7;
     --coral: #FF6B6B;
 
@@ -83,6 +99,23 @@ body {
     min-height: 100vh;
     overflow-x: hidden;
 }
+
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2000;
+    padding: 0.65rem 0.9rem;
+    background: var(--primary);
+    border: 3px solid var(--border);
+    box-shadow: var(--shadow);
+    color: var(--text-primary);
+    font-weight: 700;
+    text-decoration: none;
+    transform: translateY(-150%);
+}
+
+.skip-link:focus { transform: translateY(0); }
 
 .icon-sprite {
     position: absolute;
@@ -458,6 +491,11 @@ body {
     user-select: none;
 }
 
+.avatar-picture,
+.eye-picture {
+    display: contents;
+}
+
 .avatar-img {
     width: 100%;
     height: auto;
@@ -588,6 +626,12 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.project-picture {
+    display: block;
+    width: 100%;
+    height: 100%;
 }
 
 .project-content {
@@ -1822,6 +1866,13 @@ section {
 /* ==========================================
    CONTACT CENTERED STYLES
    ========================================== */
+.contact-availability {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 2.5rem;
+    color: var(--text-secondary);
+}
+
 .contact-content-centered {
     display: flex;
     justify-content: center;
@@ -2066,6 +2117,20 @@ section {
     gap: 2rem;
     max-width: 900px;
     margin: 0 auto;
+}
+
+.client-work { padding: 6rem 0; background: var(--primary); }
+.client-work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; max-width: 920px; margin: 0 auto; }
+.client-card { background: var(--bg-card); border: 3px solid var(--border); box-shadow: var(--shadow-lg); padding: 1.75rem; display: flex; flex-direction: column; gap: 0.85rem; }
+.client-card h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.45rem; }
+.client-card p { color: var(--text-secondary); }
+.client-card .client-maintenance { color: var(--text-primary); font-weight: 700; }
+.client-card .project-link { margin-top: auto; align-self: flex-start; }
+.footer a { color: inherit; font-weight: 700; }
+.footer a:hover { color: var(--primary); }
+
+@media (max-width: 768px) {
+    .client-work-grid { grid-template-columns: 1fr; }
 }
 
 .writing-card {
@@ -2456,6 +2521,10 @@ section {
     background: rgba(35, 35, 47, 0.65);
     border-color: rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+[data-theme="dark"] .chat-message--bot,
+[data-theme="dark"] .chat-message--typing {
+    color: #FFFFFF;
 }
 [data-theme="dark"] .chat-pill-input::placeholder { color: rgba(244, 244, 246, 0.55); }
 

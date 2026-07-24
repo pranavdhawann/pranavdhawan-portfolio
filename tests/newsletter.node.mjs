@@ -9,7 +9,9 @@ import {
   cleanEnv,
   extractSubscribers,
   shouldSend,
+  unsubscribeUrlFor,
 } from '../scripts/send-newsletter.mjs';
+import { verifyUnsubscribeToken } from '../netlify/functions/lib/unsubscribe-token.mjs';
 import { subscriberRows, toCsv } from '../scripts/list-subscribers.mjs';
 
 const ITEMS = [{
@@ -64,6 +66,24 @@ test('plain-text version carries title, link, and unsubscribe note', () => {
   assert.equal(buildSubject('2026-07-06'), 'AI This Week — Jul 6, 2026');
 });
 
+test('one-click unsubscribe link is per-recipient and signed', () => {
+  const url = unsubscribeUrlFor('a@example.com', 'secret');
+  assert.ok(url.includes('/.netlify/functions/unsubscribe'));
+  const token = new URL(url).searchParams.get('t');
+  assert.ok(verifyUnsubscribeToken('a@example.com', token, 'secret'));
+  assert.equal(unsubscribeUrlFor('a@example.com', ''), '', 'no link without a signing secret');
+});
+
+test('emails include the one-click link and a postal address (CAN-SPAM)', () => {
+  const opts = { unsubscribeUrl: 'https://pranavdhawan.com/.netlify/functions/unsubscribe?e=a%40example.com&t=abc' };
+  const html = buildEmailHtml(ITEMS, '2026-07-06', opts);
+  const text = buildEmailText(ITEMS, '2026-07-06', opts);
+  // The URL is HTML-escaped in the HTML body (& -> &amp;); check the un-escaped stem plus the escaped query.
+  assert.ok(html.includes('/.netlify/functions/unsubscribe?e=a%40example.com&amp;t=abc'), 'HTML carries the escaped one-click link');
+  assert.ok(text.includes(opts.unsubscribeUrl), 'text carries the raw one-click link');
+  assert.ok(/Washington, DC/.test(html) && /Washington, DC/.test(text), 'both carry a postal address');
+});
+
 test('cleanEnv strips the BOM and whitespace that shell pipes can add to secrets', () => {
   assert.equal(cleanEnv('﻿tok3n\n'), 'tok3n');
   assert.equal(cleanEnv('  plain  '), 'plain');
@@ -82,6 +102,11 @@ test('subscriberRows dedupes by email keeping the earliest signup', () => {
     { email: 'b@example.com', subscribedAt: '2026-07-03T10:00:00Z' },
   ]);
   assert.equal(toCsv(rows).split('\n')[0], 'email,subscribed_at');
+});
+
+test('CSV export neutralizes spreadsheet formulas and quotes fields', () => {
+  const csv = toCsv([{ email: '=HYPERLINK("https://evil.example")', subscribedAt: '+2026-07-01' }]);
+  assert.equal(csv, 'email,subscribed_at\n"\'=HYPERLINK(""https://evil.example"")",\'+2026-07-01\n');
 });
 
 test('subscriber CSV export stays out of git', async () => {

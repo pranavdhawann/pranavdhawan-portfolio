@@ -22,13 +22,15 @@ async function openPortfolio(page) {
 }
 
 test('desktop page loads nav and renders skills graph', async ({ page }) => {
-  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.setViewportSize({ width: 1280, height: 500 });
   await openPortfolio(page);
 
   await expect(page).toHaveTitle(/Pranav Dhawan/);
   await expect(page.getByRole('navigation')).toBeVisible();
   await expect(page.getByRole('link', { name: 'HOME' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'SKILLS' })).toBeVisible();
+  await expect(page.locator('#skillsGraph .node')).toHaveCount(0);
+  await page.locator('#skills').scrollIntoViewIfNeeded();
   await expect(page.locator('#skillsGraph')).toBeVisible();
   await expect(page.locator('#skillsGraph .node')).toHaveCount(20);
   await expect(page.locator('#skillsGraph .link')).not.toHaveCount(0);
@@ -69,6 +71,8 @@ test('project cards render named screenshots inside the existing image frames', 
     await expect(image).toBeVisible();
     await expect(image).toHaveAttribute('src', imagePath);
     await expect(image).toHaveAttribute('alt', projectName);
+    await expect(frame.locator('source[type="image/avif"]')).toHaveAttribute('srcset', imagePath.replace('.png', '.avif'));
+    await expect(frame.locator('source[type="image/webp"]')).toHaveAttribute('srcset', imagePath.replace('.png', '.webp'));
     await expect(frame.locator('.project-icon')).toHaveCount(0);
 
     const layout = await image.evaluate((img) => {
@@ -153,7 +157,8 @@ test('stock screen copy avoids unverified paid-tier language', async ({ page }) 
 test('education sections include academic project and paper highlights', async ({ page }) => {
   await openPortfolio(page);
 
-  await expect(page.getByText(/Published a journal paper from the Multimodal Techniques/)).toBeVisible();
+  await expect(page.getByText(/Completed a published research paper and technical report from the Multimodal Techniques/)).toBeVisible();
+  await expect(page.getByText('GPA: 8.51/10.0')).toBeVisible();
   await expect(page.getByText(/U\.S\. government health, CBP\.gov, and WMATA datasets/)).toBeVisible();
   await expect(page.getByText(/comparative analysis paper on transformer models versus LSTM/)).toBeVisible();
   await expect(page.getByText(/sentiment classification across the X platform/)).toBeVisible();
@@ -203,15 +208,15 @@ test('contact actions sit a balanced distance beneath the get in touch heading',
   await openPortfolio(page);
 
   const gap = await page.evaluate(() => {
-    const title = document.querySelector('#contact .section-title').getBoundingClientRect();
+    const intro = document.querySelector('#contact .contact-availability').getBoundingClientRect();
     const action = document.querySelector('#contact .resume-btn').getBoundingClientRect();
-    return action.top - title.bottom;
+    return action.top - intro.bottom;
   });
 
-  // The title's underline hangs ~16px below its box, so the gap needs room
-  // to breathe without drifting back to a full section-title margin.
+  // The availability line sits directly above the actions; keep them a
+  // balanced distance apart without a full section-title margin gap.
   expect(gap).toBeGreaterThanOrEqual(20);
-  expect(gap).toBeLessThanOrEqual(40);
+  expect(gap).toBeLessThanOrEqual(60);
 });
 
 test('mobile hamburger menu toggles expanded state', async ({ page }) => {
@@ -233,6 +238,49 @@ test('mobile hamburger menu toggles expanded state', async ({ page }) => {
   await expect(menu).not.toBeVisible();
 });
 
+test('portfolio presents the verified career and education facts', async ({ page }) => {
+  await openPortfolio(page);
+
+  const experience = page.locator('#experience');
+  await expect(experience.getByRole('heading', { name: 'AI Independent Contractor' })).toBeVisible();
+  await expect(experience.getByText('AI Workplace Engineer Intern')).toBeVisible();
+  await expect(experience.getByText('Lumina Datamatics | Chennai, India | Full-time, final-semester placement')).toBeVisible();
+  await expect(experience.getByText('August 2020 - May 2024')).toBeVisible();
+  await expect(experience.getByText('GPA: 8.51/10.0')).toBeVisible();
+  await expect(experience.getByText(/published research paper and technical report/i)).toBeVisible();
+});
+
+test('timeline toggle keeps the same label after a full open-close cycle', async ({ page }) => {
+  await openPortfolio(page);
+  const toggle = page.locator('#timelineToggle');
+  await toggle.click();
+  await expect(toggle).toHaveAccessibleName('Hide earlier roles');
+  await toggle.click();
+  await expect(toggle).toHaveAccessibleName('Show earlier roles');
+});
+
+test('page has a skip link and hides eye pupils after an avatar load failure', async ({ page }) => {
+  await openPortfolio(page);
+  await expect(page.getByRole('link', { name: 'Skip to content' })).toHaveAttribute('href', '#main-content');
+  await expect(page.locator('.avatar-wrapper picture').first().locator('source[type="image/avif"]')).toHaveAttribute('srcset', 'images/photo.avif');
+  await expect(page.locator('.avatar-wrapper picture').first().locator('source[type="image/webp"]')).toHaveAttribute('srcset', 'images/photo.webp');
+  await expect(page.locator('.avatar-wrapper picture').nth(1).locator('source[type="image/avif"]')).toHaveAttribute('srcset', 'images/eye.avif');
+  await expect(page.locator('.avatar-wrapper picture').nth(1).locator('source[type="image/webp"]')).toHaveAttribute('srcset', 'images/eye.webp');
+  await page.locator('#avatarImg').dispatchEvent('error');
+  await expect(page.locator('.eye-pupil')).toHaveCount(2);
+  for (const pupil of await page.locator('.eye-pupil').all()) {
+    await expect(pupil).toHaveCSS('display', 'none');
+  }
+});
+
+test('portfolio presents client work and links to its privacy notice', async ({ page }) => {
+  await openPortfolio(page);
+  await expect(page.getByRole('heading', { name: /Client Work/i })).toBeVisible();
+  await expect(page.locator('.client-card', { hasText: 'Aevantis Aerospace' }).getByRole('link', { name: 'Visit site' })).toHaveAttribute('href', 'https://aevantisaerospace.com/');
+  await expect(page.locator('.client-card', { hasText: 'Admiles Media' }).getByRole('link', { name: 'Visit site' })).toHaveAttribute('href', 'https://admiles.in/');
+  await expect(page.getByRole('link', { name: 'Privacy', exact: true })).toHaveAttribute('href', 'privacy.html');
+});
+
 test('reduced motion prevents injected hero decorations', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 1280, height: 900 });
@@ -244,6 +292,7 @@ test('reduced motion prevents injected hero decorations', async ({ page }) => {
 
 test('skills graph nodes are keyboard accessible', async ({ page }) => {
   await openPortfolio(page);
+  await page.locator('#skills').scrollIntoViewIfNeeded();
 
   const pythonNode = page.locator('#skillsGraph .node[data-id="python"]');
   await expect(pythonNode).toHaveAttribute('tabindex', '0');
@@ -255,6 +304,32 @@ test('skills graph nodes are keyboard accessible', async ({ page }) => {
 
   await page.keyboard.press('Escape');
   await expect(page.locator('#skillsGraph .link.active')).toHaveCount(0);
+});
+
+test('self-hosts fonts without requesting Google Fonts', async ({ page }) => {
+  await openPortfolio(page);
+
+  await expect(page.locator('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]')).toHaveCount(0);
+  const css = await (await page.request.get(`${pageUrl}styles.css`)).text();
+  expect(css).toContain('@font-face');
+  expect(css).toContain("url('fonts/dm-sans-variable.woff2')");
+  expect(css).toContain("url('fonts/space-grotesk-variable.woff2')");
+});
+
+test('coalesces hero title pointer writes into an animation frame', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await openPortfolio(page);
+
+  const result = await page.locator('.hero-title').evaluate(async (title) => {
+    document.dispatchEvent(new MouseEvent('mousemove', { clientX: 150, clientY: 120 }));
+    document.dispatchEvent(new MouseEvent('mousemove', { clientX: 300, clientY: 240 }));
+    const beforeFrame = title.style.transform;
+    await new Promise(requestAnimationFrame);
+    return { beforeFrame, afterFrame: title.style.transform };
+  });
+
+  expect(result.beforeFrame).toBe('');
+  expect(result.afterFrame).not.toBe('');
 });
 
 test('page has no axe accessibility violations', async ({ page }) => {
@@ -293,7 +368,7 @@ test('footer is a contentinfo landmark outside main', async ({ page }) => {
 test('structured data describes the site owner as a Person', async ({ page }) => {
   await openPortfolio(page);
 
-  const json = await page.locator('script[type="application/ld+json"]').textContent();
+  const json = await page.locator('script[type="application/ld+json"]').first().textContent();
   const data = JSON.parse(json);
   expect(data['@type']).toBe('Person');
   expect(data.name).toBe('Pranav Dhawan');

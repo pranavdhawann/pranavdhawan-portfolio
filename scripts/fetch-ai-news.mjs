@@ -189,7 +189,7 @@ async function fetchText(url, headers = {}) {
   const res = await fetch(url, {
     signal: AbortSignal.timeout(FETCH_TIMEOUT_MS),
     // Some hosts (openai.com) serve an empty document to non-browser UAs.
-    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; pranavdhawan-portfolio-digest; +https://pranavdhawan.netlify.app)', ...headers },
+    headers: { 'User-Agent': 'Mozilla/5.0 (compatible; pranavdhawan-portfolio-digest; +https://pranavdhawan.com)', ...headers },
   });
   if (!res.ok) throw new Error(`HTTP ${res.status}`);
   return res.text();
@@ -297,12 +297,13 @@ export function renderDigest(items, updatedIso) {
         '                    </a>',
       ].join('\n');
     }).join('\n');
+  const digestBody = cards || '                <p class="writing-intro">No safe, recent items are available this week. Please check back soon.</p>';
   return [
     START_MARKER,
     `                <p class="writing-intro">A weekly, auto-curated digest of AI developments — pulled straight from official lab blogs, arXiv, and GitHub. Every card links to its original source. Updated ${escapeHtml(formatDate(updatedIso))}.</p>`,
-    '                <div class="writing-grid">',
-    cards,
-    '                </div>',
+    cards ? '                <div class="writing-grid">' : '',
+    digestBody,
+    cards ? '                </div>' : '',
     `                ${END_MARKER}`,
   ].join('\n');
 }

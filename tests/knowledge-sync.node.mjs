@@ -22,3 +22,18 @@ test('knowledge base stays in sync with the page content', () => {
     assert.ok(KNOWLEDGE.includes(fact), `knowledge base is missing "${fact}"`);
   }
 });
+
+test('knowledge base contains the verified career and education facts', () => {
+  const verifiedFacts = [
+    'AI Independent Contractor',
+    'AI Workplace Engineer Intern',
+    'Lumina Datamatics | Chennai, India',
+    'graduated May 2024',
+    'GPA 8.51/10.0',
+    'published research paper and technical report'
+  ];
+
+  for (const fact of verifiedFacts) {
+    assert.ok(KNOWLEDGE.includes(fact), `knowledge base is missing verified fact: ${fact}`);
+  }
+});

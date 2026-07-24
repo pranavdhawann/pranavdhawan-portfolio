@@ -72,7 +72,7 @@ if (mobileToggle) {
 
 // Close menu on navigation (Mobile)
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    if (window.innerWidth <= 768 && navMenu) {
+    if (window.matchMedia('(max-width: 768px)').matches && navMenu) {
         setMenuOpen(false);
     }
 }));
@@ -80,7 +80,7 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
 // Close menu when clicking outside (Mobile)
 document.addEventListener('click', (e) => {
     if (!mobileToggle || !navMenu) return;
-    if (window.innerWidth <= 768 && navMenu.classList.contains('active')) {
+    if (window.matchMedia('(max-width: 768px)').matches && navMenu.classList.contains('active')) {
         if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
             setMenuOpen(false);
         }
@@ -90,9 +90,10 @@ document.addEventListener('click', (e) => {
 // Smooth Scroll with nav offset
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        const target = href && href.length > 1 ? document.querySelector(href) : null;
         if (target) {
+            e.preventDefault();
             const navbar = document.querySelector('.navbar');
             const navHeight = navbar ? navbar.offsetHeight : 0;
             const targetPosition = target.getBoundingClientRect().top + window.scrollY - navHeight;
@@ -185,11 +186,19 @@ const finePointerQuery = window.matchMedia('(pointer: fine)');
 if (heroTitle && heroSection) {
     let heroVisible = true;
     let tiltAttached = false;
+    let tiltFrame = 0;
+    let latestTiltPosition = null;
 
     const onTiltMove = (e) => {
-        const xPos = (window.innerWidth / 2 - e.clientX) / 50;
-        const yPos = (window.innerHeight / 2 - e.clientY) / 50;
-        heroTitle.style.transform = `rotateY(${xPos}deg) rotateX(${yPos}deg)`;
+        latestTiltPosition = { clientX: e.clientX, clientY: e.clientY };
+        if (tiltFrame) return;
+        tiltFrame = window.requestAnimationFrame(() => {
+            tiltFrame = 0;
+            if (!latestTiltPosition) return;
+            const xPos = (window.innerWidth / 2 - latestTiltPosition.clientX) / 50;
+            const yPos = (window.innerHeight / 2 - latestTiltPosition.clientY) / 50;
+            heroTitle.style.transform = `rotateY(${xPos}deg) rotateX(${yPos}deg)`;
+        });
     };
 
     const attachTilt = () => {
@@ -202,6 +211,9 @@ if (heroTitle && heroSection) {
         if (!tiltAttached) return;
         document.removeEventListener('mousemove', onTiltMove);
         tiltAttached = false;
+        latestTiltPosition = null;
+        if (tiltFrame) window.cancelAnimationFrame(tiltFrame);
+        tiltFrame = 0;
         heroTitle.style.transform = '';
     };
 
@@ -272,6 +284,8 @@ if (heroTitle && heroSection) {
         const pw = eyeL.naturalWidth;
         const ph = eyeL.naturalHeight;
         let pointerListening = false;
+        let pointerFrame = 0;
+        let latestPointerPosition = null;
         let orbitFrame = 0;
         let activeMode = null;
 
@@ -309,14 +323,14 @@ if (heroTitle && heroSection) {
             });
         }
 
-        function onPointerMove(e) {
+        function updatePointer(clientX, clientY) {
             if (activeMode !== 'pointer') return;
 
             const rect = wrapper.getBoundingClientRect();
             if (!rect.width || !rect.height) return;
 
-            const cursorX = ((e.clientX - rect.left) / rect.width) * W;
-            const cursorY = ((e.clientY - rect.top) / rect.height) * H;
+            const cursorX = ((clientX - rect.left) / rect.width) * W;
+            const cursorY = ((clientY - rect.top) / rect.height) * H;
 
             for (const eye of eyes) {
                 const dx = cursorX - eye.cx;
@@ -335,6 +349,16 @@ if (heroTitle && heroSection) {
 
                 setEyeTransform(eye, dirX * maxR * intensity, dirY * maxR * intensity, rect);
             }
+        }
+
+        function onPointerMove(e) {
+            latestPointerPosition = { clientX: e.clientX, clientY: e.clientY };
+            if (pointerFrame) return;
+            pointerFrame = window.requestAnimationFrame(() => {
+                pointerFrame = 0;
+                if (!latestPointerPosition) return;
+                updatePointer(latestPointerPosition.clientX, latestPointerPosition.clientY);
+            });
         }
 
         function stepOrbit(now) {
@@ -362,6 +386,9 @@ if (heroTitle && heroSection) {
             if (!pointerListening) return;
             document.removeEventListener('mousemove', onPointerMove);
             pointerListening = false;
+            latestPointerPosition = null;
+            if (pointerFrame) window.cancelAnimationFrame(pointerFrame);
+            pointerFrame = 0;
         }
 
         function stopOrbitMode() {
@@ -428,6 +455,10 @@ if (heroTitle && heroSection) {
     }
 
     const trySetup = () => setup();
+    const hidePupils = () => eyes.forEach((eye) => { eye.el.style.display = 'none'; });
+    base.addEventListener('error', hidePupils, { once: true });
+    eyeL.addEventListener('error', hidePupils, { once: true });
+    eyeR.addEventListener('error', hidePupils, { once: true });
     if (!base.complete) base.addEventListener('load', trySetup, { once: true });
     if (!eyeL.complete) eyeL.addEventListener('load', trySetup, { once: true });
     if (base.complete && eyeL.complete) trySetup();
@@ -442,6 +473,12 @@ if (heroTitle && heroSection) {
     const linksLayer = svg.querySelector('.links');
     const nodesLayer = svg.querySelector('.nodes');
     if (!linksLayer || !nodesLayer) return;
+    let initialized = false;
+
+    const initialize = () => {
+    if (initialized) return;
+    initialized = true;
+    svg.dataset.initialized = 'true';
 
     const nodes = [
         { id: 'python',  label: 'Python',       group: 'lang' },
@@ -687,6 +724,19 @@ if (heroTitle && heroSection) {
             }
         }, 150);
     }, { passive: true });
+
+    };
+
+    if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver((entries) => {
+            if (!entries.some((entry) => entry.isIntersecting)) return;
+            observer.disconnect();
+            initialize();
+        }, { rootMargin: '300px 0px' });
+        observer.observe(svg);
+    } else {
+        initialize();
+    }
 })();
 
 // Chat Widget — "Ask Pranav" floating pill assistant
@@ -870,11 +920,14 @@ if (heroTitle && heroSection) {
             toggle.setAttribute('aria-expanded', 'true');
         } else {
             extra.setAttribute('hidden', '');
-            toggle.textContent = 'Show earlier roles (2021)';
+            toggle.textContent = 'Show earlier roles';
             toggle.setAttribute('aria-expanded', 'false');
         }
     });
 })();
+
+const copyrightYear = document.getElementById('copyrightYear');
+if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
 
 // Contact — copy email, and submit the form to Netlify without a page reload
 (() => {

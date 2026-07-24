@@ -90,3 +90,16 @@ test('blog page has no axe accessibility violations', async ({ page }) => {
   const results = await new AxeBuilder({ page }).analyze();
   expect(results.violations).toEqual([]);
 });
+
+test('blog distinguishes original writing from the curated digest and retains portfolio navigation', async ({ page }) => {
+  await openBlog(page);
+  await expect(page.getByRole('heading', { name: 'Written by me' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'AI THIS WEEK' })).toBeVisible();
+  await expect(page.getByRole('link', { name: 'Portfolio', exact: true })).toHaveAttribute('href', '../index.html');
+  await expect(page.getByRole('link', { name: 'Privacy', exact: true })).toHaveAttribute('href', '../privacy.html');
+});
+
+test('blog uses the self-hosted site fonts', async ({ page }) => {
+  await openBlog(page);
+  await expect(page.locator('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]')).toHaveCount(0);
+});

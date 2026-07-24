@@ -22,16 +22,29 @@ import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
 import { selectForPage, formatDate, escapeHtml, httpsUrl, truncate } from './fetch-ai-news.mjs';
+import { unsubscribeToken } from '../netlify/functions/lib/unsubscribe-token.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DATA_FILE = path.join(ROOT, 'blog', 'data', 'ai-news.json');
 const STATE_FILE = path.join(ROOT, 'blog', 'data', 'newsletter-state.json');
 
-const SITE_URL = 'https://pranavdhawan.netlify.app';
+const SITE_URL = 'https://pranavdhawan.com';
 const MIN_DAYS_BETWEEN_SENDS = 6;
-const BCC_BATCH_SIZE = 50;
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// CAN-SPAM requires a valid physical postal address in marketing email, and
+// Gmail/Yahoo bulk-sender rules expect one. TODO: replace with a real mailing
+// address or P.O. box (set NEWSLETTER_ADDRESS to override without a code change).
+const MAILING_ADDRESS = cleanEnv(process.env.NEWSLETTER_ADDRESS) ||
+  'Pranav Dhawan · [ADD MAILING ADDRESS] · Washington, DC, USA';
+
+export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+/** One-click unsubscribe URL for a recipient (empty when no secret is set). */
+export function unsubscribeUrlFor(email, secret = cleanEnv(process.env.UNSUBSCRIBE_SECRET)) {
+  if (!secret) return '';
+  const token = unsubscribeToken(email, secret);
+  return `${SITE_URL}/.netlify/functions/unsubscribe?e=${encodeURIComponent(email)}&t=${encodeURIComponent(token)}`;
+}
 
 /** Env values can pick up BOMs/whitespace when set via shell pipes — sanitize. */
 export function cleanEnv(value) {
@@ -69,7 +82,10 @@ function safeItems(items) {
     .filter((item) => item.url);
 }
 
-export function buildEmailHtml(items, updatedIso) {
+export function buildEmailHtml(items, updatedIso, { unsubscribeUrl = '', address = MAILING_ADDRESS } = {}) {
+  const unsubscribeHtml = unsubscribeUrl
+    ? `<a href="${escapeHtml(unsubscribeUrl)}" style="color:#555;">Unsubscribe in one click</a>.`
+    : `To unsubscribe, reply to this email with the word &quot;unsubscribe&quot;.`;
   const rows = safeItems(items).map((item) => `
     <tr><td style="padding:0 0 22px 0;">
       <div style="font-size:12px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#b8860b;">
@@ -97,26 +113,31 @@ export function buildEmailHtml(items, updatedIso) {
   You're receiving this because you subscribed at
   <a href="${SITE_URL}/blog/" style="color:#555;">${SITE_URL.replace('https://', '')}/blog</a>.
   Every story links to its original source &mdash; nothing here is AI-generated.
-  To unsubscribe, reply to this email with the word &quot;unsubscribe&quot;.
+  ${unsubscribeHtml}
+  <br>${escapeHtml(address)}
 </td></tr>
 </table>
 </td></tr></table>
 </body></html>`;
 }
 
-export function buildEmailText(items, updatedIso) {
+export function buildEmailText(items, updatedIso, { unsubscribeUrl = '', address = MAILING_ADDRESS } = {}) {
   const lines = safeItems(items).map((item) => [
     `[${item.category} - ${item.sourceName}] ${item.title}`,
     truncate(item.summary || 'Read the full story at the source.'),
     `${formatDate(item.date)} — ${item.url}`,
   ].join('\n'));
+  const unsubscribeText = unsubscribeUrl
+    ? `Unsubscribe in one click: ${unsubscribeUrl}`
+    : 'To unsubscribe, reply to this email with the word "unsubscribe".';
   return [
     `AI THIS WEEK — ${formatDate(updatedIso)}`,
     'Curated from official lab blogs, arXiv, and GitHub.',
     '',
     lines.join('\n\n'),
     '',
-    `You subscribed at ${SITE_URL}/blog/. To unsubscribe, reply with "unsubscribe".`,
+    `You subscribed at ${SITE_URL}/blog/. ${unsubscribeText}`,
+    address,
   ].join('\n');
 }
 
@@ -141,6 +162,23 @@ async function loadJson(file, fallback) {
     return JSON.parse(await readFile(file, 'utf8'));
   } catch {
     return fallback;
+  }
+}
+
+/**
+ * Emails that hit the one-click unsubscribe endpoint (stored in Netlify Blobs).
+ * Best-effort: if the store is unreachable, returns an empty set and warns so a
+ * transient Blobs outage never silently blocks the whole send.
+ */
+export async function readSuppressions() {
+  try {
+    const { getStore } = await import('@netlify/blobs');
+    const store = getStore('newsletter-suppressions');
+    const { blobs } = await store.list();
+    return new Set(blobs.map((b) => b.key.toLowerCase()));
+  } catch (error) {
+    console.warn(`Could not read unsubscribe suppression list (${error?.message}); proceeding with none.`);
+    return new Set();
   }
 }
 
@@ -170,10 +208,19 @@ async function main() {
     return;
   }
 
-  const subscribers = extractSubscribers(await fetchSubmissions(NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID));
+  const allSubscribers = extractSubscribers(await fetchSubmissions(NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID));
+  const suppressed = await readSuppressions();
+  const subscribers = allSubscribers.filter((email) => !suppressed.has(email));
+  const skipped = allSubscribers.length - subscribers.length;
+  if (skipped > 0) console.log(`Skipping ${skipped} unsubscribed address(es).`);
   if (subscribers.length === 0) {
-    console.log('No subscribers yet — nothing to send.');
+    console.log('No subscribers to send to — nothing to do.');
     return;
+  }
+
+  const secret = cleanEnv(process.env.UNSUBSCRIBE_SECRET);
+  if (!secret) {
+    console.warn('UNSUBSCRIBE_SECRET is not set — sending with a mailto unsubscribe only (no one-click).');
   }
 
   const { default: nodemailer } = await import('nodemailer');
@@ -186,22 +233,32 @@ async function main() {
 
   const from = cleanEnv(process.env.NEWSLETTER_FROM) || SMTP_USER;
   const updatedIso = archive.updated || now.toISOString().slice(0, 10);
-  const message = {
-    from,
-    subject: buildSubject(updatedIso),
-    html: buildEmailHtml(items, updatedIso),
-    text: buildEmailText(items, updatedIso),
-    headers: { 'List-Unsubscribe': `<mailto:${SMTP_USER}?subject=unsubscribe>` },
-  };
 
-  for (let i = 0; i < subscribers.length; i += BCC_BATCH_SIZE) {
-    const batch = subscribers.slice(i, i + BCC_BATCH_SIZE);
-    await transport.sendMail({ ...message, to: from, bcc: batch });
-    console.log(`Sent batch ${Math.floor(i / BCC_BATCH_SIZE) + 1} (${batch.length} recipients).`);
+  // One-click unsubscribe (RFC 8058) needs a per-recipient link, so send one
+  // message each rather than a shared BCC batch.
+  let sent = 0;
+  for (const email of subscribers) {
+    const unsubscribeUrl = secret ? unsubscribeUrlFor(email, secret) : '';
+    const listUnsubscribe = [
+      unsubscribeUrl ? `<${unsubscribeUrl}>` : null,
+      `<mailto:${SMTP_USER}?subject=unsubscribe>`,
+    ].filter(Boolean).join(', ');
+    const headers = { 'List-Unsubscribe': listUnsubscribe };
+    if (unsubscribeUrl) headers['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click';
+
+    await transport.sendMail({
+      from,
+      to: email,
+      subject: buildSubject(updatedIso),
+      html: buildEmailHtml(items, updatedIso, { unsubscribeUrl }),
+      text: buildEmailText(items, updatedIso, { unsubscribeUrl }),
+      headers,
+    });
+    sent += 1;
   }
 
-  await writeFile(STATE_FILE, `${JSON.stringify({ lastSent: now.toISOString(), recipients: subscribers.length, items: items.length }, null, 2)}\n`);
-  console.log(`Newsletter sent to ${subscribers.length} subscribers (${items.length} items).`);
+  await writeFile(STATE_FILE, `${JSON.stringify({ lastSent: now.toISOString(), recipients: sent, items: items.length }, null, 2)}\n`);
+  console.log(`Newsletter sent to ${sent} subscribers (${items.length} items).`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {

@@ -8,20 +8,23 @@ const expectedHeaders = {
   'X-Frame-Options': 'DENY',
   'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()'
+  'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+  'Cross-Origin-Opener-Policy': 'same-origin',
+  'Cross-Origin-Resource-Policy': 'same-origin'
 };
 
 const expectedCsp = {
   'default-src': ["'self'"],
-  'style-src': ["'self'", 'https://fonts.googleapis.com'],
-  'font-src': ["'self'", 'https://fonts.gstatic.com'],
+  'style-src': ["'self'"],
+  'font-src': ["'self'"],
   'img-src': ["'self'", 'data:', 'https://pranavdhawan.goatcounter.com'],
   'script-src': ["'self'", 'https://gc.zgo.at'],
   'object-src': ["'none'"],
   'base-uri': ["'self'"],
   'frame-ancestors': ["'none'"],
   'form-action': ["'self'"],
-  'connect-src': ["'self'", 'https://pranavdhawan.goatcounter.com']
+  'connect-src': ["'self'", 'https://pranavdhawan.goatcounter.com'],
+  'report-uri': ['/.netlify/functions/csp-report']
 };
 
 const problems = [];

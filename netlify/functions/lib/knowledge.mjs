@@ -14,7 +14,7 @@ EDUCATION
   graduated May 2026. Coursework: Machine Learning, Deep Learning, NLP, Data
   Mining, Cloud Computing, Time Series Analysis.
 - B.Tech Computer Science and Engineering, Manipal University Jaipur, India —
-  GPA 3.52, graduated May 2024. Coursework: Algorithms & Data Structures,
+  GPA 8.51/10.0, graduated May 2024. Coursework: Algorithms & Data Structures,
   Database Management Systems.
 
 CURRENT ROLE — SIVA INFO LLC (AI Independent Contractor, June 2026–present, part-time, remote)
@@ -47,7 +47,7 @@ a task, decide which tools to use, and adapt. Service desk requests vary a lot,
 so agents handle that variability far more gracefully than rigid scripts.
 
 PAST EXPERIENCE
-Lumina Datamatics — Machine Learning Engineer (Feb–Aug 2024)
+Lumina Datamatics | Chennai, India — Machine Learning Engineer (Feb–Aug 2024)
 - Fine-tuned computer vision models to detect and extract complex equations
   from 10,000+ unstructured documents, eliminating manual post-processing.
 - Replaced LayoutParser with a custom YOLO-based document layout pipeline,
@@ -62,18 +62,17 @@ Lumina Datamatics — Machine Learning Engineer (Feb–Aug 2024)
   processing 10,000+ documents a day. I learn by doing: documentation, testing,
   failing fast, iterating.
 
-HCL Technologies — Machine Learning Intern (Jul–Sep 2023, Noida, India)
-- Workforce analytics for Nippon: built predictive models on activity data from
-  500+ employees, identifying the top 5 drivers of workforce performance with
-  87% prediction accuracy.
+HCLTech — Machine Learning Intern (Jul–Sep 2023, Noida, India)
+- Built predictive workforce analytics models on activity data from 500+
+  employees to identify key productivity drivers.
 - Engineered 12+ KPIs from raw employee activity logs (screen time, app usage)
   using SQL and Python; visualized in Tableau dashboards for management.
 
-Ernst & Young — Summer Intern (May–Jul 2023, Gurgaon, India)
-- Consolidated Sales & HR KPI reporting into 4 Power BI dashboards (revenue
+EY — Summer Intern (May–Jul 2023, Gurugram, India)
+- Consolidated Sales & HR KPI reporting into Power BI dashboards (revenue
   trends, attrition), cutting cross-functional reporting turnaround.
-- Automated ETL for 5+ data sources with Alteryx — 100% reporting accuracy
-  across monthly business reviews by eliminating manual data cleaning.
+- Automated ETL for 5+ data sources with Alteryx, improving reporting
+  consistency by eliminating manual data cleaning.
 - Big lesson from EY: the best technical solution fails if it creates friction
   for the people using it. User adoption matters as much as accuracy.
 
@@ -114,8 +113,7 @@ categories. Architecture explored: LSTM for prices, FinBERT for sentiment,
 TabNet for filings, a GNN for inter-sector relationships, attention-based late
 fusion. The interesting finding: standalone LSTM was highly competitive, which
 challenges "multimodal always wins." Lesson: complexity must be justified by
-clear empirical gains. Findings submitted as a research paper and technical
-report.
+clear empirical gains. Findings resulted in a published research paper and technical report.
 
 Stock Screen
 A real-time, AI-powered terminal that unifies stock analysis, market news,
@@ -127,6 +125,14 @@ Serverless ETL — Weather Dashboard
 A fully serverless ETL pipeline on AWS using Lambda and EventBridge to ingest
 and transform real-time weather data from the OpenWeather API on a scheduled
 cadence, with results surfaced through an interactive dashboard.
+
+CLIENT WORK
+I build and maintain production websites alongside my AI work. For Aevantis
+Aerospace, an unmanned-systems manufacturer in New Delhi, I maintain a product
+and capabilities site with an enquiry flow. For Admiles Media, an outdoor
+advertising company in Delhi NCR, I maintain a site with media-location
+information, project galleries, and lead capture. For both, I handle content,
+hosting, and performance updates.
 
 SKILLS
 Languages/ML: Python, R, pandas, NumPy, scikit-learn, Matplotlib, Seaborn,
@@ -150,7 +156,7 @@ every chance to present, and I'm meaningfully better than a year ago.
 
 CONTACT
 Email: dhawanpranav02@gmail.com. GitHub: github.com/pranavdhawann. LinkedIn:
-linkedin.com/in/pranavvdhawann. Portfolio: pranavdhawan.netlify.app (resume PDF
+linkedin.com/in/pranavvdhawann. Portfolio: pranavdhawan.com (resume PDF
 available there). I'm happy to chat about AI engineering, agents, RAG, or
 interesting roles.
 `;

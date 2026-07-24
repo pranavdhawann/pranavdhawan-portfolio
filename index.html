@@ -8,24 +8,26 @@
     <meta name="description" content="Portfolio of Pranav Dhawan — AI Workplace Engineer Intern at the American Chemical Society, MS in Data Science from George Washington University. Building ML systems across computer vision, NLP, and agentic AI.">
     <meta name="author" content="Pranav Dhawan">
     <meta name="theme-color" content="#FFD600">
-    <link rel="canonical" href="https://pranavdhawan.netlify.app/">
+    <link rel="canonical" href="https://pranavdhawan.com/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://pranavdhawan.netlify.app/">
+    <meta property="og:site_name" content="Pranav Dhawan">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://pranavdhawan.com/">
     <meta property="og:title" content="Pranav Dhawan — AI Engineer & Data Scientist">
     <meta property="og:description" content="AI Workplace Engineer Intern | MS Data Science @ GWU. Building ML systems across computer vision, NLP, and agentic AI.">
-    <meta property="og:image" content="https://pranavdhawan.netlify.app/images/photo.png">
-    <meta property="og:image:width" content="487">
-    <meta property="og:image:height" content="476">
-    <meta property="og:image:alt" content="Illustrated avatar of Pranav Dhawan">
+    <meta property="og:image" content="https://pranavdhawan.com/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pranav Dhawan — AI Engineer. ~70% of service-desk tickets automated; 98.1% F1 across 54 PII entity types.">
 
-    <!-- Twitter: photo.png is ~1:1, so use the square summary card instead of summary_large_image (2:1) -->
-    <meta name="twitter:card" content="summary">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pranav Dhawan — AI Engineer & Data Scientist">
     <meta name="twitter:description" content="AI Workplace Engineer Intern | MS Data Science @ GWU. Building ML systems across computer vision, NLP, and agentic AI.">
-    <meta name="twitter:image" content="https://pranavdhawan.netlify.app/images/photo.png">
-    <meta name="twitter:image:alt" content="Illustrated avatar of Pranav Dhawan">
+    <meta name="twitter:image" content="https://pranavdhawan.com/images/og-card.png">
+    <meta name="twitter:image:alt" content="Pranav Dhawan — AI Engineer. ~70% of service-desk tickets automated; 98.1% F1 across 54 PII entity types.">
 
     <!-- Favicon: inline SVG, neobrutalism yellow with 'P' -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD600' stroke='%231A1A1A' stroke-width='6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Space Grotesk,sans-serif' font-size='42' font-weight='800' fill='%231A1A1A'%3EP%3C/text%3E%3C/svg%3E">
@@ -35,16 +37,7 @@
     <link rel="stylesheet" href="styles.css">
 
     <!-- Preload the LCP hero avatar so it paints sooner -->
-    <link rel="preload" as="image" href="images/photo.png" fetchpriority="high">
-
-    <!-- Preconnect hints for third-party origins -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <!-- Google Fonts CSS rotates per-browser; SRI not recommended (Google docs) -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
-        crossorigin="anonymous">
+    <link rel="preload" as="image" href="images/photo.avif" type="image/avif" fetchpriority="high">
 
     <!-- Structured data for search engines (not executed, so CSP script-src does not apply) -->
     <script type="application/ld+json">
@@ -52,13 +45,13 @@
         "@context": "https://schema.org",
         "@type": "Person",
         "name": "Pranav Dhawan",
-        "url": "https://pranavdhawan.netlify.app/",
-        "image": "https://pranavdhawan.netlify.app/images/photo.png",
+        "url": "https://pranavdhawan.com/",
+        "image": "https://pranavdhawan.com/images/og-card.png",
         "jobTitle": "AI Workplace Engineer Intern",
-        "worksFor": {
-            "@type": "Organization",
-            "name": "American Chemical Society"
-        },
+        "worksFor": [
+            { "@type": "Organization", "name": "American Chemical Society" },
+            { "@type": "Organization", "name": "Siva Info LLC" }
+        ],
         "alumniOf": [
             {
                 "@type": "CollegeOrUniversity",
@@ -69,12 +62,26 @@
                 "name": "Manipal University Jaipur"
             }
         ],
-        "email": "mailto:dhawanpranav02@gmail.com",
+        "email": "dhawanpranav02@gmail.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Washington",
+            "addressRegion": "DC",
+            "addressCountry": "US"
+        },
         "sameAs": [
             "https://github.com/pranavdhawann",
             "https://linkedin.com/in/pranavvdhawann"
         ],
         "knowsAbout": ["Machine Learning", "Computer Vision", "Natural Language Processing", "Agentic AI", "Data Science"]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Pranav Dhawan",
+        "url": "https://pranavdhawan.com/"
     }
     </script>
 </head>
@@ -148,6 +155,8 @@
         </symbol>
     </svg>
 
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
     <!-- Top Navigation Bar -->
     <nav class="navbar" id="navbar">
         <div class="nav-logo">
@@ -189,7 +198,7 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main class="main-content">
+    <main class="main-content" id="main-content">
 
         <section id="home" class="hero">
             <!-- Particle + rocket decorations injected by script.js on capable viewports only -->
@@ -198,14 +207,14 @@
                 <div class="hero-content">
                     <p class="hero-availability">
                         <span class="status-dot" aria-hidden="true"></span>
-                        Open to roles in Artificial Intelligence and Machine Learning
+                        MS completed May 2026 &middot; Seeking full-time AI/ML engineering roles
                     </p>
                     <h1 class="hero-title">
                         Hi, I'm <span class="highlight">Pranav Dhawan</span>
                     </h1>
                     <p class="hero-description">
-                        Currently building <strong>agentic automation</strong> at American Chemical Society, Washington DC. MS in Data Science from George
-                        Washington University.
+                        AI engineer focused on production automation: <strong>~70% of monthly service-desk tickets automated</strong>,
+                        <strong>98.1% F1 across 54 PII entity types</strong>, and ML pipelines for <strong>10,000+ documents</strong>.
                     </p>
                     <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary">View My Work</a>
@@ -214,9 +223,21 @@
                 </div>
                 <div class="hero-image">
                     <div class="avatar-wrapper" id="avatarWrapper">
-                        <img src="images/photo.png" alt="Pranav Dhawan" class="avatar-img" id="avatarImg" width="487" height="476" fetchpriority="high" draggable="false">
-                        <img src="images/eye.png" alt="" class="eye-pupil" id="eyeLeft" draggable="false">
-                        <img src="images/eye.png" alt="" class="eye-pupil" id="eyeRight" draggable="false">
+                        <picture class="avatar-picture">
+                            <source srcset="images/photo.avif" type="image/avif">
+                            <source srcset="images/photo.webp" type="image/webp">
+                            <img src="images/photo.png" alt="Pranav Dhawan" class="avatar-img" id="avatarImg" width="487" height="476" fetchpriority="high" draggable="false">
+                        </picture>
+                        <picture class="eye-picture">
+                            <source srcset="images/eye.avif" type="image/avif">
+                            <source srcset="images/eye.webp" type="image/webp">
+                            <img src="images/eye.png" alt="" class="eye-pupil" id="eyeLeft" width="34" height="34" draggable="false">
+                        </picture>
+                        <picture class="eye-picture">
+                            <source srcset="images/eye.avif" type="image/avif">
+                            <source srcset="images/eye.webp" type="image/webp">
+                            <img src="images/eye.png" alt="" class="eye-pupil" id="eyeRight" width="34" height="34" draggable="false">
+                        </picture>
                     </div>
                 </div>
             </div>
@@ -247,6 +268,9 @@
                             <li>EY</li>
                             <li>HCLTech</li>
                             <li>Lumina Datamatics</li>
+                            <li>Siva Info LLC</li>
+                            <li>Aevantis Aerospace</li>
+                            <li>Admiles Media</li>
                         </ul>
                     </div>
                 </div>
@@ -280,7 +304,11 @@
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
-                            <img class="project-photo" src="images/stockscreen.png" alt="Stock Screen" width="959" height="838" loading="lazy">
+                            <picture class="project-picture">
+                                <source srcset="images/stockscreen.avif" type="image/avif">
+                                <source srcset="images/stockscreen.webp" type="image/webp">
+                                <img class="project-photo" src="images/stockscreen.png" alt="Stock Screen" width="959" height="838" loading="lazy">
+                            </picture>
                         </div>
                         <div class="project-content">
                             <h3>Stock Screen</h3>
@@ -301,12 +329,16 @@
 
                     <div class="project-card">
                         <div class="project-image">
-                            <img class="project-photo" src="images/multimodal.png" alt="Multimodal Techniques for Equity Forecasting" width="567" height="646" loading="lazy">
+                            <picture class="project-picture">
+                                <source srcset="images/multimodal.avif" type="image/avif">
+                                <source srcset="images/multimodal.webp" type="image/webp">
+                                <img class="project-photo" src="images/multimodal.png" alt="Multimodal Techniques for Equity Forecasting" width="567" height="646" loading="lazy">
+                            </picture>
                         </div>
                         <div class="project-content">
                             <h3>Multimodal Techniques for Equity Forecasting</h3>
                             <p>Conducted a benchmark study on the FinMultiTime dataset using multiple data modalities, evaluating 10+
-different model architectures and ensembles delivered findings in a research paper and technical report.  </p>
+                            different model architectures and ensembles delivered findings in a published research paper and technical report.  </p>
                             <div class="project-tech">
                                 <span class="tech-tag">Python</span>
                                 <span class="tech-tag">LSTM</span>
@@ -324,7 +356,11 @@ different model architectures and ensembles delivered findings in a research pap
 
                     <div class="project-card">
                         <div class="project-image">
-                            <img class="project-photo" src="images/pii.png" alt="Edge-Based PII Detection &amp; Censoring System" width="615" height="277" loading="lazy">
+                            <picture class="project-picture">
+                                <source srcset="images/pii.avif" type="image/avif">
+                                <source srcset="images/pii.webp" type="image/webp">
+                                <img class="project-photo" src="images/pii.png" alt="Edge-Based PII Detection &amp; Censoring System" width="615" height="277" loading="lazy">
+                            </picture>
                         </div>
                         <div class="project-content">
                             <h3>Edge-Based PII Detection &amp; Censoring System</h3>
@@ -347,7 +383,11 @@ different model architectures and ensembles delivered findings in a research pap
 
                     <div class="project-card">
                         <div class="project-image">
-                            <img class="project-photo" src="images/weather-dashboard.png" alt="Serverless ETL — Weather Dashboard" width="862" height="895" loading="lazy">
+                            <picture class="project-picture">
+                                <source srcset="images/weather-dashboard.avif" type="image/avif">
+                                <source srcset="images/weather-dashboard.webp" type="image/webp">
+                                <img class="project-photo" src="images/weather-dashboard.png" alt="Serverless ETL — Weather Dashboard" width="862" height="895" loading="lazy">
+                            </picture>
                         </div>
                         <div class="project-content">
                             <h3>Serverless ETL — Weather Dashboard</h3>
@@ -367,6 +407,29 @@ different model architectures and ensembles delivered findings in a research pap
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="client-work" class="client-work">
+            <div class="container">
+                <h2 class="section-title">CLIENT WORK</h2>
+                <p class="writing-intro">Alongside my ML work, I design, ship, and maintain production websites for businesses — the same ownership and operating discipline I bring to AI systems.</p>
+                <div class="client-work-grid">
+                    <article class="client-card">
+                        <p class="writing-tag">AEROSPACE &middot; NEW DELHI</p>
+                        <h3>Aevantis Aerospace</h3>
+                        <p>Production marketing site for an unmanned-systems manufacturer, presenting product lines, capabilities, and an enquiry flow.</p>
+                        <p class="client-maintenance">I maintain the site’s content, hosting, and performance.</p>
+                        <a class="project-link" href="https://aevantisaerospace.com/" target="_blank" rel="noopener noreferrer">Visit site <span aria-hidden="true">&rarr;</span></a>
+                    </article>
+                    <article class="client-card">
+                        <p class="writing-tag">OUTDOOR ADVERTISING &middot; DELHI NCR</p>
+                        <h3>Admiles Media</h3>
+                        <p>Production site for an outdoor-advertising company, with media-location information, project galleries, and lead capture.</p>
+                        <p class="client-maintenance">I maintain the site’s content, hosting, and performance.</p>
+                        <a class="project-link" href="https://admiles.in/" target="_blank" rel="noopener noreferrer">Visit site <span aria-hidden="true">&rarr;</span></a>
+                    </article>
                 </div>
             </div>
         </section>
@@ -462,7 +525,7 @@ different model architectures and ensembles delivered findings in a research pap
                                 <div class="achievements">
                                     <div class="achievement-item">
                                         <div class="achievement-text">
-                                            Published a journal paper from the <strong>Multimodal Techniques for Financial Time Series Forecasting</strong> capstone project.
+                                            Completed a <strong>published research paper and technical report</strong> from the Multimodal Techniques for Financial Time Series Forecasting capstone project.
                                         </div>
                                     </div>
                                     <div class="achievement-item">
@@ -490,7 +553,7 @@ different model architectures and ensembles delivered findings in a research pap
                         <div class="timeline-content">
                             <div class="timeline-date">February 2024 - August 2024</div>
                             <h3>Machine Learning Engineer</h3>
-                            <h4>Lumina Datamatics | Chennai, India | Full-time</h4>
+                            <h4>Lumina Datamatics | Chennai, India | Full-time, final-semester placement</h4>
                             <div class="timeline-details">
                                 <div class="achievements">
                                     <div class="achievement-item">
@@ -532,7 +595,7 @@ different model architectures and ensembles delivered findings in a research pap
 
                     <div class="timeline-item">
                         <div class="timeline-content">
-                            <div class="timeline-date">August 2020 - July 2024</div>
+                            <div class="timeline-date">August 2020 - May 2024</div>
                             <div class="timeline-badge education-badge">Graduated</div>
                             <h3>B.Tech in Computer Science and Engineering</h3>
                             <h4>Manipal University Jaipur | Rajasthan, India</h4>
@@ -711,6 +774,7 @@ different model architectures and ensembles delivered findings in a research pap
         <section id="contact" class="contact">
             <div class="container">
                 <h2 class="section-title">GET IN TOUCH</h2>
+                <p class="contact-availability">MS completed May 2026 &middot; seeking full-time AI/ML engineering roles &middot; based in Washington DC, open to hybrid or remote. Currently work-authorized in the US on F-1 OPT with STEM extension eligibility; will require visa sponsorship in the future.</p>
                 <div class="contact-content-centered">
                     <div class="contact-grid">
                         <div class="contact-info">
@@ -735,9 +799,6 @@ different model architectures and ensembles delivered findings in a research pap
                                 </a>
                                 <a href="https://linkedin.com/in/pranavvdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profile" data-analytics="linkedin">
                                     <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-linkedin"></use></svg>
-                                </a>
-                                <a href="https://app.joinhandshake.com/profiles/pranavvdhawann" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Handshake Profile" data-analytics="handshake">
-                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-handshake"></use></svg>
                                 </a>
                             </div>
                         </div>
@@ -772,7 +833,7 @@ different model architectures and ensembles delivered findings in a research pap
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2026 Pranav Dhawan | All rights reserved.</p>
+            <p>&copy; <span id="copyrightYear">2026</span> Pranav Dhawan | <a href="privacy.html">Privacy</a> | All rights reserved.</p>
         </div>
     </footer>
 
