@@ -65,6 +65,26 @@ test('typing a question and pressing Enter renders the stubbed answer', async ({
   await expect(page.locator('.chat-message--bot').last()).toHaveText('I am Pranav.');
 });
 
+test('dark-mode bot and typing messages use white text', async ({ page }) => {
+  await page.route('**/.netlify/functions/ask', async (route) => {
+    await new Promise((resolve) => setTimeout(resolve, 300));
+    await route.fulfill({ json: { answer: 'I am Pranav.' } });
+  });
+
+  await page.goto(pageUrl);
+  await page.locator('#themeToggle').click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await page.locator('#chatInput').focus();
+  await page.locator('#chatInput').fill('Who are you?');
+  await page.keyboard.press('Enter');
+
+  const textColors = await page.locator('.chat-message--bot, .chat-message--typing').evaluateAll((messages) =>
+    messages.map((message) => getComputedStyle(message).color)
+  );
+  expect(textColors).toEqual(['rgb(255, 255, 255)', 'rgb(255, 255, 255)']);
+  await expect(page.locator('.chat-message--user')).toHaveCSS('color', 'rgb(26, 26, 26)');
+});
+
 test('suggestion chip sends its question', async ({ page }) => {
   await page.route('**/.netlify/functions/ask', (route) =>
     route.fulfill({ json: { answer: 'I build AI agents at ACS.' } })

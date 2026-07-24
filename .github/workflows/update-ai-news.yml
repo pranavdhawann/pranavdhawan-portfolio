@@ -2,7 +2,7 @@ name: Update AI news digest
 
 on:
   schedule:
-    # Every Monday at 06:15 UTC — see docs/ai-news-pipeline.md
+    # Every Monday at 06:15 UTC
     - cron: '15 6 * * 1'
   workflow_dispatch:
 
@@ -42,12 +42,13 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase
           git add blog/index.html blog/data/ai-news.json
           git commit -m "chore: weekly AI news digest ($(date -u +%Y-%m-%d))"
           git push
 
       # Emails the digest to Netlify Forms subscribers. Skips cleanly until
-      # the secrets below are configured — see docs/ai-news-pipeline.md.
+      # the secrets below are configured.
       - name: Send newsletter
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -57,6 +58,8 @@ jobs:
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASS: ${{ secrets.SMTP_PASS }}
           NEWSLETTER_FROM: ${{ secrets.NEWSLETTER_FROM }}
+          NEWSLETTER_ADDRESS: ${{ secrets.NEWSLETTER_ADDRESS }}
+          UNSUBSCRIBE_SECRET: ${{ secrets.UNSUBSCRIBE_SECRET }}
         run: node scripts/send-newsletter.mjs
 
       - name: Commit newsletter state
@@ -67,6 +70,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase
           git add blog/data/newsletter-state.json
           git commit -m "chore: newsletter sent ($(date -u +%Y-%m-%d)) [skip ci]"
           git push

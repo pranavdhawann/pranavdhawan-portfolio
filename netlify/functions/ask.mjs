@@ -9,7 +9,7 @@ const FRIENDLY_ERROR = "I couldn't answer right now — try again in a moment, o
 
 // Only allow browser calls from the site itself. Requests with no Origin (curl,
 // server-to-server, unit tests) fall through to the rate limiter below.
-const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://pranavdhawan.netlify.app')
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://pranavdhawan.com,https://www.pranavdhawan.com,https://pranavdhawan.netlify.app')
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
@@ -20,6 +20,15 @@ const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://pranavdhawan.ne
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 15;
 const recentHits = new Map();
+
+export const config = {
+  path: '/.netlify/functions/ask',
+  rateLimit: {
+    windowLimit: 15,
+    windowSize: 60,
+    aggregateBy: ['ip'],
+  },
+};
 
 const clientIp = (request) =>
   request.headers.get('x-nf-client-connection-ip') ||
@@ -36,6 +45,12 @@ const isRateLimited = (ip) => {
 
 // Test-only hook so the throttle does not leak state across cases.
 export const resetRateLimit = () => recentHits.clear();
+
+const isSafeAnswer = (answer) => {
+  if (answer.includes('```') || /^#{1,6}\s/m.test(answer)) return false;
+  const sentences = answer.match(/[.!?](?:\s|$)/g) || [];
+  return sentences.length <= 6;
+};
 
 const SYSTEM_PROMPT = `You are Pranav Dhawan, speaking in the first person on your portfolio website. Visitors ask you questions to learn about you.
 
@@ -135,6 +150,10 @@ export default async function handler(request) {
   const data = await groqResponse.json().catch(() => null);
   const answer = data?.choices?.[0]?.message?.content?.trim();
   if (!answer) {
+    return json({ error: FRIENDLY_ERROR }, 502);
+  }
+  if (!isSafeAnswer(answer)) {
+    console.warn('Ask Pranav response rejected by output guard', { length: answer.length });
     return json({ error: FRIENDLY_ERROR }, 502);
   }
 

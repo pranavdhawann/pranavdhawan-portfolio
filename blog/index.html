@@ -8,26 +8,33 @@
     <meta name="description" content="Short notes from Pranav Dhawan on lessons from his AI and ML projects — RAG, multimodal forecasting, and the trade-offs behind them.">
     <meta name="author" content="Pranav Dhawan">
     <meta name="theme-color" content="#FFD600">
-    <link rel="canonical" href="https://pranavdhawan.netlify.app/blog/">
+    <link rel="canonical" href="https://pranavdhawan.com/blog/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Blog — Pranav Dhawan">
+    <meta property="og:description" content="Notes from Pranav Dhawan on AI and ML engineering projects.">
+    <meta property="og:url" content="https://pranavdhawan.com/blog/">
+    <meta property="og:image" content="https://pranavdhawan.com/images/og-card.png">
+    <meta property="og:site_name" content="Pranav Dhawan">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://pranavdhawan.com/images/og-card.png">
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD600' stroke='%231A1A1A' stroke-width='6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Space Grotesk,sans-serif' font-size='42' font-weight='800' fill='%231A1A1A'%3EP%3C/text%3E%3C/svg%3E">
     <script src="../theme-init.js"></script>
     <script src="newsletter.js" defer></script>
+    <script src="../script.js" defer></script>
+    <script data-goatcounter="https://pranavdhawan.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="../styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&display=swap"
-        crossorigin="anonymous">
 </head>
 
 <body>
-    <main class="main-content">
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <nav class="navbar"><div class="nav-logo"><a href="../index.html">PRANAV DHAWAN</a></div><div class="nav-right"><a class="nav-link" href="../index.html">Portfolio</a><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><span class="icon-moon" aria-hidden="true">☾</span><span class="icon-sun" aria-hidden="true">☀</span></button></div></nav>
+    <main class="main-content" id="main-content">
         <section class="writing">
             <div class="container">
                 <p class="article-back"><a href="../index.html">&larr; Back to portfolio</a></p>
                 <h1 class="section-title">BLOG</h1>
                 <p class="writing-intro">Short notes on lessons from my projects — the kind of trade-offs that don't make it into a résumé bullet.</p>
-                <h2 class="visually-hidden">Notes from my projects</h2>
+                <h2 class="section-title article-section-title">Written by me</h2>
                 <div class="writing-grid">
                     <a class="writing-card" href="rag-hallucinations.html" data-analytics="blog:rag-hallucinations">
                         <span class="writing-tag">Retrieval-Augmented Generation</span>
@@ -44,6 +51,7 @@
                 </div>
 
                 <h2 class="section-title ai-news-title">AI THIS WEEK</h2>
+                <p class="writing-intro curated-intro">Curated automatically from primary sources by a zero-dependency pipeline I built; each item links to its original source.</p>
                 <!-- AI-NEWS:START -->
                 <p class="writing-intro">A weekly, auto-curated digest of AI developments — pulled straight from official lab blogs, arXiv, and GitHub. Every card links to its original source. Updated Jul 20, 2026.</p>
                 <div class="writing-grid">
@@ -124,7 +132,7 @@
 
                 <aside class="newsletter" aria-labelledby="newsletterTitle">
                     <h2 class="newsletter-title" id="newsletterTitle">Get this digest in your inbox</h2>
-                    <p class="newsletter-copy">One email every Monday with the week's AI developments. No spam — reply "unsubscribe" any time to opt out.</p>
+                    <p class="newsletter-copy">One email every Monday with the week's AI developments. See the <a href="../privacy.html">privacy notice</a>; unsubscribe using the link in any email.</p>
                     <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
                         <input type="hidden" name="form-name" value="newsletter">
                         <p class="contact-hp" hidden>
@@ -141,6 +149,7 @@
             </div>
         </section>
     </main>
+    <footer class="footer"><div class="container"><p>&copy; <span id="copyrightYear">2026</span> Pranav Dhawan | <a href="../privacy.html">Privacy</a></p></div></footer>
 </body>
 
 </html>

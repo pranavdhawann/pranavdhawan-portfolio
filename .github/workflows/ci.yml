@@ -23,6 +23,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check dependency advisories
+        run: npm audit --audit-level=high
+
       - name: Cache Playwright browsers
         uses: actions/cache@v4
         id: playwright-cache
@@ -33,16 +36,13 @@ jobs:
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
 
-      - name: Validate HTML
-        run: npm run test:html
+      - name: Run project verification
+        run: npm run check
 
-      - name: Check Netlify security headers
-        run: npm run check:headers
-
-      - name: Run Playwright and axe smoke tests
-        run: npm test
+      - name: Build production site
+        run: npm run build
 
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --verbose --exclude https://linkedin.com/in/pranavvdhawann --exclude https://www.linkedin.com/in/pranavvdhawann --exclude https://app.joinhandshake.com/profiles/pranavvdhawann --accept 200,204,206,301,302,429 index.html README.md
+          args: --no-progress --verbose --exclude https://linkedin.com/in/pranavvdhawann --exclude https://www.linkedin.com/in/pranavvdhawann --exclude https://app.joinhandshake.com/profiles/pranavvdhawann --exclude https://openai.com/index/a-scorecard-for-the-ai-age --exclude https://pranavdhawan.com/privacy.html --accept 200,204,206,301,302,429 public/index.html public/blog/*.html public/privacy.html README.md
