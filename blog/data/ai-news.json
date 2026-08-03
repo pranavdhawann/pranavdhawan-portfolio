@@ -1,6 +1,627 @@
 {
-  "updated": "2026-07-20",
+  "updated": "2026-08-03",
   "items": [
+    {
+      "title": "Ten advances in mathematics and theoretical computer science",
+      "url": "https://openai.com/index/ten-advances-in-mathematics",
+      "date": "2026-08-01",
+      "summary": "OpenAI shares new results on long-standing open problems in mathematics and theoretical computer science, including advances in geometry, cryptography, and complexity.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "FareedKhan-dev/kimi-k3-in-c — trending AI repo",
+      "url": "https://github.com/FareedKhan-dev/kimi-k3-in-c",
+      "date": "2026-08-01",
+      "summary": "A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU. (★ 795)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
+    },
+    {
+      "title": "Advancing responsible AI across Europe",
+      "url": "https://openai.com/index/advancing-responsible-ai-across-europe",
+      "date": "2026-07-31",
+      "summary": "OpenAI shares how its safety, security, transparency, and provenance practices support responsible AI governance in Europe. The work will continue as the EU AI Act advances.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Building abundant intelligence",
+      "url": "https://openai.com/index/building-abundant-intelligence",
+      "date": "2026-07-31",
+      "summary": "A full-stack approach to making advanced AI more capable, more affordable, and more widely useful.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Univé builds an AI-ready workforce",
+      "url": "https://openai.com/index/unive",
+      "date": "2026-07-31",
+      "summary": "See how Univé built an AI-ready workforce with ChatGPT Enterprise by combining leadership, responsible governance, and employee-led innovation to transform work at scale.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Disrupting a Criminal Scam Operation",
+      "url": "https://openai.com/index/disrupting-malicious-uses-of-ai-criminal-scam-operation",
+      "date": "2026-07-31",
+      "summary": "OpenAI disrupted a Cambodia-based scam operation using ChatGPT to support investment, romance, gambling, and impersonation schemes.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "TokTier: Exact Stateful Tokenization for Agentic LLM Serving",
+      "url": "https://arxiv.org/abs/2607.29678v1",
+      "date": "2026-07-31",
+      "summary": "LLM serving systems cache prompt KV state, yet most front ends still re-tokenize the full request text on every call. The cost lands on coding agents, which resubmit a long transcript after each small tool result, and reuse is hard because even a short append can change token boundaries near the end of the previous sequence. Across 153,951 calls from two agent ecosystems, the median call appends about 1.4K characters, and only 1.0-3.6% of calls start or rebuild a session with contexts of millions of characters. At a 94.1% fleet prompt-cache hit rate, tokenization reaches up to 64% of time to first token. TokTier is a stateful tokenization service with one contract: emitted token IDs are always identical to full reference tokenization of the request text. For a session continuation, it re-tokenizes a small window around the append and splices only after a per-request stable-boundary check, widening the window or falling back to full tokenization on failure. For a call without a reusable prefix, it decomposes GPT-family regex pre-tokenization into run-local rules and runs exact pre-tokenization and BPE on a GPU. A sampled shadow verifier re-checks live traffic. Across 17 tokenizer families, differential campaigns cover 1.5x10^10 split checks, a 12.4 TB real-text corpus, and 93,000+ replayed agent steps, with zero divergence. Incremental repair takes 0.5-1.1 ms from 100K to 3M characters, up to 437x faster than HF tokenization and 2.1x faster at 1M than the strongest cache-based baseline (Gigatoken) fully prewarmed. GPU full tokenization encodes a 1M-character request in 0.87 ms, up to 491x below HF and 23.4x below the fastest published CPU method. With vLLM, median time to first token drops 16-34% and P99 drops 23% under recorded bursts. Under a 50 ms P99 objective, four repair cores plus one GPU sustain 1,821 requests/s where a 16-core stateless front end saturates at 40.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "ExtractBench: A Benchmark for Schema-Guided Enterprise Document Extraction",
+      "url": "https://arxiv.org/abs/2607.29677v1",
+      "date": "2026-07-31",
+      "summary": "Enterprise workflows increasingly rely on agents for \\emph{schema-guided extraction}: given a document and a user-defined schema, the agent faithfully follows the schema to produce the correct output with source evidence as grounding metadata. We present ExtractBench, a benchmark for schema-guided extraction and, to our knowledge, the first to score value accuracy, record completeness at scale, grounding, and measured cost together. The evaluation system contains 4,869 pages across 370 enterprise documents, 8 business domains, and 67 document types, with clear tags differentiating their challenge scenarios. The scalable schema and ground-truth curation pipeline combines independent-system agreement for real documents, known values for synthetic lists, and human verification for forms. We report order-insensitive value F1 for value accuracy, plus two grounding metrics for source traceability: word- and page-level F1. Commercial VLMs perform well on short documents but often truncate record lists on long ones, while coding agents retain higher accuracy at much higher cost. LlamaExtract Agentic Plus ranks first on all three metrics, with accuracy comparable to coding agents at a fraction of the cost. Dataset and evaluation code are available on \\href{https://huggingface.co/datasets/llamaindex/ExtractBench}{HuggingFace} and \\href{https://github.com/run-llama/ExtractBench}{GitHub}.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Differentially Private Nonparametric Modal Learning with Applications to Regression and Clustering",
+      "url": "https://arxiv.org/abs/2607.29675v1",
+      "date": "2026-07-31",
+      "summary": "Density modes provide a localized and interpretable summary of multimodal distributions, but their estimation under rigorous differential privacy constraints remains largely unexplored. We study differentially private recovery of density modes for multivariate distributions under local smoothness, curvature, and separation conditions. We propose DP-GRAMS, a mean-shift inspired method that performs noisy ascent on a differentially private score estimator. Assuming the density belongs locally to a Hölder class with smoothness parameter $β> 2$, our score estimator uses bias-reducing higher-order kernels, and then enforces privacy in the gradient ascent steps via gradient clipping and calibrated Gaussian noise. A private initialization scheme combines a density-aware utility with a suppression rule and, with $k\\asymp M\\log n$ draws over a public $h_{\\mathrm{DAP}}$-grid and suppression radius $ρ_{\\mathrm{init}}\\asymp (\\log n)^{-1/d}$, achieves high-probability coverage of the modal basins by successively suppressing selected local neighborhoods in competitive regions, while correlated noise across multiple starts enables joint release under a single $(\\varepsilon,δ)$-differential privacy guarantee. We prove that all population modes are recovered with high probability and establish asymptotic error rates of the form $O\\!\\left((\\tfrac{\\log n}{n})^{\\frac{2(β-1)}{d+2β}}\\right) + O\\!\\left((\\tfrac{\\mathrm{polylog}(n,δ)}{n^2\\varepsilon^2})^{\\frac{β-1}{d+β}}\\right)$. We also provide minimax lower bounds for private mode estimation, and show that our estimators are nearly optimal, up to a logarithmic factor in the MSE. We present two natural extensions: DP-PMS, a private modal-regression method, and DP-GRAMS-C, a clustering pipeline. Extensive experiments on synthetic and real data demonstrate favorable privacy-utility trade-offs relative to common baselines.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Sign compression for Muon: SignMuon, MuonSign, and the Limits of Error Feedback",
+      "url": "https://arxiv.org/abs/2607.29674v1",
+      "date": "2026-07-31",
+      "summary": "SignMuon compresses the Muon update to one bit per parameter by taking its elementwise sign, providing the most direct way to run a matrix-aware optimizer under an extremely low communication budget. It outperforms SignSGD in practice, yet it can ascend even on a linear function. Signing the gradient before the Linear Minimization Oracle (LMO), rather than after, does not repair this: we construct a small explicit instance on which sign-before (MuonUSign) and sign-on-both-sides (MuonSign) ascend as well, so no placement of the sign around the oracle descends in general. Error feedback, the standard remedy for a biased compressor, does not rescue SignMuon: when applied to Muon's output, error feedback can fail for every smoothness constant, step size, and momentum. Applied to the gradient, error feedback does work, and EF21-MuonUSign and EF21-MuonSign attain the standard $\\mathcal{O}(T^{-1/2})$ rate for the squared gradient norm on smooth nonconvex problems, the latter at one bit in each direction. Experiments then reverse the ordering: across centralized CIFAR-10, federated CIFAR-10, and the nanoGPT speedrun, the strongest compressed method is consistently sign-after-the-LMO, precisely the placement we prove divergent, with the provably convergent variants trailing it. Compressing after the LMO, a heuristic, matters more at these scales than the guarantee does.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Freeze, Then Select: Structured Field Adapters and Stability-Validated Weak Selection for PDE Discovery from Sparse Observations",
+      "url": "https://arxiv.org/abs/2607.29665v1",
+      "date": "2026-07-31",
+      "summary": "PDE discovery from sparse observations requires reconstructing a continuous field and selecting the correct differential terms. Our analysis of optimization paths in coupled neural PDE discovery reveals three behaviors: the exact support can persist to the end of training, appear only transiently, or fail to emerge. To decouple equation selection from neural optimization, we develop a freeze-then-select method combining a structured field adapter with Stability-Validated Weak Selection (SVWS). Trained from observations without a PDE residual, the adapter factorizes the field into learned spatial features and temporal coefficients represented by cubic splines. After freezing the field, SVWS identifies recurrent terms across independent weak-form systems, refits candidate supports, and selects the final equation on held-out weak-form systems. Beyond fixed libraries, we apply the same principle to expressions generated by genetic programming and recover the power-law form of an unknown nonlinear diffusion function from sparse, noisy observations. Across all six sparse MDBench regimes, our method attains the highest exact support recovery rate, with its clearest gains over classical and neural baselines on challenging Kuramoto-Sivashinsky dynamics.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "GQ-FSL: Green Quantized Federated Split Learning",
+      "url": "https://arxiv.org/abs/2607.29659v1",
+      "date": "2026-07-31",
+      "summary": "Deploying state-of-the-art deep neural networks (DNNs) at the wireless edge is severely bottlenecked by the strict energy and resource constraints of mobile devices. While federated split learning (FSL) mitigates on-device computation by offloading workloads to an edge server, this may introduce systemic overheads, while the continuous exchange of cut-layer data, and submodels still incurs significant energy consumption (EC). To address this, we propose a green quantized FSL (GQ-FSL) framework that incorporates stochastic quantization for both local collaborative training and wireless transmissions. Notably, GQ-FSL supports asymmetric precision levels for the client- and server-side submodels, effectively decoupling device energy constraints from global convergence degradation. To quantify these tradeoffs, we develop parameterized energy models for the split architecture and derive a theoretical convergence bound under statistically heterogeneous data. Building on that, we formulate a joint optimization problem to configure the DNN split point and precision levels, minimizing the total system EC while satisfying a strict target accuracy constraint. Ultimately, we demonstrate that GQ-FSL enables large-scale DNN deployment on resource-constrained devices, achieving superior energy efficiency compared to quantized federated learning and full-precision FSL.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Development of FDD-ON: an Ontology for VAV HVAC System Fault Detection and Diagnostics",
+      "url": "https://arxiv.org/abs/2607.29657v1",
+      "date": "2026-07-31",
+      "summary": "Fault detection and diagnosis (FDD) technology is essential for improving HVAC system reliability, energy efficiency, and maintenance effectiveness. However, effective deployment of FDD solutions in buildings requires structured domain knowledge that can bridge heterogeneous data sources, diverse equipment types, and varied diagnostic outputs. Limited data interpretability and interoperability within the FDD domain have led to fragmented information silos, hindering the implementation of FDD and related applications, such as the digital twin-enabled FDD frameworks and artificial intelligence (AI)-driven maintenance decision-making systems. This paper presents an FDD Ontology (FDD-ON), a modular and extensible ontology to formally represent variable air volume (VAV) HVAC system components, fault types, symptom statuses, fault impacts and associated attributes. FDD-ON integrates HVAC system FDD semantics to provide comprehensive representations of fault and symptom attributes, supported by the well-defined controlled vocabulary. Additionally, FDD-ON offers comprehensive fault, symptom, and impact libraries to capture a broad spectrum of operational abnormalities and their consequences in VAV HVAC systems. Through explicit contributing cause-fault-symptom-impact relations, FDD-ON serves as a machine-interpretable basis for querying diagnostic knowledge, mapping heterogeneous FDD outputs, and developing interoperable FDD-related applications. FDD-ON is evaluated using publicly available VAV HVAC system datasets and demonstrated through FDD development applications. Results indicate that FDD-ON provides a foundational semantic framework for advancing scalable, transparent, and interoperable FDD solutions across various applications.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Evolving language compositionality in a frequency-structured meaning space",
+      "url": "https://arxiv.org/abs/2607.29642v1",
+      "date": "2026-07-31",
+      "summary": "The iterated learning model was introduced to investigate language evolution: the way in which the characteristic properties of human languages have been shaped, at least partly, by repeated transmission from one language user to another. The key finding is that language compositionality can arise spontaneously as a consequence of language being passed repeatedly through a language learning bottleneck. Here we explore how changing the frequency of different meanings, so that some meanings occur much more frequently than others, affects the character of its compositionality. We find that, as observed in natural languages, high-frequency meanings can escape the pressure to conform to the grammar that characterizes lower-frequency meanings. However, when the frequency structure is instead imposed on parts rather than on whole meaning vectors, the language fails to transmit across generations. This occurs despite the fact that the most frequent elements are reliably learned. These results suggest that frequency can shape emergent linguistic structure only when the frequency distribution is defined over form-meaning units that learners can acquire holistically. When frequency is instead distributed over smaller units, it fails to support the relational structure required for compositional generalisation, thereby preventing stable language transmission.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Advancing the price-performance frontier with GPT-5.6",
+      "url": "https://openai.com/index/advancing-the-price-performance-frontier-with-gpt-5-6",
+      "date": "2026-07-30",
+      "summary": "Explore lower GPT‑5.6 pricing for Luna and Terra—and how OpenAI’s more efficient models help enterprises deploy AI workflows at scale.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How avatarin built a 24/7 retail agent with GPT-Realtime",
+      "url": "https://openai.com/index/avatarin",
+      "date": "2026-07-30",
+      "summary": "avatarin uses OpenAI’s GPT-Realtime to give Yamada Denki shoppers 24/7 multilingual support. In two weeks, 30,000 people used the agent and 92% of survey responses were positive.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Investigating Incidents Cybersecurity Evals",
+      "url": "https://www.anthropic.com/news/investigating-incidents-cybersecurity-evals",
+      "date": "2026-07-30",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Gemini Robotics ER 2: powering robotics with video understanding, task orchestration, and multi-robot collaboration",
+      "url": "https://deepmind.google/blog/gemini-robotics-er-2-powering-robotics-with-video-understanding-task-orchestration-and-multi-robot-collaboration/",
+      "date": "2026-07-30",
+      "summary": "Gemini Robotics ER 2 helps robots reason, collaborate, and solve real-world tasks. It represents a step change in video understanding, tool orchestration, and multi-robot collaboration for robotic applications.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "GPU Management: Why Idle GPUs Are the New Grounded Aircraft",
+      "url": "https://huggingface.co/blog/Dharma-AI/gpu-management",
+      "date": "2026-07-30",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "Daniela Rus receives Bavarian Minister-President's High-Tech Prize",
+      "url": "https://news.mit.edu/2026/daniela-rus-receives-bavarian-minister-presidents-high-tech-prize-0730",
+      "date": "2026-07-30",
+      "summary": "Director of CSAIL and MIT professor honored for her contributions to robotics, artificial intelligence, and autonomous systems.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Connecting research to policy on Capitol Hill",
+      "url": "https://news.mit.edu/2026/connecting-research-to-policy-on-capitol-hill-0730",
+      "date": "2026-07-30",
+      "summary": "MIT students and postdocs discussed science funding and research with policymakers in Washington during the MIT Science Policy Initiative’s annual Congressional Visit Days.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "How enabling two settings tripled our scores on the ARC-AGI-3 benchmark",
+      "url": "https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores",
+      "date": "2026-07-29",
+      "summary": "How two API settings improved GPT-5.6 performance on ARC-AGI-3, boosting scores and efficiency by retaining reasoning and enabling compaction.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Accelerating scientific discovery with ChatGPT for Academic Researchers",
+      "url": "https://openai.com/index/chatgpt-for-academic-researchers",
+      "date": "2026-07-29",
+      "summary": "OpenAI is giving 100,000 academic researchers free access to ChatGPT's most advanced AI models to accelerate scientific research, collaboration, and discovery.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "How GPT-5.6 fuses frontier intelligence with frontier efficiency",
+      "url": "https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency",
+      "date": "2026-07-29",
+      "summary": "GPT-5.6 improves AI efficiency across models, inference, and agentic workflows, helping deliver more useful intelligence per dollar.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "We’re launching Lyria 3.5 in Google Flow Music, with advances across musicality, lyrics, vocals, and creative control",
+      "url": "https://deepmind.google/blog/were-launching-lyria-35-in-google-flow-music-with-advances-across-musicality-lyrics-vocals-and-creative-control/",
+      "date": "2026-07-29",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "From CUDA to MLX: How K-Search Brings Decades of Kernel Expertise to Apple Silicon",
+      "url": "https://bair.berkeley.edu/blog/2026/07/29/cuda-to-mlx-k-search/",
+      "date": "2026-07-29",
+      "summary": "Figure 1: CUDA-to-MLX optimization translation map. CUDA optimization knowledge can be translated into architecture-native MLX strategies rather than copied instruction-for-instruction. We face a new epoch in computing. Hardware is changing rapidly — not just faster GPUs, but a growing range of chips from different vendors, each with its own architecture and often tailored to specific AI workloads. Software is changing just as fast, and AI coding tools now generate in minutes what took months of effort a few years ago. With so much of computing now centered on AI, GPU kernels are a crucial component of its success. These are the low-level programs that run inside the GPU, and writing efficient ones is far from obvious — it takes years of expertise to get right. Transferring a kernel from one vendor’s hardware to another is harder still, and often means rediscovering the same optimizations from scratch. The CUDA ecosystem, for example, has accumulated decades of hard-won kernel expertise: hand-tuned implementations of attention, state space models, and other critical operations representing thousands of engineering hours. Newer hardware ecosystems (Apple Silicon, custom AI accelerators, and others) are growing fast but lack this depth. In this work we ask whether that expertise can be transferred automatically. We built on K-Search , an evolutionary kernel search framework introduced by Cao et al. at Berkeley Sky Lab that uses AI to optimize GPU kernels, and extended it with a backend for MLX — Apple’s machine-learning framework for its own Apple Silicon chips. We developed a novel structured CUDA-to-MLX translation layer that lets K-Search take existing CUDA kernels as a knowledge base and adapt them into high-quality GPU kernels for Apple Silicon, rather than rebuilding from scratch. We show that our approach reaches near-expert level performance on Apple Silicon with 0.97x speedup compared to the native MLX Attention kernel, and up to a 20x prefill speedup over the community mlx-lm implementation on the Mamba SSM kernel; we report the numbers, and how much of the gain comes from the translation layer, in the sections below. Although we focus on MLX kernels for Apple Silicon, the method is not specific to MLX and applies to any ecosystem where CUDA expertise is transferable. Why MLX? Apple’s MLX framework has seen remarkable adoption since late 2023. With Apple Silicon in hundreds of millions of MacBooks and Mac Studios, MLX enables local AI inference without cloud costs. The unified memory architecture makes it especially attractive for mid-sized models (7B–70B parameters on M series chips). Yet beneath this momentum lies a significant gap: many performance-critical kernels that the NVIDIA ecosystem takes for granted: paged attention, optimized SSM scan kernels, fused MoE routing are either absent or naive without hardware-specific tuning. MLX runs models correctly but often leaves significant performance on the table. This gap is what motivates the rest of this post. What is K-Search? K-Search is an evolutionary kernel optimization framework originally developed by our first author Shiyi Cao at UC Berkeley Sky Lab. Given a naive kernel and a hardware specification, it runs an iterative optimization loop: an LLM reasons about which optimizations to try next, a code-writing model generates candidate kernels, and those candidates are compiled and benchmarked on real hardware. Measurements feed back into the search, which keeps refining, pursuing promising directions and dropping dead ends until performance converges. Algorithm 1: K-Search via co-evolving world models. The search alternates between selecting the most promising action, instantiating and evaluating code until improvement stagnates, and evolving the world model through insert, update, and prune operations. Adapted from Cao et al. (2026) . Search is grounded by a Spec: a domain-specific document encoding hardware rules, optimization patterns, and mathematical constraints which keeps generated code from hallucinating invalid primitives and ensures candidates will actually compile and run efficiently. In our runs, a single model (Gemini 3.5 Pro Preview) plays both roles: it maintains the reasoning state and writes the kernels. The reasoning half is prompted as a “GPU kernel performance engineer” and asked to work through a fixed analysis before proposing anything: classify the kernel (reduction, scan, attention/softmax, …), rewrite the reference computation in canonical form, map out data layout and access patterns, and hypothesize the likely bottleneck (bandwidth, latency, compute, or synchronization) in each runtime regime. Only then does it emit candidate optimizations, each as a single change implementable in one iteration. We call the persistent reasoning state a world model . Rather than a flat list of things to try, it is a decision (prefix) tree: each root→leaf path composes a full optimization plan, and sibling branches are competing alternatives. Every node is scored — an overall_rating in [0, 10], a confidence in [0, 1], and per-node impacts on memory bandwidth, register pressure, and compute/hardware fit — so the search can rank partial plans and expand the most promising ones. The tree persists and grows across rounds: refining an idea adds a child node rather than overwriting its parent, and if the best score fails to improve for a few rounds (a stagnation window) the search backs off to explore an alternative branch. A single node, as it appears mid-run on the attention kernel, looks like this: { \"action\" : \"Replace the threadgroup-memory softmax reduction with a register-only reduction: each SIMD group owns 8 query rows and reduces across lanes with simd_shuffle_xor, removing a threadgroup_barrier.\" , \"difficulty_1_to_5\" : 4 , \"impacts\" : { \"memory_bandwidth\" : 8 , \"register_pressure\" : 4 , // risk: spill if Br > 8 \"compute_hw_fit\" : 9 // SIMD width 32 ; keep tile 8 x 8 }, \"overall_rating_0_to_10\" : 8 , \"confidence_0_to_1\" : 0.7 } Listing 1: Example K-Search world-model node. Each candidate optimization records a concrete action, estimated hardware impacts, an overall priority rating, and the model's confidence. Figure 2: Overview of K-Search. The framework operates on a Search State $S_t$ structured as a search tree. The tree consists of Closed nodes (blue, visited states with attached program like $x_{12}$) and a Frontier of Open nodes (orange, pending hypotheses like $u_{13}$). The workflow iterates through three phases: (1) Action Selection , where the most promising action node is retrieved from the frontier based on world model estimated priority score $V$; (2) Local Refinement , where a stochastic policy $\\pi_{\\mathrm{code}}$ samples concrete implementations until stagnation; and (3) World Model Update , where the LLM reasons over the trajectory to update the search tree via Insert (adding new actions), Update (adjusting $V$, e.g., $u_{11}$ dropping from 0.9 to 0.6), and Prune (removing less promising nodes like $u_{10}$). The original K-Search paper evaluated this search strategy on CUDA kernels from FlashInfer. Across GQA decode, MLA decode, MLA prefill, and MoE, K-Search improved more consistently than OpenEvolve and ShinkaEvolve over the same 120-iteration budget. These results establish the search framework we build on here; the remainder of this post asks whether its optimization knowledge can transfer beyond CUDA. Figure 3: Main results from the original K-Search paper. Across three runs, K-Search achieves stronger best-so-far search scores, per-workload kernel performance, and speedup distributions than OpenEvolve and ShinkaEvolve on four FlashInfer CUDA kernels. Reproduced exactly from Cao et al. (2026) . Building an MLX backend To bring K-Search to Apple Silicon, we first built a native MLX backend. We implemented a full MLX-specific task adapter for K-Search, including: An MLX task backend in k_search/tasks/ handling kernel compilation and execution on Apple Silicon via MLX’s Metal/C++ APIs. Updated kernel generator prompts for writing and modifying Metal/MLX kernels. MLX-specific benchmarking integration using mlx.core measurement utilities. Translating CUDA expertise to MLX However, the more interesting challenge was not simply running K-Search on MLX. The key insight is that expert CUDA kernels encode decades of optimization knowledge that is transferable to Apple GPU if you can bridge the conceptual gap. Simply handing an LLM a CUDA kernel and asking it to port it is not enough: without deep hardware context, it produces code that is syntactically valid but architecturally wrong (wrong tile sizes, invalid primitives, mismatched memory assumptions). Our translation layer consists of: Concept mapping tables: A structured glossary of CUDA primitives and their MLX/Metal equivalents with hard constraints. For example: __shared__ maps to Metal threadgroup memory but with a hard 32 KB limit (vs. NVIDIA’s 48 KB) warp_reduce maps to MMA (preferred) __syncthreads() becomes threadgroup_barrier(mem_flags::mem_tg) H100’s ~3.35 TB/s HBM3 maps to M3 Max’s ~400 GB/s unified DRAM a bandwidth difference that reshapes which optimizations are worth pursuing. MLX-specific hints and patterns: Concrete code-level patterns for operations with no direct CUDA equivalent, such as register-based row reductions using simd_shuffle_xor in an 8×8 MMA tile layout, or the “exp2 trick” (replacing $exp(x)$ with $exp_2(x \\log_2 e)$) for faster softmax on Apple’s fast $exp_2$ hardware instruction. Reusable assertions: Expert kernel behaviors reframed as properties the evolutionary search must preserve, rather than code to copy. Matching expert kernel performance: the Attention kernel We evaluate three configurations of an MLX attention kernel for Apple Silicon: (1) a naive baseline, (2) pure evolution with no additional provided context, and (3) a full context translation layer, which supplies the optimizer with architecture-specific implementation knowledge extracted from high-performance kernels (e.g., FlashAttention-2), letting the evolutionary search reason about implementation strategies rather than starting from a naive kernel. Together, these three configurations let us isolate the exact impact of the translation layer. Figure 4: Performance scaling of the Attention Kernel through stacked optimizations. The \"Full Context\" configuration successfully discovers and implements advanced strategies like double buffering and loop unrolling, achieving near-expert performance. The jump from 0.26× to 0.97× the speed of Apple’s state-of-the-art attention kernel — illustrates how much the translation layer matters. With full context, the evolved kernel independently discovers the key optimizations in FlashAttention 2: threadgroup memory tiling, online softmax, K-transposition for memory access, and the exp2 trick. The last of these replaces every softmax exponential with a base-2 exponential, \\[e^x = 2^{x \\log_2 e},\\] which is exact and lets the kernel use Apple’s fast fast::exp2() hardware instruction directly instead of paying for a base conversion at runtime. A 20× faster prefill: the Mamba SSM kernel To evaluate whether K-Search generalizes beyond attention kernels, we applied it to the state-space model (SSM) kernel used by Mamba. Unlike attention, the computational bottleneck is a recurrent state update rather than a softmax, providing a substantially different optimization challenge. We compare the evolved implementation against the community MLX implementation (mlx-lm) and the PyTorch reference implementation (mamba.py) on an M1 Max. Evaluated on mamba-370m f16, M1 Max 64GB: Metric mlx-mamba (ours) mlx-lm (community) mamba.py Decode 152 tok/s 116 tok/s 40 tok/s Prefill L=512 5,751 tok/s 329 tok/s 1,089 tok/s Prefill L=1024 6,010 tok/s 327 tok/s 1,127 tok/s Prefill L=2048 6,612 tok/s 326 tok/s 1,092 tok/s Prefill L=4096 6,743 tok/s 339 tok/s 1,042 tok/s Table 1: Prefill and decode throughput on mamba-370m (f16, M1 Max 64GB). mlx-mamba (ours) reaches ~20× higher prefill throughput than the community mlx-lm baseline, while decode remains comparable. The ~20× prefill speedup over mlx-lm comes down to one difference: mlx-lm does not implement a parallel scan for the SSM. The state recurrence \\[h_t = \\bar{a}_t h_{t-1} + \\bar{b}_t\\] looks inherently sequential, but each step can be written as a pair $(\\bar{a}_t, \\bar{b}_t)$ under the associative combine \\[(a_2, b_2) \\circ (a_1, b_1) = \\left(a_2 a_1,\\ a_2 b_1 + b_2\\right),\\] which reproduces the recurrence exactly. Because the operator is associative, the whole sequence can be evaluated with a parallel (prefix) scan in $O(\\log N)$ dependent steps instead of $O(N)$. mlx-lm skips this and processes tokens one at a time, leaving most of Apple Silicon’s compute idle; our evolved Metal kernel applies the scan and makes much fuller use of GPU throughput. The gain shows up in prefill, where the full sequence is available to scan in parallel, and not in single-token decode, where there is only one new token per step and no scan to parallelize — which is why the decode row is roughly flat while prefill is ~20×. mamba.py is slow on both prefill and decode because it is a PyTorch reference implementation that falls back to CPU or MPS on Apple Silicon, forgoing the hardware-specific optimizations that MLX’s Metal backend makes possible. What’s next? On the two kernels we studied, AI-driven evolutionary kernel search grounded in structured cross-platform translation knowledge reached near-expert performance on Apple Silicon without a team of GPU experts starting from scratch. We do not yet know how far this generalizes, but the result is encouraging. For us the main takeaway is that the bottleneck was not the LLM’s ability to write Metal code, but the quality of the context and constraints we gave it. Our CUDA translation layer converts existing NVIDIA kernel expertise into actionable guidance for Apple Silicon, and lets K-Search’s evolutionary search do the rest. We are actively extending this work in several directions: supporting new architectures, with current efforts focused on developing new kernels for the IBM Spyre AIU and broader hardware targets; adding more kernels such as paged attention and fused MoE routing; and improving integration with the K-Search evolution loop to make translation context even more automatic. Acknowledgements This work was carried out by IBM Research and builds on K-Search from the UC Berkeley Sky Lab ( Cao et al., 2026 ). We welcome collaboration and feedback from the MLX and broader AI systems communities. If you are working on kernel optimization for non-CUDA hardware, we would love to hear from you. Citation @article { cao2026k , title = {K-Search: LLM Kernel Generation via Co-Evolving Intrinsic World Model} , author = {Cao, Shiyi and Mao, Ziming and Gonzalez, Joseph E and Stoica, Ion} , journal = {arXiv preprint arXiv:2602.19128} , year = {2026} } Appendix: Try it yourself The MLX backend is built on top of the open-source K-Search repo, so the results here can be reproduced directly. The steps are: 1. Clone and install git clone https://github.com/caoshiyi/K-Search.git cd K-Search uv pip install openai wandb uv pip install git+https://github.com/caoshiyi/flashinfer-bench-ksearch.git 2. Set your credentials Open the relevant script under scripts/ and set three variables at the top: KSEARCH_ROOT = /path/to/K-Search API_KEY = your-llm-api-key 3. Run kernel search # Optimize Flash Attention on Apple Silicon (world-model mode) bash scripts/mac_flash_attention_wm.sh # Or a Mamba SSM kernel, e.g. the selective scan bash scripts/mamba_selective_scan_fwd_wm.sh Full CLI reference and documentation are in the README.",
+      "sourceId": "bair",
+      "sourceName": "Berkeley AI Research",
+      "category": "Open Source"
+    },
+    {
+      "title": "How a medical database developed at MIT evolved into a global standard of data-sharing",
+      "url": "https://news.mit.edu/2026/how-an-mit-database-evolved-into-global-standard-data-sharing-0729",
+      "date": "2026-07-29",
+      "summary": "The visionary PhysioNet platform launched 25 years ago, based on a system developed at MIT in the 1970s. It has become one of the most comprehensive biomedical and clinical data repositories in existence.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Open Source"
+    },
+    {
+      "title": "Scientific computing in the age of agentic AI",
+      "url": "https://openai.com/index/scientific-computing-agentic-ai",
+      "date": "2026-07-28",
+      "summary": "A new field report shows how scientists use AI coding agents to modernize scientific computing, accelerating software development and discovery in genomics and beyond.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Position Open Weights Models",
+      "url": "https://www.anthropic.com/news/position-open-weights-models",
+      "date": "2026-07-28",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Open Source"
+    },
+    {
+      "title": "Gemini Robotics 2 brings whole body intelligence to robots",
+      "url": "https://deepmind.google/blog/gemini-robotics-2-brings-whole-body-intelligence-to-robots/",
+      "date": "2026-07-28",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Gemini API Managed Agents: 3.6 Flash, hooks, and more",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/expanding-managed-agents-gemini-api-3-6-flash-hooks/",
+      "date": "2026-07-28",
+      "summary": "We’re announcing even more new capabilities in Managed Agents in Gemini API so developers can build reliable, production-ready agents.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "5 ways AI Mode in Search helps you enjoy the real world",
+      "url": "https://blog.google/products-and-platforms/products/search/ai-mode-real-world-tips/",
+      "date": "2026-07-28",
+      "summary": "It might sound counterintuitive, but Search's AI tools can actually help you make the most of your time offline whether you want to book concert tickets or find the perf…",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "5 ways to host the ultimate dinner party with Google Search",
+      "url": "https://blog.google/products-and-platforms/products/search/dinner-party-hosting-tips/",
+      "date": "2026-07-28",
+      "summary": "These AI features can help you craft a menu, design a tablescape, and handle other party-planning tasks.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Meta is Signing the EU AI Act Code of Practice on Transparency of AI-Generated Content",
+      "url": "https://about.fb.com/news/2026/07/meta-is-signing-the-eu-ai-act-code-of-practice-on-transparency-of-ai-generated-content/",
+      "date": "2026-07-28",
+      "summary": "As AI-generated media becomes more photorealistic, it’s increasingly important that people have tools to help them identify it. We’ve been working to put this principle into practice at Meta since February 2024, when we announced our approach to identifying and labeling AI-generated content on our platforms. More recently, we launched a research demo of a detection tool to help people better understand if an image was made with Meta AI as part of these efforts. Signing the EU AI Act Code of Practice on Transparency of AI-Generated Content, which we confirmed we will do earlier this week, reflects our commitment to this principle. It also aligns with our ongoing work with peers across the entire stack to tackle these cross-industry challenges. Through forums like Partnership on AI and the Coalition for Content Provenance and Authenticity (C2PA), we’re working to develop solutions for identifying AI-generated content that are durable, technically-feasible and sustainable. Getting this right is critically important. It means transparency measures that provide clarity, rather than more confusion. We must avoid a situation where online content is subject to a growing array of different labels and disclosures that end up overwhelming people, while at the same time adding additional regulatory complexity for providers. As technical standards continue to evolve, we will work with the AI Office and other partners to keep the approach practical, interoperable and genuinely useful for the people it’s designed to serve. The post Meta is Signing the EU AI Act Code of Practice on Transparency of AI-Generated Content appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Research"
+    },
+    {
+      "title": "The OlmoEarth Platform: Geospatial inference at planetary scale",
+      "url": "https://huggingface.co/blog/allenai/olmoearth-infrastructure",
+      "date": "2026-07-28",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "LFM2.5-Encoders for Fast Long-Context Inference on CPU",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm2-5-encoders",
+      "date": "2026-07-28",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "How AI is expanding what people do at work",
+      "url": "https://openai.com/index/how-ai-is-expanding-what-people-do-at-work",
+      "date": "2026-07-27",
+      "summary": "New OpenAI research shows how AI is expanding what workers do, with ChatGPT users taking on tasks across roles and reshaping job boundaries.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Cognizant Anthropic",
+      "url": "https://www.anthropic.com/news/cognizant-anthropic",
+      "date": "2026-07-27",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Announcing the AI Glasses Impact Grant Recipients: Helping People Work, Learn, and Live More Independently",
+      "url": "https://about.fb.com/news/2026/07/ai-glasses-helping-people-work-learn-live-independently/",
+      "date": "2026-07-27",
+      "summary": "We've awarded AI Glasses Impact Grants to 30 organizations across the US using Meta AI glasses to help people work safer, learn faster, and live more independently. The post Announcing the AI Glasses Impact Grant Recipients: Helping People Work, Learn, and Live More Independently appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "NVIDIA Cosmos-H-Dreams: Bringing Real-Time Generative Simulation to Surgical Robotics",
+      "url": "https://huggingface.co/blog/nvidia/cosmos-h-dreams",
+      "date": "2026-07-27",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Anatomy of a Frontier Lab Agent Intrusion: A Technical Timeline of the July 2026 Incident",
+      "url": "https://huggingface.co/blog/agent-intrusion-technical-timeline",
+      "date": "2026-07-27",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Teaching LLMs to Update Beliefs for Efficient Long-Horizon Interaction",
+      "url": "https://bair.berkeley.edu/blog/2026/07/26/abbel/",
+      "date": "2026-07-26",
+      "summary": ".abbel-fig { display: block; text-align: center; margin: 2.4em 0; line-height: 1.4; max-width: 100%; } .abbel-fig img { display: block; margin: 0.65em auto 0; height: auto; max-width: 100%; } /* Image sizes; captions use a narrower measure below */ .abbel-fig--wide img { width: 100%; max-width: 100%; } .abbel-fig--wide-90 img { width: 100%; max-width: 90%; } .abbel-fig--wide-lg img { width: 100%; max-width: 100%; } .abbel-fig--chart img { width: 100%; max-width: 82%; } .abbel-fig--chart-sm img { width: 100%; max-width: 64%; } .abbel-fig--portrait img { width: 50%; max-width: 520px; } .abbel-fig--equation img { width: 100%; max-width: 52%; } .abbel-fig--video { width: 110%; max-width: 110%; margin-left: -5%; margin-right: -5%; box-sizing: border-box; } .abbel-fig--video .abbel-frames { max-width: 100%; width: 100%; } .abbel-frames { margin: 0.65em auto 0; max-width: 100%; user-select: none; } .abbel-frames__stage { position: relative; cursor: pointer; border: none; background: transparent; line-height: 0; width: 100%; } .abbel-frames__stage img { width: 100%; height: auto; display: block; } .abbel-frames__hint { position: absolute; right: 0.55em; bottom: 0.55em; background: rgba(0,0,0,0.4); color: #fff; font-size: 0.68em; font-style: normal; padding: 0.18em 0.5em; border-radius: 3px; pointer-events: none; opacity: 0; transition: opacity 0.2s ease; } .abbel-frames__stage:hover .abbel-frames__hint, .abbel-frames.is-paused .abbel-frames__hint { opacity: 1; } .abbel-frames.is-playing .abbel-frames__hint { opacity: 0; } .abbel-frames__controls { display: flex; align-items: center; justify-content: center; gap: 0.55em; margin-top: 0.35em; flex-wrap: wrap; } .abbel-frames__controls button { appearance: none; border: none; background: transparent; color: #999; font: inherit; font-size: 0.78em; padding: 0.15em 0.35em; border-radius: 2px; cursor: pointer; } .abbel-frames__controls button:hover { color: #666; background: transparent; } .abbel-frames__controls button.abbel-frames__next, .abbel-frames__controls button.abbel-frames__prev { color: #bbb; font-weight: 400; } .abbel-frames__controls button.abbel-frames__next:hover, .abbel-frames__controls button.abbel-frames__prev:hover { color: #999; } .abbel-frames__controls button#abbel-frames-play { color: #777; letter-spacing: 0.02em; } .abbel-frames__controls button[aria-pressed=\"true\"] { background: transparent; color: #555; border-color: transparent; } .abbel-frames__meta { font-size: 0.72em; color: #bbb; font-variant-numeric: tabular-nums; min-width: 4em; text-align: center; } .abbel-frames__dots { display: flex; justify-content: center; gap: 0.25em; margin-top: 0.25em; flex-wrap: wrap; } .abbel-frames__dots button { appearance: none; width: 0.4em; height: 0.4em; padding: 0; border-radius: 50%; border: 1px solid #ccc; background: #fff; cursor: pointer; } .abbel-frames__dots button[aria-current=\"true\"] { background: #aaa; border-color: #aaa; } .abbel-fig .abbel-fig-cap, i.abbel-fig-cap { display: block; text-align: center; font-style: italic; color: #444; margin: 2.7em auto 0.15em; max-width: 38em; width: 100%; box-sizing: border-box; padding: 0 0.5em; font-size: 0.8rem; line-height: 1.4; } .abbel-fig .abbel-fig-cap sub, .abbel-fig .abbel-fig-cap sup, i.abbel-fig-cap sub, i.abbel-fig-cap sup { font-size: 0.75em; line-height: 0; } .abbel-fig--tight .abbel-fig-cap { margin-top: 0.9em; /* ~1/3 of default figure→caption gap */ } .abbel-fig--equation .abbel-fig-cap { margin-top: 1.35em; /* half of default 2.7em figure→caption gap */ } .abbel-fig--chart-sm .abbel-fig-cap { margin-top: 1.35em; /* one line less than default 2.7em */ } @media screen and (max-width: 40em) { .abbel-fig--wide img, .abbel-fig--wide-lg img, .abbel-fig--wide-90 img, .abbel-fig--chart img, .abbel-fig--chart-sm img { max-width: 100%; } .abbel-fig--equation img { max-width: 75%; } .abbel-fig--portrait img { max-width: 50%; } .abbel-fig--video { width: 100%; max-width: 100%; margin-left: 0; margin-right: 0; } .abbel-fig--video .abbel-frames { max-width: 100%; } .abbel-fig .abbel-fig-cap { max-width: 100%; } } .abbel-footnotes { font-size: 0.8em; color: #888; font-style: italic; margin: 1.5em 0; } .abbel-footnotes ol { padding-left: 1.25em; margin: 0.4em 0 0; } .abbel-footnotes li { margin: 0.55em 0; } .abbel-footnotes p { margin: 0.2em 0; } .abbel-footnotes a { color: #888; } .abbel-table-wrap { overflow-x: auto; margin: 0.5em auto 0; text-align: center; } .abbel-fig--table { margin: 2.4em 0; } .abbel-fig--table .abbel-table-wrap { margin: 0.65em auto 0; } .abbel-table { width: 100%; max-width: 560px; margin: 0 auto; border-collapse: collapse; font-size: 0.88em; line-height: 1.35; } .abbel-table th, .abbel-table td { padding: 0.5em 0.7em; border-bottom: 1px solid #ddd; text-align: center; vertical-align: middle; } .abbel-table th { border-bottom: 2px solid #333; font-weight: 600; } .abbel-table th:first-child, .abbel-table td:first-child { text-align: left; } .abbel-table tr.abbel-baseline td { color: #888; font-style: italic; } .abbel-ack a { color: #1565c0; font-weight: 500; text-decoration: none; border-bottom: 1px solid #90caf9; padding-bottom: 0.06em; } .abbel-ack a:hover { color: #0d47a1; border-bottom-color: #1565c0; } /* Suppress \"View on alphaXiv\" badges/tags (browser extension / userscript injectors) */ a[href*=\"alphaxiv.org\"], a[href*=\"alphaXiv\"], [class*=\"alphaxiv\"], [class*=\"alphaXiv\"], [class*=\"AlphaXiv\"], [id*=\"alphaxiv\"], [id*=\"alphaXiv\"], [data-alphaxiv], [data-alpha-xiv], img[src*=\"alphaxiv\"], img[alt*=\"alphaXiv\" i], img[alt*=\"alphaxiv\" i], button[aria-label*=\"alphaXiv\" i], a[title*=\"alphaXiv\" i], a[aria-label*=\"alphaXiv\" i], span[title*=\"alphaXiv\" i] { display: none !important; visibility: hidden !important; width: 0 !important; height: 0 !important; overflow: hidden !important; pointer-events: none !important; position: absolute !important; left: -9999px !important; } /* Section / subsection spacing (title → body, and gap before next section) */ .post-content > h2 { margin-top: 2.6em; margin-bottom: 0.75em; } .post-content > h2:first-of-type { margin-top: 1.6em; } .post-content > h3 { margin-top: 1.85em; margin-bottom: 0.6em; } Overview of ABBEL compared to traditional recursive summarization. Beliefs replace the full interaction history as the agent’s working context, and belief grading improves performance by supervising the contents of each belief state.. As task horizons grow, LLM contexts can’t scale forever. Self-summarization enables concise, interpretable contexts, but at a significant performance cost, especially for human assistance domains where high quality data is scarce, e.g., collaborative code generation. We address this with ABBEL : a framework that isolates and supervises the information content of summaries in the form of natural-language belief states. Motivation: the cost of recursive summarization For language models to effectively assist with increasingly complex tasks such as software development, they must be able to interact with us over hundreds or even thousands of steps. For such long tasks, it is impractical to keep the history of the entire interaction in context. The heuristic approach used so far has been summary generation, sometimes called context compaction. For example, Cursor’s latest model composer 2.5 uses compaction during training for improved performance ( Cassano et al., 2026 ). Alongside composer, Grandcode ( DeepReinforce et al., 2026 ), the first system to consistently beat all human competitors in online coding competitions, despite using one of the newest efficient attention models (Qwen 3.5-397B), 1 still found it necessary to employ context summarization. But compaction has a problem. Despite seemingly low performance gaps in benchmarks, model servers like Cursor continue to recommend that users avoid compaction with their coding assistants in the middle of a task ( Heule et al., 2026 ). To understand why, see below the performance over RL fine-tuning of a Context summary model compared to full context models in Combination Lock, a Wordle-like game that allows up to 16 guesses. 2 Though both model types improve over the course of training, the summary model never closes the gap. Fig. 1: Average attempts to guess the target word on Combination Lock over RL fine-tuning (lower is better). Context-summary policies improve with training but do not close the gap to full-context policies. Making models self-summarize while completing a task increases the complexity of the learning problem. While this could typically be addressed by training with more data, the performance degradation observed in real world interactive settings likely arises from the difficulty we have in creating and using human simulators effectively to generate high quality training environments ( Lin et al., 2025 , Tomlin et al., 2025 ). Thus, the better you can learn to summarize on the limited and messy multiturn interaction trajectories you can collect, the better off your model will be for downstream users. ABBEL: acting through belief bottlenecks Fig. 2: Autoencoder-inspired belief grading. The model encodes prior belief, action and observation (b t , a t , o t ) into posterior belief b t+1 and is rewarded for how well select information from the history can be reconstructed from that belief. To address poor learning efficiency, we isolate the summary generation task. Drawing inspiration from recursive Bayesian estimation, we formulate summaries as belief states, which we periodically prompt the model to update based on new information. 3 Click to pause --> ‹ Prev Pause Next › 1 / 16 Fig. 3: ABBEL rollout. Belief updates from the latest observation alternate with action selection conditioned only on the current posterior belief. Belief grading We then extract and supervise the contents of the belief states (Fig. 2, Belief Grading). Belief grading can be thought of as adding an auxiliary RL task, using heuristics designed to capture what makes a good belief as the reward. An example heuristic for coding could be shorter is better, but closer to being able to reconstruct the git diff is also better, so balancing these would yield a good belief. In domains where good heuristics are hard to define, we propose a general autoencoding-inspired grading function, which treats the current language model π θ as both encoder and decoder of information from the history, and the belief states as the codes. We grade each belief b t+1 by how well it can be used by the current model π θ to reconstruct the most recent observation o t : Eq. 1: Reconstruction grading objective. Here b t+1 is the updated belief, o t the latest observation, a t the action just taken, b t the prior belief, p I the task prompt, and π θ the current model. Higher grades reward beliefs that retain information needed to decode the latest observation. What do we gain by grading beliefs? Collaborative coding on CollabBench We demonstrate the utility of belief grading in our motivating domain of human-driven assistive coding, with the CollabBench environment from Sweet-RL ( Zhou et al., 2025 ). Fig. 4: CollabBench collaborative coding environment. The agent asks clarifying questions, then submits a function scored against hidden unit tests. We see that with the general reconstruction-based belief grading function we reduce the performance gap from full context models by about 50%, and train in 50% fewer steps compared to training models to summarize without belief grading (no BG). After training, ABBEL still uses significantly less memory than the full context setting, as measured by the peak context token length (Peak Tokens). Model Test Pass Rate ↑ Success Rate ↑ Peak Tokens × 10² ↓ Training Steps ↓ Full Context 0.52±0.02 0.39±0.02 14.08±0.55 100 ABBEL (no BG) 0.46±0.02 0.31±0.02 4.20±0.37 100 ABBEL-rec-BG 0.48±0.01 0.36±0.01 6.01±0.33 50 Fig. 5: CollabBench results. With reconstruction belief grading, ABBEL-rec-BG recovers about half the gap to full context while using fewer peak tokens, and trains in 50 steps instead of 100. Combination Lock Additionally, in CombinationLock, we demonstrate that ABBEL with a belief grader which leverages domain knowledge (by computing useful statistics over the history and checking that they can be reconstructed from the belief state), enables even higher learning efficiency than full context (FULL CTX) models. Fig. 6: Average attempts to guess the target word on Combination Lock (lower is better). With domain-knowledge belief grading, ABBEL approaches or exceeds FULL CTX in this setting; without belief grading, learning is slower. Multi-objective question answering In a third environment, multi-objective question answering (from MEM1 Zhang et al., 2025 , a recent work which performed end-to-end optimization in a modified version of typical recursive summarization), we demonstrate the utility of isolating belief states from reasoning, by showing that a Peak Belief length Penalty (more details in paper) significantly reduces memory usage with minimal performance degradation, unlike is commonly observed when penalizing reasoning lengths ( Arora et al., 2025 ). Fig. 7: Exact-match score and peak memory versus number of objectives in multi-objective QA. ABBEL with a peak belief penalty (PBP) maintains comparable performance while using less memory than MEM1 and ABBEL without PBP in this evaluation. Related work Alternative solutions to managing long contexts involve different tradeoffs, and are worth considering depending on the requirements of a deployed system. Context compression methods generate dense representations which, while computationally efficient, sacrifice human-understandability ( Kontonis et al., 2026 , Eyuboglu et al., 2025 , Gupta et al., 2025 , Chevalier et al., 2023 , Deng et al., 2025 , Deng et al., 2025 , Bulatov et al., 2022 ). Hand-designed summarization prompts ( Wang et al., 2025 , Örwall et al., 2025 , Starace et al., 2025 ) and pruning strategies ( Jiang et al., 2024 ) specific to target environments require expert human knowledge and don’t allow an agent to learn what to remember as part of its decision-making strategy. Methods that process long contexts into an external memory store ( Packer et al., 2023 , Xu et al., 2025 ) for the agents or subagents to query ( Zhang et al., 2025 ) are complementary, as they may benefit from better next context creation through summarization training. We would like to point out some exciting works in the space of general recursive summarization focused on math ( Wu et al., 2026 ), reasoning with belief generation ( Zhou et al., 2025 ), competitive coding with a distilled summarization module using similar autoencoding objectives to our general belief grader ( DeepReinforce et al., 2026 ), and adding continuous features to summaries ( Kontonis et al., 2026 ). What’s next for better memory? Many more possibilities are enabled through using explicit belief states as information bottlenecks for multi-step interaction. You could reward actions based on their effect on the belief state to guide exploration, transmit the explicit belief states for better communication between agents, or even improve user controllability by directly modifying the memories on which the agents’ decisions are based. Some forms of information, e.g., what a person looks like, are not represented well by text alone. A continuously learning system will also have to capture such information. Additionally, if we want a system to learn to communicate in a brand new language or to play a brand new game better than any person in the world, the skills accumulated over the lifetime of conversations or games must be stored in a very compressed form, essentially taking on the role of the weights of the model itself. More powerful systems will likely utilize a combination of multiple forms of memory, where the contents of the context may correspond to working memory while other approaches are used for short and long-term memory. How to instantiate these other forms of memory, for instance via test-time training, adapter memories, continuous context memories, or some combination thereof, presents an exciting challenge. Acknowledgements Acknowledgements: We would like to thank Alane Suhr and Kartik Goyal for advising this research as well as Ethan Mendes , David He , Jitesh Jain , and Nicholas Tomlin for comments on early drafts of this post. We would like to thank the MEM1 authors for their email correspondence and for sharing private reviewer feedback which we found particularly insightful. Citation If abbel was inspiring for your future work, please cite us with this! And here is some advice for doing similar research! @misc { lidayan2026abbellearningnaturallanguagebelief , title = {ABBEL: Learning Natural-Language Belief States for Memory-Efficient Interaction} , author = {Aly Lidayan and Jakob Bjorner and Satvik Golechha and Kartik Goyal and Alane Suhr} , year = {2026} , eprint = {2512.20111} , archivePrefix = {arXiv} , primaryClass = {cs.CL} , url = {https://arxiv.org/abs/2512.20111} , } With newer models the number of tokens till 50% compute spend is on attention gets much larger than 25K. Interleaving linear attention alternatives with full attention as is done with gpt-oss and DeepSeekv4, results in massive flops reductions for the attention computation. For example with DeepSeekv4-Pro (1.6T A49B) it requires nearly 450 thousand tokens to reach the 50% tradeoff point. Grandcode uses Qwen-3.5-397B-A17B a model which hits 50% FLOPs for attention at ~150 thousand tokens. ↩ This setting is technically solvable with much more computationally effective tools, but serves as a flexible test bed to study properties of recursive summarization. Bertsimas et al., 2022 , showed that an exact solution for the wordle game instantiated with the original vocabulary of the javascript game can be found with dynamic programming, but evidently the general formulation of wordle as a guessing game on K letters with L attempts and some dictionary of valid words and correct words D is NP hard to determine the minimal number of moves required. ↩ In practice there is an O(N/K) overhead cost for summary. N is the total number of actions. K is the number of actions till summarization is triggered. This is necessarily true for any summary approach. For ease of illustration this gif uses K = 1. In our experiments, to put more emphasis on summarization weaknesses we also use K=1. In practice overhead is small as K can be chosen to be near the efficient hardware limit. ↩ (function () { var root = document.getElementById('abbel-frames'); if (!root) return; var count = parseInt(root.getAttribute('data-frame-count') || '15', 10); var prefix = root.getAttribute('data-frame-prefix') || 'https://bair.berkeley.edu/static/blog/abbel/frames/frame_'; var intervalMs = parseInt(root.getAttribute('data-interval') || '1300', 10); var img = document.getElementById('abbel-frames-img'); var meta = document.getElementById('abbel-frames-meta'); var dots = document.getElementById('abbel-frames-dots'); var btnPrev = document.getElementById('abbel-frames-prev'); var btnNext = document.getElementById('abbel-frames-next'); var btnPlay = document.getElementById('abbel-frames-play'); var stage = root.querySelector('.abbel-frames__stage'); var hint = root.querySelector('.abbel-frames__hint'); var i = 0; var playing = false; var timer = null; var urls = []; for (var n = 0; n",
+      "sourceId": "bair",
+      "sourceName": "Berkeley AI Research",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "Claude Opus 5",
+      "url": "https://www.anthropic.com/news/claude-opus-5",
+      "date": "2026-07-25",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Economic Futures Research Fund Agenda",
+      "url": "https://www.anthropic.com/news/economic-futures-research-fund-agenda",
+      "date": "2026-07-24",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Research"
+    },
+    {
+      "title": "Meta AI Doesn’t Just Think, It Acts",
+      "url": "https://about.fb.com/news/2026/07/meta-ai-muse-spark-doesnt-just-think-it-acts/",
+      "date": "2026-07-24",
+      "summary": "Powered by Muse Spark 1.1, Meta AI can now build, plan, and follow through from start to finish. The post Meta AI Doesn’t Just Think, It Acts appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "Working to automate nuclear plant operations",
+      "url": "https://news.mit.edu/2026/working-automate-nuclear-plant-operations-lauren-fortier-0724",
+      "date": "2026-07-24",
+      "summary": "PhD student Lauren Fortier is building on the experience she gained operating a nuclear plant for the Navy to solve a critical hurdle in the wider adoption of the energy source.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Launching Health in ChatGPT",
+      "url": "https://openai.com/index/health-in-chatgpt",
+      "date": "2026-07-23",
+      "summary": "Health in ChatGPT now lets eligible U.S. users securely connect medical records and Apple Health to get more personalized insights and better understand their health.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Claude Opus 4 7",
+      "url": "https://www.anthropic.com/news/claude-opus-4-7",
+      "date": "2026-07-23",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Claude Opus 4 5",
+      "url": "https://www.anthropic.com/news/claude-opus-4-5",
+      "date": "2026-07-23",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Bringing Nunchaku 4-bit Diffusion Inference to Diffusers",
+      "url": "https://huggingface.co/blog/nunchaku-diffusers",
+      "date": "2026-07-23",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "MIT projects selected for funding under US Department of Energy’s Genesis Mission",
+      "url": "https://news.mit.edu/2026/mit-projects-selected-funding-under-doe-genesis-mission-0723",
+      "date": "2026-07-23",
+      "summary": "Initial research projects advance national priorities across natural resources, manufacturing, nuclear physics, and more.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Building AI infrastructure with the Effingham County community",
+      "url": "https://openai.com/index/building-ai-infrastructure-with-the-effingham-county-community",
+      "date": "2026-07-22",
+      "summary": "OpenAI announces Project Camellia in Effingham County, Georgia, with commitments to responsible energy, community investment, jobs, and access to Codex.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How news organizations are using AI to advance their vital missions",
+      "url": "https://openai.com/index/how-news-organizations-are-using-ai",
+      "date": "2026-07-22",
+      "summary": "News organizations are using AI to strengthen reporting, grow audiences, and improve business operations, with OpenAI tools supporting journalists and publishers worldwide.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Advancing the next era of national science",
+      "url": "https://openai.com/index/advancing-the-next-era-of-national-science",
+      "date": "2026-07-22",
+      "summary": "OpenAI outlines its commitment to advancing American science working with the U.S. Department of Energy and national labs to use frontier AI to accelerate discovery.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing OpenAI Presence",
+      "url": "https://openai.com/index/introducing-openai-presence",
+      "date": "2026-07-22",
+      "summary": "Introducing OpenAI Presence, a proven enterprise AI agent platform that helps organizations deploy trusted voice and chat agents for customer and internal workflows.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "NTT DATA Group cuts incident analysis to 30 minutes with Codex",
+      "url": "https://openai.com/index/ntt-data",
+      "date": "2026-07-22",
+      "summary": "NTT DATA Group uses ChatGPT Enterprise and Codex to help 9,000 employees automate work, cut incident analysis to 30 minutes, and scale secure AI adoption.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Anthropic Economic Index Connector",
+      "url": "https://www.anthropic.com/news/anthropic-economic-index-connector",
+      "date": "2026-07-22",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Donation Public First Action",
+      "url": "https://www.anthropic.com/news/donation-public-first-action",
+      "date": "2026-07-22",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Claude Opus 4 8",
+      "url": "https://www.anthropic.com/news/claude-opus-4-8",
+      "date": "2026-07-22",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Accelerating the frontiers of scientific discovery: Google’s $40M commitment to the Genesis Mission",
+      "url": "https://deepmind.google/blog/accelerating-the-frontiers-of-scientific-discovery-googles-40m-commitment-to-the-genesis-mission/",
+      "date": "2026-07-22",
+      "summary": "Google commits $40M in AI tokens and credits for the Genesis Mission",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "3 Google updates from Galaxy Unpacked 2026",
+      "url": "https://blog.google/products-and-platforms/platforms/android/galaxy-unpacked-2026/",
+      "date": "2026-07-22",
+      "summary": "We shared how Samsung users can boost productivity and get time back on new foldables, watches, and glasses coming soon.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Professor Emeritus Dimitri Bertsekas, influential computer scientist and prolific author, dies at 83",
+      "url": "https://news.mit.edu/2026/dimitri-bertsekas-influential-computer-scientist-prolific-author-dies-0722",
+      "date": "2026-07-22",
+      "summary": "Known for his clear and elegant writing style, Bertsekas shaped fields from control and optimization to large-scale computation and artificial intelligence.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Introducing the ChatGPT for small business program",
+      "url": "https://openai.com/index/introducing-chatgpt-small-business-program",
+      "date": "2026-07-21",
+      "summary": "OpenAI launches the ChatGPT for Small Businesses program, helping entrepreneurs build AI skills, automate work, and grow with ChatGPT Work.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "OpenAI and Hugging Face partner to address security incident during model evaluation",
+      "url": "https://openai.com/index/hugging-face-model-evaluation-security-incident",
+      "date": "2026-07-21",
+      "summary": "OpenAI and Hugging Face share early findings from a security incident during AI model evaluation, highlighting advanced cyber capabilities and lessons for defenders.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "David Vélez and Robin Vince join the boards of the OpenAI Foundation and OpenAI Group PBC",
+      "url": "https://openai.com/index/david-velez-robin-vince-join-openai-boards",
+      "date": "2026-07-21",
+      "summary": "David Vélez and Robin Vince join the boards of the OpenAI Foundation and OpenAI Group PBC, bringing global leadership in finance, technology, and governance.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing Gemini 3.6 Flash, 3.5 Flash-Lite, and 3.5 Flash Cyber",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-6-flash-3-5-flash-lite-and-3-5-flash-cyber/",
+      "date": "2026-07-21",
+      "summary": "We’re introducing new Gemini models, including Gemini 3.6 Flash, 3.5 Flash-Lite and 3.5 Flash Cyber.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Model Release"
+    },
+    {
+      "title": "Grabette: an open system to record robot-manipulation data",
+      "url": "https://huggingface.co/blog/grabette",
+      "date": "2026-07-21",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Safety and alignment in an era of long-horizon models",
+      "url": "https://openai.com/index/safety-alignment-long-horizon-models",
+      "date": "2026-07-20",
+      "summary": "OpenAI shares lessons from deploying long-running AI models, highlighting new safety risks, observed failures, and improved safeguards through iterative deployment.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing Gemini 3.5 Flash Cyber",
+      "url": "https://deepmind.google/blog/introducing-gemini-3-5-flash-cyber/",
+      "date": "2026-07-17",
+      "summary": "Google introduces Gemini 3.5 Flash Cyber, a lightweight cybersecurity model to find and patch vulnerabilities.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Model Release"
+    },
     {
       "title": "A scorecard for the AI age",
       "url": "https://openai.com/index/a-scorecard-for-the-ai-age",
@@ -99,6 +720,15 @@
       "sourceId": "arxiv",
       "sourceName": "arXiv",
       "category": "Research"
+    },
+    {
+      "title": "How Codex became a collaborator for OpenAI’s creative team",
+      "url": "https://openai.com/index/codex-collaborator-creative-team",
+      "date": "2026-07-16",
+      "summary": "How OpenAI’s creative team uses Codex to build custom creative tools, accelerate ideation, and prototype faster with context-aware AI.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
     },
     {
       "title": "Why teens deserve access to safe AI",
@@ -1170,636 +1800,6 @@
       "sourceId": "openai",
       "sourceName": "OpenAI",
       "category": "Research"
-    },
-    {
-      "title": "Core dump epidemiology: fixing an 18-year-old bug",
-      "url": "https://openai.com/index/core-dump-epidemiology-data-infrastructure-bug",
-      "date": "2026-06-30",
-      "summary": "OpenAI engineers used large-scale core dump analysis to debug rare infrastructure crashes, uncovering both a hardware fault and a long-standing software bug.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Start building with Nano Banana 2 Lite and Gemini Omni Flash",
-      "url": "https://deepmind.google/blog/start-building-with-nano-banana-2-lite-and-gemini-omni-flash/",
-      "date": "2026-06-30",
-      "summary": "",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Research"
-    },
-    {
-      "title": "Unlocking Britain’s next era of productivity: Building a nation of AI trailblazers",
-      "url": "https://blog.google/company-news/inside-google/around-the-globe/google-europe/united-kingdom/unlocking-britains-next-era-of-productivity-building-a-nation-of-ai-trailblazers/",
-      "date": "2026-06-30",
-      "summary": "Google UK shares its latest Economic Impact Report and how to enable more people to unlock the benefits of AI-powered technologies.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "ScarfBench: Benchmarking AI Agents for Enterprise Java Framework Migration",
-      "url": "https://huggingface.co/blog/ibm-research/scarfbench",
-      "date": "2026-06-30",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Product Update"
-    },
-    {
-      "title": "Why Specialization Is Inevitable",
-      "url": "https://huggingface.co/blog/Dharma-AI/why-specialization-is-inevitable",
-      "date": "2026-06-30",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Featuring Every Eval Ever Results on Hugging Face Model Pages",
-      "url": "https://huggingface.co/blog/eee-community-evals",
-      "date": "2026-06-30",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Q&A: What is agentic AI today, and what do we want it to be?",
-      "url": "https://news.mit.edu/2026/agentic-ai-and-what-do-we-want-it-be-0630",
-      "date": "2026-06-30",
-      "summary": "Computer scientist Phillip Isola cuts through the hype to explain how AI agents work and what the future might hold for this rapidly advancing technology.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Mapping Europe’s AI Workforce Opportunity",
-      "url": "https://openai.com/index/mapping-ai-jobs-transition-eu",
-      "date": "2026-06-29",
-      "summary": "A new OpenAI report maps how AI could reshape jobs across the EU, highlighting which occupations may face automation, growth, or workflow changes.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Ask an AI expert: What exactly is the full stack?",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/full-stack-ai-explainer/",
-      "date": "2026-06-29",
-      "summary": "A Google expert explains what it means to take a full-stack approach to AI and why it’s been the foundation of our AI work for so long.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "DiScoFormer: One transformer for density and score, across distributions",
-      "url": "https://huggingface.co/blog/allenai/discoformer",
-      "date": "2026-06-29",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Inaugural Music Technology Research Showcase celebrates work of new graduate program’s initial students",
-      "url": "https://news.mit.edu/2026/inaugural-mit-music-technology-research-showcase-celebrates-work-students-0629",
-      "date": "2026-06-29",
-      "summary": "Associate Professor Anna Huang delivers the keynote address, “In Search of Human-AI Resonance,” to a capacity crowd.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "3 Questions: Beyond data-driven aesthetics",
-      "url": "https://news.mit.edu/2026/3-questions-beyond-data-driven-aesthetics-alexandros-haridis-0629",
-      "date": "2026-06-29",
-      "summary": "In a new Keller Gallery exhibition, Alexandros Haridis SM ’17, PhD ’22 traces centuries of ideas about aesthetic judgment and explores how design can make complex computational systems visible.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Aliu-AiRobot/ESEILANE — trending AI repo",
-      "url": "https://github.com/Aliu-AiRobot/ESEILANE",
-      "date": "2026-06-28",
-      "summary": "High-performance Knowledge Graph engine for AI, LLMs, and GraphRAG — built for the next generation of intelligent applications. (★ 137)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "HP Inc. launches Frontier strategic partnership with OpenAI",
-      "url": "https://openai.com/index/hp-frontier-partnership",
-      "date": "2026-06-28",
-      "summary": "HP Inc. scales its OpenAI Frontier partnership to deploy AI across customer experiences, software development, and enterprise operations.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "reunios2024/cortex-sentinel-trading-nexus — trending AI repo",
-      "url": "https://github.com/reunios2024/cortex-sentinel-trading-nexus",
-      "date": "2026-06-28",
-      "summary": "Self-Tuning Multi-Agent AI Trading System 2026: 8-Source Signal Fusion & Kronos Model (★ 152)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "grandgaming9321-prog/reality-engine — trending AI repo",
-      "url": "https://github.com/grandgaming9321-prog/reality-engine",
-      "date": "2026-06-28",
-      "summary": "Top Dynamic AI World Simulation & Storytelling Tools 2026 (★ 152)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "Previewing GPT-5.6 Sol: a next-generation model",
-      "url": "https://openai.com/index/previewing-gpt-5-6-sol",
-      "date": "2026-06-26",
-      "summary": "OpenAI previews GPT-5.6 Sol, a next-generation model with stronger capabilities in coding, science, and cybersecurity, paired with its most advanced safety stack.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Core Views ON AI Safety",
-      "url": "https://www.anthropic.com/news/core-views-on-ai-safety",
-      "date": "2026-06-26",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Claude Corps",
-      "url": "https://www.anthropic.com/news/claude-corps",
-      "date": "2026-06-26",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Dxc Anthropic Alliance",
-      "url": "https://www.anthropic.com/news/dxc-anthropic-alliance",
-      "date": "2026-06-26",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Run a vLLM Server on HF Jobs in One Command",
-      "url": "https://huggingface.co/blog/vllm-jobs",
-      "date": "2026-06-26",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "David Autor named head of the Department of Economics",
-      "url": "https://news.mit.edu/2026/david-autor-named-head-department-economics-0626",
-      "date": "2026-06-26",
-      "summary": "A faculty member since 1999, Autor is a leading researcher in artificial intelligence and the work of the future.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "LLMs help robots understand vague instructions and focus on key details",
-      "url": "https://news.mit.edu/2026/llms-help-robots-understand-vague-instructions-and-focus-key-details-0626",
-      "date": "2026-06-26",
-      "summary": "To help robots do chores in places like homes and factories, a new approach from MIT uses one language model to clarify users’ instructions, then another to ignore irrelevant info.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "How agents are transforming work",
-      "url": "https://openai.com/index/how-agents-are-transforming-work",
-      "date": "2026-06-25",
-      "summary": "A new OpenAI research paper shows how AI agents are transforming work, enabling longer, more complex tasks and expanding productivity across roles.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Our latest Google Finance upgrades, including a new app",
-      "url": "https://blog.google/products-and-platforms/products/search/google-finance-updates-june-2026/",
-      "date": "2026-06-25",
-      "summary": "The new Google Finance is coming out of beta and launching a new Android app.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "MIT in the media: Exploring how curiosity-driven science is an essential ingredient in America’s success",
-      "url": "https://news.mit.edu/2026/mit-media-exploring-how-curiosity-driven-science-essential-ingredient-americas-success",
-      "date": "2026-06-25",
-      "summary": "“Scientific American” showcases the history and future of America’s scientific engine, highlighting promising young scientists and icons at MIT and beyond.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Improving the speed and energy-efficiency of AI agents",
-      "url": "https://news.mit.edu/2026/improving-ai-agent-speed-and-energy-efficiency-0625",
-      "date": "2026-06-25",
-      "summary": "A new system, known as Murakkab, optimizes the design and deployment of multistep workflows that power AI applications.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "OpenAI and Broadcom unveil LLM-optimized inference chip",
-      "url": "https://openai.com/index/openai-broadcom-jalapeno-inference-chip",
-      "date": "2026-06-24",
-      "summary": "OpenAI and Broadcom introduce Jalapeño, a custom AI chip built for LLM inference to improve performance, efficiency, and scale across AI systems.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Infrastructure"
-    },
-    {
-      "title": "Introducing computer use in Gemini 3.5 Flash",
-      "url": "https://deepmind.google/blog/introducing-computer-use-in-gemini-3-5-flash/",
-      "date": "2026-06-24",
-      "summary": "",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Model Release"
-    },
-    {
-      "title": "Bringing more control over your connectors",
-      "url": "https://mistral.ai/news/more-control-over-connectors/",
-      "date": "2026-06-24",
-      "summary": "",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Accelerating Transformers Fine-Tuning with NVIDIA NeMo AutoModel",
-      "url": "https://huggingface.co/blog/nvidia/accelerating-fine-tuning-nvidia-nemo-automodel",
-      "date": "2026-06-24",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Introducing the FFASR Leaderboard: Benchmarking ASR in the Real World",
-      "url": "https://huggingface.co/blog/ffasr-leaderboard",
-      "date": "2026-06-24",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Helping build shared standards for advanced AI",
-      "url": "https://openai.com/index/helping-build-shared-standards-for-advanced-ai",
-      "date": "2026-06-23",
-      "summary": "OpenAI helps build shared standards for advanced AI, supporting evaluation frameworks, safety practices, and global cooperation through the Appia Foundation.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "How GPT-5 helped immunologist Derya Unutmaz solve a 3-year-old mystery",
-      "url": "https://openai.com/index/gpt-5-immunology-mystery",
-      "date": "2026-06-23",
-      "summary": "GPT-5 Pro helped solve a 3-year-old immunology mystery, offering insights into T cell behavior. The breakthrough could support cancer and autoimmune research.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "How Omio is building the future of conversational travel",
-      "url": "https://openai.com/index/omio",
-      "date": "2026-06-23",
-      "summary": "Discover how Omio uses OpenAI to power conversational travel experiences, accelerate product development, and transform into an AI-native company.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Launch of Meta’s Small Business Growth Academy Across Asia-Pacific to Boost AI Adoption and Digital Skills",
-      "url": "https://about.fb.com/news/2026/06/launch-of-metas-small-business-growth-academy-across-asia-pacific/",
-      "date": "2026-06-23",
-      "summary": "Meta's Small Business Growth Academy will provide practical AI tools, advertising, and cross-border growth training to help small businesses scale across Asia-Pacific. The post Launch of Meta’s Small Business Growth Academy Across Asia-Pacific to Boost AI Adoption and Digital Skills appeared first on Meta Newsroom .",
-      "sourceId": "meta-ai",
-      "sourceName": "Meta",
-      "category": "Product Update"
-    },
-    {
-      "title": "Introducing Mistral OCR 4",
-      "url": "https://mistral.ai/news/ocr-4/",
-      "date": "2026-06-23",
-      "summary": "Mistral OCR 4 delivers enterprise document AI with 170-language support, bounding boxes, and self-hosted deployment.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Shipping huggingface_hub every week with AI, open tools, and a human in the loop",
-      "url": "https://huggingface.co/blog/huggingface-hub-release-ci",
-      "date": "2026-06-23",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Experimenting with the proposed Cross-Origin Storage API in Transformers.js",
-      "url": "https://huggingface.co/blog/cross-origin-storage",
-      "date": "2026-06-23",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Product Update"
-    },
-    {
-      "title": "Exploring the societal impacts of AI",
-      "url": "https://news.mit.edu/2026/exploring-societal-impacts-of-ai-0623",
-      "date": "2026-06-23",
-      "summary": "During the AI and Society Forum, leading MIT researchers examined critical questions about AI’s influence on employment and democracy.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "New chip could help tiny robots traverse complex environments",
-      "url": "https://news.mit.edu/2026/new-chip-could-help-tiny-robots-traverse-complex-environments-0623",
-      "date": "2026-06-23",
-      "summary": "Researchers combined an efficient algorithm with dedicated hardware to rapidly generate 3D maps for navigation using minimal memory and power.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Infrastructure"
-    },
-    {
-      "title": "Reyzowter/Hello-Agents — trending AI repo",
-      "url": "https://github.com/Reyzowter/Hello-Agents",
-      "date": "2026-06-23",
-      "summary": "🤖 Building AI Agent Systems from Scratch — A comprehensive, practical tutorial from fundamentals to production-grade multi-agent applications (★ 141)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "Patch the Planet: a Daybreak initiative to support open source maintainers",
-      "url": "https://openai.com/index/patch-the-planet",
-      "date": "2026-06-22",
-      "summary": "OpenAI introduces Patch the Planet, a Daybreak initiative helping open-source maintainers find, validate, and fix vulnerabilities with AI and expert review.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Open Source"
-    },
-    {
-      "title": "Daybreak: Tools for securing every organization in the world",
-      "url": "https://openai.com/index/daybreak-securing-the-world",
-      "date": "2026-06-22",
-      "summary": "OpenAI introduces new Daybreak tools, including Codex Security and GPT-5.5-Cyber, to help organizations find, validate, and patch vulnerabilities at scale.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Codex-maxxing for long-running work",
-      "url": "https://openai.com/index/codex-maxxing-long-running-work",
-      "date": "2026-06-22",
-      "summary": "Learn how Jason Liu uses Codex to preserve context, manage complex projects, and help work continue beyond a single prompt.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "PP-OCRv6 on Hugging Face: 50-Language OCR from 1.5M to 34.5M Parameters",
-      "url": "https://huggingface.co/blog/PaddlePaddle/pp-ocrv6",
-      "date": "2026-06-22",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "We got local models to triage the OpenClaw repo for FREE!*",
-      "url": "https://huggingface.co/blog/local-models-pr-triage",
-      "date": "2026-06-22",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Samsung Electronics brings ChatGPT and Codex to employees",
-      "url": "https://openai.com/index/samsung-electronics-chatgpt-codex-deployment",
-      "date": "2026-06-21",
-      "summary": "Samsung Electronics deploys ChatGPT Enterprise and Codex to employees worldwide, marking one of OpenAI’s largest enterprise AI rollouts.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "A better way to model the behavior of metal alloys",
-      "url": "https://news.mit.edu/2026/better-way-to-model-metal-alloys-behavior-0619",
-      "date": "2026-06-19",
-      "summary": "MIT researchers’ approach captures subtle atomic patterns, improving predictions of material properties.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "New usage analytics and updated spend controls for enterprises",
-      "url": "https://openai.com/index/chatgpt-enterprise-spend-controls",
-      "date": "2026-06-18",
-      "summary": "OpenAI introduces new spend controls and usage analytics for ChatGPT Enterprise, helping organizations manage costs and scale AI with confidence.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Improving health intelligence in ChatGPT",
-      "url": "https://openai.com/index/improving-health-intelligence-in-chatgpt",
-      "date": "2026-06-18",
-      "summary": "Learn how GPT-5.5 Instant improves ChatGPT’s health and wellness responses with stronger reasoning, better context, clearer communication, and physician-informed evaluations.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Using AI to help physicians diagnose rare genetic diseases affecting children",
-      "url": "https://openai.com/index/diagnose-rare-childhood-diseases",
-      "date": "2026-06-18",
-      "summary": "Researchers used an OpenAI reasoning model to help diagnose rare diseases, identifying 18 new diagnoses in previously unsolved cases.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "MosaicLeaks: Can your research agent keep a secret?",
-      "url": "https://huggingface.co/blog/ServiceNow/mosaicleaks",
-      "date": "2026-06-18",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Research"
-    },
-    {
-      "title": "Beyond LoRA: Can you beat the most popular fine-tuning technique?",
-      "url": "https://huggingface.co/blog/peft-beyond-lora",
-      "date": "2026-06-18",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Is it agentic enough? Benchmarking open models on your own tooling",
-      "url": "https://huggingface.co/blog/is-it-agentic-enough",
-      "date": "2026-06-18",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "MIT in the media: For the future of tech, \"Massachusetts can absolutely lead\"",
-      "url": "https://news.mit.edu/2026/mit-media-future-tech-massachusetts-can-absolutely-lead",
-      "date": "2026-06-18",
-      "summary": "Leaders, faculty across MIT discuss fostering innovation and talent in Greater Boston in special series of articles published alongside the outlet's annual list of 'Tech Power Players'",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "A near-autonomous AI chemist improves a challenging reaction in medicinal chemistry",
-      "url": "https://openai.com/index/ai-chemist-improves-reaction",
-      "date": "2026-06-17",
-      "summary": "OpenAI and Molecule.one show how a near-autonomous AI chemist using GPT-5.4 improved a key drug-making reaction, advancing medicinal chemistry research.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Introducing LifeSciBench",
-      "url": "https://openai.com/index/introducing-life-sci-bench",
-      "date": "2026-06-17",
-      "summary": "Introducing LifeSciBench, an expert-authored, expert-reviewed benchmark for evaluating how AI systems handle real-world life science research tasks and decisions.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "New research shows how AMIE, our medical AI, could help manage health conditions.",
-      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/amie-for-disease-management-in-nature/",
-      "date": "2026-06-17",
-      "summary": "Research in “Nature” shows our conversational AI system matches primary care physicians in complex disease management.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Research"
-    },
-    {
-      "title": "From the Hugging Face Hub to robot hardware with Strands Agents and LeRobot",
-      "url": "https://huggingface.co/blog/amazon/strands-lerobot-hub-to-hardware",
-      "date": "2026-06-17",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "GLM-5.2: Built for Long-Horizon Tasks",
-      "url": "https://huggingface.co/blog/zai-org/glm-52-blog",
-      "date": "2026-06-17",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Agentic Resource Discovery: Let agents search",
-      "url": "https://huggingface.co/blog/agentic-resource-discovery-launch",
-      "date": "2026-06-17",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "In game theory, generalists sometimes win out over specialists",
-      "url": "https://news.mit.edu/2026/game-theory-generalists-sometimes-win-out-over-specialists-0617",
-      "date": "2026-06-17",
-      "summary": "Researchers show that for certain kinds of games, an overlooked class of algorithms performs much better than expected.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Could AI tell you where you left your keys?",
-      "url": "https://news.mit.edu/2026/could-ai-tell-you-where-you-left-your-keys-0617",
-      "date": "2026-06-17",
-      "summary": "A new spatial memory system for robots efficiently captures details about the objects they see while exploring their environment.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Predicting model behavior before release by simulating deployment",
-      "url": "https://openai.com/index/deployment-simulation",
-      "date": "2026-06-16",
-      "summary": "OpenAI introduces Deployment Simulation, a method to predict AI model behavior before deployment using real conversation data to improve safety and evaluation accuracy.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Unlocking UK house-building with AI-accelerated planning",
-      "url": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
-      "date": "2026-06-16",
-      "summary": "UK government partners with Google DeepMind to build a new AI-powered prototype aimed at faster housing decisions.",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Research"
-    },
-    {
-      "title": "Securing the future of AI agents",
-      "url": "https://deepmind.google/blog/securing-the-future-of-ai-agents/",
-      "date": "2026-06-16",
-      "summary": "Securing internal systems with an AI Control Roadmap, combining traditional safeguards and real-time monitoring.",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Research"
-    },
-    {
-      "title": "MIT’s Initiative for New Manufacturing builds momentum",
-      "url": "https://news.mit.edu/2026/mit-initiative-for-new-manufacturing-builds-momentum-0616",
-      "date": "2026-06-16",
-      "summary": "In its first year, INM has worked across research, workforce development, and industry engagement to help accelerate new manufacturing technologies and their real-world deployment.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "SantanderAI/autoguardrails — trending AI repo",
-      "url": "https://github.com/SantanderAI/autoguardrails",
-      "date": "2026-06-15",
-      "summary": "Alignment-research scaffold (autoresearch-style) for LLM guardrails: search over a single policy.md surface (★ 124)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "We’re strengthening our presence in Alabama through new investments and community support.",
-      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/alabama-investment-june-2026/",
-      "date": "2026-06-15",
-      "summary": "Google has announced a $1.5 billion investment for 2026 and 2027 to expand its data center campus in Jackson County, Alabama. Operating since 2019 on a repurposed former…",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Infrastructure"
     }
   ]
 }
