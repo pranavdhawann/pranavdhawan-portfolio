@@ -27,7 +27,9 @@ test('CI checks high-severity dependency advisories and every public HTML page',
   const workflow = await readFile(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
   assert.match(workflow, /npm audit --audit-level=high/);
   assert.match(workflow, /public\/index\.html public\/blog\/\*\.html public\/privacy\.html README\.md/);
-  assert.match(workflow, /--exclude https:\/\/openai\.com\/index\/a-scorecard-for-the-ai-age/);
+  // Host-wide, not per-URL: the digest keeps adding openai.com links that 403
+  // datacenter IPs, and a per-URL list goes stale every week.
+  assert.match(workflow, /--exclude https:\/\/openai\.com\/(?=\s)/);
   assert.match(workflow, /--exclude https:\/\/pranavdhawan\.com\/privacy\.html/);
   assert.match(workflow, /--exclude https:\/\/pranavdhawan\.goatcounter\.com/);
   assert.match(workflow, /--exclude https:\/\/www\.goatcounter\.com/);
@@ -39,9 +41,18 @@ test('CI runs the complete project verification and production build', async () 
   assert.match(workflow, /run: npm run build/);
 });
 
-test('weekly workflow rebases before each write to main', async () => {
+// Rebasing before staging fails outright ("cannot pull with rebase: You have
+// unstaged changes") because the generated digest dirties the tree, so the
+// order matters as much as the rebase being there at all.
+test('weekly workflow stages and commits before it rebases onto main', async () => {
   const workflow = await readFile(new URL('../.github/workflows/update-ai-news.yml', import.meta.url), 'utf8');
-  assert.equal((workflow.match(/git pull --rebase/g) || []).length, 2);
+  const steps = workflow.split(/^ {6}- name: /m).filter((step) => step.includes('git pull --rebase'));
+  assert.equal(steps.length, 2);
+  for (const step of steps) {
+    assert.ok(step.indexOf('git add') < step.indexOf('git commit'), 'stage before commit');
+    assert.ok(step.indexOf('git commit') < step.indexOf('git pull --rebase'), 'commit before rebase');
+    assert.ok(step.indexOf('git pull --rebase') < step.indexOf('git push'), 'rebase before push');
+  }
 });
 
 test('crawl controls list every public page', async () => {

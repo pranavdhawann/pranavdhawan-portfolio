@@ -2,7 +2,7 @@
 
 Static portfolio site for Pranav Dhawan
 
-**Live:** https://pranavdhawan.netlify.app/
+**Live:** https://pranavdhawan.com/
 
 ## Stack
 
