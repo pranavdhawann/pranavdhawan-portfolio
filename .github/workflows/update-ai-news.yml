@@ -42,9 +42,9 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase
           git add blog/index.html blog/data/ai-news.json
           git commit -m "chore: weekly AI news digest ($(date -u +%Y-%m-%d))"
+          git pull --rebase
           git push
 
       # Emails the digest to Netlify Forms subscribers. Skips cleanly until
@@ -70,7 +70,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git pull --rebase
           git add blog/data/newsletter-state.json
           git commit -m "chore: newsletter sent ($(date -u +%Y-%m-%d)) [skip ci]"
+          git pull --rebase
           git push
