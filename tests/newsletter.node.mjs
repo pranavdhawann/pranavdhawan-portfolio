@@ -9,9 +9,11 @@ import {
   cleanEnv,
   extractSubscribers,
   shouldSend,
+  suppressionStoreOptions,
   unsubscribeUrlFor,
 } from '../scripts/send-newsletter.mjs';
 import { verifyUnsubscribeToken } from '../netlify/functions/lib/unsubscribe-token.mjs';
+import { SUPPRESSION_STORE } from '../netlify/functions/lib/unsubscribe-store.mjs';
 import { subscriberRows, toCsv } from '../scripts/list-subscribers.mjs';
 
 const ITEMS = [{
@@ -88,6 +90,32 @@ test('cleanEnv strips the BOM and whitespace that shell pipes can add to secrets
   assert.equal(cleanEnv('﻿tok3n\n'), 'tok3n');
   assert.equal(cleanEnv('  plain  '), 'plain');
   assert.equal(cleanEnv(undefined), '');
+});
+
+// The sender runs in GitHub Actions, outside the Netlify runtime that
+// auto-configures Blobs. Without explicit credentials the store throws, the
+// read falls back to "no suppressions", and unsubscribed people get mailed.
+test('suppression store is addressed with explicit Netlify credentials', () => {
+  const opts = suppressionStoreOptions({ siteID: 'site-1', token: 'tok3n' });
+  assert.equal(opts.name, SUPPRESSION_STORE);
+  assert.equal(opts.siteID, 'site-1');
+  assert.equal(opts.token, 'tok3n');
+});
+
+test('suppression store credentials fall back to the workflow env, sanitized', () => {
+  const prev = { site: process.env.NETLIFY_SITE_ID, token: process.env.NETLIFY_AUTH_TOKEN };
+  process.env.NETLIFY_SITE_ID = '﻿site-2\n';
+  process.env.NETLIFY_AUTH_TOKEN = '  tok4n  ';
+  try {
+    assert.deepEqual(suppressionStoreOptions(), {
+      name: SUPPRESSION_STORE,
+      siteID: 'site-2',
+      token: 'tok4n',
+    });
+  } finally {
+    process.env.NETLIFY_SITE_ID = prev.site;
+    process.env.NETLIFY_AUTH_TOKEN = prev.token;
+  }
 });
 
 test('subscriberRows dedupes by email keeping the earliest signup', () => {

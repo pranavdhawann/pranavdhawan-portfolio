@@ -22,6 +22,7 @@ import path from 'node:path';
 
 import { selectForPage, formatDate, escapeHtml, httpsUrl, truncate } from './fetch-ai-news.mjs';
 import { unsubscribeToken } from '../netlify/functions/lib/unsubscribe-token.mjs';
+import { SUPPRESSION_STORE } from '../netlify/functions/lib/unsubscribe-store.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DATA_FILE = path.join(ROOT, 'blog', 'data', 'ai-news.json');
@@ -166,13 +167,25 @@ async function loadJson(file, fallback) {
 
 /**
  * Emails that hit the one-click unsubscribe endpoint (stored in Netlify Blobs).
+ *
+ * The unsubscribe function reads this store from inside the Netlify runtime,
+ * where getStore() self-configures. Here we run in GitHub Actions, so the site
+ * ID and token have to be passed explicitly or the store throws.
+ *
  * Best-effort: if the store is unreachable, returns an empty set and warns so a
  * transient Blobs outage never silently blocks the whole send.
  */
-export async function readSuppressions() {
+export function suppressionStoreOptions({
+  siteID = cleanEnv(process.env.NETLIFY_SITE_ID),
+  token = cleanEnv(process.env.NETLIFY_AUTH_TOKEN),
+} = {}) {
+  return { name: SUPPRESSION_STORE, siteID, token };
+}
+
+export async function readSuppressions(options = {}) {
   try {
     const { getStore } = await import('@netlify/blobs');
-    const store = getStore('newsletter-suppressions');
+    const store = getStore(suppressionStoreOptions(options));
     const { blobs } = await store.list();
     return new Set(blobs.map((b) => b.key.toLowerCase()));
   } catch (error) {

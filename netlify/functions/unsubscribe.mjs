@@ -10,6 +10,7 @@
 // reads before mailing. Blobs failures never block the confirmation — the sender
 // also carries a mailto fallback.
 import { verifyUnsubscribeToken } from './lib/unsubscribe-token.mjs';
+import { SUPPRESSION_STORE } from './lib/unsubscribe-store.mjs';
 
 export const config = { path: '/.netlify/functions/unsubscribe' };
 
@@ -26,7 +27,7 @@ const html = (title, body, status = 200) =>
 async function suppress(email) {
   try {
     const { getStore } = await import('@netlify/blobs');
-    const store = getStore('newsletter-suppressions');
+    const store = getStore(SUPPRESSION_STORE);
     await store.set(email, new Date().toISOString());
     return true;
   } catch (error) {
