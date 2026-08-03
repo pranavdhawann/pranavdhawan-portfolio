@@ -102,6 +102,13 @@ test('suppression store is addressed with explicit Netlify credentials', () => {
   assert.equal(opts.token, 'tok3n');
 });
 
+// Assigning undefined back to process.env stores the string "undefined", so an
+// unset variable has to be restored by deleting the key.
+function restoreEnv(name, previous) {
+  if (previous === undefined) delete process.env[name];
+  else process.env[name] = previous;
+}
+
 test('suppression store credentials fall back to the workflow env, sanitized', () => {
   const prev = { site: process.env.NETLIFY_SITE_ID, token: process.env.NETLIFY_AUTH_TOKEN };
   process.env.NETLIFY_SITE_ID = '﻿site-2\n';
@@ -113,8 +120,8 @@ test('suppression store credentials fall back to the workflow env, sanitized', (
       token: 'tok4n',
     });
   } finally {
-    process.env.NETLIFY_SITE_ID = prev.site;
-    process.env.NETLIFY_AUTH_TOKEN = prev.token;
+    restoreEnv('NETLIFY_SITE_ID', prev.site);
+    restoreEnv('NETLIFY_AUTH_TOKEN', prev.token);
   }
 });
 

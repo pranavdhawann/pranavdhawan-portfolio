@@ -49,9 +49,16 @@ test('weekly workflow stages and commits before it rebases onto main', async () 
   const steps = workflow.split(/^ {6}- name: /m).filter((step) => step.includes('git pull --rebase'));
   assert.equal(steps.length, 2);
   for (const step of steps) {
-    assert.ok(step.indexOf('git add') < step.indexOf('git commit'), 'stage before commit');
-    assert.ok(step.indexOf('git commit') < step.indexOf('git pull --rebase'), 'commit before rebase');
-    assert.ok(step.indexOf('git pull --rebase') < step.indexOf('git push'), 'rebase before push');
+    // indexOf returns -1 for a missing command, which would make the ordering
+    // comparisons below pass vacuously — require each one to be present first.
+    const at = (command) => {
+      const index = step.indexOf(command);
+      assert.notEqual(index, -1, `missing ${command}`);
+      return index;
+    };
+    assert.ok(at('git add') < at('git commit'), 'stage before commit');
+    assert.ok(at('git commit') < at('git pull --rebase'), 'commit before rebase');
+    assert.ok(at('git pull --rebase') < at('git push'), 'rebase before push');
   }
 });
 
