@@ -11,7 +11,7 @@ const requiredFacts = [
   'Siva Info',
   'American Chemical Society',
   'Stock Screen',
-  'Weather Dashboard',
+  'Singularity',
   'PII',
   'Multimodal'
 ];

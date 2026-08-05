@@ -132,9 +132,48 @@ test('trims history to the last 6 messages and drops malformed entries', async (
 });
 
 test('maps Groq failures to 502 without leaking details', async () => {
-  stubGroq(() => new Response('upstream secret detail', { status: 429 }));
+  stubGroq(() => new Response('upstream secret detail', { status: 500 }));
   const response = await ask({ question: 'Hi' });
   assert.equal(response.status, 502);
   const data = await response.json();
   assert.ok(!JSON.stringify(data).includes('upstream secret detail'));
+});
+
+// Upstream throttling is retryable and should stay distinguishable from a real
+// upstream fault, both for the caller and for anything reading the logs.
+test('passes an upstream 429 through as 429, still without details', async () => {
+  stubGroq(() => new Response('upstream secret detail', { status: 429 }));
+  const response = await ask({ question: 'Hi' });
+  assert.equal(response.status, 429);
+  const data = await response.json();
+  assert.ok(!JSON.stringify(data).includes('upstream secret detail'));
+  assert.match(data.error, /lot of questions/i);
+});
+
+// SYSTEM_PROMPT allows three paragraphs; a tighter sentence ceiling silently
+// turned valid answers into the generic error message.
+test('a three-paragraph answer is not rejected by the output guard', async () => {
+  const answer = [
+    'I work at ACS. I build agents there. It is a good fit.',
+    'Before that I was at Lumina. I did document AI. We shipped it.',
+    'Ask me anything else. I am happy to talk. Reach me by email.',
+  ].join('\n\n');
+  stubGroq(() => new Response(JSON.stringify({
+    choices: [{ message: { content: answer }, finish_reason: 'stop' }],
+  }), { status: 200, headers: { 'content-type': 'application/json' } }));
+
+  const response = await ask({ question: 'What do you do?' });
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).answer, answer);
+});
+
+// A max_tokens cut-off leaves a sentence hanging; showing it as a complete
+// answer is worse than admitting the failure.
+test('an answer truncated by max_tokens is rejected', async () => {
+  stubGroq(() => new Response(JSON.stringify({
+    choices: [{ message: { content: 'I work at ACS and my role there is to' }, finish_reason: 'length' }],
+  }), { status: 200, headers: { 'content-type': 'application/json' } }));
+
+  const response = await ask({ question: 'What do you do?' });
+  assert.equal(response.status, 502);
 });

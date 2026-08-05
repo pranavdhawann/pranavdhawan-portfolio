@@ -66,8 +66,46 @@ test('subscribing shows the success message when the form POST succeeds', async 
 
   await page.locator('#nl-email').fill('reader@example.com');
   await page.getByRole('button', { name: 'Subscribe' }).click();
-  await expect(page.locator('#newsletterStatus')).toHaveText(/You're on the list/);
+  // Double opt-in: the address is not on the list until the emailed link is clicked,
+  // so the confirmation copy must not claim otherwise.
+  await expect(page.locator('#newsletterStatus')).toHaveText(/check your inbox/i);
   await expect(page.locator('#nl-email')).toHaveValue('');
+});
+
+test('the newsletter form cannot be submitted twice by double-clicking', async ({ page }) => {
+  await openBlog(page);
+  let posts = 0;
+  await page.route('**/*', async (route) => {
+    if (route.request().method() === 'POST') {
+      posts += 1;
+      await new Promise((r) => setTimeout(r, 400));
+      return route.fulfill({ status: 200, body: '' });
+    }
+    return route.continue();
+  });
+
+  await page.locator('#nl-email').fill('reader@example.com');
+  const button = page.getByRole('button', { name: 'Subscribe' });
+  await button.click();
+  await expect(button).toBeDisabled();
+  await expect(page.locator('#newsletterStatus')).toHaveText(/check your inbox/i);
+  expect(posts).toBe(1);
+});
+
+// script.js and newsletter.js both used to register the data-analytics click
+// listener, so every blog CTA was counted twice in GoatCounter.
+test('a CTA click fires exactly one analytics event', async ({ page }) => {
+  await openBlog(page);
+  await page.evaluate(() => {
+    window.__hits = [];
+    window.goatcounter = { count: (o) => window.__hits.push(o.path) };
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('a')) e.preventDefault();
+    }, true);
+  });
+
+  await page.locator('a.writing-card[data-analytics="blog:rag-hallucinations"]').click();
+  expect(await page.evaluate(() => window.__hits)).toEqual(['blog:rag-hallucinations']);
 });
 
 test('a failed signup shows the error message with a fallback contact', async ({ page }) => {

@@ -23,6 +23,7 @@ import path from 'node:path';
 import { selectForPage, formatDate, escapeHtml, httpsUrl, truncate } from './fetch-ai-news.mjs';
 import { unsubscribeToken } from '../netlify/functions/lib/unsubscribe-token.mjs';
 import { SUPPRESSION_STORE } from '../netlify/functions/lib/unsubscribe-store.mjs';
+import { CONFIRMED_STORE } from '../netlify/functions/lib/confirm-store.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DATA_FILE = path.join(ROOT, 'blog', 'data', 'ai-news.json');
@@ -32,10 +33,12 @@ const SITE_URL = 'https://pranavdhawan.com';
 const MIN_DAYS_BETWEEN_SENDS = 6;
 
 // CAN-SPAM requires a valid physical postal address in marketing email, and
-// Gmail/Yahoo bulk-sender rules expect one. NEWSLETTER_ADDRESS overrides this
-// default without a code change.
+// Gmail/Yahoo bulk-sender rules expect one. Set NEWSLETTER_ADDRESS (a GitHub
+// Actions secret — see README) to a PO box or virtual mailbox; the fallback is
+// deliberately city-level only, because anything more specific would put a home
+// address in a public repository and in every message sent.
 const MAILING_ADDRESS = cleanEnv(process.env.NEWSLETTER_ADDRESS) ||
-  'Pranav Dhawan · 601 24th St NW · Washington, DC 20037, USA';
+  'Pranav Dhawan · Washington, DC, USA';
 
 export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -141,6 +144,9 @@ export function buildEmailText(items, updatedIso, { unsubscribeUrl = '', address
   ].join('\n');
 }
 
+const SUBMISSIONS_PER_PAGE = 100;
+const MAX_SUBMISSION_PAGES = 100; // 10k addresses; a stop so a bad API can't loop forever
+
 /** Raw "newsletter" form submissions from the Netlify API ([] until the form exists). */
 export async function fetchSubmissions(token, siteId) {
   const headers = { Authorization: `Bearer ${token}` };
@@ -152,9 +158,21 @@ export async function fetchSubmissions(token, siteId) {
     console.log('No "newsletter" form found on the site yet (it appears after the first deploy with the form).');
     return [];
   }
-  const subsRes = await fetch(`https://api.netlify.com/api/v1/forms/${form.id}/submissions?per_page=1000`, { headers });
-  if (!subsRes.ok) throw new Error(`Netlify submissions API: HTTP ${subsRes.status}`);
-  return subsRes.json();
+  // Paginate: a single fixed-size request silently truncated the list once the
+  // form outgrew one page, dropping the oldest subscribers from every send.
+  const all = [];
+  for (let page = 1; page <= MAX_SUBMISSION_PAGES; page += 1) {
+    const subsRes = await fetch(
+      `https://api.netlify.com/api/v1/forms/${form.id}/submissions?per_page=${SUBMISSIONS_PER_PAGE}&page=${page}`,
+      { headers }
+    );
+    if (!subsRes.ok) throw new Error(`Netlify submissions API: HTTP ${subsRes.status}`);
+    const batch = await subsRes.json();
+    if (!Array.isArray(batch) || batch.length === 0) break;
+    all.push(...batch);
+    if (batch.length < SUBMISSIONS_PER_PAGE) break;
+  }
+  return all;
 }
 
 async function loadJson(file, fallback) {
@@ -194,6 +212,35 @@ export async function readSuppressions(options = {}) {
   }
 }
 
+/** Store options for the double opt-in confirmations, same credential handling. */
+export function confirmedStoreOptions({
+  siteID = cleanEnv(process.env.NETLIFY_SITE_ID),
+  token = cleanEnv(process.env.NETLIFY_AUTH_TOKEN),
+} = {}) {
+  return { name: CONFIRMED_STORE, siteID, token };
+}
+
+/**
+ * Addresses that clicked the confirmation link (double opt-in).
+ *
+ * Unlike the suppression list this fails CLOSED: if the store is unreachable we
+ * return null and the caller skips the send entirely. Falling back to "mail
+ * everyone" on a transient outage would mail unconfirmed addresses, which is
+ * the exact thing double opt-in exists to prevent. A skipped week is
+ * recoverable; a spam complaint is not.
+ */
+export async function readConfirmed(options = {}) {
+  try {
+    const { getStore } = await import('@netlify/blobs');
+    const store = getStore(confirmedStoreOptions(options));
+    const { blobs } = await store.list();
+    return new Set(blobs.map((b) => b.key.toLowerCase()));
+  } catch (error) {
+    console.warn(`Could not read the confirmed-subscriber list (${error?.message}).`);
+    return null;
+  }
+}
+
 async function main() {
   const [NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID, SMTP_HOST, SMTP_PORT, SMTP_USER, SMTP_PASS] =
     ['NETLIFY_AUTH_TOKEN', 'NETLIFY_SITE_ID', 'SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS']
@@ -221,12 +268,20 @@ async function main() {
   }
 
   const allSubscribers = extractSubscribers(await fetchSubmissions(NETLIFY_AUTH_TOKEN, NETLIFY_SITE_ID));
+  const confirmed = await readConfirmed();
+  if (confirmed === null) {
+    console.error('Confirmed-subscriber store unreachable — skipping this send rather than risk mailing unconfirmed addresses.');
+    process.exitCode = 1;
+    return;
+  }
   const suppressed = await readSuppressions();
-  const subscribers = allSubscribers.filter((email) => !suppressed.has(email));
-  const skipped = allSubscribers.length - subscribers.length;
+  const subscribers = allSubscribers.filter((email) => confirmed.has(email) && !suppressed.has(email));
+  const unconfirmed = allSubscribers.filter((email) => !confirmed.has(email)).length;
+  const skipped = allSubscribers.length - subscribers.length - unconfirmed;
+  if (unconfirmed > 0) console.log(`Skipping ${unconfirmed} address(es) that never confirmed (double opt-in).`);
   if (skipped > 0) console.log(`Skipping ${skipped} unsubscribed address(es).`);
   if (subscribers.length === 0) {
-    console.log('No subscribers to send to — nothing to do.');
+    console.log('No confirmed subscribers to send to — nothing to do.');
     return;
   }
 
@@ -249,6 +304,7 @@ async function main() {
   // One-click unsubscribe (RFC 8058) needs a per-recipient link, so send one
   // message each rather than a shared BCC batch.
   let sent = 0;
+  const failed = [];
   for (const email of subscribers) {
     const unsubscribeUrl = secret ? unsubscribeUrlFor(email, secret) : '';
     const listUnsubscribe = [
@@ -258,19 +314,38 @@ async function main() {
     const headers = { 'List-Unsubscribe': listUnsubscribe };
     if (unsubscribeUrl) headers['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click';
 
-    await transport.sendMail({
-      from,
-      to: email,
-      subject: buildSubject(updatedIso),
-      html: buildEmailHtml(items, updatedIso, { unsubscribeUrl }),
-      text: buildEmailText(items, updatedIso, { unsubscribeUrl }),
-      headers,
-    });
-    sent += 1;
+    // Isolate per recipient: an unhandled throw here used to abort the whole run
+    // before the state file was written, so the next run re-sent the digest to
+    // everyone who had already received it.
+    try {
+      await transport.sendMail({
+        from,
+        to: email,
+        subject: buildSubject(updatedIso),
+        html: buildEmailHtml(items, updatedIso, { unsubscribeUrl }),
+        text: buildEmailText(items, updatedIso, { unsubscribeUrl }),
+        headers,
+      });
+      sent += 1;
+    } catch (error) {
+      failed.push(email);
+      console.warn(`Send failed for ${email}: ${error?.message}`);
+    }
   }
 
-  await writeFile(STATE_FILE, `${JSON.stringify({ lastSent: now.toISOString(), recipients: sent, items: items.length }, null, 2)}\n`);
+  // Recorded even on partial failure — the guard's job is to stop a re-run from
+  // double-mailing, which matters most precisely when a send went wrong.
+  await writeFile(STATE_FILE, `${JSON.stringify({
+    lastSent: now.toISOString(),
+    recipients: sent,
+    failed: failed.length,
+    items: items.length,
+  }, null, 2)}\n`);
   console.log(`Newsletter sent to ${sent} subscribers (${items.length} items).`);
+  if (failed.length > 0) {
+    console.warn(`${failed.length} address(es) failed and were not retried.`);
+    process.exitCode = 1;
+  }
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {

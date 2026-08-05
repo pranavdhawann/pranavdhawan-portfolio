@@ -120,10 +120,18 @@ company filings, forecasting workflows, and market context into a single
 interface. Built for investors to compare signals quickly and turn live market
 data into actionable research. Built with Python and ML, deployed on GCP.
 
-Serverless ETL — Weather Dashboard
-A fully serverless ETL pipeline on AWS using Lambda and EventBridge to ingest
-and transform real-time weather data from the OpenWeather API on a scheduled
-cadence, with results surfaced through an interactive dashboard.
+Singularity — Local-First Memory for AI Assistants
+A local memory and permission layer for AI assistants. It imports your chat
+history and project files, answers from them with citations you can open to the
+exact source range, and holds every outbound model call behind a redaction gate
+you approve before anything leaves the machine. Built in TypeScript on Fastify
+and React with SQLite FTS5 for retrieval, model-agnostic across Ollama, any
+OpenAI-compatible endpoint, or a fully offline mock. Every import, call,
+approval, denial, and answer lands on one auditable SQLite timeline.
+Why I built it: assistants hide the context they picked and scatter your
+history across chats, so the durable layer ends up owned by whoever you happened
+to use. Keeping it local makes both the memory and the sharing decision
+inspectable — the same instinct behind my PII work.
 
 CLIENT WORK
 I build and maintain production websites alongside my AI work. For Aevantis

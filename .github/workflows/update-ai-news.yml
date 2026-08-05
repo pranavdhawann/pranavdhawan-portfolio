@@ -42,7 +42,7 @@ jobs:
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add blog/index.html blog/data/ai-news.json
+          git add blog/index.html blog/feed.xml blog/data/ai-news.json
           git commit -m "chore: weekly AI news digest ($(date -u +%Y-%m-%d))"
           git pull --rebase
           git push

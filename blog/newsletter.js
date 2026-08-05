@@ -1,30 +1,23 @@
-// Fire a GoatCounter event (no-op if the script isn't loaded, e.g. local/CI).
-// Mirrors trackEvent in script.js, which the blog pages don't load.
-function trackEvent(name) {
-    if (window.goatcounter && typeof window.goatcounter.count === 'function') {
-        window.goatcounter.count({ path: name, title: name, event: true });
-    }
-}
-
-// Outbound / CTA click tracking via data-analytics attributes (same contract
-// as script.js on the portfolio page).
-(() => {
-    document.addEventListener('click', (event) => {
-        const el = event.target.closest('[data-analytics]');
-        if (el) trackEvent(el.getAttribute('data-analytics'));
-    });
-})();
-
 // AJAX submit for the newsletter signup so visitors stay on the page.
 // Mirrors the contact form handler in script.js; Netlify Forms receives the
-// POST and stores the subscriber (dashboard: Forms -> newsletter).
+// POST, and a submission-created function emails a confirmation link — the
+// address only joins the send list once that link is clicked.
+//
+// Analytics (trackEvent + the data-analytics click listener) live in
+// site-common.js, which this page loads first. Registering them here too would
+// double-count every CTA click on the blog.
 (() => {
     const form = document.querySelector('.newsletter-form');
     const status = document.getElementById('newsletterStatus');
     if (!form || !status) return;
 
+    const submitButton = form.querySelector('button[type="submit"]');
+
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
+        // Guard against double-clicks filing the same address twice.
+        if (submitButton && submitButton.disabled) return;
+        if (submitButton) submitButton.disabled = true;
         status.classList.remove('is-error');
         status.textContent = 'Subscribing…';
 
@@ -36,10 +29,12 @@ function trackEvent(name) {
             });
             if (!response.ok) throw new Error('Request failed');
             form.reset();
-            status.textContent = "You're on the list — the next issue lands Monday.";
+            status.textContent = 'Almost there — check your inbox and click the confirmation link.';
         } catch (e) {
             status.classList.add('is-error');
             status.textContent = 'Something went wrong. Please try again, or email dhawanpranav02@gmail.com.';
+        } finally {
+            if (submitButton) submitButton.disabled = false;
         }
     });
 })();

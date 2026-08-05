@@ -18,6 +18,7 @@ import path from 'node:path';
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DATA_FILE = path.join(ROOT, 'blog', 'data', 'ai-news.json');
 const BLOG_PAGE = path.join(ROOT, 'blog', 'index.html');
+const FEED_FILE = path.join(ROOT, 'blog', 'feed.xml');
 
 const START_MARKER = '<!-- AI-NEWS:START -->';
 const END_MARKER = '<!-- AI-NEWS:END -->';
@@ -316,12 +317,55 @@ export function renderDigest(items, updatedIso) {
   const digestBody = cards || '                <p class="writing-intro">No safe, recent items are available this week. Please check back soon.</p>';
   return [
     START_MARKER,
-    `                <p class="writing-intro">A weekly, auto-curated digest of AI developments — pulled straight from official lab blogs, arXiv, and GitHub. Every card links to its original source. Updated ${escapeHtml(formatDate(updatedIso))}.</p>`,
+    `                <p class="writing-intro">A weekly digest of AI developments, curated automatically by a zero-dependency pipeline I built — pulled straight from official lab blogs, arXiv, and GitHub. Every card links to its original source. <a href="feed.xml">Subscribe via RSS</a>. Updated ${escapeHtml(formatDate(updatedIso))}.</p>`,
     cards ? '                <div class="writing-grid">' : '',
     digestBody,
     cards ? '                </div>' : '',
     `                ${END_MARKER}`,
   ].join('\n');
+}
+
+const FEED_URL = 'https://pranavdhawan.com/blog/feed.xml';
+const BLOG_URL = 'https://pranavdhawan.com/blog/';
+
+/**
+ * RSS 2.0 for the weekly digest.
+ *
+ * Each <item> points at the original source rather than a local permalink —
+ * the digest has no per-item page, and sending readers to the lab's own post is
+ * the honest destination. guid isPermaLink="false" keeps readers from treating
+ * the external URL as this feed's canonical id.
+ */
+export function renderFeed(items, updatedIso) {
+  const entries = items
+    .map((item) => ({ ...item, url: httpsUrl(item.url) }))
+    .filter((item) => item.url)
+    .map((item) => [
+      '    <item>',
+      `      <title>${escapeHtml(item.title)}</title>`,
+      `      <link>${escapeHtml(item.url)}</link>`,
+      `      <guid isPermaLink="false">${escapeHtml(normalizeUrl(item.url))}</guid>`,
+      `      <pubDate>${new Date(`${item.date}T00:00:00Z`).toUTCString()}</pubDate>`,
+      `      <category>${escapeHtml(item.category)}</category>`,
+      `      <source url="${escapeHtml(FEED_URL)}">${escapeHtml(item.sourceName)}</source>`,
+      `      <description>${escapeHtml(truncate(item.summary || 'Read the full story at the source.'))}</description>`,
+      '    </item>',
+    ].join('\n'))
+    .join('\n');
+
+  return `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AI This Week — Pranav Dhawan</title>
+    <link>${BLOG_URL}</link>
+    <atom:link href="${FEED_URL}" rel="self" type="application/rss+xml"/>
+    <description>A weekly, auto-curated digest of AI developments from official lab blogs, arXiv, and GitHub.</description>
+    <language>en-us</language>
+    <lastBuildDate>${new Date(`${updatedIso}T00:00:00Z`).toUTCString()}</lastBuildDate>
+${entries}
+  </channel>
+</rss>
+`;
 }
 
 export function injectDigest(html, digestHtml) {
@@ -399,7 +443,8 @@ async function main() {
   const page = await readFile(BLOG_PAGE, 'utf8');
   const selected = selectForPage(items, now);
   await writeFile(BLOG_PAGE, injectDigest(page, renderDigest(selected, updatedIso)));
-  console.log(`Wrote ${selected.length} items to blog/index.html and ${items.length} to blog/data/ai-news.json`);
+  await writeFile(FEED_FILE, renderFeed(selected, updatedIso));
+  console.log(`Wrote ${selected.length} items to blog/index.html and blog/feed.xml, and ${items.length} to blog/data/ai-news.json`);
 }
 
 if (process.argv[1] && fileURLToPath(import.meta.url) === path.resolve(process.argv[1])) {

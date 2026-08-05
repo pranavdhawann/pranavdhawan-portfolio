@@ -41,6 +41,14 @@ async function resolve(urlPath) {
 }
 
 const server = http.createServer(async (req, res) => {
+  // A static host answers only reads. Without this the dev server returned 200
+  // to a form POST, so local form testing "succeeded" against nothing.
+  if (req.method !== 'GET' && req.method !== 'HEAD') {
+    res.writeHead(405, { 'content-type': 'text/plain', allow: 'GET, HEAD' });
+    res.end('405 Method Not Allowed');
+    return;
+  }
+
   const filePath = await resolve(req.url);
   if (!filePath) {
     res.writeHead(404, { 'content-type': 'text/plain' });

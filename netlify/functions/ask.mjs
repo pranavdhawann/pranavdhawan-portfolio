@@ -40,16 +40,28 @@ const isRateLimited = (ip) => {
   const hits = (recentHits.get(ip) || []).filter((time) => now - time < RATE_LIMIT_WINDOW_MS);
   hits.push(now);
   recentHits.set(ip, hits);
+  // Evict IPs whose window has fully expired; otherwise a warm instance under
+  // scanner traffic accumulates a Map entry per address forever.
+  for (const [key, times] of recentHits) {
+    if (key !== ip && times[times.length - 1] < now - RATE_LIMIT_WINDOW_MS) {
+      recentHits.delete(key);
+    }
+  }
   return hits.length > RATE_LIMIT_MAX;
 };
 
 // Test-only hook so the throttle does not leak state across cases.
 export const resetRateLimit = () => recentHits.clear();
 
+// Rejects answers that ignored the "plain text, 1-3 short paragraphs" contract.
+// The sentence ceiling has to leave room for the three paragraphs SYSTEM_PROMPT
+// allows — a tighter cap silently turns valid answers into error messages.
+const MAX_ANSWER_SENTENCES = 12;
+
 const isSafeAnswer = (answer) => {
   if (answer.includes('```') || /^#{1,6}\s/m.test(answer)) return false;
   const sentences = answer.match(/[.!?](?:\s|$)/g) || [];
-  return sentences.length <= 6;
+  return sentences.length <= MAX_ANSWER_SENTENCES;
 };
 
 const SYSTEM_PROMPT = `You are Pranav Dhawan, speaking in the first person on your portfolio website. Visitors ask you questions to learn about you.
@@ -141,15 +153,22 @@ export default async function handler(request) {
   }
 
   if (groqResponse.status === 429) {
-    return json({ error: "I'm getting a lot of questions right now — give it a few seconds and ask again." }, 502);
+    return json({ error: "I'm getting a lot of questions right now — give it a few seconds and ask again." }, 429);
   }
   if (!groqResponse.ok) {
     return json({ error: FRIENDLY_ERROR }, 502);
   }
 
   const data = await groqResponse.json().catch(() => null);
-  const answer = data?.choices?.[0]?.message?.content?.trim();
+  const choice = data?.choices?.[0];
+  const answer = choice?.message?.content?.trim();
   if (!answer) {
+    return json({ error: FRIENDLY_ERROR }, 502);
+  }
+  // max_tokens truncation leaves a sentence hanging mid-word; better to show the
+  // friendly error than to present a cut-off answer as if it were complete.
+  if (choice.finish_reason === 'length') {
+    console.warn('Ask Pranav response truncated by max_tokens');
     return json({ error: FRIENDLY_ERROR }, 502);
   }
   if (!isSafeAnswer(answer)) {

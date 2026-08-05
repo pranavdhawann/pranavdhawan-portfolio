@@ -10,11 +10,26 @@ const execFileAsync = promisify(execFile);
 test('lychee excludes profile links that reject automated link checks', async () => {
   const workflow = await readFile(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
 
-  assert.match(
-    workflow,
-    /--exclude https:\/\/app\.joinhandshake\.com\/profiles\/pranavvdhawann/,
-    'Handshake returns 403 to lychee and should be excluded like other CI-blocking social profiles'
+  // LinkedIn answers automated clients with HTTP 999 and can never be checked.
+  assert.match(workflow, /--exclude https:\/\/linkedin\.com\/in\/pranavvdhawann/);
+  assert.match(workflow, /--exclude https:\/\/www\.linkedin\.com\/in\/pranavvdhawann/);
+});
+
+// Excludes are a maintenance liability: each one hides a URL from validation
+// forever. Drop the entry when the link leaves the site, or the next broken
+// link behind that exclude goes unnoticed.
+test('lychee does not carry excludes for links the site no longer has', async () => {
+  const workflow = await readFile(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
+  const pages = await Promise.all(
+    ['../index.html', '../privacy.html', '../blog/index.html', '../README.md']
+      .map((p) => readFile(new URL(p, import.meta.url), 'utf8'))
   );
+  const site = pages.join('\n');
+
+  for (const dead of ['app.joinhandshake.com']) {
+    assert.ok(!site.includes(dead), `${dead} is back on the site — restore its exclude if CI needs it`);
+    assert.ok(!workflow.includes(dead), `${dead} is not linked anywhere; drop its stale lychee exclude`);
+  }
 });
 
 test('production deploy builds a limited publish directory', async () => {
@@ -30,7 +45,6 @@ test('CI checks high-severity dependency advisories and every public HTML page',
   // Host-wide, not per-URL: the digest keeps adding openai.com links that 403
   // datacenter IPs, and a per-URL list goes stale every week.
   assert.match(workflow, /--exclude https:\/\/openai\.com\/(?=\s)/);
-  assert.match(workflow, /--exclude https:\/\/pranavdhawan\.com\/privacy\.html/);
   assert.match(workflow, /--exclude https:\/\/pranavdhawan\.goatcounter\.com/);
   assert.match(workflow, /--exclude https:\/\/www\.goatcounter\.com/);
 });
@@ -71,6 +85,22 @@ test('crawl controls list every public page', async () => {
   }
 });
 
+test('the weekly digest is discoverable as an RSS feed', async () => {
+  const feed = await readFile(new URL('../blog/feed.xml', import.meta.url), 'utf8');
+  assert.match(feed, /<rss version="2\.0"/);
+  assert.match(feed, /<atom:link href="https:\/\/pranavdhawan\.com\/blog\/feed\.xml" rel="self"/);
+  assert.ok(feed.includes('<item>'), 'feed should carry the current digest items');
+
+  for (const page of ['../blog/index.html', '../blog/rag-hallucinations.html', '../blog/multimodal-finding.html']) {
+    const html = await readFile(new URL(page, import.meta.url), 'utf8');
+    assert.match(
+      html,
+      /<link rel="alternate" type="application\/rss\+xml"[^>]*href="feed\.xml"/,
+      `${page} should advertise the feed`
+    );
+  }
+});
+
 test('production build emits modern images without relying on global image tools', async () => {
   const nodeDirectory = path.dirname(process.execPath);
   await execFileAsync(process.execPath, ['scripts/build-site.mjs'], {
@@ -83,7 +113,7 @@ test('production build emits modern images without relying on global image tools
     windowsHide: true,
   });
 
-  for (const image of ['photo', 'eye', 'stockscreen', 'multimodal', 'pii', 'weather-dashboard']) {
+  for (const image of ['photo', 'eye', 'stockscreen', 'multimodal', 'pii', 'singularity']) {
     for (const extension of ['avif', 'webp']) {
       const output = new URL(`../public/images/${image}.${extension}`, import.meta.url);
       assert.ok((await stat(output)).size > 0, `${image}.${extension} should be generated`);

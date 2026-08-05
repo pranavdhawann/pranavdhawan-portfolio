@@ -44,13 +44,20 @@ test('test harness serves the page over HTTP with configured security headers', 
   expect(response.headers()['x-content-type-options']).toBe('nosniff');
 });
 
-test('dashboard project links to weather dashboard repository', async ({ page }) => {
+test('every project card links to a live, non-archived repository', async ({ page }) => {
   await openPortfolio(page);
 
-  await expect(page.getByRole('link', { name: 'Code' }).nth(2)).toHaveAttribute(
-    'href',
-    'https://github.com/pranavdhawann/weather-dashboard'
-  );
+  const expected = [
+    ['Stock Screen', 'https://github.com/pranavdhawann/stock-screen'],
+    ['Multimodal Techniques for Equity Forecasting', 'https://github.com/pranavdhawann/spring-2026-group4'],
+    ['Edge-Based PII Detection & Censoring System', 'https://github.com/pranavdhawann/Final-Project-Group4'],
+    ['Singularity — Local-First Memory for AI Assistants', 'https://github.com/pranavdhawann/singularity'],
+  ];
+
+  for (const [projectName, href] of expected) {
+    const card = page.locator('.project-card').filter({ hasText: projectName });
+    await expect(card.getByRole('link', { name: 'Code' })).toHaveAttribute('href', href);
+  }
 });
 
 test('project cards render named screenshots inside the existing image frames', async ({ page }) => {
@@ -60,7 +67,7 @@ test('project cards render named screenshots inside the existing image frames', 
     ['Stock Screen', 'images/stockscreen.png'],
     ['Multimodal Techniques for Equity Forecasting', 'images/multimodal.png'],
     ['Edge-Based PII Detection & Censoring System', 'images/pii.png'],
-    ['Serverless ETL — Weather Dashboard', 'images/weather-dashboard.png']
+    ['Singularity — Local-First Memory for AI Assistants', 'images/singularity.png']
   ];
 
   for (const [projectName, imagePath] of expectedImages) {
@@ -70,7 +77,10 @@ test('project cards render named screenshots inside the existing image frames', 
 
     await expect(image).toBeVisible();
     await expect(image).toHaveAttribute('src', imagePath);
-    await expect(image).toHaveAttribute('alt', projectName);
+    // Alt text has to describe the screenshot, not just repeat the heading a
+    // screen-reader user has already heard.
+    const alt = await image.getAttribute('alt');
+    expect(alt.length).toBeGreaterThan(projectName.length + 15);
     await expect(frame.locator('source[type="image/avif"]')).toHaveAttribute('srcset', imagePath.replace('.png', '.avif'));
     await expect(frame.locator('source[type="image/webp"]')).toHaveAttribute('srcset', imagePath.replace('.png', '.webp'));
     await expect(frame.locator('.project-icon')).toHaveCount(0);
@@ -285,6 +295,68 @@ test('page has a skip link and hides eye pupils after an avatar load failure', a
   await expect(page.locator('.eye-pupil')).toHaveCount(2);
   for (const pupil of await page.locator('.eye-pupil').all()) {
     await expect(pupil).toHaveCSS('display', 'none');
+  }
+});
+
+// The smooth-scroll handler calls preventDefault(), which cancels the browser's
+// own fragment navigation — and with it the focus move. Without an explicit
+// focus() the skip link scrolls the page but strands keyboard users in the nav.
+test('the skip link moves keyboard focus into main', async ({ page }) => {
+  await openPortfolio(page);
+  await page.keyboard.press('Tab');
+  await expect(page.getByRole('link', { name: 'Skip to content' })).toBeFocused();
+
+  await page.keyboard.press('Enter');
+  await expect(page.locator('#main-content')).toBeFocused();
+});
+
+test('the contact form cannot be submitted twice by double-clicking', async ({ page }) => {
+  await openPortfolio(page);
+  let posts = 0;
+  await page.route('**/*', async (route) => {
+    if (route.request().method() === 'POST') {
+      posts += 1;
+      await new Promise((r) => setTimeout(r, 400));
+      return route.fulfill({ status: 200, body: '' });
+    }
+    return route.continue();
+  });
+
+  await page.fill('#cf-name', 'Test');
+  await page.fill('#cf-email', 'test@example.com');
+  await page.fill('#cf-message', 'Hello');
+  const button = page.locator('.contact-submit');
+  await button.click();
+  await expect(button).toBeDisabled();
+  await expect(page.locator('#contactStatus')).toHaveText(/get back to you/i);
+  expect(posts).toBe(1);
+});
+
+// The orbit runs on requestAnimationFrame, which the blanket reduced-motion CSS
+// rule cannot reach — it has to opt out in JavaScript.
+test('reduced motion stops the avatar eye orbit', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await openPortfolio(page);
+  await page.waitForTimeout(400);
+
+  const first = await page.locator('#eyeLeft').evaluate((el) => el.style.transform);
+  await page.waitForTimeout(500);
+  const second = await page.locator('#eyeLeft').evaluate((el) => el.style.transform);
+
+  expect(second).toBe(first);
+  await expect(page.locator('.avatar-wrapper')).not.toHaveClass(/is-auto-orbit/);
+});
+
+test('every nav target exists and each section is reachable from the nav', async ({ page }) => {
+  await openPortfolio(page);
+  const hrefs = await page.locator('.nav-menu .nav-link').evaluateAll(
+    (links) => links.map((a) => a.getAttribute('href'))
+  );
+  expect(hrefs).toContain('#client-work');
+
+  for (const href of hrefs.filter((h) => h.startsWith('#'))) {
+    await expect(page.locator(href)).toHaveCount(1);
   }
 });
 

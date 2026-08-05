@@ -39,6 +39,11 @@
     <!-- Preload the LCP hero avatar so it paints sooner -->
     <link rel="preload" as="image" href="images/photo.avif" type="image/avif" fetchpriority="high">
 
+    <!-- Self-hosted fonts are only discoverable after styles.css parses; preloading
+         them removes a round trip from first text paint -->
+    <link rel="preload" as="font" type="font/woff2" href="fonts/dm-sans-variable.woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" href="fonts/space-grotesk-variable.woff2" crossorigin>
+
     <!-- Structured data for search engines (not executed, so CSP script-src does not apply) -->
     <script type="application/ld+json">
     {
@@ -158,7 +163,7 @@
     <a class="skip-link" href="#main-content">Skip to content</a>
 
     <!-- Top Navigation Bar -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar" id="navbar" aria-label="Main">
         <div class="nav-logo">
             <a href="#home">PRANAV DHAWAN</a>
         </div>
@@ -175,6 +180,9 @@
                 </li>
                 <li class="nav-item">
                     <a href="#experience" class="nav-link">EXPERIENCE</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#client-work" class="nav-link">CLIENT WORK</a>
                 </li>
                 <li class="nav-item">
                     <a href="#projects" class="nav-link">PROJECTS</a>
@@ -198,7 +206,7 @@
     </nav>
 
     <!-- Main Content Area -->
-    <main class="main-content" id="main-content">
+    <main class="main-content" id="main-content" tabindex="-1">
 
         <section id="home" class="hero">
             <!-- Particle + rocket decorations injected by script.js on capable viewports only -->
@@ -630,6 +638,29 @@
             </div>
         </section>
 
+        <section id="client-work" class="client-work">
+            <div class="container">
+                <h2 class="section-title">CLIENT WORK</h2>
+                <p class="writing-intro">Alongside my ML work, I design, ship, and maintain production websites for businesses — the same ownership and operating discipline I bring to AI systems.</p>
+                <div class="client-work-grid">
+                    <article class="client-card">
+                        <p class="writing-tag">AEROSPACE &middot; NEW DELHI</p>
+                        <h3>Aevantis Aerospace</h3>
+                        <p>Production marketing site for an unmanned-systems manufacturer, presenting product lines, capabilities, and an enquiry flow.</p>
+                        <p class="client-maintenance">I maintain the site’s content, hosting, and performance.</p>
+                        <a class="project-link" href="https://aevantisaerospace.com/" target="_blank" rel="noopener noreferrer">Visit site <span aria-hidden="true">&rarr;</span></a>
+                    </article>
+                    <article class="client-card">
+                        <p class="writing-tag">OUTDOOR ADVERTISING &middot; DELHI NCR</p>
+                        <h3>Admiles Media</h3>
+                        <p>Production site for an outdoor advertising company, with media-location information, project galleries, and lead capture.</p>
+                        <p class="client-maintenance">I maintain the site’s content, hosting, and performance.</p>
+                        <a class="project-link" href="https://admiles.in/" target="_blank" rel="noopener noreferrer">Visit site <span aria-hidden="true">&rarr;</span></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section id="projects" class="projects">
             <div class="container">
                 <h2 class="section-title">FEATURED PROJECTS</h2>
@@ -639,7 +670,7 @@
                             <picture class="project-picture">
                                 <source srcset="images/stockscreen.avif" type="image/avif">
                                 <source srcset="images/stockscreen.webp" type="image/webp">
-                                <img class="project-photo" src="images/stockscreen.png" alt="Stock Screen" width="959" height="838" loading="lazy">
+                                <img class="project-photo" src="images/stockscreen.png" alt="Stock Screen terminal showing a live market overview, a movers table and a sentiment timeline" width="959" height="838" loading="lazy">
                             </picture>
                         </div>
                         <div class="project-content">
@@ -655,6 +686,10 @@
                                     target="_blank" rel="noopener noreferrer" data-analytics="project-demo:stock-screen">
                                     <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-external"></use></svg> Live demo
                                 </a>
+                                <a href="https://github.com/pranavdhawann/stock-screen" class="project-link"
+                                    target="_blank" rel="noopener noreferrer">
+                                    <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -664,7 +699,7 @@
                             <picture class="project-picture">
                                 <source srcset="images/multimodal.avif" type="image/avif">
                                 <source srcset="images/multimodal.webp" type="image/webp">
-                                <img class="project-photo" src="images/multimodal.png" alt="Multimodal Techniques for Equity Forecasting" width="567" height="646" loading="lazy">
+                                <img class="project-photo" src="images/multimodal.png" alt="Multimodal Techniques for Equity Forecasting — architecture diagram of the price, news and filings fusion pipeline" width="567" height="646" loading="lazy">
                             </picture>
                         </div>
                         <div class="project-content">
@@ -691,7 +726,7 @@
                             <picture class="project-picture">
                                 <source srcset="images/pii.avif" type="image/avif">
                                 <source srcset="images/pii.webp" type="image/webp">
-                                <img class="project-photo" src="images/pii.png" alt="Edge-Based PII Detection &amp; Censoring System" width="615" height="277" loading="lazy">
+                                <img class="project-photo" src="images/pii.png" alt="Edge-Based PII Detection &amp; Censoring System — demo redacting detected personal data in a block of text" width="615" height="277" loading="lazy">
                             </picture>
                         </div>
                         <div class="project-content">
@@ -716,52 +751,31 @@
                     <div class="project-card">
                         <div class="project-image">
                             <picture class="project-picture">
-                                <source srcset="images/weather-dashboard.avif" type="image/avif">
-                                <source srcset="images/weather-dashboard.webp" type="image/webp">
-                                <img class="project-photo" src="images/weather-dashboard.png" alt="Serverless ETL — Weather Dashboard" width="862" height="895" loading="lazy">
+                                <source srcset="images/singularity.avif" type="image/avif">
+                                <source srcset="images/singularity.webp" type="image/webp">
+                                <img class="project-photo" src="images/singularity.png" alt="Singularity — a cited answer in the activity timeline beside an inspector showing the exact local source range used" width="960" height="600" loading="lazy">
                             </picture>
                         </div>
                         <div class="project-content">
-                            <h3>Serverless ETL — Weather Dashboard</h3>
-                            <p>Built a fully serverless ETL pipeline on AWS using Lambda and EventBridge to ingest and
-                                transform real-time weather data from the OpenWeather API on a scheduled cadence, with
-                                results surfaced through an interactive dashboard.</p>
+                            <h3>Singularity — Local-First Memory for AI Assistants</h3>
+                            <p>A local memory and permission layer for AI assistants: it imports your chat history,
+                                answers from your own files with citations you can open to the exact source range, and
+                                holds every outbound call behind a redaction gate you approve before anything leaves
+                                the machine.</p>
                             <div class="project-tech">
-                                <span class="tech-tag">AWS Lambda</span>
-                                <span class="tech-tag">EventBridge</span>
-                                <span class="tech-tag">OpenWeather API</span>
+                                <span class="tech-tag">TypeScript</span>
+                                <span class="tech-tag">RAG</span>
+                                <span class="tech-tag">SQLite FTS5</span>
+                                <span class="tech-tag">Ollama</span>
                             </div>
                             <div class="project-links">
-                                <a href="https://github.com/pranavdhawann/weather-dashboard" class="project-link"
+                                <a href="https://github.com/pranavdhawann/singularity" class="project-link"
                                     target="_blank" rel="noopener noreferrer">
                                     <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-github"></use></svg> Code
                                 </a>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="client-work" class="client-work">
-            <div class="container">
-                <h2 class="section-title">CLIENT WORK</h2>
-                <p class="writing-intro">Alongside my ML work, I design, ship, and maintain production websites for businesses — the same ownership and operating discipline I bring to AI systems.</p>
-                <div class="client-work-grid">
-                    <article class="client-card">
-                        <p class="writing-tag">AEROSPACE &middot; NEW DELHI</p>
-                        <h3>Aevantis Aerospace</h3>
-                        <p>Production marketing site for an unmanned-systems manufacturer, presenting product lines, capabilities, and an enquiry flow.</p>
-                        <p class="client-maintenance">I maintain the site’s content, hosting, and performance.</p>
-                        <a class="project-link" href="https://aevantisaerospace.com/" target="_blank" rel="noopener noreferrer">Visit site <span aria-hidden="true">&rarr;</span></a>
-                    </article>
-                    <article class="client-card">
-                        <p class="writing-tag">OUTDOOR ADVERTISING &middot; DELHI NCR</p>
-                        <h3>Admiles Media</h3>
-                        <p>Production site for an outdoor advertising company, with media-location information, project galleries, and lead capture.</p>
-                        <p class="client-maintenance">I maintain the site’s content, hosting, and performance.</p>
-                        <a class="project-link" href="https://admiles.in/" target="_blank" rel="noopener noreferrer">Visit site <span aria-hidden="true">&rarr;</span></a>
-                    </article>
                 </div>
             </div>
         </section>
@@ -862,6 +876,7 @@
         <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-arrow-up"></use></svg>
     </button>
 
+    <script src="site-common.js" defer></script>
     <script src="script.js" defer></script>
     <script data-goatcounter="https://pranavdhawan.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
 </body>

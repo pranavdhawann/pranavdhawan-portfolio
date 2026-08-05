@@ -7,7 +7,7 @@ const imageNames = [
   'stockscreen',
   'multimodal',
   'pii',
-  'weather-dashboard',
+  'singularity',
 ];
 
 async function convert(input, output, format) {

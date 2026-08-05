@@ -11,6 +11,7 @@ const assets = [
   'index.html',
   'styles.css',
   'script.js',
+  'site-common.js',
   'theme-init.js',
   'Pranav_Dhawan_Resume.pdf',
   'robots.txt',
@@ -19,7 +20,7 @@ const assets = [
   'images',
   'blog',
 ];
-const browserScripts = ['script.js', 'theme-init.js', 'blog/newsletter.js'];
+const browserScripts = ['script.js', 'site-common.js', 'theme-init.js', 'blog/newsletter.js'];
 const fontAssets = [
   {
     source: 'node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2',
@@ -50,6 +51,21 @@ const minifiedCss = transformCss({
   minify: true,
 });
 await writeFile(path.join(publish, 'styles.css'), minifiedCss.code);
+
+// The blog index changes every Monday, so its sitemap lastmod is derived from
+// the digest data rather than hand-maintained (and going stale the same week).
+const digestUpdated = await readFile(path.join(root, 'blog', 'data', 'ai-news.json'), 'utf8')
+  .then((raw) => JSON.parse(raw).updated)
+  .catch(() => null);
+
+if (digestUpdated) {
+  const sitemapPath = path.join(publish, 'sitemap.xml');
+  const sitemap = await readFile(sitemapPath, 'utf8');
+  await writeFile(sitemapPath, sitemap.replace(
+    /(<loc>https:\/\/pranavdhawan\.com\/blog\/<\/loc><lastmod>)[^<]*(<\/lastmod>)/,
+    `$1${digestUpdated}$2`
+  ));
+}
 
 await Promise.all(browserScripts.map(async (relativePath) => {
   const sourcePath = path.join(root, relativePath);

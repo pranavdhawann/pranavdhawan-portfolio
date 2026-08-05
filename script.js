@@ -3,12 +3,8 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const XLINK_NS = 'http://www.w3.org/1999/xlink';
 
-// Fire a GoatCounter event (no-op if the script isn't loaded, e.g. local/CI).
-function trackEvent(name) {
-    if (window.goatcounter && typeof window.goatcounter.count === 'function') {
-        window.goatcounter.count({ path: name, title: name, event: true });
-    }
-}
+// trackEvent, the theme toggle, the data-analytics click listener and the footer
+// year live in site-common.js, which every page loads before this file.
 
 function createSvgIcon(symbolId, className = 'icon') {
     const icon = document.createElementNS(SVG_NS, 'svg');
@@ -101,6 +97,11 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: targetPosition,
                 behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
             });
+            // preventDefault() cancels the browser's own fragment navigation, which
+            // is what would normally move keyboard focus. Without this the skip link
+            // scrolls the page but leaves focus in the nav (WCAG 2.4.1).
+            if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+            target.focus({ preventScroll: true });
         }
     });
 });
@@ -288,6 +289,7 @@ if (heroTitle && heroSection) {
         let latestPointerPosition = null;
         let orbitFrame = 0;
         let activeMode = null;
+        let avatarVisible = true;
 
         for (const eye of eyes) {
             eye.rxPos = (eye.right.x - eye.cx) * 0.5;
@@ -428,12 +430,37 @@ if (heroTitle && heroSection) {
         }
 
         function syncMode() {
+            // The orbit is driven by requestAnimationFrame, so the blanket
+            // reduced-motion CSS rule cannot stop it — bail out here instead.
+            if (prefersReducedMotion.matches) {
+                stopPointerMode();
+                stopOrbitMode();
+                wrapper.classList.remove('is-auto-orbit');
+                activeMode = 'static';
+                resetEyes();
+                return;
+            }
+
             if (shouldUseOrbitMode()) {
+                // Pause the rAF loop while the avatar is off-screen so it does not
+                // burn battery for the whole scroll of the page.
+                if (!avatarVisible) {
+                    stopOrbitMode();
+                    activeMode = 'orbit-paused';
+                    return;
+                }
                 if (activeMode !== 'orbit') startOrbitMode();
                 return;
             }
 
             if (activeMode !== 'pointer') startPointerMode();
+        }
+
+        if ('IntersectionObserver' in window) {
+            new IntersectionObserver((entries) => {
+                entries.forEach((entry) => { avatarVisible = entry.isIntersecting; });
+                syncMode();
+            }, { threshold: 0 }).observe(wrapper);
         }
 
         syncMode();
@@ -452,6 +479,7 @@ if (heroTitle && heroSection) {
 
         bindModeListener(pointerTypeQuery);
         bindModeListener(hoverQuery);
+        bindModeListener(prefersReducedMotion);
     }
 
     const trySetup = () => setup();
@@ -758,11 +786,19 @@ if (heroTitle && heroSection) {
     let suppressOpen = false;
     let positionFrame = null;
 
+    // getComputedStyle forces style recalc, so read the resting offset once and
+    // refresh it only when the viewport changes rather than on every scroll frame.
+    let restingOffset = 20;
+    const readRestingOffset = () => {
+        restingOffset = Number.parseFloat(
+            getComputedStyle(root).getPropertyValue('--chat-resting-bottom')
+        ) || 20;
+    };
+    readRestingOffset();
+
     const updateFooterOffset = () => {
         if (!footer) return;
 
-        const styles = getComputedStyle(root);
-        const restingOffset = Number.parseFloat(styles.getPropertyValue('--chat-resting-bottom')) || 20;
         const footerClearance = 12;
         const footerTop = footer.getBoundingClientRect().top;
         const liftedOffset = window.innerHeight - footerTop + footerClearance;
@@ -782,7 +818,10 @@ if (heroTitle && heroSection) {
 
     updateFooterOffset();
     window.addEventListener('scroll', scheduleFooterOffset, { passive: true });
-    window.addEventListener('resize', scheduleFooterOffset, { passive: true });
+    window.addEventListener('resize', () => {
+        readRestingOffset();
+        scheduleFooterOffset();
+    }, { passive: true });
 
     const appendMessage = (text, variant) => {
         const message = document.createElement('div');
@@ -879,33 +918,6 @@ if (heroTitle && heroSection) {
     });
 })();
 
-// Theme toggle (light/dark) — persists the choice in localStorage
-(() => {
-    const toggle = document.getElementById('themeToggle');
-    if (!toggle) return;
-    const root = document.documentElement;
-
-    const syncLabel = () => {
-        const dark = root.getAttribute('data-theme') === 'dark';
-        toggle.setAttribute('aria-pressed', dark ? 'true' : 'false');
-        toggle.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-    };
-
-    syncLabel();
-
-    toggle.addEventListener('click', () => {
-        const dark = root.getAttribute('data-theme') === 'dark';
-        if (dark) {
-            root.removeAttribute('data-theme');
-        } else {
-            root.setAttribute('data-theme', 'dark');
-        }
-        try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) { /* ignore */ }
-        syncLabel();
-        trackEvent('theme-' + (dark ? 'light' : 'dark'));
-    });
-})();
-
 // Experience timeline — reveal/hide earlier (2021) roles
 (() => {
     const toggle = document.getElementById('timelineToggle');
@@ -925,9 +937,6 @@ if (heroTitle && heroSection) {
         }
     });
 })();
-
-const copyrightYear = document.getElementById('copyrightYear');
-if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
 
 // Contact — copy email, and submit the form to Netlify without a page reload
 (() => {
@@ -955,8 +964,13 @@ if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
     const status = document.getElementById('contactStatus');
     if (!form || !status) return;
 
+    const submitButton = form.querySelector('button[type="submit"]');
+
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
+        // Guard against double-clicks filing the same message twice.
+        if (submitButton && submitButton.disabled) return;
+        if (submitButton) submitButton.disabled = true;
         status.classList.remove('is-error');
         status.textContent = 'Sending…';
 
@@ -973,14 +987,8 @@ if (copyrightYear) copyrightYear.textContent = new Date().getFullYear();
         } catch (e) {
             status.classList.add('is-error');
             status.textContent = 'Something went wrong. Please email me directly at dhawanpranav02@gmail.com.';
+        } finally {
+            if (submitButton) submitButton.disabled = false;
         }
-    });
-})();
-
-// Lightweight outbound / CTA click tracking via data-analytics attributes
-(() => {
-    document.addEventListener('click', (event) => {
-        const el = event.target.closest('[data-analytics]');
-        if (el) trackEvent(el.getAttribute('data-analytics'));
     });
 })();
