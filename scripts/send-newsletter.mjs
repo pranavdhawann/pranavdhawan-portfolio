@@ -67,7 +67,7 @@ export function extractSubscribers(submissions) {
   return out;
 }
 
-/** Weekly guard so a manual workflow re-run doesn't double-send. */
+/** Weekly guard so a repeated manual send does not double-send. */
 export function shouldSend(state, now = new Date()) {
   if (process.env.FORCE_SEND === '1') return true;
   if (!state?.lastSent) return true;
@@ -187,8 +187,8 @@ async function loadJson(file, fallback) {
  * Emails that hit the one-click unsubscribe endpoint (stored in Netlify Blobs).
  *
  * The unsubscribe function reads this store from inside the Netlify runtime,
- * where getStore() self-configures. Here we run in GitHub Actions, so the site
- * ID and token have to be passed explicitly or the store throws.
+ * where getStore() self-configures. The manual sender runs outside that runtime,
+ * so the site ID and token have to be passed explicitly or the store throws.
  *
  * Best-effort: if the store is unreachable, returns an empty set and warns so a
  * transient Blobs outage never silently blocks the whole send.

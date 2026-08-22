@@ -1,5 +1,0 @@
-
-> pranavdhawan-portfolio@1.0.0 dev
-> node scripts/build-site.mjs && node scripts/serve.mjs
-
-Serving public/ at http://localhost:4321

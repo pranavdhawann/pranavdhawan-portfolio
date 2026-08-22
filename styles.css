@@ -2036,40 +2036,6 @@ section {
 [data-theme="dark"] .theme-toggle .icon-sun { display: inline-block; }
 
 /* ==========================================
-   HERO AVAILABILITY BADGE
-   ========================================== */
-.hero-availability {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: var(--bg-card);
-    border: 2px solid var(--border);
-    box-shadow: 2px 2px 0 var(--border);
-    padding: 0.4rem 0.9rem;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    margin-bottom: 1.25rem;
-    color: var(--text-primary);
-}
-
-.status-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: var(--teal);
-    border: 1px solid var(--border);
-    animation: status-pulse 2s ease-in-out infinite;
-    flex-shrink: 0;
-}
-
-@keyframes status-pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(0, 201, 167, 0.5); }
-    50% { box-shadow: 0 0 0 6px rgba(0, 201, 167, 0); }
-}
-
-/* ==========================================
    ORG STRIP
    ========================================== */
 .org-strip {

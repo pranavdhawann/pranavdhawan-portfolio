@@ -183,13 +183,6 @@ test('escapeHtml covers the characters html-validate rejects', () => {
   assert.equal(escapeHtml('<a href="x">&</a>'), '&lt;a href=&quot;x&quot;&gt;&amp;&lt;/a&gt;');
 });
 
-test('weekly workflow runs the generator on a cron with write permission', async () => {
-  const workflow = await readFile(new URL('../.github/workflows/update-ai-news.yml', import.meta.url), 'utf8');
-  assert.match(workflow, /schedule:\s*[\s\S]*cron:/, 'needs a cron schedule');
-  assert.match(workflow, /contents: write/, 'needs permission to push the digest commit');
-  assert.match(workflow, /node scripts\/fetch-ai-news\.mjs/, 'must run the generator');
-});
-
 test('source list covers the major labs plus research and code feeds', () => {
   const ids = SOURCES.map((s) => s.id);
   for (const id of ['openai', 'anthropic', 'deepmind', 'meta-ai', 'mistral', 'huggingface', 'arxiv', 'github-trending']) {

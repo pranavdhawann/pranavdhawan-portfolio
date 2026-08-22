@@ -111,38 +111,38 @@ test('professional experience reflects updated role history', async ({ page }) =
   const experience = page.locator('#experience');
   const firstTimelineItem = experience.locator('.timeline-item').first();
 
-  await expect(firstTimelineItem.getByText('June 2026 - Present')).toBeVisible();
-  await expect(firstTimelineItem.getByRole('heading', { name: 'Independent Contractor - AI' })).toBeVisible();
-  await expect(firstTimelineItem.getByText('Siva Info LLC | New York, NY | Part-time, Remote')).toBeVisible();
-  await expect(firstTimelineItem.getByText(/change-manifest tooling/)).toBeVisible();
-  await expect(firstTimelineItem.getByText(/32% to 99%/)).toBeVisible();
-  await expect(firstTimelineItem.locator('.tech-tag', { hasText: 'Local LLMs' })).toBeVisible();
+  await expect(firstTimelineItem.getByText('May 2026 - Present')).toBeVisible();
+  await expect(firstTimelineItem.getByRole('heading', { name: 'AI Workplace Engineer Intern' })).toBeVisible();
+  await expect(firstTimelineItem.getByText('American Chemical Society | Washington, DC')).toBeVisible();
+  await expect(firstTimelineItem.getByText(/245 of 350 monthly tickets/)).toBeVisible();
+  await expect(firstTimelineItem.getByText(/lifecycle-aware tracking/)).toBeVisible();
+  await expect(firstTimelineItem.getByText(/AI governance framework/)).toBeVisible();
 
-  await expect(experience.getByRole('heading', { name: 'AI Workplace Engineer Intern' })).toBeVisible();
-  await expect(experience.getByText('American Chemical Society | Washington, DC | Full-time, Hybrid')).toBeVisible();
-  await expect(experience.getByText(/~70% of monthly Ivanti Neurons service desk tickets/)).toBeVisible();
-  await expect(experience.getByText(/Copilot Studio pilot program/)).toBeVisible();
-  await expect(experience.getByText(/AI governance blueprint/)).toBeVisible();
+  await expect(experience.getByRole('heading', { name: 'Independent Contractor - AI' })).toBeVisible();
+  await expect(experience.getByText('Siva Info LLC | New York, NY')).toBeVisible();
+  await expect(experience.getByText(/edition-aware PDF-diff tooling/)).toBeVisible();
+  await expect(experience.getByText(/32% to 99%/)).toBeVisible();
+  await expect(experience.locator('.tech-tag', { hasText: 'Pipeline Automation' })).toBeVisible();
 
   await expect(experience.getByRole('heading', { name: 'Machine Learning Engineer' })).toBeVisible();
-  await expect(experience.getByText(/detect and extract complex equations from 10,000\+ unstructured documents/)).toBeVisible();
-  await expect(experience.getByText(/fine-tuned BART\/BERT-based models/)).toBeVisible();
-  await expect(experience.getByText(/reducing inference latency by 0\.3 seconds per page/)).toBeVisible();
-  await expect(experience.getByText(/Operationalized machine learning workloads on AWS SageMaker/)).toBeVisible();
+  await expect(experience.getByText(/YOLOv8 document intelligence pipeline/)).toBeVisible();
+  await expect(experience.getByText(/hybrid RAG system/)).toBeVisible();
+  await expect(experience.getByText(/reducing inference latency by approximately 0\.3 seconds per page/)).toBeVisible();
+  await expect(experience.getByText(/AWS SageMaker deployment/)).toBeVisible();
 
-  await expect(experience.getByText('HCLTech | Noida, India | Internship, Hybrid')).toBeVisible();
-  await expect(experience.getByText(/Built predictive workforce analytics models/)).toBeVisible();
+  await expect(experience.getByText('HCLTech | Noida, India')).toBeVisible();
+  await expect(experience.getByText(/500\+ employees/)).toBeVisible();
 
-  await expect(experience.getByText('EY | Gurugram, India | Internship, Hybrid')).toBeVisible();
-  await expect(experience.getByText(/Automated ETL workflows using Alteryx/)).toBeVisible();
+  await expect(experience.getByText('EY | Gurugram, India')).toBeVisible();
+  await expect(experience.getByText(/Automated ETL workflows across more than five data sources/)).toBeVisible();
 
   // Earlier (2021) roles are collapsed behind a toggle — expand them first.
   await experience.getByRole('button', { name: /Show earlier roles/ }).click();
 
-  await expect(experience.getByText('LEARNOVATE ECOMMERCE | Remote | Internship')).toBeVisible();
+  await expect(experience.getByText('LEARNOVATE ECOMMERCE')).toBeVisible();
   await expect(experience.getByText(/Developed responsive web interfaces using HTML, CSS, and JavaScript/)).toBeVisible();
 
-  await expect(experience.getByText(/Education 4 ol \| Remote \| Internship/)).toBeVisible();
+  await expect(experience.getByText('Education 4 ol')).toBeVisible();
   await expect(experience.getByText(/Built reusable frontend components using HTML, CSS, and JavaScript/)).toBeVisible();
 });
 
@@ -269,7 +269,7 @@ test('portfolio presents the verified career and education facts', async ({ page
   const experience = page.locator('#experience');
   await expect(experience.getByRole('heading', { name: 'Independent Contractor - AI' })).toBeVisible();
   await expect(experience.getByText('AI Workplace Engineer Intern')).toBeVisible();
-  await expect(experience.getByText('Lumina Datamatics | Chennai, India | Full-time, final-semester placement')).toBeVisible();
+  await expect(experience.getByText('Lumina Datamatics | Chennai, India')).toBeVisible();
   await expect(experience.getByText('August 2020 - May 2024')).toBeVisible();
   await expect(experience.getByText('GPA: 8.51/10.0')).toBeVisible();
   await expect(experience.getByText(/published research paper and technical report/i)).toBeVisible();

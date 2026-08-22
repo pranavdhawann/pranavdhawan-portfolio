@@ -92,7 +92,7 @@ test('cleanEnv strips the BOM and whitespace that shell pipes can add to secrets
   assert.equal(cleanEnv(undefined), '');
 });
 
-// The sender runs in GitHub Actions, outside the Netlify runtime that
+// The manual sender runs outside the Netlify runtime that
 // auto-configures Blobs. Without explicit credentials the store throws, the
 // read falls back to "no suppressions", and unsubscribed people get mailed.
 test('suppression store is addressed with explicit Netlify credentials', () => {
@@ -109,7 +109,7 @@ function restoreEnv(name, previous) {
   else process.env[name] = previous;
 }
 
-test('suppression store credentials fall back to the workflow env, sanitized', () => {
+test('suppression store credentials fall back to environment variables, sanitized', () => {
   const prev = { site: process.env.NETLIFY_SITE_ID, token: process.env.NETLIFY_AUTH_TOKEN };
   process.env.NETLIFY_SITE_ID = '﻿site-2\n';
   process.env.NETLIFY_AUTH_TOKEN = '  tok4n  ';
@@ -155,10 +155,4 @@ test('blog page has the Netlify newsletter form with honeypot', async () => {
   assert.match(page, /netlify-honeypot="bot-field"/);
   assert.match(page, /name="form-name" value="newsletter"/);
   assert.match(page, /newsletter\.js/);
-});
-
-test('weekly workflow sends the newsletter after the digest update', async () => {
-  const workflow = await readFile(new URL('../.github/workflows/update-ai-news.yml', import.meta.url), 'utf8');
-  assert.match(workflow, /node scripts\/send-newsletter\.mjs/);
-  assert.match(workflow, /SMTP_PASS: \$\{\{ secrets\.SMTP_PASS \}\}/, 'credentials must come from secrets, never the repo');
 });

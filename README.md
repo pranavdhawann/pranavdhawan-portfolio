@@ -6,7 +6,7 @@ Static portfolio site for Pranav Dhawan
 
 ## Stack
 
-Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. npm dev dependencies are used only for validation and Playwright checks.
+Vanilla HTML / CSS / JS with a static build step and no browser runtime dependencies or framework. The build minifies assets, copies the publish directory, and generates modern image formats.
 
 - DM Sans + Space Grotesk via Google Fonts
 - Inline SVG sprite for the small icon set used by the page
@@ -21,7 +21,7 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 | `script.js` | Portfolio-only behavior (hero, skills graph, chat, contact), single IIFE per module |
 | `site-common.js` | Shared by every page: analytics, theme toggle, footer year. Loaded *instead of* `script.js` on the blog and privacy pages, which don't need the rest |
 | `blog/` | Blog index + posts; the "AI This Week" digest section and `blog/feed.xml` are regenerated weekly (see below) |
-| `scripts/fetch-ai-news.mjs` | Zero-dependency generator for the weekly AI news digest and its RSS feed |
+| `scripts/` | Static-site build, local server, image optimization, and manual AI-news/newsletter tools |
 | `netlify.toml` | Netlify security headers + functions directory |
 | `netlify/functions/ask.mjs` | Serverless proxy to Groq (`llama-3.1-8b-instant`) for the chat widget |
 | `netlify/functions/submission-created.mjs` | Fired by Netlify on form submit; emails the newsletter confirmation link |
@@ -34,15 +34,13 @@ Vanilla HTML / CSS / JS. No build step, no runtime dependencies, no framework. n
 
 ## Weekly AI news digest
 
-The blog page carries an auto-curated "AI This Week" section, statically
-regenerated every Monday by a GitHub Actions cron
-(`.github/workflows/update-ai-news.yml`) that fetches official lab feeds,
-arXiv, and GitHub, then commits the updated HTML and `blog/feed.xml` — Netlify
-redeploys on push. Run it locally with `npm run news:update`. The feed source
-list lives in `scripts/fetch-ai-news.mjs`.
+The blog page carries an "AI This Week" section generated from official lab
+feeds, arXiv, and GitHub. Update the HTML, RSS feed, and digest data manually
+with `npm run news:update`; there are no scheduled GitHub Actions for this
+repository. The feed source list lives in `scripts/fetch-ai-news.mjs`.
 
-The same weekly workflow emails the digest to subscribers (`npm run news:send`
-locally) once the secrets below are configured.
+Send the digest manually with `npm run news:send` once the required environment
+variables are configured.
 
 ### Newsletter subscription (double opt-in)
 
@@ -61,7 +59,8 @@ button rather than being unsubscribed by a link prefetcher.
 
 ### Secrets
 
-Set these as GitHub Actions secrets (and in Netlify for the functions):
+Set the applicable variables in the local environment for manual newsletter
+operations and in Netlify for the serverless functions:
 
 | Secret | Purpose |
 |---|---|

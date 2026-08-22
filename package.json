@@ -5,7 +5,7 @@
   "scripts": {
     "test": "playwright test",
     "test:html": "html-validate index.html blog/*.html",
-    "test:function": "node --test tests/ask-function.node.mjs tests/knowledge-sync.node.mjs tests/ci-workflow.node.mjs tests/ai-news.node.mjs tests/newsletter.node.mjs tests/unsubscribe.node.mjs tests/confirm.node.mjs",
+    "test:function": "node --test tests/ask-function.node.mjs tests/knowledge-sync.node.mjs tests/ai-news.node.mjs tests/newsletter.node.mjs tests/unsubscribe.node.mjs tests/confirm.node.mjs",
     "build": "node scripts/build-site.mjs",
     "dev": "node scripts/build-site.mjs && node scripts/serve.mjs",
     "news:update": "node scripts/fetch-ai-news.mjs",
