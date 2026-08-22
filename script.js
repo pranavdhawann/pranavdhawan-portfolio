@@ -986,7 +986,7 @@ if (heroTitle && heroSection) {
             trackEvent('contact-sent');
         } catch (e) {
             status.classList.add('is-error');
-            status.textContent = 'Something went wrong. Please email me directly at dhawanpranav02@gmail.com.';
+            status.textContent = 'Something went wrong. Please email me directly at pranavdhawan99@gmail.com.';
         } finally {
             if (submitButton) submitButton.disabled = false;
         }
