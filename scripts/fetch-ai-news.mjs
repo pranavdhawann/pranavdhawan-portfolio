@@ -191,15 +191,20 @@ export function parseFeed(xml) {
     const date = tag('pubDate') || tag('published') || tag('updated') || tag('dc:date');
     const summary = stripHtml(tag('description') || tag('summary') || tag('content:encoded') || tag('content'));
     if (title && link) {
-      items.push({ title, url: decodeEntities(link), date: toIsoDate(date), summary });
+      const iso = toIsoDate(date);
+      // An unparsable date used to be fabricated as "today", laundering items
+      // of unknown age into the freshness window. Skip them instead.
+      if (!iso) continue;
+      items.push({ title, url: decodeEntities(link), date: iso, summary });
     }
   }
   return items;
 }
 
+/** Returns '' for unparsable dates rather than pretending they are today. */
 export function toIsoDate(str) {
   const d = new Date(str);
-  return Number.isNaN(d.getTime()) ? new Date().toISOString().slice(0, 10) : d.toISOString().slice(0, 10);
+  return Number.isNaN(d.getTime()) ? '' : d.toISOString().slice(0, 10);
 }
 
 async function fetchText(url, headers = {}) {
@@ -226,12 +231,14 @@ export function parseSitemap(xml, pathFilter) {
     .filter((m) => pathFilter.test(m[1]) && m[2])
     .sort((a, b) => b[2].localeCompare(a[2]))
     .slice(0, 10);
-  return entries.map(([, loc, lastmod]) => ({
-    title: titleFromSlug(loc),
-    url: loc,
-    date: toIsoDate(lastmod),
-    summary: '',
-  }));
+  return entries
+    .map(([, loc, lastmod]) => ({
+      title: titleFromSlug(loc),
+      url: loc,
+      date: toIsoDate(lastmod),
+      summary: '',
+    }))
+    .filter((item) => item.date);
 }
 
 async function fetchSource(source, now = new Date()) {
@@ -299,10 +306,10 @@ export function formatDate(iso) {
   });
 }
 
-export function renderDigest(items, updatedIso) {
+export function renderDigest(items, updatedIso, { thinnedWeek = false } = {}) {
   const cards = items
-    .map((item) => ({ ...item, url: httpsUrl(item.url) }))
-    .filter((item) => item.url)
+    .map((item) => ({ ...item, url: httpsUrl(item.url), date: item.date || '' }))
+    .filter((item) => item.url && /^\d{4}-\d{2}-\d{2}$/.test(item.date))
     .map((item) => {
       const host = new URL(item.url).hostname.replace(/^www\./, '');
       return [
@@ -315,9 +322,12 @@ export function renderDigest(items, updatedIso) {
       ].join('\n');
     }).join('\n');
   const digestBody = cards || '                <p class="writing-intro">No safe, recent items are available this week. Please check back soon.</p>';
+  const thinNote = thinnedWeek && cards
+    ? ' A light news week, so some cards are drawn from the recent archive rather than the last 14 days.'
+    : '';
   return [
     START_MARKER,
-    `                <p class="writing-intro">A weekly digest of AI developments, curated automatically by a zero-dependency pipeline I built — pulled straight from official lab blogs, arXiv, and GitHub. Every card links to its original source. <a href="feed.xml">Subscribe via RSS</a>. Updated ${escapeHtml(formatDate(updatedIso))}.</p>`,
+    `                <p class="writing-intro">A weekly digest of AI developments, curated automatically by a zero-dependency pipeline I built — pulled straight from official lab blogs, arXiv, and GitHub. Every card links to its original source. <a href="feed.xml">Subscribe via RSS</a>. Updated ${escapeHtml(formatDate(updatedIso))}.${thinNote}</p>`,
     cards ? '                <div class="writing-grid">' : '',
     digestBody,
     cards ? '                </div>' : '',
@@ -442,7 +452,11 @@ async function main() {
 
   const page = await readFile(BLOG_PAGE, 'utf8');
   const selected = selectForPage(items, now);
-  await writeFile(BLOG_PAGE, injectDigest(page, renderDigest(selected, updatedIso)));
+  // Mirror selectForPage's fallback rule so a thin week is labelled on the page
+  // instead of silently presenting >14-day-old items as fresh.
+  const cutoff = new Date(now.getTime() - MAX_AGE_DAYS * 86400000).toISOString().slice(0, 10);
+  const thinnedWeek = selected.length > 0 && items.filter((i) => i.date >= cutoff).length < 4;
+  await writeFile(BLOG_PAGE, injectDigest(page, renderDigest(selected, updatedIso, { thinnedWeek })));
   await writeFile(FEED_FILE, renderFeed(selected, updatedIso));
   console.log(`Wrote ${selected.length} items to blog/index.html and blog/feed.xml, and ${items.length} to blog/data/ai-news.json`);
 }

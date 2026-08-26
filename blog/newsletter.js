@@ -17,6 +17,16 @@
         event.preventDefault();
         // Guard against double-clicks filing the same address twice.
         if (submitButton && submitButton.disabled) return;
+
+        // Honeypot: a filled bot-field means a bot. Skip the POST entirely —
+        // Netlify's fake-success page would otherwise have the handler promise
+        // a confirmation email that can never arrive.
+        const honeypot = form.querySelector('input[name="bot-field"]');
+        if (honeypot && honeypot.value) {
+            status.textContent = 'Almost there — check your inbox and click the confirmation link.';
+            return;
+        }
+
         if (submitButton) submitButton.disabled = true;
         status.classList.remove('is-error');
         status.textContent = 'Subscribing…';

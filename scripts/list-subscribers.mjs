@@ -16,7 +16,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-import { cleanEnv, EMAIL_PATTERN, fetchSubmissions } from './send-newsletter.mjs';
+import { cleanEnv, EMAIL_PATTERN, fetchSubmissions, readConfirmed, readSuppressions } from './send-newsletter.mjs';
 
 
 /** Dedupe submissions into rows, keeping each email's earliest signup date. */
@@ -34,13 +34,34 @@ export function subscriberRows(submissions) {
   return [...byEmail.values()].sort((a, b) => a.subscribedAt.localeCompare(b.subscribedAt));
 }
 
+/**
+ * Annotate each row with what the weekly sender would actually do with it:
+ * confirmed | unconfirmed | unsubscribed | unknown (store unreachable).
+ * The raw form list alone overstates the real audience — it includes people
+ * who never clicked the double-opt-in link.
+ */
+export function annotateStatus(rows, confirmed, suppressed) {
+  return rows.map((row) => ({
+    ...row,
+    status: confirmed === null || suppressed === null
+      ? 'unknown'
+      : suppressed.has(row.email)
+        ? 'unsubscribed'
+        : confirmed.has(row.email)
+          ? 'confirmed'
+          : 'unconfirmed',
+  }));
+}
+
+/** CSV export neutralizes spreadsheet formulas and quotes fields. */
+function csvField(value) {
+  const neutralized = /^[=+\-@\t\r]/.test(String(value)) ? `'${value}` : String(value);
+  return /[",\r\n]/.test(neutralized) ? `"${neutralized.replaceAll('"', '""')}"` : neutralized;
+}
+
 export function toCsv(rows) {
-  const escapeCsv = (value) => {
-    const neutralized = /^[=+\-@\t\r]/.test(String(value)) ? `'${value}` : String(value);
-    return /[",\r\n]/.test(neutralized) ? `"${neutralized.replaceAll('"', '""')}"` : neutralized;
-  };
-  const lines = rows.map((r) => `${escapeCsv(r.email)},${escapeCsv(r.subscribedAt)}`);
-  return ['email,subscribed_at', ...lines].join('\n') + '\n';
+  const lines = rows.map((r) => `${csvField(r.email)},${csvField(r.subscribedAt)},${csvField(r.status)}`);
+  return ['email,subscribed_at,status', ...lines].join('\n') + '\n';
 }
 
 async function localNetlifyToken() {
@@ -67,18 +88,25 @@ async function main() {
     return;
   }
 
-  const rows = subscriberRows(await fetchSubmissions(token, siteId));
-  if (rows.length === 0) {
+  const rawRows = subscriberRows(await fetchSubmissions(token, siteId));
+  if (rawRows.length === 0) {
     console.log('No subscribers yet.');
     return;
   }
 
-  const width = Math.max(...rows.map((r) => r.email.length), 5);
-  console.log(`${'EMAIL'.padEnd(width)}  SUBSCRIBED`);
-  for (const row of rows) {
-    console.log(`${row.email.padEnd(width)}  ${row.subscribedAt.slice(0, 10)}`);
+  const [confirmed, suppressed] = await Promise.all([readConfirmed(), readSuppressions()]);
+  if (confirmed === null || suppressed === null) {
+    console.warn('Blobs stores unreachable — status column shows "unknown" for every row.');
   }
-  console.log(`\n${rows.length} subscriber${rows.length === 1 ? '' : 's'}.`);
+  const rows = annotateStatus(rawRows, confirmed, suppressed);
+
+  const width = Math.max(...rows.map((r) => r.email.length), 5);
+  console.log(`${'EMAIL'.padEnd(width)}  SUBSCRIBED  STATUS`);
+  for (const row of rows) {
+    console.log(`${row.email.padEnd(width)}  ${row.subscribedAt.slice(0, 10)}  ${row.status}`);
+  }
+  const confirmedCount = rows.filter((r) => r.status === 'confirmed').length;
+  console.log(`\n${rows.length} signup${rows.length === 1 ? '' : 's'}, ${confirmedCount} confirmed (what the weekly sender actually mails).`);
 
   if (process.argv.includes('--csv')) {
     const out = path.resolve('subscribers.csv');

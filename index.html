@@ -7,7 +7,8 @@
     <title>Pranav Dhawan — AI Engineer &amp; Data Scientist</title>
     <meta name="description" content="Portfolio of Pranav Dhawan — AI Workplace Engineer Intern at the American Chemical Society, MS in Data Science from George Washington University. Building production AI, ML, and analytics systems.">
     <meta name="author" content="Pranav Dhawan">
-    <meta name="theme-color" content="#FFD600">
+    <meta name="theme-color" content="#FFD600" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#15151E" media="(prefers-color-scheme: dark)">
     <link rel="canonical" href="https://pranavdhawan.com/">
 
     <!-- Open Graph -->
@@ -775,7 +776,9 @@
 
                             <p class="contact-email">
                                 <a href="mailto:pranavdhawan99@gmail.com" class="contact-email-link" data-analytics="email-link">pranavdhawan99@gmail.com</a>
-                                <button class="contact-copy" type="button" data-copy="pranavdhawan99@gmail.com" aria-label="Copy email address">Copy</button>
+                                <button class="contact-copy" type="button" data-copy="pranavdhawan99@gmail.com">Copy</button>
+                                <!-- Visible button text changes to "Copied"; this live region makes that state audible too -->
+                                <span id="copyStatus" class="visually-hidden" role="status"></span>
                             </p>
 
                             <div class="social-links">
@@ -842,6 +845,10 @@
         </div>
         <p class="chat-built-by">An AI version of me — built by Pranav with Groq + Llama 3.1</p>
     </dialog>
+
+    <!-- Outside the dialog on purpose: replies that arrive while it is closed
+         would sit inside a display:none live region and never get announced. -->
+    <span id="chatAnnounce" class="visually-hidden" role="status"></span>
 
     <form class="chat-pill" id="chatForm" aria-label="Ask Pranav">
         <svg class="icon chat-pill-icon" aria-hidden="true" focusable="false"><use href="#icon-sparkle"></use></svg>

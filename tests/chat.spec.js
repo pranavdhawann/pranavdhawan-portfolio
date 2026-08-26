@@ -1,9 +1,14 @@
 const { test, expect } = require('@playwright/test');
 const { AxeBuilder } = require('@axe-core/playwright');
+const fs = require('node:fs');
 const path = require('node:path');
 const { readConfiguredHeaders, startStaticServer } = require('./helpers/static-server.cjs');
 
-const rootDir = path.join(__dirname, '..');
+// Built output only — see portfolio.spec.js for rationale.
+const rootDir = path.join(__dirname, '..', 'public');
+if (!fs.existsSync(path.join(rootDir, 'index.html'))) {
+  throw new Error('public/index.html missing — run `npm run build` before testing.');
+}
 let server;
 let pageUrl;
 
@@ -48,8 +53,20 @@ test('clicking outside the panel closes it', async ({ page }) => {
 test('close button closes the panel and it stays closed', async ({ page }) => {
   await openChat(page);
   await page.locator('#chatClose').click();
-  await page.waitForTimeout(350);
+  // Spans the 250ms suppressOpen window that guards against the close→refocus
+  // reopen loop; the panel must still be hidden once it expires.
+  await page.waitForTimeout(300);
   await expect(page.locator('#chatPanel')).toBeHidden();
+});
+
+// Regression for the 250ms suppression window eating genuine reopens: after an
+// outside-click close, clicking straight into the pill input must reopen.
+test('clicking into the pill right after an outside-click close reopens the panel', async ({ page }) => {
+  await openChat(page);
+  await page.mouse.click(40, 200);
+  await expect(page.locator('#chatPanel')).toBeHidden();
+  await page.locator('#chatInput').click();
+  await expect(page.locator('#chatPanel')).toBeVisible();
 });
 
 test('typing a question and pressing Enter renders the stubbed answer', async ({ page }) => {

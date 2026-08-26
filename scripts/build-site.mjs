@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { transform as transformJavaScript } from 'esbuild';
 import { transform as transformCss } from 'lightningcss';
 import { optimizeImages } from './optimize-images.mjs';
+import { rewriteBlogLastmod } from './lib/sitemap-lastmod.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const publish = path.join(root, 'public');
@@ -36,6 +37,11 @@ await rm(publish, { recursive: true, force: true });
 await mkdir(publish, { recursive: true });
 await Promise.all(assets.map((asset) => cp(path.join(root, asset), path.join(publish, asset), { recursive: true })));
 
+// blog/data holds generator runtime state (ai-news.json, newsletter-state.json)
+// that no page fetches at runtime — never publish it. If the state schema ever
+// gains subscriber addresses it would otherwise ship straight to the CDN.
+await rm(path.join(publish, 'blog', 'data'), { recursive: true, force: true });
+
 const fontsDirectory = path.join(publish, 'fonts');
 await mkdir(fontsDirectory, { recursive: true });
 await Promise.all(fontAssets.map(({ source, output }) => (
@@ -61,10 +67,16 @@ const digestUpdated = await readFile(path.join(root, 'blog', 'data', 'ai-news.js
 if (digestUpdated) {
   const sitemapPath = path.join(publish, 'sitemap.xml');
   const sitemap = await readFile(sitemapPath, 'utf8');
-  await writeFile(sitemapPath, sitemap.replace(
-    /(<loc>https:\/\/pranavdhawan\.com\/blog\/<\/loc><lastmod>)[^<]*(<\/lastmod>)/,
-    `$1${digestUpdated}$2`
-  ));
+  let result;
+  try {
+    result = rewriteBlogLastmod(sitemap, digestUpdated);
+  } catch (error) {
+    throw new Error(`sitemap lastmod update failed: ${error.message}`);
+  }
+  if (!result.replaced) {
+    console.warn('sitemap.xml no longer matches the blog lastmod pattern — stale date shipped.');
+  }
+  await writeFile(sitemapPath, result.xml);
 }
 
 await Promise.all(browserScripts.map(async (relativePath) => {

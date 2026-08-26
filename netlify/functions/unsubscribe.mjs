@@ -22,6 +22,9 @@ import { stores } from './lib/stores.mjs';
 export const config = { path: '/.netlify/functions/unsubscribe' };
 
 const SECRET = process.env.UNSUBSCRIBE_SECRET;
+if (!SECRET) {
+  console.warn('UNSUBSCRIBE_SECRET is not configured — every unsubscribe link will be rejected.');
+}
 
 async function suppress(email) {
   const suppression = await stores.get(SUPPRESSION_STORE);

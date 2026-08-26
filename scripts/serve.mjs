@@ -25,11 +25,20 @@ const TYPES = {
   '.txt': 'text/plain; charset=utf-8',
 };
 
+const BAD_REQUEST = Symbol('bad-request');
+
 async function resolve(urlPath) {
-  let rel = decodeURIComponent(urlPath.split('?')[0]);
+  let rel;
+  try {
+    // decodeURIComponent throws on malformed input (e.g. GET /%); that used to
+    // escape as an unhandled rejection and kill the whole dev server.
+    rel = decodeURIComponent(urlPath.split('?')[0]);
+  } catch {
+    return BAD_REQUEST;
+  }
   if (rel.endsWith('/')) rel += 'index.html';
   let filePath = path.join(root, rel);
-  if (!filePath.startsWith(root)) return null; // path traversal guard
+  if (!filePath.startsWith(root)) return BAD_REQUEST; // path traversal guard
   try {
     const info = await stat(filePath);
     if (info.isDirectory()) filePath = path.join(filePath, 'index.html');
@@ -50,13 +59,27 @@ const server = http.createServer(async (req, res) => {
   }
 
   const filePath = await resolve(req.url);
+  if (filePath === BAD_REQUEST) {
+    res.writeHead(400, { 'content-type': 'text/plain' });
+    res.end('Bad Request');
+    return;
+  }
   if (!filePath) {
     res.writeHead(404, { 'content-type': 'text/plain' });
     res.end('404 Not Found');
     return;
   }
-  res.writeHead(200, { 'content-type': TYPES[path.extname(filePath)] || 'application/octet-stream' });
+
+  const type = TYPES[path.extname(filePath)] || 'application/octet-stream';
+  if (req.method === 'HEAD') {
+    res.writeHead(200, { 'content-type': type });
+    res.end();
+    return;
+  }
+  res.writeHead(200, { 'content-type': type });
   createReadStream(filePath).pipe(res);
 });
 
-server.listen(port, () => console.log(`Serving public/ at http://localhost:${port}`));
+// Bind loopback by default; HOST=0.0.0.0 opts into LAN access explicitly.
+const host = process.env.HOST || '127.0.0.1';
+server.listen(port, host, () => console.log(`Serving public/ at http://${host}:${port}/`));

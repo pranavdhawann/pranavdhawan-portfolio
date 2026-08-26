@@ -23,6 +23,8 @@
     --accent: #6B3FE0;
     --teal: #00C9A7;
     --coral: #FF6B6B;
+    /* Error text on the cream background: coral itself is ~2.6:1, this is AA */
+    --error-text: #A93226;
 
     /* Backgrounds */
     --bg-main: #FFF8E1;
@@ -116,6 +118,10 @@ body {
 }
 
 .skip-link:focus { transform: translateY(0); }
+
+/* The chat pill is a flex container; the UA [hidden] default would lose to it,
+   so browsers without <dialog> support can actually hide the control. */
+#chatForm[hidden] { display: none; }
 
 /* Regions focused programmatically (skip link, in-page anchors) should receive
    focus for screen readers without painting a focus ring around the whole area. */
@@ -2315,7 +2321,7 @@ section {
     margin: 0;
 }
 
-.contact-status.is-error { color: var(--coral); }
+.contact-status.is-error { color: var(--error-text); }
 
 .contact-grid {
     display: grid;
@@ -2461,6 +2467,8 @@ section {
     --shadow: 4px 4px 0px #000000;
     --shadow-hover: 6px 6px 0px #000000;
     --shadow-lg: 8px 8px 0px #000000;
+    /* Coral passes on the dark surface; keep errors in brand there */
+    --error-text: #FF6B6B;
 }
 
 /* Navbar stays legible: dark surface instead of the light brand yellow */

@@ -146,11 +146,15 @@ export function buildEmailText(items, updatedIso, { unsubscribeUrl = '', address
 
 const SUBMISSIONS_PER_PAGE = 100;
 const MAX_SUBMISSION_PAGES = 100; // 10k addresses; a stop so a bad API can't loop forever
+const NETLIFY_API_TIMEOUT_MS = 20_000;
 
 /** Raw "newsletter" form submissions from the Netlify API ([] until the form exists). */
 export async function fetchSubmissions(token, siteId) {
   const headers = { Authorization: `Bearer ${token}` };
-  const formsRes = await fetch(`https://api.netlify.com/api/v1/sites/${siteId}/forms`, { headers });
+  const formsRes = await fetch(`https://api.netlify.com/api/v1/sites/${siteId}/forms`, {
+    headers,
+    signal: AbortSignal.timeout(NETLIFY_API_TIMEOUT_MS),
+  });
   if (!formsRes.ok) throw new Error(`Netlify forms API: HTTP ${formsRes.status}`);
   const forms = await formsRes.json();
   const form = forms.find((f) => f.name === 'newsletter');
@@ -164,7 +168,7 @@ export async function fetchSubmissions(token, siteId) {
   for (let page = 1; page <= MAX_SUBMISSION_PAGES; page += 1) {
     const subsRes = await fetch(
       `https://api.netlify.com/api/v1/forms/${form.id}/submissions?per_page=${SUBMISSIONS_PER_PAGE}&page=${page}`,
-      { headers }
+      { headers, signal: AbortSignal.timeout(NETLIFY_API_TIMEOUT_MS) }
     );
     if (!subsRes.ok) throw new Error(`Netlify submissions API: HTTP ${subsRes.status}`);
     const batch = await subsRes.json();
@@ -190,8 +194,9 @@ async function loadJson(file, fallback) {
  * where getStore() self-configures. The manual sender runs outside that runtime,
  * so the site ID and token have to be passed explicitly or the store throws.
  *
- * Best-effort: if the store is unreachable, returns an empty set and warns so a
- * transient Blobs outage never silently blocks the whole send.
+ * Fails CLOSED like readConfirmed(): an empty set here would mail people who
+ * explicitly opted out, which is exactly what this list exists to prevent.
+ * A skipped week is recoverable; a spam complaint is not.
  */
 export function suppressionStoreOptions({
   siteID = cleanEnv(process.env.NETLIFY_SITE_ID),
@@ -207,8 +212,8 @@ export async function readSuppressions(options = {}) {
     const { blobs } = await store.list();
     return new Set(blobs.map((b) => b.key.toLowerCase()));
   } catch (error) {
-    console.warn(`Could not read unsubscribe suppression list (${error?.message}); proceeding with none.`);
-    return new Set();
+    console.error(`Could not read the suppression list (${error?.message}).`);
+    return null;
   }
 }
 
@@ -275,6 +280,11 @@ async function main() {
     return;
   }
   const suppressed = await readSuppressions();
+  if (suppressed === null) {
+    console.error('Suppression store unreachable — skipping this send rather than risk mailing unsubscribed addresses.');
+    process.exitCode = 1;
+    return;
+  }
   const subscribers = allSubscribers.filter((email) => confirmed.has(email) && !suppressed.has(email));
   const unconfirmed = allSubscribers.filter((email) => !confirmed.has(email)).length;
   const skipped = allSubscribers.length - subscribers.length - unconfirmed;
@@ -305,12 +315,24 @@ async function main() {
   // message each rather than a shared BCC batch.
   let sent = 0;
   const failed = [];
+  const persistState = async () => {
+    // Written after every recipient, not just at the end: a hard crash
+    // mid-loop must not cause the next run to re-mail everyone already sent.
+    await writeFile(STATE_FILE, `${JSON.stringify({
+      lastSent: now.toISOString(),
+      recipients: sent,
+      failed: failed.length,
+      items: items.length,
+    }, null, 2)}\n`);
+  };
+
   for (const email of subscribers) {
     const unsubscribeUrl = secret ? unsubscribeUrlFor(email, secret) : '';
-    const listUnsubscribe = [
-      unsubscribeUrl ? `<${unsubscribeUrl}>` : null,
-      `<mailto:${SMTP_USER}?subject=unsubscribe>`,
-    ].filter(Boolean).join(', ');
+    // When the one-click URL exists it is the only List-Unsubscribe URI — some
+    // receivers otherwise pick the mailto and degrade one-click to a compose.
+    const listUnsubscribe = unsubscribeUrl
+      ? `<${unsubscribeUrl}>`
+      : `<mailto:${SMTP_USER}?subject=unsubscribe>`;
     const headers = { 'List-Unsubscribe': listUnsubscribe };
     if (unsubscribeUrl) headers['List-Unsubscribe-Post'] = 'List-Unsubscribe=One-Click';
 
@@ -331,16 +353,9 @@ async function main() {
       failed.push(email);
       console.warn(`Send failed for ${email}: ${error?.message}`);
     }
+    await persistState();
   }
 
-  // Recorded even on partial failure — the guard's job is to stop a re-run from
-  // double-mailing, which matters most precisely when a send went wrong.
-  await writeFile(STATE_FILE, `${JSON.stringify({
-    lastSent: now.toISOString(),
-    recipients: sent,
-    failed: failed.length,
-    items: items.length,
-  }, null, 2)}\n`);
   console.log(`Newsletter sent to ${sent} subscribers (${items.length} items).`);
   if (failed.length > 0) {
     console.warn(`${failed.length} address(es) failed and were not retried.`);

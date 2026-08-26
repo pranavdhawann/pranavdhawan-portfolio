@@ -82,9 +82,22 @@ const json = (body, status = 200) =>
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
   });
 
+// Cap request bodies before parsing them: json() would otherwise happily read a
+// arbitrarily large payload before any validation ran.
+const MAX_BODY_BYTES = 64 * 1024;
+// Hard cap on array length before any per-entry work: bounds a hostile payload
+// without changing results for real clients, which send at most 6 entries.
+const MAX_HISTORY_INPUT = 50;
+// Generous ceiling for Groq; a hung upstream must not hold the instance until
+// the platform kills the invocation.
+const UPSTREAM_TIMEOUT_MS = 30_000;
+
 const sanitizeHistory = (history) => {
   if (!Array.isArray(history)) return [];
+  // Bound the input first (abuse), filter validity, then keep the newest six
+  // (a tail full of junk entries must not evict valid ones).
   return history
+    .slice(-MAX_HISTORY_INPUT)
     .filter(
       (entry) =>
         entry &&
@@ -114,6 +127,10 @@ export default async function handler(request) {
 
   let payload;
   try {
+    const contentLength = Number(request.headers.get('content-length') || 0);
+    if (contentLength > MAX_BODY_BYTES) {
+      return json({ error: 'Payload too large.' }, 413);
+    }
     payload = await request.json();
   } catch {
     return json({ error: 'Invalid JSON body.' }, 400);
@@ -146,7 +163,8 @@ export default async function handler(request) {
         Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ model: MODEL, messages, temperature: 0.4, max_tokens: 300 })
+      body: JSON.stringify({ model: MODEL, messages, temperature: 0.4, max_tokens: 300 }),
+      signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS)
     });
   } catch {
     return json({ error: FRIENDLY_ERROR }, 502);

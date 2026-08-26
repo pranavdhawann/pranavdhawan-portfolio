@@ -1,20 +1,31 @@
 // Netlify fires this automatically whenever a form is submitted.
 //
-// For the newsletter form it sends a double opt-in confirmation email. Nothing
-// is added to the send list here — scripts/send-newsletter.mjs only mails
-// addresses that appear in the confirmed store, which confirm.mjs writes after
-// the recipient clicks through. That means submitting somebody else's address
-// costs them one email and never subscribes them.
+// Two pipelines live here:
+//
+// 1. newsletter — sends a double opt-in confirmation email (rate limited per
+//    address so the endpoint can't be used to mail-bomb a third party). Nothing
+//    is added to the send list here — scripts/send-newsletter.mjs only mails
+//    addresses that appear in the confirmed store, which confirm.mjs writes
+//    after the recipient clicks through.
+// 2. contact — forwards the visitor's message to the site owner over SMTP.
 import { confirmToken } from './lib/confirm-token.mjs';
+import { escapeHtml } from './lib/page.mjs';
 
-const SITE_URL = process.env.SITE_URL || 'https://pranavdhawan.com';
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const CONFIRM_COOLDOWN_MS = 10 * 60 * 1000;
 
 const cleanEnv = (value) => String(value || '').replace(/^﻿/, '').trim();
 
+/** Apex-only site URL: www would 301 and turn one-click POSTs into GETs. */
+export function normalizeSiteUrl(siteUrl) {
+  return String(siteUrl || '').trim().replace(/^https?:\/\/www\./i, 'https://');
+}
+
+const SITE_URL = normalizeSiteUrl(process.env.SITE_URL || 'https://pranavdhawan.com');
+
 export function confirmUrlFor(email, secret, siteUrl = SITE_URL) {
   const token = confirmToken(email, secret);
-  return `${siteUrl}/.netlify/functions/confirm?e=${encodeURIComponent(email)}&t=${encodeURIComponent(token)}`;
+  return `${normalizeSiteUrl(siteUrl)}/.netlify/functions/confirm?e=${encodeURIComponent(email)}&t=${encodeURIComponent(token)}`;
 }
 
 export function buildConfirmEmail(confirmUrl) {
@@ -41,16 +52,73 @@ export function buildConfirmEmail(confirmUrl) {
   <p style="margin:0 0 16px;">You (or someone using this address) asked for the weekly AI digest.
   Confirm to start receiving it:</p>
   <p style="margin:0 0 20px;">
-    <a href="${confirmUrl}" style="display:inline-block;background:#FFD600;border:3px solid #1a1a1a;
+    <a href="${escapeHtml(confirmUrl)}" style="display:inline-block;background:#FFD600;border:3px solid #1a1a1a;
       padding:12px 20px;color:#1a1a1a;font-weight:bold;text-decoration:none;">Confirm subscription</a></p>
   <p style="margin:0;font-size:13px;color:#666;">If this wasn't you, ignore this email —
   nothing happens without that click.</p>
 </td></tr>
-</table>
-</td></tr></table>
+</table></td></tr></table>
 </body></html>`;
 
   return { text, html };
+}
+
+/** Subject-safe name: strip control chars/angle brackets, cap length. */
+const safeName = (value) => String(value || '').replace(/[\r\n<>]+/g, ' ').trim().slice(0, 80);
+
+export function buildContactEmail({ name, email, message, receivedAt }) {
+  const from = safeName(name) || '(no name given)';
+  const text = [
+    'New portfolio contact form submission',
+    `Received: ${receivedAt}`,
+    '',
+    `Name: ${from}`,
+    `Email: ${email}`,
+    '',
+    'Message:',
+    message,
+  ].join('\n');
+
+  const html = `<!DOCTYPE html>
+<html><body style="margin:0;padding:0;background:#f5f2ea;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px;">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0"
+  style="max-width:600px;width:100%;background:#ffffff;border:3px solid #1a1a1a;font-family:Arial,Helvetica,sans-serif;">
+<tr><td style="background:#FFD600;border-bottom:3px solid #1a1a1a;padding:18px 24px;">
+  <div style="font-size:18px;font-weight:bold;letter-spacing:1px;color:#1a1a1a;">PORTFOLIO CONTACT</div>
+</td></tr>
+<tr><td style="padding:24px;font-size:15px;color:#1a1a1a;line-height:1.6;">
+  <p style="margin:0 0 4px;"><strong>${escapeHtml(from)}</strong></p>
+  <p style="margin:0 0 16px;color:#555;">${escapeHtml(email)} &middot; ${escapeHtml(receivedAt)}</p>
+  <p style="margin:0;white-space:pre-wrap;">${escapeHtml(message)}</p>
+</td></tr>
+</table></td></tr></table>
+</body></html>`;
+
+  return { subject: `Portfolio message from ${from}`, text, html };
+}
+
+/**
+ * Per-address cooldown for confirmation emails, so one accepted form submit
+ * cannot be replayed into an unbounded mail stream at someone's inbox.
+ * Best-effort: if Blobs is unreachable we let the mail through rather than
+ * block a real subscriber on an infrastructure hiccup.
+ */
+async function recentlyConfirmed(email) {
+  try {
+    const { getStore } = await import('@netlify/blobs');
+    const store = getStore('newsletter-confirm-cooldown');
+    const previous = await store.get(email);
+    if (previous && Date.now() - Number(previous) < CONFIRM_COOLDOWN_MS) return true;
+    await store.set(email, String(Date.now()));
+  } catch (error) {
+    console.warn('Confirmation cooldown store unavailable', { message: error?.message });
+  }
+  return false;
+}
+
+async function sendMail(transport, options) {
+  await transport.sendMail(options);
 }
 
 export default async function handler(request) {
@@ -62,20 +130,16 @@ export default async function handler(request) {
   }
 
   const submission = payload?.payload ?? payload;
-  if (submission?.form_name !== 'newsletter') {
-    return new Response('Ignored', { status: 200 });
-  }
+  const formName = submission?.form_name;
 
-  const email = String(submission?.data?.email || '').trim().toLowerCase();
-  if (!EMAIL_PATTERN.test(email)) {
-    console.warn('Newsletter submission with an unusable email address — skipping.');
+  if (formName !== 'newsletter' && formName !== 'contact') {
     return new Response('Ignored', { status: 200 });
   }
 
   const secret = cleanEnv(process.env.UNSUBSCRIBE_SECRET);
   const [host, user, pass] = ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASS'].map((n) => cleanEnv(process.env[n]));
-  if (!secret || !host || !user || !pass) {
-    console.warn('Confirmation email not configured (needs UNSUBSCRIBE_SECRET + SMTP_*) — skipping.');
+  if (!host || !user || !pass || (formName === 'newsletter' && !secret)) {
+    console.warn(`${formName} email not configured (needs UNSUBSCRIBE_SECRET + SMTP_*) — skipping.`);
     return new Response('Not configured', { status: 200 });
   }
 
@@ -84,12 +148,47 @@ export default async function handler(request) {
   const transport = nodemailer.createTransport({
     host, port, secure: port === 465, auth: { user, pass },
   });
+  const from = cleanEnv(process.env.NEWSLETTER_FROM) || user;
+
+  if (formName === 'contact') {
+    const name = String(submission?.data?.name || '');
+    const email = String(submission?.data?.email || '').trim().toLowerCase();
+    const message = String(submission?.data?.message || '').slice(0, 5000);
+    const receivedAt = new Date().toISOString();
+    // Only a validated address may reach the Reply-To header (no CRLF injection).
+    const replyTo = EMAIL_PATTERN.test(email) ? email : undefined;
+    if (!message.trim()) return new Response('Ignored', { status: 200 });
+
+    const owner = cleanEnv(process.env.CONTACT_TO) || from;
+    const { subject, text, html } = buildContactEmail({ name, email: replyTo || '(invalid address)', message, receivedAt });
+
+    try {
+      await sendMail(transport, { from, to: owner, replyTo, subject, text, html });
+    } catch (error) {
+      // The submission is still stored by Netlify Forms; never fail the visitor
+      // because forwarding hiccuped.
+      console.warn('Contact notification failed to send', { message: error?.message });
+    }
+    return new Response('OK', { status: 200 });
+  }
+
+  // newsletter pipeline
+  const email = String(submission?.data?.email || '').trim().toLowerCase();
+  if (!EMAIL_PATTERN.test(email)) {
+    console.warn('Newsletter submission with an unusable email address — skipping.');
+    return new Response('Ignored', { status: 200 });
+  }
+
+  if (await recentlyConfirmed(email)) {
+    console.warn('Confirmation email suppressed by per-address cooldown.');
+    return new Response('Cooldown', { status: 200 });
+  }
 
   const { text, html } = buildConfirmEmail(confirmUrlFor(email, secret));
 
   try {
-    await transport.sendMail({
-      from: cleanEnv(process.env.NEWSLETTER_FROM) || user,
+    await sendMail(transport, {
+      from,
       to: email,
       subject: 'Confirm your AI This Week subscription',
       text,

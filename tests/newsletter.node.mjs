@@ -136,12 +136,12 @@ test('subscriberRows dedupes by email keeping the earliest signup', () => {
     { email: 'a@example.com', subscribedAt: '2026-07-01T10:00:00Z' },
     { email: 'b@example.com', subscribedAt: '2026-07-03T10:00:00Z' },
   ]);
-  assert.equal(toCsv(rows).split('\n')[0], 'email,subscribed_at');
+  assert.equal(toCsv(rows).split('\n')[0], 'email,subscribed_at,status');
 });
 
 test('CSV export neutralizes spreadsheet formulas and quotes fields', () => {
-  const csv = toCsv([{ email: '=HYPERLINK("https://evil.example")', subscribedAt: '+2026-07-01' }]);
-  assert.equal(csv, 'email,subscribed_at\n"\'=HYPERLINK(""https://evil.example"")",\'+2026-07-01\n');
+  const csv = toCsv([{ email: '=HYPERLINK("https://evil.example")', subscribedAt: '+2026-07-01', status: 'confirmed' }]);
+  assert.equal(csv, 'email,subscribed_at,status\n"\'=HYPERLINK(""https://evil.example"")",\'+2026-07-01,confirmed\n');
 });
 
 test('subscriber CSV export stays out of git', async () => {

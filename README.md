@@ -8,7 +8,7 @@ Static portfolio site for Pranav Dhawan
 
 Vanilla HTML / CSS / JS with a static build step and no browser runtime dependencies or framework. The build minifies assets, copies the publish directory, and generates modern image formats.
 
-- DM Sans + Space Grotesk via Google Fonts
+- DM Sans + Space Grotesk, self-hosted via Fontsource (no Google Fonts request)
 - Inline SVG sprite for the small icon set used by the page
 - Neobrutalism design system — hard borders, offset shadows, flat bold color. Palette + tokens in `styles.css :root`.
 
@@ -65,9 +65,13 @@ operations and in Netlify for the serverless functions:
 | Secret | Purpose |
 |---|---|
 | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID` | Read form submissions; address the Blobs stores |
-| `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` | Outbound mail |
+| `GROQ_API_KEY` | Powers the "Ask Pranav" chat widget (`netlify/functions/ask.mjs`) — without it the widget returns its friendly error |
+| `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` | Outbound mail (newsletter confirmations AND contact-form notifications) |
 | `NEWSLETTER_FROM` | From header, e.g. `Pranav Dhawan <you@example.com>` |
-| `UNSUBSCRIBE_SECRET` | Signs confirmation and unsubscribe tokens — rotating it invalidates every live link |
+| `CONTACT_TO` | Optional: where contact-form notifications go (defaults to `NEWSLETTER_FROM`) |
+| `SITE_URL` | Optional: canonical site origin used in signed links (defaults to `https://pranavdhawan.com`; www is stripped because the 301 breaks one-click POSTs) |
+| `ALLOWED_ORIGINS` | Optional: comma-separated origins allowed to call the chat function |
+| `UNSUBSCRIBE_SECRET` | Signs confirmation and unsubscribe tokens — rotating it invalidates every live link. Tokens also expire on their own (confirm 7 days, unsubscribe 180 days). |
 | `NEWSLETTER_ADDRESS` | Postal address in the mail footer. **Set this.** CAN-SPAM and the Gmail/Yahoo bulk-sender rules require a real address, and the in-repo fallback is deliberately city-level only so no home address is committed or mailed. Use a PO box or virtual mailbox. |
 
 ## Analytics

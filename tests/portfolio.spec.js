@@ -1,9 +1,16 @@
 const { test, expect } = require('@playwright/test');
 const { AxeBuilder } = require('@axe-core/playwright');
+const fs = require('node:fs');
 const path = require('node:path');
 const { readConfiguredHeaders, startStaticServer } = require('./helpers/static-server.cjs');
 
-const rootDir = path.join(__dirname, '..');
+// Tests run against the BUILT output in public/ — the same files Netlify
+// serves — so minification and asset-copy regressions are caught locally.
+// `npm run check` builds first; if you invoke playwright directly, run it too.
+const rootDir = path.join(__dirname, '..', 'public');
+if (!fs.existsSync(path.join(rootDir, 'index.html'))) {
+  throw new Error('public/index.html missing — run `npm run build` before testing.');
+}
 let server;
 let pageUrl;
 
@@ -332,19 +339,59 @@ test('the contact form cannot be submitted twice by double-clicking', async ({ p
   expect(posts).toBe(1);
 });
 
+// A filled honeypot means a bot. Netlify would accept the POST with fake
+// success anyway; the client must skip the POST so no phantom contact-sent
+// analytics event fires for a submission that was never stored.
+test('a filled honeypot fakes success without posting anything', async ({ page }) => {
+  await openPortfolio(page);
+  let posts = 0;
+  await page.route('**/*', async (route) => {
+    if (route.request().method() === 'POST') posts += 1;
+    return route.continue();
+  });
+
+  await page.fill('#cf-name', 'Bot');
+  await page.fill('#cf-email', 'bot@example.com');
+  await page.fill('#cf-message', 'Buy now');
+  await page.locator('input[name="bot-field"]').evaluate((el) => { el.value = 'spam'; });
+  await page.locator('.contact-submit').click();
+
+  await expect(page.locator('#contactStatus')).toHaveText(/get back to you/i);
+  expect(posts).toBe(0);
+});
+
+test('a failed contact POST shows the error state with a fallback contact', async ({ page }) => {
+  await openPortfolio(page);
+  await page.route('**/*', (route) => (
+    route.request().method() === 'POST'
+      ? route.fulfill({ status: 500, body: '' })
+      : route.continue()
+  ));
+
+  await page.fill('#cf-name', 'Test');
+  await page.fill('#cf-email', 'test@example.com');
+  await page.fill('#cf-message', 'Hello');
+  await page.locator('.contact-submit').click();
+
+  const status = page.locator('#contactStatus');
+  await expect(status).toHaveText(/Something went wrong/);
+  await expect(status).toHaveClass(/is-error/);
+});
+
 // The orbit runs on requestAnimationFrame, which the blanket reduced-motion CSS
-// rule cannot reach — it has to opt out in JavaScript.
+// rule cannot reach — it has to opt out in JavaScript. expect.poll samples the
+// transform repeatedly: with motion wrongly enabled the value keeps changing
+// and the poll times out, no fixed sleeps needed.
 test('reduced motion stops the avatar eye orbit', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 390, height: 844 });
   await openPortfolio(page);
-  await page.waitForTimeout(400);
 
   const first = await page.locator('#eyeLeft').evaluate((el) => el.style.transform);
-  await page.waitForTimeout(500);
-  const second = await page.locator('#eyeLeft').evaluate((el) => el.style.transform);
-
-  expect(second).toBe(first);
+  await expect.poll(
+    () => page.locator('#eyeLeft').evaluate((el) => el.style.transform),
+    { intervals: [100, 250, 500], timeout: 1500 }
+  ).toBe(first);
   await expect(page.locator('.avatar-wrapper')).not.toHaveClass(/is-auto-orbit/);
 });
 
@@ -399,8 +446,9 @@ test('self-hosts fonts without requesting Google Fonts', async ({ page }) => {
   await expect(page.locator('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]')).toHaveCount(0);
   const css = await (await page.request.get(`${pageUrl}styles.css`)).text();
   expect(css).toContain('@font-face');
-  expect(css).toContain("url('fonts/dm-sans-variable.woff2')");
-  expect(css).toContain("url('fonts/space-grotesk-variable.woff2')");
+  // Minified CSS may normalize url() quoting, so assert on paths only.
+  expect(css).toMatch(/fonts\/dm-sans-variable\.woff2/);
+  expect(css).toMatch(/fonts\/space-grotesk-variable\.woff2/);
 });
 
 test('coalesces hero title pointer writes into an animation frame', async ({ page }) => {

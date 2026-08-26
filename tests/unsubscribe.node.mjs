@@ -66,6 +66,14 @@ test('POST one-click with a valid token suppresses the address', async () => {
   assert.ok(deleted.includes(`${CONFIRMED_STORE}:a@example.com`), 'opt-in record is cleared');
 });
 
+// Links expire after UNSUBSCRIBE_TOKEN_MAX_AGE_MS; every outgoing email embeds
+// a freshly signed one, so nothing user-facing is lost.
+test('an expired unsubscribe token is rejected', () => {
+  const stale = Date.now() - 200 * 86400000;
+  const token = unsubscribeToken('stale@example.com', SECRET, stale);
+  assert.ok(!verifyUnsubscribeToken('stale@example.com', token, SECRET));
+});
+
 test('POST from the browser confirm form gets a readable page', async () => {
   const res = await handler(new Request(linkFor('b@example.com'), {
     method: 'POST',

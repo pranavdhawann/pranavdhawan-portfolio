@@ -16,3 +16,15 @@ Referrer-Policy = "strict-origin-when-cross-origin"
 Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 Cross-Origin-Opener-Policy = "same-origin"
 Cross-Origin-Resource-Policy = "same-origin"
+
+# Filenames are unhashed, so long caches lean on Netlify's etag revalidation —
+# except fonts, which are immutable content copied from pinned packages.
+[[headers]]
+for = "/fonts/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/images/*"
+[headers.values]
+Cache-Control = "public, max-age=2592000"

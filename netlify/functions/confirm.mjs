@@ -8,16 +8,30 @@
 //        which scripts/send-newsletter.mjs reads before every send.
 import { verifyConfirmToken } from './lib/confirm-token.mjs';
 import { CONFIRMED_STORE } from './lib/confirm-store.mjs';
+import { SUPPRESSION_STORE } from './lib/unsubscribe-store.mjs';
 import { escapeHtml, html } from './lib/page.mjs';
 import { stores } from './lib/stores.mjs';
 
 export const config = { path: '/.netlify/functions/confirm' };
 
 const SECRET = process.env.UNSUBSCRIBE_SECRET;
+if (!SECRET) {
+  console.warn('UNSUBSCRIBE_SECRET is not configured — every confirmation link will be rejected.');
+}
 
 async function recordConfirmation(email) {
   const store = await stores.get(CONFIRMED_STORE);
   await store.set(email, new Date().toISOString());
+  // A previous unsubscribe left this address on the suppression list, and
+  // nothing else ever removes it. This POST is fresh, verified consent, so a
+  // stale opt-out must be cleared here or the weekly sender would keep
+  // silently skipping an address that just re-subscribed.
+  try {
+    const suppression = await stores.get(SUPPRESSION_STORE);
+    await suppression.delete(email);
+  } catch (error) {
+    console.warn('Could not clear a stale suppression entry', { message: error?.message });
+  }
 }
 
 export default async function handler(request) {

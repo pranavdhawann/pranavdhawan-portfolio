@@ -1,25 +1,39 @@
 // Stateless, forgery-resistant unsubscribe tokens.
 //
-// A token is base64url(HMAC-SHA256(lowercased-email, UNSUBSCRIBE_SECRET)). The
-// sender embeds <email, token> in each one-click link; the unsubscribe function
-// recomputes and compares in constant time. No per-recipient state is stored,
-// so links keep working across deploys as long as the secret is stable.
+// Token format: "<issuedAtMs>.<base64url(HMAC-SHA256("<email>:<issuedAtMs>", SECRET))>"
+//
+// The issued-at timestamp expires leaked links after
+// UNSUBSCRIBE_TOKEN_MAX_AGE_MS. Every outgoing email embeds a freshly signed
+// link, so expiring old ones costs nothing: the newest digest always carries a
+// working unsubscribe.
 import { createHmac, timingSafeEqual } from 'node:crypto';
 
 const normalize = (email) => String(email || '').trim().toLowerCase();
 
-export function unsubscribeToken(email, secret) {
+export const UNSUBSCRIBE_TOKEN_MAX_AGE_MS = 180 * 86400000;
+
+export function unsubscribeToken(email, secret, issuedAtMs = Date.now()) {
   if (!secret) throw new Error('UNSUBSCRIBE_SECRET is required to sign unsubscribe links');
-  return createHmac('sha256', secret).update(normalize(email)).digest('base64url');
+  const ts = Math.floor(Number(issuedAtMs) || Date.now());
+  const mac = createHmac('sha256', secret)
+    .update(`${normalize(email)}:${ts}`)
+    .digest('base64url');
+  return `${ts}.${mac}`;
 }
 
-export function verifyUnsubscribeToken(email, token, secret) {
+export function verifyUnsubscribeToken(email, token, secret, nowMs = Date.now()) {
   if (!secret || !token) return false;
+  const match = /^(\d{13})\.([A-Za-z0-9_-]+)$/.exec(String(token));
+  if (!match) return false;
+  const ts = Number(match[1]);
+  const age = nowMs - ts;
+  if (!Number.isFinite(age) || age < 0 || age > UNSUBSCRIBE_TOKEN_MAX_AGE_MS) return false;
   let expected;
   try {
-    expected = Buffer.from(unsubscribeToken(email, secret), 'utf8');
-    const provided = Buffer.from(String(token), 'utf8');
-    return expected.length === provided.length && timingSafeEqual(expected, provided);
+    expected = Buffer.from(unsubscribeToken(email, secret, ts), 'utf8');
+    if (expected.length !== match[0].length) return false;
+    const provided = Buffer.from(match[0], 'utf8');
+    return timingSafeEqual(expected, provided);
   } catch {
     return false;
   }

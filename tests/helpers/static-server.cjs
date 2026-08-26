@@ -20,7 +20,11 @@ const contentTypes = {
 };
 
 function readConfiguredHeaders(rootDir) {
-  const content = fs.readFileSync(path.join(rootDir, 'netlify.toml'), 'utf8');
+  // netlify.toml lives in the repo root; when serving the built public/ output
+  // (which does not contain it) fall back one level.
+  const direct = path.join(rootDir, 'netlify.toml');
+  const tomlPath = fs.existsSync(direct) ? direct : path.join(rootDir, '..', 'netlify.toml');
+  const content = fs.readFileSync(tomlPath, 'utf8');
   return {
     'Content-Security-Policy': readTomlString(content, 'Content-Security-Policy'),
     'Strict-Transport-Security': readTomlString(content, 'Strict-Transport-Security'),
@@ -33,7 +37,14 @@ function readConfiguredHeaders(rootDir) {
 
 async function startStaticServer(rootDir, headers) {
   const server = http.createServer((request, response) => {
-    const requestPath = decodeURIComponent(new URL(request.url, 'http://127.0.0.1').pathname);
+    let requestPath;
+    try {
+      requestPath = decodeURIComponent(new URL(request.url, 'http://127.0.0.1').pathname);
+    } catch {
+      response.writeHead(400, headers);
+      response.end('Bad Request');
+      return;
+    }
     const relativePath = requestPath === '/' ? 'index.html' : requestPath.slice(1);
     let filePath = path.resolve(rootDir, relativePath);
     const isInRoot = filePath === rootDir || filePath.startsWith(rootDir + path.sep);

@@ -3,6 +3,25 @@ const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)
 const SVG_NS = 'http://www.w3.org/2000/svg';
 const XLINK_NS = 'http://www.w3.org/1999/xlink';
 
+// Engines without IntersectionObserver used to throw on the bare `new`
+// constructors below, killing every later module — including the contact-form
+// AJAX handler. This shim reports observed elements as visible immediately so
+// reveal-on-scroll features degrade to "shown" instead of breaking the page.
+if (!('IntersectionObserver' in window)) {
+    window.IntersectionObserver = class {
+        constructor(callback) { this.callback = callback; }
+        observe(target) {
+            this.callback(
+                [{ isIntersecting: true, intersectionRatio: 1, target }],
+                this
+            );
+        }
+        unobserve() {}
+        disconnect() {}
+        takeRecords() { return []; }
+    };
+}
+
 // trackEvent, the theme toggle, the data-analytics click listener and the footer
 // year live in site-common.js, which every page loads before this file.
 
@@ -771,12 +790,20 @@ if (heroTitle && heroSection) {
 (() => {
     const form = document.getElementById('chatForm');
     const panel = document.getElementById('chatPanel');
-    if (!form || !panel || typeof panel.show !== 'function') return;
+    if (!form) return;
+    // Without <dialog> support the submit handler below would never attach and
+    // Enter would native-GET the page with the question in the query string.
+    // Hiding the pill beats shipping a broken control.
+    if (!panel || typeof panel.show !== 'function') {
+        form.hidden = true;
+        return;
+    }
 
     const log = document.getElementById('chatLog');
     const input = document.getElementById('chatInput');
     const closeButton = document.getElementById('chatClose');
     const suggestions = document.getElementById('chatSuggestions');
+    const announcer = document.getElementById('chatAnnounce');
     const footer = document.querySelector('.footer');
     const root = document.documentElement;
     const history = [];
@@ -833,30 +860,46 @@ if (heroTitle && heroSection) {
         }
         log.appendChild(message);
         log.scrollTop = log.scrollHeight;
+        // A closed <dialog> is display:none, so its aria-live region is inert;
+        // mirror bot replies into an always-present live region outside it.
+        if (variant === 'bot' && !panel.open && announcer) {
+            announcer.textContent = text;
+        }
         return message;
     };
 
+    let lastFocused = null;
+
     const openPanel = () => {
+        // suppressOpen guards the close→refocus→focus-event→reopen loop; the
+        // outside-click handler clears it early for genuine new gestures.
         if (suppressOpen || panel.open) return;
+        lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         panel.show();
-        input.focus();
+        input?.focus();
     };
 
     const closePanel = (refocus = true) => {
         if (!panel.open) return;
         suppressOpen = true;
         panel.close();
-        if (refocus) {
-            input.focus();
+        // Only move focus when it would otherwise be lost inside the now-closed
+        // dialog — Escape pressed while typing elsewhere must not yank focus
+        // out of that field.
+        if (refocus && input && document.activeElement && panel.contains(document.activeElement)) {
+            const restoreTarget = lastFocused && document.contains(lastFocused) ? lastFocused : null;
+            (restoreTarget || input).focus();
         }
         setTimeout(() => {
             suppressOpen = false;
         }, 250);
     };
 
-    input.addEventListener('focus', openPanel);
-    input.addEventListener('input', openPanel);
-    closeButton.addEventListener('click', () => closePanel());
+    if (input) {
+        input.addEventListener('focus', openPanel);
+        input.addEventListener('input', openPanel);
+    }
+    closeButton?.addEventListener('click', () => closePanel());
 
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape' && panel.open) {
@@ -865,7 +908,12 @@ if (heroTitle && heroSection) {
     });
 
     document.addEventListener('pointerdown', (event) => {
-        if (panel.open && !panel.contains(event.target) && !form.contains(event.target)) {
+        const wasOpen = panel.open;
+        // A genuine pointer gesture ends close-triggered suppression right away,
+        // so clicking straight into the pill reopens instead of being eaten by
+        // the 250ms window that guards the close-button refocus loop.
+        suppressOpen = false;
+        if (wasOpen && !panel.contains(event.target) && !form.contains(event.target)) {
             closePanel(false);
         }
     });
@@ -874,10 +922,15 @@ if (heroTitle && heroSection) {
         if (pending || !question) return;
         pending = true;
         openPanel();
-        suggestions.hidden = true;
+        // Hide suggestions only after moving focus off a chip, or the focused
+        // element vanishes and keyboard/SR users drop to the top of the page.
+        if (suggestions && suggestions.contains(document.activeElement)) {
+            input?.focus();
+        }
+        if (suggestions) suggestions.hidden = true;
         appendMessage(question, 'user');
         trackEvent('chat-question');
-        input.value = '';
+        if (input) input.value = '';
         const typing = appendMessage('•••', 'typing');
         let serverMessage = '';
 
@@ -907,10 +960,10 @@ if (heroTitle && heroSection) {
 
     form.addEventListener('submit', (event) => {
         event.preventDefault();
-        send(input.value.trim());
+        send(input ? input.value.trim() : '');
     });
 
-    suggestions.addEventListener('click', (event) => {
+    suggestions?.addEventListener('click', (event) => {
         const chip = event.target.closest('.chat-chip');
         if (chip) {
             send(chip.textContent.trim());
@@ -941,21 +994,39 @@ if (heroTitle && heroSection) {
 // Contact — copy email, and submit the form to Netlify without a page reload
 (() => {
     const copyButton = document.querySelector('.contact-copy');
+    const copyStatus = document.getElementById('copyStatus');
     if (copyButton) {
         copyButton.addEventListener('click', async () => {
             const email = copyButton.dataset.copy || '';
+            let copied = false;
             try {
                 await navigator.clipboard.writeText(email);
-            } catch (e) {
-                return;
+                copied = true;
+            } catch (e) { /* fall through to the legacy path */ }
+            if (!copied) {
+                // execCommand fallback for non-secure contexts / denied permission.
+                try {
+                    const helper = document.createElement('textarea');
+                    helper.value = email;
+                    helper.setAttribute('readonly', '');
+                    helper.style.position = 'fixed';
+                    helper.style.opacity = '0';
+                    document.body.appendChild(helper);
+                    helper.select();
+                    copied = document.execCommand('copy');
+                    helper.remove();
+                } catch (e) { /* give up quietly below */ }
             }
+            if (!copied) return;
             const original = copyButton.textContent;
             copyButton.textContent = 'Copied';
             copyButton.classList.add('is-copied');
+            if (copyStatus) copyStatus.textContent = 'Email address copied to clipboard.';
             trackEvent('email-copy');
             setTimeout(() => {
                 copyButton.textContent = original;
                 copyButton.classList.remove('is-copied');
+                if (copyStatus) copyStatus.textContent = '';
             }, 1600);
         });
     }
@@ -970,6 +1041,16 @@ if (heroTitle && heroSection) {
         event.preventDefault();
         // Guard against double-clicks filing the same message twice.
         if (submitButton && submitButton.disabled) return;
+
+        // Honeypot: a filled bot-field means a bot. Netlify would accept the
+        // POST with fake success anyway, but skipping it here keeps the phantom
+        // contact-sent analytics event from ever firing.
+        const honeypot = form.querySelector('input[name="bot-field"]');
+        if (honeypot && honeypot.value) {
+            status.textContent = "Thanks — I'll get back to you soon.";
+            return;
+        }
+
         if (submitButton) submitButton.disabled = true;
         status.classList.remove('is-error');
         status.textContent = 'Sending…';

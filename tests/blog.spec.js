@@ -1,9 +1,14 @@
 const { test, expect } = require('@playwright/test');
 const { AxeBuilder } = require('@axe-core/playwright');
+const fs = require('node:fs');
 const path = require('node:path');
 const { readConfiguredHeaders, startStaticServer } = require('./helpers/static-server.cjs');
 
-const rootDir = path.join(__dirname, '..');
+// Built output only — see portfolio.spec.js for rationale.
+const rootDir = path.join(__dirname, '..', 'public');
+if (!fs.existsSync(path.join(rootDir, 'index.html'))) {
+  throw new Error('public/index.html missing — run `npm run build` before testing.');
+}
 let server;
 let pageUrl;
 
@@ -56,9 +61,12 @@ test('newsletter signup keeps input and button on one row at desktop width', asy
 
 test('subscribing shows the success message when the form POST succeeds', async ({ page }) => {
   await openBlog(page);
+  let postedFormName = '';
   await page.route('**/*', (route) => {
     if (route.request().method() === 'POST') {
-      expect(route.request().postData()).toContain('form-name=newsletter');
+      // Assert AFTER the route resolves — a failed expectation inside a route
+      // handler aborts the request and surfaces as a confusing timeout.
+      postedFormName = route.request().postData() || '';
       return route.fulfill({ status: 200, body: '' });
     }
     return route.continue();
@@ -70,6 +78,7 @@ test('subscribing shows the success message when the form POST succeeds', async 
   // so the confirmation copy must not claim otherwise.
   await expect(page.locator('#newsletterStatus')).toHaveText(/check your inbox/i);
   await expect(page.locator('#nl-email')).toHaveValue('');
+  expect(postedFormName).toContain('form-name=newsletter');
 });
 
 test('the newsletter form cannot be submitted twice by double-clicking', async ({ page }) => {
