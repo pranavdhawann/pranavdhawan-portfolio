@@ -17,3 +17,4 @@ subscribers.csv
 info.txt
 deno.lock
 output/
+.worktrees/
