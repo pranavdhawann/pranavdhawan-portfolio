@@ -2348,20 +2348,21 @@ section {
     display: grid;
     grid-template-columns: 1fr;
     gap: 2.5rem;
+    justify-items: center;
     align-items: start;
     width: 100%;
     max-width: 560px;
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
 }
 
 .contact-grid .contact-info {
     padding: 0;
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
 }
 
-.contact-grid .resume-download { text-align: left; }
+.contact-grid .resume-download { text-align: center; }
 
 @media (max-width: 768px) {
     .contact-grid {
