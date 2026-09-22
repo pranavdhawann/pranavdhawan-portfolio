@@ -23,7 +23,7 @@
         // a confirmation email that can never arrive.
         const honeypot = form.querySelector('input[name="bot-field"]');
         if (honeypot && honeypot.value) {
-            status.textContent = 'Almost there — check your inbox and click the confirmation link.';
+            status.textContent = 'Almost there. Check your inbox and click the confirmation link.';
             return;
         }
 
@@ -39,10 +39,10 @@
             });
             if (!response.ok) throw new Error('Request failed');
             form.reset();
-            status.textContent = 'Almost there — check your inbox and click the confirmation link.';
+            status.textContent = 'Almost there. Check your inbox and click the confirmation link.';
         } catch (e) {
             status.classList.add('is-error');
-            status.textContent = 'Something went wrong. Please try again, or email dhawanpranav02@gmail.com.';
+            status.textContent = 'Something went wrong. Please try again, or email pranavdhawan99@gmail.com.';
         } finally {
             if (submitButton) submitButton.disabled = false;
         }

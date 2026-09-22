@@ -6,114 +6,114 @@
     <atom:link href="https://pranavdhawan.com/blog/feed.xml" rel="self" type="application/rss+xml"/>
     <description>A weekly, auto-curated digest of AI developments from official lab blogs, arXiv, and GitHub.</description>
     <language>en-us</language>
-    <lastBuildDate>Mon, 10 Aug 2026 00:00:00 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 GMT</lastBuildDate>
     <item>
-      <title>Responding to the next frontier of critical cyber capabilities</title>
-      <link>https://openai.com/index/responding-next-frontier-critical-cyber-capabilities</link>
-      <guid isPermaLink="false">https://openai.com/index/responding-next-frontier-critical-cyber-capabilities</guid>
-      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Research</category>
-      <source url="https://pranavdhawan.com/blog/feed.xml">OpenAI</source>
-      <description>OpenAI is sharing preliminary cybersecurity evaluations for Astra and the steps we’re taking to strengthen safeguards and security controls.</description>
-    </item>
-    <item>
-      <title>Improving Fable 5 S Biology Safeguards</title>
-      <link>https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards</link>
-      <guid isPermaLink="false">https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards</guid>
-      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Product Update</category>
-      <source url="https://pranavdhawan.com/blog/feed.xml">Anthropic</source>
-      <description>Read the full story at the source.</description>
-    </item>
-    <item>
-      <title>TutorMoments: Do AI tutors know when to help and when to hold back?</title>
-      <link>https://huggingface.co/blog/allenai/tutormoments</link>
-      <guid isPermaLink="false">https://huggingface.co/blog/allenai/tutormoments</guid>
-      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
+      <title>Transformers now runs llama.cpp quants</title>
+      <link>https://huggingface.co/blog/transformers-llama-cpp-quants</link>
+      <guid isPermaLink="false">https://huggingface.co/blog/transformers-llama-cpp-quants</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
       <category>Open Source</category>
       <source url="https://pranavdhawan.com/blog/feed.xml">Hugging Face</source>
       <description>Read the full story at the source.</description>
     </item>
     <item>
-      <title>MirrorWorld: Taming Video Diffusion Models for Mirror Reflection Generation</title>
-      <link>https://arxiv.org/abs/2608.07463v1</link>
-      <guid isPermaLink="false">https://arxiv.org/abs/2608.07463v1</guid>
-      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Research</category>
-      <source url="https://pranavdhawan.com/blog/feed.xml">arXiv</source>
-      <description>Recent advances in video diffusion models (VDMs) have enabled high-fidelity video synthesis. However, generating mirror reflections remains challenging because the content within a mirror must remain consistent with the…</description>
-    </item>
-    <item>
-      <title>How HSP GRUPPE builds AI capabilities for tax advisory</title>
-      <link>https://openai.com/index/hsp-gruppe</link>
-      <guid isPermaLink="false">https://openai.com/index/hsp-gruppe</guid>
-      <pubDate>Fri, 07 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Product Update</category>
-      <source url="https://pranavdhawan.com/blog/feed.xml">OpenAI</source>
-      <description>Discover how HSP GRUPPE uses ChatGPT Enterprise to boost productivity, improve work quality, and create more capacity for tax advisory and client service.</description>
-    </item>
-    <item>
-      <title>WeatherNext: AI model achieves breakthrough in forecasting cyclones</title>
-      <link>https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones/</link>
-      <guid isPermaLink="false">https://deepmind.google/blog/weathernext-ai-model-achieves-breakthrough-in-forecasting-cyclones</guid>
-      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Research</category>
-      <source url="https://pranavdhawan.com/blog/feed.xml">Google DeepMind</source>
+      <title>Jun Kim, oMLX creator and maintainer, joins Hugging Face to support the MLX community</title>
+      <link>https://huggingface.co/blog/omlx</link>
+      <guid isPermaLink="false">https://huggingface.co/blog/omlx</guid>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Open Source</category>
+      <source url="https://pranavdhawan.com/blog/feed.xml">Hugging Face</source>
       <description>Read the full story at the source.</description>
     </item>
     <item>
-      <title>Why Meta Builds Its Own AI Data Centers</title>
-      <link>https://about.fb.com/news/2026/08/why-meta-builds-its-own-data-centers/</link>
-      <guid isPermaLink="false">https://about.fb.com/news/2026/08/why-meta-builds-its-own-data-centers</guid>
-      <pubDate>Thu, 06 Aug 2026 00:00:00 GMT</pubDate>
+      <title>Advisory Group on Mathematics and Artificial Intelligence</title>
+      <link>https://openai.com/index/advisory-group-on-mathematics-and-ai</link>
+      <guid isPermaLink="false">https://openai.com/index/advisory-group-on-mathematics-and-ai</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Product Update</category>
+      <source url="https://pranavdhawan.com/blog/feed.xml">OpenAI</source>
+      <description>OpenAI is working with an independent Advisory Group on Mathematics and Artificial Intelligence to guide the review and communication of emerging AI results.</description>
+    </item>
+    <item>
+      <title>GameHorizon Suite: Multi-Horizon Data and Evaluation in Gameplay</title>
+      <link>https://arxiv.org/abs/2609.25001v1</link>
+      <guid isPermaLink="false">https://arxiv.org/abs/2609.25001v1</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Research</category>
+      <source url="https://pranavdhawan.com/blog/feed.xml">arXiv</source>
+      <description>Modern video games provide a measurable testbed for AI models, combining abilities of visual understanding, instruction decomposition, goal planning, and precise action control over multiple temporal horizons. Existing…</description>
+    </item>
+    <item>
+      <title>Higgsfield AI ships new video features in a day with GPT-6 Astra</title>
+      <link>https://openai.com/index/higgsfield-from-prompt-to-production-with-astra</link>
+      <guid isPermaLink="false">https://openai.com/index/higgsfield-from-prompt-to-production-with-astra</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Product Update</category>
+      <source url="https://pranavdhawan.com/blog/feed.xml">OpenAI</source>
+      <description>With GPT-6 Astra, Higgsfield AI makes video ad creation easier for small businesses and brings new creative tools to market faster.</description>
+    </item>
+    <item>
+      <title>Accenture Embedded Evaluation</title>
+      <link>https://www.anthropic.com/news/accenture-embedded-evaluation</link>
+      <guid isPermaLink="false">https://www.anthropic.com/news/accenture-embedded-evaluation</guid>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Research</category>
+      <source url="https://pranavdhawan.com/blog/feed.xml">Anthropic</source>
+      <description>Read the full story at the source.</description>
+    </item>
+    <item>
+      <title>New experts join Google’s AI &amp; Economy team</title>
+      <link>https://blog.google/innovation-and-ai/technology/ai/expanding-ai-economy-research-bench/</link>
+      <guid isPermaLink="false">https://blog.google/innovation-and-ai/technology/ai/expanding-ai-economy-research-bench</guid>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Research</category>
+      <source url="https://pranavdhawan.com/blog/feed.xml">Google AI</source>
+      <description>We are expanding our AI &amp; Economy team with world-class academic advisors, fellows, and core internal researchers.</description>
+    </item>
+    <item>
+      <title>Prostujemy: fakty o walce z oszukańczymi reklamami w Polsce</title>
+      <link>https://about.fb.com/news/2026/09/prostujemy-fakty-o-walce-z-oszukanczymi-reklamami-w-polsce/</link>
+      <guid isPermaLink="false">https://about.fb.com/news/2026/09/prostujemy-fakty-o-walce-z-oszukanczymi-reklamami-w-polsce</guid>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
       <category>Product Update</category>
       <source url="https://pranavdhawan.com/blog/feed.xml">Meta</source>
-      <description>Developer and creator Tom Shaw sits down with Meta’s VP of Data Centers Rachel Peterson to discuss how Meta is building some of the world's largest computing facilities. The post Why Meta Builds Its Own AI Data Centers…</description>
+      <description>Na początku tego tygodnia fundacja Instrat opublikowała raport dotyczący jednego z najtrudniejszych wyzwań, z jakimi mierzy się cała branża – reklam o charakterze oszukańczym. To poważne i złożone wyzwanie, które…</description>
     </item>
     <item>
-      <title>The latest AI news we announced in July 2026</title>
-      <link>https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026/</link>
-      <guid isPermaLink="false">https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-july-2026</guid>
-      <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Product Update</category>
-      <source url="https://pranavdhawan.com/blog/feed.xml">Google AI</source>
-      <description>Here are Google’s latest AI updates from July 2026</description>
-    </item>
-    <item>
-      <title>Introducing Shieldstral.</title>
-      <link>https://mistral.ai/news/shieldstral/</link>
-      <guid isPermaLink="false">https://mistral.ai/news/shieldstral</guid>
-      <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
-      <category>Model Release</category>
-      <source url="https://pranavdhawan.com/blog/feed.xml">Mistral AI</source>
-      <description>Shieldstral introduces a 3B open-weights multimodal safety classifier that outperforms models up to 7x its size.</description>
-    </item>
-    <item>
-      <title>Solving the solvent problem</title>
-      <link>https://news.mit.edu/2026/solving-solvent-problem-sodium-metal-batteries-0804</link>
-      <guid isPermaLink="false">https://news.mit.edu/2026/solving-solvent-problem-sodium-metal-batteries-0804</guid>
-      <pubDate>Tue, 04 Aug 2026 00:00:00 GMT</pubDate>
+      <title>A new chapter for MIT Reads</title>
+      <link>https://news.mit.edu/2026/new-chapter-mit-reads-0918</link>
+      <guid isPermaLink="false">https://news.mit.edu/2026/new-chapter-mit-reads-0918</guid>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
       <category>Research</category>
       <source url="https://pranavdhawan.com/blog/feed.xml">MIT News — AI</source>
-      <description>By focusing on electrolytes, MIT scientists are making sodium-metal batteries a more practical energy storage option.</description>
+      <description>A new focus on fiction and memoir aims to help the MIT community celebrate the power of storytelling and strengthen social connection.</description>
     </item>
     <item>
-      <title>FareedKhan-dev/kimi-k3-in-c — trending AI repo</title>
-      <link>https://github.com/FareedKhan-dev/kimi-k3-in-c</link>
-      <guid isPermaLink="false">https://github.com/fareedkhan-dev/kimi-k3-in-c</guid>
-      <pubDate>Sat, 01 Aug 2026 00:00:00 GMT</pubDate>
+      <title>kraayenjon/awesome-jev (trending AI repo)</title>
+      <link>https://github.com/kraayenjon/awesome-jev</link>
+      <guid isPermaLink="false">https://github.com/kraayenjon/awesome-jev</guid>
+      <pubDate>Fri, 18 Sep 2026 00:00:00 GMT</pubDate>
       <category>Open Source</category>
       <source url="https://pranavdhawan.com/blog/feed.xml">GitHub</source>
-      <description>A 2.78-trillion-parameter Kimi K3 running inference on a single CPU in 8.24 GB of RAM. Portable C99: no BLAS, no framework, no GPU. (★ 795)</description>
+      <description>A curated list of Jev use cases, projects, SDKs, and resources. Jev is TypeSafe AI's System One model for fast, typed decisions in software — Choice, Score, and Noul with calibrated probabilities. (★ 103)</description>
     </item>
     <item>
-      <title>From CUDA to MLX: How K-Search Brings Decades of Kernel Expertise to Apple Silicon</title>
-      <link>https://bair.berkeley.edu/blog/2026/07/29/cuda-to-mlx-k-search/</link>
-      <guid isPermaLink="false">https://bair.berkeley.edu/blog/2026/07/29/cuda-to-mlx-k-search</guid>
-      <pubDate>Wed, 29 Jul 2026 00:00:00 GMT</pubDate>
-      <category>Open Source</category>
-      <source url="https://pranavdhawan.com/blog/feed.xml">Berkeley AI Research</source>
-      <description>Figure 1: CUDA-to-MLX optimization translation map. CUDA optimization knowledge can be translated into architecture-native MLX strategies rather than copied instruction-for-instruction. We face a new epoch in computing…</description>
+      <title>Mistral and Mozilla are bringing open, private and multilingual AI to your web browser</title>
+      <link>https://mistral.ai/news/mistral-x-mozilla/</link>
+      <guid isPermaLink="false">https://mistral.ai/news/mistral-x-mozilla</guid>
+      <pubDate>Wed, 16 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Model Release</category>
+      <source url="https://pranavdhawan.com/blog/feed.xml">Mistral AI</source>
+      <description>Open, private and multilingual AI is coming to your web browser. Mistral and Mozilla team up to put powerful, trustworthy AI where you already browse.</description>
+    </item>
+    <item>
+      <title>Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking</title>
+      <link>https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/</link>
+      <guid isPermaLink="false">https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking</guid>
+      <pubDate>Tue, 15 Sep 2026 00:00:00 GMT</pubDate>
+      <category>Model Release</category>
+      <source url="https://pranavdhawan.com/blog/feed.xml">Google DeepMind</source>
+      <description>Read the full story at the source.</description>
     </item>
   </channel>
 </rss>

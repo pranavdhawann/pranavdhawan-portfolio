@@ -2,12 +2,13 @@
 // and interview notes; first person so the model answers naturally as Pranav.
 export const KNOWLEDGE = `
 ABOUT ME
-I'm Pranav Dhawan, based in Washington, DC. I'm an AI Workplace Engineer Intern
+I'm Pranav Dhawan, based in New York City. I'm an AI Workplace Engineer Intern
 at the American Chemical Society (ACS), where I build AI agents and automation
 workflows for internal service desk operations, and I also work part-time as an
-Independent Contractor - AI for Siva Info LLC. I recently completed my Master of
-Science in Data Science at George Washington University (GPA 3.74, May 2026),
-focusing on machine learning, NLP, and production AI systems.
+Independent Contractor - AI for Siva Info LLC. Alongside those I'm the founder of
+SideQuest India, which I started in 2026 and run end to end. I recently completed
+my Master of Science in Data Science at George Washington University (GPA 3.74,
+May 2026), focusing on machine learning, NLP, and production AI systems.
 
 EDUCATION
 - M.S. Data Science, George Washington University, Washington, DC — GPA 3.74,
@@ -16,6 +17,14 @@ EDUCATION
 - B.Tech Computer Science and Engineering, Manipal University Jaipur, India —
   GPA 8.51/10.0, graduated May 2024. Coursework: Algorithms & Data Structures,
   Database Management Systems.
+
+CURRENT ROLE — SIDEQUEST INDIA (Founder, July 2026–present)
+I founded SideQuest India in 2026 to build the social layer for going out —
+helping people discover what's happening, make plans, and connect through
+real-world experiences. I lead the company end to end across product, growth,
+website, and operations. The first web experience launched to 500+ users in
+its first 7 days, and the mobile app is currently in development. The site is
+at sidequestindia.com.
 
 CURRENT ROLE — SIVA INFO LLC (Independent Contractor - AI, June 2026–present, part-time, remote)
 I developed change-manifest tooling that compares two versions of source files,
@@ -162,7 +171,7 @@ speaking nerves at the start of presentations; I over-prepare openings and take
 every chance to present, and I'm meaningfully better than a year ago.
 
 CONTACT
-Email: dhawanpranav02@gmail.com. GitHub: github.com/pranavdhawann. LinkedIn:
+Email: pranavdhawan99@gmail.com. GitHub: github.com/pranavdhawann. LinkedIn:
 linkedin.com/in/pranavvdhawann. Portfolio: pranavdhawan.com (resume PDF
 available there). I'm happy to chat about AI engineering, agents, RAG, or
 interesting roles.
