@@ -107,7 +107,10 @@ test('sends system prompt plus history plus question to Groq', async () => {
   });
   const { body } = fetchCalls[0];
   assert.equal(body.model, 'openai/gpt-oss-20b');
-  assert.equal(body.max_tokens, 300);
+  assert.equal(body.max_tokens, 800);
+  // gpt-oss reasoning tokens share the completion budget; without this the
+  // answer gets squeezed out and every longer reply 502s as truncated.
+  assert.equal(body.reasoning_effort, 'low');
   assert.equal(body.messages[0].role, 'system');
   assert.ok(body.messages[0].content.includes('ABOUT ME'));
   assert.ok(body.messages[0].content.includes('NEVER generate content'));

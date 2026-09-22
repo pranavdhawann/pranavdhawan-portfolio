@@ -166,7 +166,18 @@ export default async function handler(request) {
         Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ model: MODEL, messages, temperature: 0.4, max_tokens: 300 }),
+      body: JSON.stringify({
+        model: MODEL,
+        messages,
+        temperature: 0.4,
+        // gpt-oss is a reasoning model and its reasoning tokens come out of the
+        // same completion budget, so the old 300 left too little for the answer
+        // and truncated replies tripped the finish_reason guard below. Keep the
+        // reasoning minimal (this is retrieval from a fixed knowledge base, not
+        // a puzzle) and leave real headroom for the 1-3 paragraphs allowed.
+        reasoning_effort: 'low',
+        max_tokens: 800,
+      }),
       signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS)
     });
   } catch (error) {
