@@ -166,7 +166,8 @@ export default async function handler(request) {
       body: JSON.stringify({ model: MODEL, messages, temperature: 0.4, max_tokens: 300 }),
       signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS)
     });
-  } catch {
+  } catch (error) {
+    console.error('Ask Pranav upstream request failed', { message: error?.message });
     return json({ error: FRIENDLY_ERROR }, 502);
   }
 
@@ -174,6 +175,16 @@ export default async function handler(request) {
     return json({ error: "I'm getting a lot of questions right now — give it a few seconds and ask again." }, 429);
   }
   if (!groqResponse.ok) {
+    // The visitor only ever sees FRIENDLY_ERROR, which is right — but with
+    // nothing logged here, a rejected key or a retired model looked identical
+    // to every other 502 and could only be diagnosed by guesswork. Server-side
+    // only: the body can echo request content, so cap it and never return it.
+    const detail = await groqResponse.text().then((t) => t.slice(0, 300)).catch(() => '<unreadable>');
+    console.error('Ask Pranav upstream rejected the request', {
+      status: groqResponse.status,
+      model: MODEL,
+      detail,
+    });
     return json({ error: FRIENDLY_ERROR }, 502);
   }
 
@@ -181,6 +192,7 @@ export default async function handler(request) {
   const choice = data?.choices?.[0];
   const answer = choice?.message?.content?.trim();
   if (!answer) {
+    console.error('Ask Pranav upstream returned no answer', { model: MODEL });
     return json({ error: FRIENDLY_ERROR }, 502);
   }
   // max_tokens truncation leaves a sentence hanging mid-word; better to show the

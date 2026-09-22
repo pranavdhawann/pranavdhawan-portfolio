@@ -28,6 +28,20 @@ async function openPortfolio(page) {
   await page.goto(pageUrl);
 }
 
+// .fade-up transitions `transform`, so a reveal in flight shifts the card out
+// from under its own text and axe samples whatever is behind it instead —
+// reporting a contrast failure for colours that measure 7.2:1 at rest. Wait for
+// those transitions to finish before auditing, rather than auditing a frame
+// that never reaches a real visitor.
+async function settleReveals(page) {
+  await page.waitForFunction(() => !document.getAnimations().some((animation) => {
+    const target = animation.effect?.target;
+    return animation.playState === 'running'
+      && target instanceof Element
+      && target.closest('.fade-up');
+  }));
+}
+
 // Only the three current roles are rendered up front; everything earlier, plus
 // education, sits behind the disclosure so the section does not run half the page.
 async function expandTimeline(page) {
@@ -462,6 +476,7 @@ test('coalesces hero title pointer writes into an animation frame', async ({ pag
 
 test('page has no axe accessibility violations', async ({ page }) => {
   await openPortfolio(page);
+  await settleReveals(page);
 
   const results = await new AxeBuilder({ page }).analyze();
   expect(results.violations).toEqual([]);
@@ -471,6 +486,7 @@ test('page has no axe accessibility violations in dark mode', async ({ page }) =
   await openPortfolio(page);
   await page.locator('#themeToggle').click();
   await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  await settleReveals(page);
 
   const results = await new AxeBuilder({ page }).analyze();
   expect(results.violations).toEqual([]);
