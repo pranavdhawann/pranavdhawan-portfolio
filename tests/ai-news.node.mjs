@@ -6,7 +6,6 @@ import {
   categorize,
   decodeEntities,
   dedupe,
-  escapeHtml,
   httpsUrl,
   injectDigest,
   normalizeUrl,
@@ -18,6 +17,7 @@ import {
   titleFromSlug,
   SOURCES,
 } from '../scripts/fetch-ai-news.mjs';
+import { escapeHtml } from '../netlify/functions/lib/text.mjs';
 
 test('stripHtml unwraps CDATA before stripping tags', () => {
   assert.equal(stripHtml('<![CDATA[How ChatGPT adoption has expanded]]>'), 'How ChatGPT adoption has expanded');
@@ -55,7 +55,7 @@ test('httpsUrl rejects non-web feed links', () => {
 test('generated digest never links over plain http', async () => {
   const page = await readFile(new URL('../blog/index.html', import.meta.url), 'utf8');
   const region = page.split('<!-- AI-NEWS:START -->')[1].split('<!-- AI-NEWS:END -->')[0];
-  assert.ok(!/href="http:\/\//.test(region), 'digest cards must use https links');
+  assert.ok(!/href="http:\/\//.test(region), 'digest entries must use https links');
 });
 
 test('normalizeUrl drops tracking params, hashes, and trailing slashes', () => {
@@ -127,7 +127,7 @@ test('selectForPage surfaces every source before repeating one', () => {
   assert.ok(picked.filter((i) => i.sourceId === 'busy').length <= 3, 'per-source cap respected');
 });
 
-test('renderDigest escapes item text and links every card to its source', () => {
+test('renderDigest escapes item text and links every entry to its source', () => {
   const html = renderDigest([{
     title: '<script>alert(1)</script> "Model"',
     url: 'https://a.test/x?a=1&b=2',

@@ -20,7 +20,8 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-import { selectForPage, formatDate, escapeHtml, httpsUrl, truncate } from './fetch-ai-news.mjs';
+import { selectForPage, formatDate, httpsUrl, truncate } from './fetch-ai-news.mjs';
+import { cleanEnv, EMAIL_PATTERN, escapeHtml } from '../netlify/functions/lib/text.mjs';
 import { unsubscribeToken } from '../netlify/functions/lib/unsubscribe-token.mjs';
 import { SUPPRESSION_STORE } from '../netlify/functions/lib/unsubscribe-store.mjs';
 import { CONFIRMED_STORE } from '../netlify/functions/lib/confirm-store.mjs';
@@ -40,18 +41,11 @@ const MIN_DAYS_BETWEEN_SENDS = 6;
 const MAILING_ADDRESS = cleanEnv(process.env.NEWSLETTER_ADDRESS) ||
   'Pranav Dhawan · Washington, DC, USA';
 
-export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
 /** One-click unsubscribe URL for a recipient (empty when no secret is set). */
 export function unsubscribeUrlFor(email, secret = cleanEnv(process.env.UNSUBSCRIBE_SECRET)) {
   if (!secret) return '';
   const token = unsubscribeToken(email, secret);
   return `${SITE_URL}/.netlify/functions/unsubscribe?e=${encodeURIComponent(email)}&t=${encodeURIComponent(token)}`;
-}
-
-/** Env values can pick up BOMs/whitespace when set via shell pipes — sanitize. */
-export function cleanEnv(value) {
-  return String(value || '').replace(/^﻿/, '').trim();
 }
 
 /** Dedupe and validate emails from Netlify form submissions. */

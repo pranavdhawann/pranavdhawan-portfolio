@@ -6,7 +6,7 @@ import { unsubscribeToken } from '../netlify/functions/lib/unsubscribe-token.mjs
 import { stores } from '../netlify/functions/lib/stores.mjs';
 import { CONFIRMED_STORE } from '../netlify/functions/lib/confirm-store.mjs';
 import { SUPPRESSION_STORE } from '../netlify/functions/lib/unsubscribe-store.mjs';
-import { confirmUrlFor, buildContactEmail, buildConfirmEmail } from '../netlify/functions/submission-created.mjs';
+import { confirmUrlFor, buildConfirmEmail } from '../netlify/functions/submission-created.mjs';
 
 const SECRET = 'test-secret';
 process.env.UNSUBSCRIBE_SECRET = SECRET;

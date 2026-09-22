@@ -16,7 +16,8 @@
 import { verifyUnsubscribeToken } from './lib/unsubscribe-token.mjs';
 import { SUPPRESSION_STORE } from './lib/unsubscribe-store.mjs';
 import { CONFIRMED_STORE } from './lib/confirm-store.mjs';
-import { escapeHtml, html } from './lib/page.mjs';
+import { html } from './lib/page.mjs';
+import { escapeHtml } from './lib/text.mjs';
 import { stores } from './lib/stores.mjs';
 
 export const config = { path: '/.netlify/functions/unsubscribe' };
@@ -57,7 +58,7 @@ export default async function handler(request) {
     if (oneClick) return new Response('Invalid unsubscribe request', { status: 400 });
     return html(
       'Unsubscribe link invalid',
-      'This link is invalid or has expired. Email dhawanpranav02@gmail.com to be removed.',
+      'This link is invalid or has expired. Email pranavdhawan99@gmail.com to be removed.',
       { status: 400 }
     );
   }
@@ -83,7 +84,7 @@ export default async function handler(request) {
     if (oneClick) return new Response('Unsubscribe failed', { status: 503 });
     return html(
       "That didn't go through",
-      'Something went wrong on my end and you were not removed. Please try again in a few minutes, or email dhawanpranav02@gmail.com.',
+      'Something went wrong on my end and you were not removed. Please try again in a few minutes, or email pranavdhawan99@gmail.com.',
       { status: 503 }
     );
   }

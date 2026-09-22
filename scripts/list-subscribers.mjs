@@ -16,7 +16,8 @@ import { readFile, writeFile } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
 
-import { cleanEnv, EMAIL_PATTERN, fetchSubmissions, readConfirmed, readSuppressions } from './send-newsletter.mjs';
+import { fetchSubmissions, readConfirmed, readSuppressions } from './send-newsletter.mjs';
+import { cleanEnv, EMAIL_PATTERN } from '../netlify/functions/lib/text.mjs';
 
 
 /** Dedupe submissions into rows, keeping each email's earliest signup date. */

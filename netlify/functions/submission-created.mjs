@@ -1,20 +1,14 @@
 // Netlify fires this automatically whenever a form is submitted.
 //
-// Two pipelines live here:
-//
-// 1. newsletter — sends a double opt-in confirmation email (rate limited per
-//    address so the endpoint can't be used to mail-bomb a third party). Nothing
-//    is added to the send list here — scripts/send-newsletter.mjs only mails
-//    addresses that appear in the confirmed store, which confirm.mjs writes
-//    after the recipient clicks through.
-// 2. contact — forwards the visitor's message to the site owner over SMTP.
+// One pipeline: newsletter — sends a double opt-in confirmation email (rate
+// limited per address so the endpoint can't be used to mail-bomb a third
+// party). Nothing is added to the send list here — scripts/send-newsletter.mjs
+// only mails addresses that appear in the confirmed store, which confirm.mjs
+// writes after the recipient clicks through.
 import { confirmToken } from './lib/confirm-token.mjs';
-import { escapeHtml } from './lib/page.mjs';
+import { cleanEnv, EMAIL_PATTERN, escapeHtml } from './lib/text.mjs';
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const CONFIRM_COOLDOWN_MS = 10 * 60 * 1000;
-
-const cleanEnv = (value) => String(value || '').replace(/^﻿/, '').trim();
 
 /** Apex-only site URL: www would 301 and turn one-click POSTs into GETs. */
 export function normalizeSiteUrl(siteUrl) {
@@ -63,41 +57,6 @@ export function buildConfirmEmail(confirmUrl) {
   return { text, html };
 }
 
-/** Subject-safe name: strip control chars/angle brackets, cap length. */
-const safeName = (value) => String(value || '').replace(/[\r\n<>]+/g, ' ').trim().slice(0, 80);
-
-export function buildContactEmail({ name, email, message, receivedAt }) {
-  const from = safeName(name) || '(no name given)';
-  const text = [
-    'New portfolio contact form submission',
-    `Received: ${receivedAt}`,
-    '',
-    `Name: ${from}`,
-    `Email: ${email}`,
-    '',
-    'Message:',
-    message,
-  ].join('\n');
-
-  const html = `<!DOCTYPE html>
-<html><body style="margin:0;padding:0;background:#f5f2ea;">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td align="center" style="padding:24px 12px;">
-<table role="presentation" width="600" cellpadding="0" cellspacing="0"
-  style="max-width:600px;width:100%;background:#ffffff;border:3px solid #1a1a1a;font-family:Arial,Helvetica,sans-serif;">
-<tr><td style="background:#FFD600;border-bottom:3px solid #1a1a1a;padding:18px 24px;">
-  <div style="font-size:18px;font-weight:bold;letter-spacing:1px;color:#1a1a1a;">PORTFOLIO CONTACT</div>
-</td></tr>
-<tr><td style="padding:24px;font-size:15px;color:#1a1a1a;line-height:1.6;">
-  <p style="margin:0 0 4px;"><strong>${escapeHtml(from)}</strong></p>
-  <p style="margin:0 0 16px;color:#555;">${escapeHtml(email)} &middot; ${escapeHtml(receivedAt)}</p>
-  <p style="margin:0;white-space:pre-wrap;">${escapeHtml(message)}</p>
-</td></tr>
-</table></td></tr></table>
-</body></html>`;
-
-  return { subject: `Portfolio message from ${from}`, text, html };
-}
-
 /**
  * Per-address cooldown for confirmation emails, so one accepted form submit
  * cannot be replayed into an unbounded mail stream at someone's inbox.
@@ -132,14 +91,14 @@ export default async function handler(request) {
   const submission = payload?.payload ?? payload;
   const formName = submission?.form_name;
 
-  if (formName !== 'newsletter' && formName !== 'contact') {
+  if (formName !== 'newsletter') {
     return new Response('Ignored', { status: 200 });
   }
 
   const secret = cleanEnv(process.env.UNSUBSCRIBE_SECRET);
   const [host, user, pass] = ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASS'].map((n) => cleanEnv(process.env[n]));
-  if (!host || !user || !pass || (formName === 'newsletter' && !secret)) {
-    console.warn(`${formName} email not configured (needs UNSUBSCRIBE_SECRET + SMTP_*) — skipping.`);
+  if (!host || !user || !pass || !secret) {
+    console.warn('Newsletter email not configured (needs UNSUBSCRIBE_SECRET + SMTP_*) — skipping.');
     return new Response('Not configured', { status: 200 });
   }
 
@@ -149,28 +108,6 @@ export default async function handler(request) {
     host, port, secure: port === 465, auth: { user, pass },
   });
   const from = cleanEnv(process.env.NEWSLETTER_FROM) || user;
-
-  if (formName === 'contact') {
-    const name = String(submission?.data?.name || '');
-    const email = String(submission?.data?.email || '').trim().toLowerCase();
-    const message = String(submission?.data?.message || '').slice(0, 5000);
-    const receivedAt = new Date().toISOString();
-    // Only a validated address may reach the Reply-To header (no CRLF injection).
-    const replyTo = EMAIL_PATTERN.test(email) ? email : undefined;
-    if (!message.trim()) return new Response('Ignored', { status: 200 });
-
-    const owner = cleanEnv(process.env.CONTACT_TO) || from;
-    const { subject, text, html } = buildContactEmail({ name, email: replyTo || '(invalid address)', message, receivedAt });
-
-    try {
-      await sendMail(transport, { from, to: owner, replyTo, subject, text, html });
-    } catch (error) {
-      // The submission is still stored by Netlify Forms; never fail the visitor
-      // because forwarding hiccuped.
-      console.warn('Contact notification failed to send', { message: error?.message });
-    }
-    return new Response('OK', { status: 200 });
-  }
 
   // newsletter pipeline
   const email = String(submission?.data?.email || '').trim().toLowerCase();

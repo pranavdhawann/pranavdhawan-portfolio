@@ -5,9 +5,7 @@
 //
 // noindex because these URLs are per-recipient and must never reach search.
 
-const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
-
-export const escapeHtml = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ESCAPES[c]);
+import { escapeHtml } from './text.mjs';
 
 /**
  * @param {string} title      Heading + document title (plain text).

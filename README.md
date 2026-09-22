@@ -24,7 +24,7 @@ Vanilla HTML / CSS / JS with a static build step and no browser runtime dependen
 | `scripts/` | Static-site build, local server, image optimization, and manual AI-news/newsletter tools |
 | `netlify.toml` | Netlify security headers + functions directory |
 | `netlify/functions/ask.mjs` | Serverless proxy to Groq (`llama-3.1-8b-instant`) for the chat widget |
-| `netlify/functions/submission-created.mjs` | Fired by Netlify on form submit; emails the newsletter confirmation link |
+| `netlify/functions/submission-created.mjs` | Fired by Netlify on newsletter signup; emails the confirmation link |
 | `netlify/functions/confirm.mjs` | Double opt-in landing page; records the confirmed address on POST |
 | `netlify/functions/unsubscribe.mjs` | One-click unsubscribe (RFC 8058); suppression happens on POST only |
 | `netlify/functions/lib/knowledge.mjs` | Curated first-person knowledge base embedded in the chat system prompt |
@@ -35,9 +35,11 @@ Vanilla HTML / CSS / JS with a static build step and no browser runtime dependen
 ## Weekly AI news digest
 
 The blog page carries an "AI This Week" section generated from official lab
-feeds, arXiv, and GitHub. Update the HTML, RSS feed, and digest data manually
-with `npm run news:update`; there are no scheduled GitHub Actions for this
-repository. The feed source list lives in `scripts/fetch-ai-news.mjs`.
+feeds, arXiv, and GitHub. It refreshes every Monday at 06:15 UTC via the
+scheduled `.github/workflows/update-ai-news.yml` run, which also emails the
+digest to confirmed subscribers once the newsletter secrets are configured;
+`npm run news:update` / `npm run news:send` remain for manual runs.
+The feed source list lives in `scripts/fetch-ai-news.mjs`.
 
 Send the digest manually with `npm run news:send` once the required environment
 variables are configured.
@@ -66,9 +68,8 @@ operations and in Netlify for the serverless functions:
 |---|---|
 | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID` | Read form submissions; address the Blobs stores |
 | `GROQ_API_KEY` | Powers the "Ask Pranav" chat widget (`netlify/functions/ask.mjs`) — without it the widget returns its friendly error |
-| `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` | Outbound mail (newsletter confirmations AND contact-form notifications) |
+| `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` | Outbound mail (newsletter confirmation emails) |
 | `NEWSLETTER_FROM` | From header, e.g. `Pranav Dhawan <you@example.com>` |
-| `CONTACT_TO` | Optional: where contact-form notifications go (defaults to `NEWSLETTER_FROM`) |
 | `SITE_URL` | Optional: canonical site origin used in signed links (defaults to `https://pranavdhawan.com`; www is stripped because the 301 breaks one-click POSTs) |
 | `ALLOWED_ORIGINS` | Optional: comma-separated origins allowed to call the chat function |
 | `UNSUBSCRIBE_SECRET` | Signs confirmation and unsubscribe tokens — rotating it invalidates every live link. Tokens also expire on their own (confirm 7 days, unsubscribe 180 days). |

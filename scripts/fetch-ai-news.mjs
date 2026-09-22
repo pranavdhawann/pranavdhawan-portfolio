@@ -14,6 +14,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import path from 'node:path';
+import { escapeHtml } from '../netlify/functions/lib/text.mjs';
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const DATA_FILE = path.join(ROOT, 'blog', 'data', 'ai-news.json');
@@ -113,14 +114,6 @@ export function stripHtml(str) {
   let s = String(str).replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, '$1');
   s = decodeEntities(s.replace(/<[^>]*>/g, ' '));
   return s.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim();
-}
-
-export function escapeHtml(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;');
 }
 
 export function truncate(str, max = 220) {
@@ -252,7 +245,7 @@ async function fetchSource(source, now = new Date()) {
     if (process.env.GITHUB_TOKEN) headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
     const body = JSON.parse(await fetchText(source.url + q, headers));
     return (body.items || []).map((repo) => ({
-      title: `${repo.full_name} — trending AI repo`,
+      title: `${repo.full_name} (trending AI repo)`,
       url: repo.html_url,
       date: toIsoDate(repo.created_at),
       summary: repo.description ? `${repo.description} (★ ${repo.stargazers_count.toLocaleString('en-US')})` : `★ ${repo.stargazers_count.toLocaleString('en-US')}`,
@@ -307,30 +300,32 @@ export function formatDate(iso) {
 }
 
 export function renderDigest(items, updatedIso, { thinnedWeek = false } = {}) {
-  const cards = items
+  const rows = items
     .map((item) => ({ ...item, url: httpsUrl(item.url), date: item.date || '' }))
     .filter((item) => item.url && /^\d{4}-\d{2}-\d{2}$/.test(item.date))
     .map((item) => {
       const host = new URL(item.url).hostname.replace(/^www\./, '');
       return [
-        `                    <a class="writing-card" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">`,
-        `                        <span class="writing-tag">${escapeHtml(item.category)} &middot; ${escapeHtml(item.sourceName)}</span>`,
-        `                        <h3>${escapeHtml(item.title)}</h3>`,
-        `                        <p>${escapeHtml(truncate(item.summary || 'Read the full story at the source.'))}</p>`,
-        `                        <span class="writing-readmore"><span class="writing-date">${escapeHtml(formatDate(item.date))}</span> &middot; ${escapeHtml(host)} &rarr;</span>`,
-        '                    </a>',
+        '                <li class="writing-row">',
+        `                    <span class="writing-date"><time datetime="${escapeHtml(item.date)}">${escapeHtml(formatDate(item.date))}</time></span>`,
+        '                    <div class="writing-row-main">',
+        `                        <a class="writing-row-title" href="${escapeHtml(item.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(item.title)}</a>`,
+        `                        <span class="writing-tag">${escapeHtml(item.category)} &middot; ${escapeHtml(item.sourceName)} &middot; ${escapeHtml(host)}</span>`,
+        `                        <p>${escapeHtml(truncate(item.summary || 'Full details at the source.'))}</p>`,
+        '                    </div>',
+        '                </li>',
       ].join('\n');
     }).join('\n');
-  const digestBody = cards || '                <p class="writing-intro">No safe, recent items are available this week. Please check back soon.</p>';
-  const thinNote = thinnedWeek && cards
-    ? ' A light news week, so some cards are drawn from the recent archive rather than the last 14 days.'
+  const digestBody = rows || '                <p class="writing-intro">No safe, recent items are available this week. Please check back soon.</p>';
+  const thinNote = thinnedWeek && rows
+    ? ' A light news week, so some entries are drawn from the recent archive rather than the last 14 days.'
     : '';
   return [
     START_MARKER,
-    `                <p class="writing-intro">A weekly digest of AI developments, curated automatically by a zero-dependency pipeline I built — pulled straight from official lab blogs, arXiv, and GitHub. Every card links to its original source. <a href="feed.xml">Subscribe via RSS</a>. Updated ${escapeHtml(formatDate(updatedIso))}.${thinNote}</p>`,
-    cards ? '                <div class="writing-grid">' : '',
+    `                <p class="writing-intro">A weekly digest of AI developments curated from official lab blogs, arXiv, and GitHub.<br><a href="feed.xml">Subscribe via RSS</a><br>Latest edition: ${escapeHtml(formatDate(updatedIso))}.${thinNote}</p>`,
+    rows ? '                <ul class="writing-list">' : '',
     digestBody,
-    cards ? '                </div>' : '',
+    rows ? '                </ul>' : '',
     `                ${END_MARKER}`,
   ].join('\n');
 }

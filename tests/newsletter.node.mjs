@@ -6,12 +6,12 @@ import {
   buildEmailHtml,
   buildEmailText,
   buildSubject,
-  cleanEnv,
   extractSubscribers,
   shouldSend,
   suppressionStoreOptions,
   unsubscribeUrlFor,
 } from '../scripts/send-newsletter.mjs';
+import { cleanEnv } from '../netlify/functions/lib/text.mjs';
 import { verifyUnsubscribeToken } from '../netlify/functions/lib/unsubscribe-token.mjs';
 import { SUPPRESSION_STORE } from '../netlify/functions/lib/unsubscribe-store.mjs';
 import { subscriberRows, toCsv } from '../scripts/list-subscribers.mjs';

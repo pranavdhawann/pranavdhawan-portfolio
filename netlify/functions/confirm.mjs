@@ -9,7 +9,8 @@
 import { verifyConfirmToken } from './lib/confirm-token.mjs';
 import { CONFIRMED_STORE } from './lib/confirm-store.mjs';
 import { SUPPRESSION_STORE } from './lib/unsubscribe-store.mjs';
-import { escapeHtml, html } from './lib/page.mjs';
+import { html } from './lib/page.mjs';
+import { escapeHtml } from './lib/text.mjs';
 import { stores } from './lib/stores.mjs';
 
 export const config = { path: '/.netlify/functions/confirm' };
@@ -42,7 +43,7 @@ export default async function handler(request) {
   if (!email || !verifyConfirmToken(email, token, SECRET)) {
     return html(
       'Confirmation link invalid',
-      'This link is invalid or has expired. Subscribe again from the blog, or email dhawanpranav02@gmail.com.',
+      'This link is invalid or has expired. Subscribe again from the blog, or email pranavdhawan99@gmail.com.',
       { status: 400 }
     );
   }
@@ -67,7 +68,7 @@ export default async function handler(request) {
     console.warn('Confirmation store unavailable', { message: error?.message });
     return html(
       "That didn't go through",
-      'Something went wrong on my end and your subscription was not recorded. Please try the link again in a few minutes, or email dhawanpranav02@gmail.com.',
+      'Something went wrong on my end and your subscription was not recorded. Please try the link again in a few minutes, or email pranavdhawan99@gmail.com.',
       { status: 503 }
     );
   }
