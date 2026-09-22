@@ -23,7 +23,7 @@ Vanilla HTML / CSS / JS with a static build step and no browser runtime dependen
 | `blog/` | Blog index + posts; the "AI This Week" digest section and `blog/feed.xml` are regenerated weekly (see below) |
 | `scripts/` | Static-site build, local server, image optimization, and manual AI-news/newsletter tools |
 | `netlify.toml` | Netlify security headers + functions directory |
-| `netlify/functions/ask.mjs` | Serverless proxy to Groq (`llama-3.1-8b-instant`) for the chat widget |
+| `netlify/functions/ask.mjs` | Serverless proxy to Groq (`openai/gpt-oss-20b`) for the chat widget |
 | `netlify/functions/submission-created.mjs` | Fired by Netlify on newsletter signup; emails the confirmation link |
 | `netlify/functions/confirm.mjs` | Double opt-in landing page; records the confirmed address on POST |
 | `netlify/functions/unsubscribe.mjs` | One-click unsubscribe (RFC 8058); suppression happens on POST only |

@@ -2401,14 +2401,6 @@ section {
 /* ==========================================
    CHAT BUILT-BY
    ========================================== */
-.chat-built-by {
-    padding: 0 1rem 0.85rem;
-    margin: 0;
-    background: var(--bg-main);
-    font-size: var(--fs-2xs);
-    color: var(--text-secondary);
-    text-align: center;
-}
 
 /* ==========================================
    ARTICLE (BLOG) PAGES

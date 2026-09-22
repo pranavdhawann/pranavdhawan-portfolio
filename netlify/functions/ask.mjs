@@ -1,7 +1,10 @@
 import { KNOWLEDGE } from './lib/knowledge.mjs';
 
 const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
-const MODEL = 'llama-3.1-8b-instant';
+// llama-3.1-8b-instant was shut down on 2026-08-16 and is now enterprise-only,
+// so every request 502'd. This is Groq's own migration target for it: free-plan
+// eligible and on their Production tier, unlike the preview models.
+const MODEL = 'openai/gpt-oss-20b';
 const MAX_QUESTION_LENGTH = 500;
 const MAX_HISTORY_MESSAGES = 6;
 const MAX_HISTORY_CONTENT_LENGTH = 1500;

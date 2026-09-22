@@ -106,7 +106,7 @@ test('sends system prompt plus history plus question to Groq', async () => {
     ]
   });
   const { body } = fetchCalls[0];
-  assert.equal(body.model, 'llama-3.1-8b-instant');
+  assert.equal(body.model, 'openai/gpt-oss-20b');
   assert.equal(body.max_tokens, 300);
   assert.equal(body.messages[0].role, 'system');
   assert.ok(body.messages[0].content.includes('ABOUT ME'));
