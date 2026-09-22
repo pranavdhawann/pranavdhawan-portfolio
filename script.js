@@ -4,8 +4,7 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 const XLINK_NS = 'http://www.w3.org/1999/xlink';
 
 // Engines without IntersectionObserver used to throw on the bare `new`
-// constructors below, killing every later module — including the contact-form
-// AJAX handler. This shim reports observed elements as visible immediately so
+// constructors below, killing every later module on the page. This shim reports observed elements as visible immediately so
 // reveal-on-scroll features degrade to "shown" instead of breaking the page.
 if (!('IntersectionObserver' in window)) {
     window.IntersectionObserver = class {
@@ -80,14 +79,19 @@ function setMenuOpen(open) {
 
 if (mobileToggle) {
     mobileToggle.addEventListener('click', () => {
+        if (!navMenu) return;
         const isOpen = navMenu.classList.contains('active');
         setMenuOpen(!isOpen);
     });
 }
 
-// Close menu on navigation (Mobile)
+// The nav drawer takes over at 1024px, not 768 — keep this in step with the
+// .mobile-toggle / .nav-menu rules in the max-width: 1024px block of styles.css.
+const navDrawerQuery = window.matchMedia('(max-width: 1024px)');
+
+// Close menu on navigation (drawer)
 document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    if (window.matchMedia('(max-width: 768px)').matches && navMenu) {
+    if (navDrawerQuery.matches && navMenu) {
         setMenuOpen(false);
     }
 }));
@@ -95,10 +99,19 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
 // Close menu when clicking outside (Mobile)
 document.addEventListener('click', (e) => {
     if (!mobileToggle || !navMenu) return;
-    if (window.matchMedia('(max-width: 768px)').matches && navMenu.classList.contains('active')) {
+    if (navDrawerQuery.matches && navMenu.classList.contains('active')) {
         if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
             setMenuOpen(false);
         }
+    }
+});
+
+// Close menu with Escape (Mobile) and return focus to the toggle
+document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !navMenu) return;
+    if (navDrawerQuery.matches && navMenu.classList.contains('active')) {
+        setMenuOpen(false);
+        if (mobileToggle) mobileToggle.focus();
     }
 });
 
@@ -106,7 +119,12 @@ document.addEventListener('click', (e) => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
-        const target = href && href.length > 1 ? document.querySelector(href) : null;
+        let target = null;
+        try {
+            target = href && href.length > 1 ? document.querySelector(href) : null;
+        } catch {
+            target = null;
+        }
         if (target) {
             e.preventDefault();
             const navbar = document.querySelector('.navbar');
@@ -508,7 +526,12 @@ if (heroTitle && heroSection) {
     eyeR.addEventListener('error', hidePupils, { once: true });
     if (!base.complete) base.addEventListener('load', trySetup, { once: true });
     if (!eyeL.complete) eyeL.addEventListener('load', trySetup, { once: true });
-    if (base.complete && eyeL.complete) trySetup();
+    // An image that already failed before this script ran is `complete` with a
+    // zero naturalWidth and will never fire `error`, so the listeners above
+    // never hide the pupils. Catch that state directly.
+    const failedEarly = [base, eyeL, eyeR].some((img) => img.complete && img.naturalWidth === 0);
+    if (failedEarly) hidePupils();
+    else if (base.complete && eyeL.complete) trySetup();
 })();
 
 /* ==========================================
@@ -883,6 +906,8 @@ if (heroTitle && heroSection) {
         if (!panel.open) return;
         suppressOpen = true;
         panel.close();
+        // Let the pill fall back to its collapsed FAB state with the dialog.
+        form.classList.remove('is-open');
         // Only move focus when it would otherwise be lost inside the now-closed
         // dialog — Escape pressed while typing elsewhere must not yank focus
         // out of that field.
@@ -899,6 +924,16 @@ if (heroTitle && heroSection) {
         input.addEventListener('focus', openPanel);
         input.addEventListener('input', openPanel);
     }
+
+    // The pill renders as a collapsed FAB and expands on :hover/:focus-within.
+    // Touch has neither until something is focused, and tapping the sparkle
+    // icon does not focus the input by itself, so drive it explicitly.
+    form.addEventListener('click', (event) => {
+        if (event.target instanceof Element && event.target.closest('.chat-send')) return;
+        form.classList.add('is-open');
+        input?.focus();
+    });
+
     closeButton?.addEventListener('click', () => closePanel());
 
     document.addEventListener('keydown', (event) => {
@@ -918,9 +953,20 @@ if (heroTitle && heroSection) {
         }
     });
 
+    const sendButton = form.querySelector('.chat-send');
+
+    const setPending = (value) => {
+        pending = value;
+        // Without this a second Enter while a request is in flight is swallowed
+        // silently — the control has to *look* busy for that to read as "wait",
+        // not "broken".
+        if (sendButton) sendButton.disabled = value;
+        form.classList.toggle('is-pending', value);
+    };
+
     const send = async (question) => {
         if (pending || !question) return;
-        pending = true;
+        setPending(true);
         openPanel();
         // Hide suggestions only after moving focus off a chip, or the focused
         // element vanishes and keyboard/SR users drop to the top of the page.
@@ -954,7 +1000,7 @@ if (heroTitle && heroSection) {
             typing.remove();
             appendMessage(serverMessage || 'Something went wrong — try again in a moment, or reach me through the contact section below.', 'bot');
         } finally {
-            pending = false;
+            setPending(false);
         }
     };
 
@@ -971,7 +1017,9 @@ if (heroTitle && heroSection) {
     });
 })();
 
-// Experience timeline — reveal/hide earlier (2021) roles
+// Experience timeline — the two current roles are shown, everything earlier
+// (plus education) is behind this toggle. Expanded by default the section ran
+// 5,300px, roughly half the page, and pushed the projects below it out of sight.
 (() => {
     const toggle = document.getElementById('timelineToggle');
     const extra = document.getElementById('timelineExtra');
@@ -981,21 +1029,26 @@ if (heroTitle && heroSection) {
         const isHidden = extra.hasAttribute('hidden');
         if (isHidden) {
             extra.removeAttribute('hidden');
-            toggle.textContent = 'Hide earlier roles';
+            toggle.textContent = 'Hide earlier roles & education';
             toggle.setAttribute('aria-expanded', 'true');
         } else {
             extra.setAttribute('hidden', '');
-            toggle.textContent = 'Show earlier roles';
+            toggle.textContent = 'Show earlier roles & education';
             toggle.setAttribute('aria-expanded', 'false');
         }
     });
 })();
 
-// Contact — copy email, and submit the form to Netlify without a page reload
+// Contact — copy the email address to the clipboard.
 (() => {
     const copyButton = document.querySelector('.contact-copy');
     const copyStatus = document.getElementById('copyStatus');
     if (copyButton) {
+        // Captured once, before any click can overwrite the label: reading it
+        // inside the handler meant a second click within the reset window
+        // captured "Copied" and restored that as the permanent label.
+        const restingLabel = copyButton.textContent;
+        let resetTimer = 0;
         copyButton.addEventListener('click', async () => {
             const email = copyButton.dataset.copy || '';
             let copied = false;
@@ -1018,58 +1071,16 @@ if (heroTitle && heroSection) {
                 } catch (e) { /* give up quietly below */ }
             }
             if (!copied) return;
-            const original = copyButton.textContent;
             copyButton.textContent = 'Copied';
             copyButton.classList.add('is-copied');
             if (copyStatus) copyStatus.textContent = 'Email address copied to clipboard.';
             trackEvent('email-copy');
-            setTimeout(() => {
-                copyButton.textContent = original;
+            clearTimeout(resetTimer);
+            resetTimer = setTimeout(() => {
+                copyButton.textContent = restingLabel;
                 copyButton.classList.remove('is-copied');
                 if (copyStatus) copyStatus.textContent = '';
             }, 1600);
         });
     }
-
-    const form = document.querySelector('.contact-form');
-    const status = document.getElementById('contactStatus');
-    if (!form || !status) return;
-
-    const submitButton = form.querySelector('button[type="submit"]');
-
-    form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        // Guard against double-clicks filing the same message twice.
-        if (submitButton && submitButton.disabled) return;
-
-        // Honeypot: a filled bot-field means a bot. Netlify would accept the
-        // POST with fake success anyway, but skipping it here keeps the phantom
-        // contact-sent analytics event from ever firing.
-        const honeypot = form.querySelector('input[name="bot-field"]');
-        if (honeypot && honeypot.value) {
-            status.textContent = "Thanks — I'll get back to you soon.";
-            return;
-        }
-
-        if (submitButton) submitButton.disabled = true;
-        status.classList.remove('is-error');
-        status.textContent = 'Sending…';
-
-        try {
-            const response = await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: new URLSearchParams(new FormData(form)).toString()
-            });
-            if (!response.ok) throw new Error('Request failed');
-            form.reset();
-            status.textContent = "Thanks — I'll get back to you soon.";
-            trackEvent('contact-sent');
-        } catch (e) {
-            status.classList.add('is-error');
-            status.textContent = 'Something went wrong. Please email me directly at pranavdhawan99@gmail.com.';
-        } finally {
-            if (submitButton) submitButton.disabled = false;
-        }
-    });
 })();

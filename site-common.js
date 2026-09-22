@@ -12,6 +12,8 @@
 const goatQueue = [];
 let goatReady = false;
 
+let goatAbandoned = false;
+
 function flushGoatQueue() {
     if (goatReady) return;
     if (!(window.goatcounter && typeof window.goatcounter.count === 'function')) return;
@@ -20,6 +22,7 @@ function flushGoatQueue() {
 }
 
 function trackEvent(name) {
+    if (goatAbandoned) return;
     const payload = { path: name, title: name, event: true };
     if (goatReady || (window.goatcounter && typeof window.goatcounter.count === 'function')) {
         goatReady = true;
@@ -31,6 +34,15 @@ function trackEvent(name) {
 }
 window.addEventListener('load', flushGoatQueue);
 [500, 1500, 4000, 8000].forEach((delay) => setTimeout(flushGoatQueue, delay));
+// Actually abandon the queue once the last flush attempt has passed. Without
+// this the "grace period" was only ever a comment: a blocked or offline
+// count.js left every tracked click accumulating in goatQueue for the life of
+// the page.
+setTimeout(() => {
+    if (goatReady) return;
+    goatAbandoned = true;
+    goatQueue.length = 0;
+}, 8500);
 
 // Keep the browser UI colour in step with manual theme toggles — the
 // media-scoped meta tags only cover the prefers-color-scheme default. After the
@@ -89,6 +101,19 @@ function syncThemeColorMeta(dark) {
         syncThemeColorMeta(!dark); // `dark` was the PRE-toggle state
         trackEvent('theme-' + (dark ? 'light' : 'dark'));
     });
+})();
+
+// theme-init.js applies a stored preference before paint, but the theme-color
+// meta tags are media-scoped and still answer to the OS setting. When the two
+// disagree the browser UI paints the wrong colour until the first manual
+// toggle, so reconcile them once on load.
+(() => {
+    let stored = null;
+    try { stored = localStorage.getItem('theme'); } catch (e) { /* ignore */ }
+    if (stored !== 'dark' && stored !== 'light') return;
+    const dark = stored === 'dark';
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches === dark) return;
+    syncThemeColorMeta(dark);
 })();
 
 const copyrightYear = document.getElementById('copyrightYear');

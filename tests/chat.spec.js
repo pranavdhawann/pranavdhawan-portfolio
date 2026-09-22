@@ -65,7 +65,9 @@ test('clicking into the pill right after an outside-click close reopens the pane
   await openChat(page);
   await page.mouse.click(40, 200);
   await expect(page.locator('#chatPanel')).toBeHidden();
-  await page.locator('#chatInput').click();
+  // The pill collapses to a FAB when it loses focus, so the reopen gesture is a
+  // click on the pill itself; the input inside it is zero-width until expanded.
+  await page.locator('#chatForm').click();
   await expect(page.locator('#chatPanel')).toBeVisible();
 });
 
@@ -138,14 +140,22 @@ test('page with pill and open panel has no axe violations', async ({ page }) => 
   expect(results.violations).toEqual([]);
 });
 
+// The chat FAB and the back-to-top button share the bottom-right corner and
+// stack vertically. They must never overlap each other or the panel.
 test('mobile chat controls leave room for the back-to-top button', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(pageUrl);
   await page.evaluate(() => window.scrollTo(0, 700));
   await expect(page.locator('#backToTop')).toBeVisible();
 
-  await page.locator('#chatInput').focus();
+  await page.locator('#chatForm').click();
   await expect(page.locator('#chatPanel')).toBeVisible();
+  // Both controls slide in; measure resting geometry, not a frame mid-transition.
+  await page.evaluate(() => Promise.all(
+    ['#backToTop', '#chatForm', '#chatPanel']
+      .flatMap((s) => document.querySelector(s).getAnimations())
+      .map((a) => a.finished.catch(() => {}))
+  ));
 
   const layout = await page.evaluate(() => {
     const rect = (selector) => {
@@ -175,7 +185,10 @@ test('mobile chat controls leave room for the back-to-top button', async ({ page
 
   expect(layout.pillOverlapsBackToTop).toBe(false);
   expect(layout.panelOverlapsPill).toBe(false);
-  expect(layout.pill.right).toBeLessThanOrEqual(layout.backToTop.left - 8);
+  // Stacked, not side by side: back-to-top sits clear above the chat FAB, and
+  // both hug the same right edge.
+  expect(layout.backToTop.bottom).toBeLessThanOrEqual(layout.pill.top - 8);
+  expect(Math.abs(layout.backToTop.right - layout.pill.right)).toBeLessThanOrEqual(1);
 });
 
 test('floating chat controls stop above the footer', async ({ page }) => {
@@ -208,4 +221,32 @@ test('floating chat controls stop above the footer', async ({ page }) => {
 
   expect(layout.pill.bottom).toBeLessThanOrEqual(layout.footer.top - 12);
   expect(layout.panel.bottom).toBeLessThanOrEqual(layout.pill.top - 12);
+});
+
+// Regression: `send()` bailed out on `pending` with no feedback at all, so a
+// second Enter while a request was in flight was indistinguishable from a dead
+// control. The send button now reports the busy state.
+test('the send button reports the in-flight state and recovers', async ({ page }) => {
+  let release;
+  const held = new Promise((resolve) => { release = resolve; });
+  await page.route('**/.netlify/functions/ask', async (route) => {
+    await held;
+    await route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ answer: 'Done.' }),
+    });
+  });
+
+  await openChat(page);
+  const send = page.locator('.chat-send');
+  await expect(send).toBeEnabled();
+
+  await page.locator('#chatInput').fill('what do you do?');
+  await page.locator('#chatInput').press('Enter');
+  await expect(send).toBeDisabled();
+
+  release();
+  await expect(page.locator('.chat-message--bot').nth(1)).toHaveText('Done.');
+  await expect(send).toBeEnabled();
 });

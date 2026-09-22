@@ -38,7 +38,10 @@ async function resolve(urlPath) {
   }
   if (rel.endsWith('/')) rel += 'index.html';
   let filePath = path.join(root, rel);
-  if (!filePath.startsWith(root)) return BAD_REQUEST; // path traversal guard
+  // Compare against root + separator: a bare startsWith(root) also accepts a
+  // sibling directory whose name merely begins with "public" (publicsecret/),
+  // which is outside the publish directory.
+  if (filePath !== root && !filePath.startsWith(root + path.sep)) return BAD_REQUEST;
   try {
     const info = await stat(filePath);
     if (info.isDirectory()) filePath = path.join(filePath, 'index.html');

@@ -27,21 +27,21 @@ async function openBlog(page) {
   await page.goto(`${pageUrl}blog/`);
 }
 
-test('blog renders personal posts and the AI digest with sourced cards', async ({ page }) => {
+test('blog renders personal posts and the AI digest with sourced list entries', async ({ page }) => {
   await openBlog(page);
 
   await expect(page).toHaveTitle(/Blog/);
   await expect(page.getByRole('heading', { name: 'AI THIS WEEK' })).toBeVisible();
 
-  const digestCards = page.locator('.writing-card[target="_blank"]');
-  expect(await digestCards.count()).toBeGreaterThanOrEqual(6);
+  const digestEntries = page.locator('.writing-list .writing-row-title[target="_blank"]');
+  expect(await digestEntries.count()).toBeGreaterThanOrEqual(6);
 
-  // Every digest card links to a real external source over https.
-  for (const href of await digestCards.evaluateAll((cards) => cards.map((c) => c.href))) {
+  // Every digest entry links to a real external source over https.
+  for (const href of await digestEntries.evaluateAll((links) => links.map((a) => a.href))) {
     expect(href).toMatch(/^https:\/\//);
   }
-  await expect(digestCards.first().locator('.writing-tag')).toBeVisible();
-  await expect(digestCards.first().locator('.writing-date')).toBeVisible();
+  await expect(page.locator('.writing-list .writing-tag').first()).toBeVisible();
+  await expect(page.locator('.writing-list .writing-date').first()).toBeVisible();
 });
 
 test('newsletter signup keeps input and button on one row at desktop width', async ({ page }) => {
@@ -113,7 +113,7 @@ test('a CTA click fires exactly one analytics event', async ({ page }) => {
     }, true);
   });
 
-  await page.locator('a.writing-card[data-analytics="blog:rag-hallucinations"]').click();
+  await page.locator('a.writing-row-title[data-analytics="blog:rag-hallucinations"]').click();
   expect(await page.evaluate(() => window.__hits)).toEqual(['blog:rag-hallucinations']);
 });
 
@@ -138,6 +138,14 @@ test('blog page has no axe accessibility violations', async ({ page }) => {
   expect(results.violations).toEqual([]);
 });
 
+test('blog page has no axe accessibility violations in dark mode', async ({ page }) => {
+  await openBlog(page);
+  await page.locator('#themeToggle').click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+  const results = await new AxeBuilder({ page }).analyze();
+  expect(results.violations).toEqual([]);
+});
+
 test('blog distinguishes original writing from the curated digest and retains portfolio navigation', async ({ page }) => {
   await openBlog(page);
   await expect(page.getByRole('heading', { name: 'Written by me' })).toBeVisible();
@@ -150,3 +158,70 @@ test('blog uses the self-hosted site fonts', async ({ page }) => {
   await openBlog(page);
   await expect(page.locator('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]')).toHaveCount(0);
 });
+
+// The writing/digest list carries no fill and no shadow, so its rules are the
+// only thing separating one entry from the next. If they sink into the page
+// background the list reads as an undifferentiated wall of text — and axe
+// cannot see it, because WCAG 1.4.11 contrast is not statically checkable.
+function relativeLuminance([r, g, b]) {
+  const [lr, lg, lb] = [r, g, b].map((channel) => {
+    const c = channel / 255;
+    return c <= 0.03928 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+  });
+  return 0.2126 * lr + 0.7152 * lg + 0.0722 * lb;
+}
+
+function contrastRatio(rgbA, rgbB) {
+  const [light, dark] = [relativeLuminance(rgbA), relativeLuminance(rgbB)].sort((a, b) => b - a);
+  return (light + 0.05) / (dark + 0.05);
+}
+
+function parseRgb(value) {
+  const parts = value.match(/\d+(\.\d+)?/g);
+  if (!parts || parts.length < 3) throw new Error(`unparsable colour: ${value}`);
+  return parts.slice(0, 3).map(Number);
+}
+
+for (const theme of ['light', 'dark']) {
+  test(`writing list rules stay visible against the page in ${theme} mode`, async ({ page }) => {
+    await openBlog(page);
+    if (theme === 'dark') {
+      await page.locator('#themeToggle').click();
+      await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    }
+
+    const { pageBg, listTop, rowBottom } = await page.evaluate(() => ({
+      pageBg: getComputedStyle(document.body).backgroundColor,
+      listTop: getComputedStyle(document.querySelector('.writing-list')).borderTopColor,
+      rowBottom: getComputedStyle(document.querySelector('.writing-row')).borderBottomColor,
+    }));
+
+    const background = parseRgb(pageBg);
+    // WCAG 1.4.11 non-text contrast: boundaries needed to understand content.
+    expect(contrastRatio(parseRgb(listTop), background)).toBeGreaterThanOrEqual(3);
+    expect(contrastRatio(parseRgb(rowBottom), background)).toBeGreaterThanOrEqual(3);
+  });
+}
+
+test('digest entry links use the site focus ring, not the browser default', async ({ page }) => {
+  await openBlog(page);
+  const firstEntry = page.locator('.writing-list .writing-row-title').first();
+  await firstEntry.evaluate((el) => el.focus());
+  // `auto` means no author ring — the browser default, which ignores the palette.
+  await expect(firstEntry).not.toHaveCSS('outline-style', 'auto');
+  await expect(firstEntry).toHaveCSS('outline-style', 'solid');
+  await expect(firstEntry).toHaveCSS('outline-color', 'rgb(107, 63, 224)');
+});
+
+// Regression: `.nowrap` was applied to a full 96-character sentence, forcing a
+// 690px line inside a 343px column. That made the whole blog page scroll
+// sideways at every width below ~700px, not just the intro paragraph.
+for (const width of [320, 375, 480, 640]) {
+  test(`blog page does not scroll sideways at ${width}px`, async ({ page }) => {
+    await page.setViewportSize({ width, height: 812 });
+    await openBlog(page);
+
+    const scrollWidth = await page.evaluate(() => document.documentElement.scrollWidth);
+    expect(scrollWidth, `blog page overflows the ${width}px viewport`).toBeLessThanOrEqual(width + 1);
+  });
+}

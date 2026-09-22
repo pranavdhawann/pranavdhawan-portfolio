@@ -28,6 +28,13 @@ async function openPortfolio(page) {
   await page.goto(pageUrl);
 }
 
+// Only the three current roles are rendered up front; everything earlier, plus
+// education, sits behind the disclosure so the section does not run half the page.
+async function expandTimeline(page) {
+  await page.locator('#timelineToggle').click();
+  await expect(page.locator('#timelineExtra')).toBeVisible();
+}
+
 test('desktop page loads nav and renders skills graph', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 500 });
   await openPortfolio(page);
@@ -118,18 +125,27 @@ test('professional experience reflects updated role history', async ({ page }) =
   const experience = page.locator('#experience');
   const firstTimelineItem = experience.locator('.timeline-item').first();
 
-  await expect(firstTimelineItem.getByText('May 2026 - Present')).toBeVisible();
-  await expect(firstTimelineItem.getByRole('heading', { name: 'AI Workplace Engineer Intern' })).toBeVisible();
-  await expect(firstTimelineItem.getByText('American Chemical Society | Washington, DC')).toBeVisible();
-  await expect(firstTimelineItem.getByText(/245 of 350 monthly tickets/)).toBeVisible();
-  await expect(firstTimelineItem.getByText(/lifecycle-aware tracking/)).toBeVisible();
-  await expect(firstTimelineItem.getByText(/AI governance framework/)).toBeVisible();
+  await expect(firstTimelineItem.getByText('July 2026 - Present')).toBeVisible();
+  await expect(firstTimelineItem.getByRole('heading', { name: 'Founder' })).toBeVisible();
+  await expect(firstTimelineItem.getByRole('heading', { name: 'SideQuest India' })).toBeVisible();
+  await expect(firstTimelineItem.getByText(/500\+ users in its first 7 days/)).toBeVisible();
+
+  const acs = experience.locator('.timeline-item').nth(1);
+  await expect(acs.getByText('May 2026 - Present')).toBeVisible();
+  await expect(acs.getByRole('heading', { name: 'AI Workplace Engineer Intern' })).toBeVisible();
+  await expect(acs.getByText('American Chemical Society | Washington, DC')).toBeVisible();
+  await expect(acs.getByText(/245 of 350 monthly tickets/)).toBeVisible();
+  await expect(acs.getByText(/lifecycle-aware tracking/)).toBeVisible();
+  await expect(acs.getByText(/AI governance framework/)).toBeVisible();
 
   await expect(experience.getByRole('heading', { name: 'Independent Contractor - AI' })).toBeVisible();
   await expect(experience.getByText('Siva Info LLC | New York, NY')).toBeVisible();
   await expect(experience.getByText(/edition-aware PDF-diff tooling/)).toBeVisible();
   await expect(experience.getByText(/32% to 99%/)).toBeVisible();
   await expect(experience.locator('.tech-tag', { hasText: 'Pipeline Automation' })).toBeVisible();
+
+  // Everything past the three current roles is behind the disclosure.
+  await expandTimeline(page);
 
   await expect(experience.getByRole('heading', { name: 'Machine Learning Engineer' })).toBeVisible();
   await expect(experience.getByText(/YOLOv8 document intelligence pipeline/)).toBeVisible();
@@ -143,14 +159,10 @@ test('professional experience reflects updated role history', async ({ page }) =
   await expect(experience.getByText('EY | Gurugram, India')).toBeVisible();
   await expect(experience.getByText(/Automated ETL workflows across more than five data sources/)).toBeVisible();
 
-  // Earlier (2021) roles are collapsed behind a toggle — expand them first.
-  await experience.getByRole('button', { name: /Show earlier roles/ }).click();
-
-  await expect(experience.getByText('LEARNOVATE ECOMMERCE')).toBeVisible();
-  await expect(experience.getByText(/Developed responsive web interfaces using HTML, CSS, and JavaScript/)).toBeVisible();
-
-  await expect(experience.getByText('Education 4 ol')).toBeVisible();
-  await expect(experience.getByText(/Built reusable frontend components using HTML, CSS, and JavaScript/)).toBeVisible();
+  // The two 2021 front-end internships were dropped from the timeline; EY is
+  // now the oldest entry. Guard against them being reinstated by accident.
+  await expect(experience.getByText(/Learnovate/i)).toHaveCount(0);
+  await expect(experience.getByText(/Education 4/i)).toHaveCount(0);
 });
 
 test('portfolio copy uses workplace engineer consistently', async ({ page }) => {
@@ -160,6 +172,16 @@ test('portfolio copy uses workplace engineer consistently', async ({ page }) => 
   await expect(metaDescription).toHaveAttribute('content', /AI Workplace Engineer/);
   await expect(page.getByText('AI Workplace Engineer')).toBeVisible();
   await expect(page.locator('body')).not.toContainText('AI Workforce Engineer');
+});
+
+test('hero and about copy reflect current positioning', async ({ page }) => {
+  await openPortfolio(page);
+
+  await expect(page.locator('.hero-description')).toContainText('Founder, SideQuest India');
+  const about = page.locator('#about');
+  await expect(about).toContainText('Founder of SideQuest India');
+  await expect(about).toContainText('discover plans, go out');
+  await expect(about).toContainText('ambiguous problems');
 });
 
 test('stock screen copy avoids unverified paid-tier language', async ({ page }) => {
@@ -173,6 +195,7 @@ test('stock screen copy avoids unverified paid-tier language', async ({ page }) 
 
 test('education sections include academic project and paper highlights', async ({ page }) => {
   await openPortfolio(page);
+  await expandTimeline(page);
 
   await expect(page.getByText(/Completed a published research paper and technical report from the Multimodal Techniques/)).toBeVisible();
   await expect(page.getByText('GPA: 8.51/10.0')).toBeVisible();
@@ -276,6 +299,9 @@ test('portfolio presents the verified career and education facts', async ({ page
   const experience = page.locator('#experience');
   await expect(experience.getByRole('heading', { name: 'Independent Contractor - AI' })).toBeVisible();
   await expect(experience.getByText('AI Workplace Engineer Intern')).toBeVisible();
+
+  await expandTimeline(page);
+
   await expect(experience.getByText('Lumina Datamatics | Chennai, India')).toBeVisible();
   await expect(experience.getByText('August 2020 - May 2024')).toBeVisible();
   await expect(experience.getByText('GPA: 8.51/10.0')).toBeVisible();
@@ -286,9 +312,9 @@ test('timeline toggle keeps the same label after a full open-close cycle', async
   await openPortfolio(page);
   const toggle = page.locator('#timelineToggle');
   await toggle.click();
-  await expect(toggle).toHaveAccessibleName('Hide earlier roles');
+  await expect(toggle).toHaveAccessibleName('Hide earlier roles & education');
   await toggle.click();
-  await expect(toggle).toHaveAccessibleName('Show earlier roles');
+  await expect(toggle).toHaveAccessibleName('Show earlier roles & education');
 });
 
 test('page has a skip link and hides eye pupils after an avatar load failure', async ({ page }) => {
@@ -317,67 +343,6 @@ test('the skip link moves keyboard focus into main', async ({ page }) => {
   await expect(page.locator('#main-content')).toBeFocused();
 });
 
-test('the contact form cannot be submitted twice by double-clicking', async ({ page }) => {
-  await openPortfolio(page);
-  let posts = 0;
-  await page.route('**/*', async (route) => {
-    if (route.request().method() === 'POST') {
-      posts += 1;
-      await new Promise((r) => setTimeout(r, 400));
-      return route.fulfill({ status: 200, body: '' });
-    }
-    return route.continue();
-  });
-
-  await page.fill('#cf-name', 'Test');
-  await page.fill('#cf-email', 'test@example.com');
-  await page.fill('#cf-message', 'Hello');
-  const button = page.locator('.contact-submit');
-  await button.click();
-  await expect(button).toBeDisabled();
-  await expect(page.locator('#contactStatus')).toHaveText(/get back to you/i);
-  expect(posts).toBe(1);
-});
-
-// A filled honeypot means a bot. Netlify would accept the POST with fake
-// success anyway; the client must skip the POST so no phantom contact-sent
-// analytics event fires for a submission that was never stored.
-test('a filled honeypot fakes success without posting anything', async ({ page }) => {
-  await openPortfolio(page);
-  let posts = 0;
-  await page.route('**/*', async (route) => {
-    if (route.request().method() === 'POST') posts += 1;
-    return route.continue();
-  });
-
-  await page.fill('#cf-name', 'Bot');
-  await page.fill('#cf-email', 'bot@example.com');
-  await page.fill('#cf-message', 'Buy now');
-  await page.locator('input[name="bot-field"]').evaluate((el) => { el.value = 'spam'; });
-  await page.locator('.contact-submit').click();
-
-  await expect(page.locator('#contactStatus')).toHaveText(/get back to you/i);
-  expect(posts).toBe(0);
-});
-
-test('a failed contact POST shows the error state with a fallback contact', async ({ page }) => {
-  await openPortfolio(page);
-  await page.route('**/*', (route) => (
-    route.request().method() === 'POST'
-      ? route.fulfill({ status: 500, body: '' })
-      : route.continue()
-  ));
-
-  await page.fill('#cf-name', 'Test');
-  await page.fill('#cf-email', 'test@example.com');
-  await page.fill('#cf-message', 'Hello');
-  await page.locator('.contact-submit').click();
-
-  const status = page.locator('#contactStatus');
-  await expect(status).toHaveText(/Something went wrong/);
-  await expect(status).toHaveClass(/is-error/);
-});
-
 // The orbit runs on requestAnimationFrame, which the blanket reduced-motion CSS
 // rule cannot reach — it has to opt out in JavaScript. expect.poll samples the
 // transform repeatedly: with motion wrongly enabled the value keeps changing
@@ -400,20 +365,48 @@ test('every nav target exists and each section is reachable from the nav', async
   const hrefs = await page.locator('.nav-menu .nav-link').evaluateAll(
     (links) => links.map((a) => a.getAttribute('href'))
   );
-  expect(hrefs).toContain('#client-work');
+  // Client work lives collapsed inside Featured Projects — no separate nav tab.
+  expect(hrefs).not.toContain('#client-work');
+  // Work experience now comes before projects in both the nav and the page.
+  expect(hrefs.indexOf('#experience')).toBeLessThan(hrefs.indexOf('#projects'));
 
   for (const href of hrefs.filter((h) => h.startsWith('#'))) {
     await expect(page.locator(href)).toHaveCount(1);
   }
+
+  const sectionOrder = await page.evaluate(() =>
+    ['#experience', '#projects'].map((id) => document.querySelector(id).getBoundingClientRect().top)
+  );
+  expect(sectionOrder[0]).toBeLessThan(sectionOrder[1]);
 });
 
-test('portfolio presents client work and links to its privacy notice', async ({ page }) => {
+test('portfolio presents client work collapsed inside featured projects and links to its privacy notice', async ({ page }) => {
   await openPortfolio(page);
-  await expect(page.getByRole('heading', { name: /Client Work/i })).toBeVisible();
+  const projects = page.locator('#projects');
+  const disclosure = projects.locator('.client-work-details');
+  await expect(disclosure).not.toHaveAttribute('open', '');
+  await expect(disclosure.locator('.client-card').first()).toBeHidden();
+  await disclosure.locator('summary').click();
+  await expect(disclosure).toHaveAttribute('open', '');
+  await expect(projects.getByText('Client work', { exact: false }).first()).toBeVisible();
   await expect(page.locator('.client-card', { hasText: 'Aevantis Aerospace' }).getByRole('link', { name: 'Visit site' })).toHaveAttribute('href', 'https://aevantisaerospace.com/');
   await expect(page.locator('.client-card', { hasText: 'Admiles Media' }).getByRole('link', { name: 'Visit site' })).toHaveAttribute('href', 'https://admiles.in/');
+  await expect(page.locator('.client-card', { hasText: 'Aevantis Aerospace' })).toContainText('CLIENT WORK');
   await expect(page.getByRole('link', { name: 'Privacy', exact: true })).toHaveAttribute('href', 'privacy.html');
 });
+
+for (const theme of ['light', 'dark']) {
+  test(`privacy notice has no axe accessibility violations in ${theme} mode`, async ({ page }) => {
+    await page.goto(`${pageUrl}privacy.html`);
+    if (theme === 'dark') {
+      await page.locator('#themeToggle').click();
+      await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+    }
+
+    const results = await new AxeBuilder({ page }).analyze();
+    expect(results.violations).toEqual([]);
+  });
+}
 
 test('reduced motion prevents injected hero decorations', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
@@ -474,6 +467,15 @@ test('page has no axe accessibility violations', async ({ page }) => {
   expect(results.violations).toEqual([]);
 });
 
+test('page has no axe accessibility violations in dark mode', async ({ page }) => {
+  await openPortfolio(page);
+  await page.locator('#themeToggle').click();
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+  const results = await new AxeBuilder({ page }).analyze();
+  expect(results.violations).toEqual([]);
+});
+
 test('font awesome stylesheet is not loaded', async ({ page }) => {
   await openPortfolio(page);
 
@@ -526,4 +528,50 @@ test('github and linkedin icons use brand paths instead of text placeholders', a
   await expect(page.locator('symbol#icon-linkedin text')).toHaveCount(0);
   await expect(page.locator('symbol#icon-github path')).not.toHaveCount(0);
   await expect(page.locator('symbol#icon-linkedin path')).not.toHaveCount(0);
+});
+
+// Regression: the script sizes the pupils with a percentage width, but the
+// width/height attributes used to pin the height to a constant 34px. The pupil
+// rendered at a 0.78 ratio against the image's real 474x527 (0.899) and the
+// distortion changed with every viewport size.
+test('avatar pupils keep the eye image aspect ratio', async ({ page }) => {
+  await openPortfolio(page);
+
+  const pupils = page.locator('.eye-pupil');
+  await expect(pupils).toHaveCount(2);
+
+  const measured = await pupils.evaluateAll((els) =>
+    els.map((el) => ({
+      rendered: el.getBoundingClientRect().width / el.getBoundingClientRect().height,
+      intrinsic: el.naturalWidth / el.naturalHeight,
+    }))
+  );
+
+  for (const { rendered, intrinsic } of measured) {
+    expect(intrinsic).toBeGreaterThan(0);
+    expect(Math.abs(rendered - intrinsic)).toBeLessThan(0.02);
+  }
+});
+
+// Regression: the handler read the button's current label to restore it later,
+// so a second click inside the 1.6s window captured "Copied" and the stale
+// timer restored that as the permanent label.
+test('the copy button returns to its resting label after repeated clicks', async ({ page, context, browserName }) => {
+  test.skip(browserName !== 'chromium', 'clipboard permission grant is chromium-only');
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await openPortfolio(page);
+
+  const copy = page.locator('.contact-copy');
+  await copy.scrollIntoViewIfNeeded();
+
+  await copy.click();
+  await expect(copy).toHaveText('Copied');
+  await page.waitForTimeout(900);
+  await copy.click();
+  await expect(copy).toHaveText('Copied');
+
+  // Past both timers: the first must not fire while the second is still armed
+  // and leave "Copied" behind for good.
+  await page.waitForTimeout(2000);
+  await expect(copy).toHaveText('Copy');
 });
