@@ -26,7 +26,7 @@ test('lychee does not carry excludes for links the site no longer has', async ()
   );
   const site = pages.join('\n');
 
-  for (const dead of ['app.joinhandshake.com']) {
+  for (const dead of ['app.joinhandshake.com', 'stock-screen-25476982226.us-central1.run.app']) {
     assert.ok(!site.includes(dead), `${dead} is back on the site — restore its exclude if CI needs it`);
     assert.ok(!workflow.includes(dead), `${dead} is not linked anywhere; drop its stale lychee exclude`);
   }

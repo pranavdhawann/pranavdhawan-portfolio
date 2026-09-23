@@ -207,6 +207,19 @@ test('stock screen copy avoids unverified paid-tier language', async ({ page }) 
   await expect(card).not.toContainText('tested algorithmic models');
 });
 
+// The Cloud Run service is shut down; a "Live demo" link would send visitors to
+// an error page, so the card says why it is archived and keeps only the code.
+test('stock screen is marked archived with its reach and no live demo link', async ({ page }) => {
+  await openPortfolio(page);
+
+  const card = page.locator('.project-card').filter({ hasText: 'Stock Screen' });
+  await expect(card).toContainText('Archived');
+  await expect(card).toContainText('used by 100+ profiles');
+  await expect(card).toContainText('not enough paid users');
+  await expect(card.getByRole('link', { name: 'Live demo' })).toHaveCount(0);
+  await expect(card.getByRole('link', { name: 'Code' })).toHaveCount(1);
+});
+
 test('education sections include academic project and paper highlights', async ({ page }) => {
   await openPortfolio(page);
   await expandTimeline(page);

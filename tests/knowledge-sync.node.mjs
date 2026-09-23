@@ -30,7 +30,9 @@ test('knowledge base contains the verified career and education facts', () => {
     'Lumina Datamatics | Chennai, India',
     'graduated May 2024',
     'GPA 8.51/10.0',
-    'published research paper and technical report'
+    'published research paper and technical report',
+    // Stock Screen is shut down; the bot must not present it as live.
+    'Stock Screen is archived'
   ];
 
   for (const fact of verifiedFacts) {

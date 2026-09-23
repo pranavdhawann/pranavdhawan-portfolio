@@ -128,6 +128,8 @@ A real-time, AI-powered terminal that unifies stock analysis, market news,
 company filings, forecasting workflows, and market context into a single
 interface. Built for investors to compare signals quickly and turn live market
 data into actionable research. Built with Python and ML, deployed on GCP.
+Stock Screen is archived: it was used by 100+ profiles, but there were not
+enough paid users to keep it running. The code is still on GitHub.
 
 Singularity — Local-First Memory for AI Assistants
 A local memory and permission layer for AI assistants. It imports your chat

@@ -45,11 +45,7 @@ jobs:
       # openai.com is excluded by host, not by URL: the weekly digest pulls in
       # new openai.com links and they 403 datacenter IPs, so a per-URL list
       # would break CI again every time a new OpenAI story lands.
-      #
-      # The Stock Screen Cloud Run demo is excluded while that service is down
-      # (it answers 503, not a cold start). This hides a link visitors can still
-      # click and get an error from — drop the exclude once the service is back.
       - name: Check links
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --no-progress --verbose --exclude https://linkedin.com/in/pranavvdhawann --exclude https://www.linkedin.com/in/pranavvdhawann --exclude https://openai.com/ --exclude https://pranavdhawan.goatcounter.com --exclude https://www.goatcounter.com --exclude https://stock-screen-25476982226.us-central1.run.app/ --accept 200,204,206,301,302,429 public/index.html public/blog/*.html public/privacy.html README.md
+          args: --no-progress --verbose --exclude https://linkedin.com/in/pranavvdhawann --exclude https://www.linkedin.com/in/pranavvdhawann --exclude https://openai.com/ --exclude https://pranavdhawan.goatcounter.com --exclude https://www.goatcounter.com --accept 200,204,206,301,302,429 public/index.html public/blog/*.html public/privacy.html README.md
