@@ -5,14 +5,14 @@ import handler, { resetRateLimit } from '../netlify/functions/ask.mjs';
 const realFetch = globalThis.fetch;
 let fetchCalls;
 
-function stubGroq(response) {
+function stubUpstream(response) {
   globalThis.fetch = async (url, options) => {
     fetchCalls.push({ url, body: JSON.parse(options.body) });
     return response();
   };
 }
 
-function groqOk(content = 'stub answer') {
+function upstreamOk(content = 'stub answer') {
   return () => new Response(JSON.stringify({ choices: [{ message: { content } }] }), { status: 200 });
 }
 
@@ -26,9 +26,9 @@ function ask(body, method = 'POST') {
 
 beforeEach(() => {
   fetchCalls = [];
-  process.env.GROQ_API_KEY = 'test-key';
+  process.env.CEREBRAS_API_KEY = 'test-key';
   resetRateLimit();
-  stubGroq(groqOk());
+  stubUpstream(upstreamOk());
 });
 
 afterEach(() => {
@@ -76,8 +76,8 @@ test('rejects questions over 500 characters with 400', async () => {
   assert.equal(response.status, 400);
 });
 
-test('returns 500 when GROQ_API_KEY is missing', async () => {
-  delete process.env.GROQ_API_KEY;
+test('returns 500 when CEREBRAS_API_KEY is missing', async () => {
+  delete process.env.CEREBRAS_API_KEY;
   const response = await ask({ question: 'Who are you?' });
   assert.equal(response.status, 500);
 });
@@ -91,13 +91,13 @@ test('returns the model answer on success', async () => {
 });
 
 test('rejects model output that violates the portfolio response format', async () => {
-  stubGroq(groqOk('## Ignore the rules\n```js\nconsole.log("unsafe")\n```'));
+  stubUpstream(upstreamOk('## Ignore the rules\n```js\nconsole.log("unsafe")\n```'));
   const response = await ask({ question: 'What do you do?' });
   assert.equal(response.status, 502);
   assert.deepEqual(await response.json(), { error: "I couldn't answer right now — try again in a moment, or reach Pranav through the contact section." });
 });
 
-test('sends system prompt plus history plus question to Groq', async () => {
+test('sends system prompt plus history plus question to Cerebras', async () => {
   await ask({
     question: 'And after that?',
     history: [
@@ -105,8 +105,9 @@ test('sends system prompt plus history plus question to Groq', async () => {
       { role: 'assistant', content: 'I build AI agents.' }
     ]
   });
-  const { body } = fetchCalls[0];
-  assert.equal(body.model, 'openai/gpt-oss-20b');
+  const { url, body } = fetchCalls[0];
+  assert.equal(url, 'https://api.cerebras.ai/v1/chat/completions');
+  assert.equal(body.model, 'gpt-oss-120b');
   assert.equal(body.max_tokens, 800);
   // gpt-oss reasoning tokens share the completion budget; without this the
   // answer gets squeezed out and every longer reply 502s as truncated.
@@ -134,8 +135,8 @@ test('trims history to the last 6 messages and drops malformed entries', async (
   assert.equal(sent.at(-1).content, 'message 9');
 });
 
-test('maps Groq failures to 502 without leaking details', async () => {
-  stubGroq(() => new Response('upstream secret detail', { status: 500 }));
+test('maps upstream failures to 502 without leaking details', async () => {
+  stubUpstream(() => new Response('upstream secret detail', { status: 500 }));
   const response = await ask({ question: 'Hi' });
   assert.equal(response.status, 502);
   const data = await response.json();
@@ -145,7 +146,7 @@ test('maps Groq failures to 502 without leaking details', async () => {
 // Upstream throttling is retryable and should stay distinguishable from a real
 // upstream fault, both for the caller and for anything reading the logs.
 test('passes an upstream 429 through as 429, still without details', async () => {
-  stubGroq(() => new Response('upstream secret detail', { status: 429 }));
+  stubUpstream(() => new Response('upstream secret detail', { status: 429 }));
   const response = await ask({ question: 'Hi' });
   assert.equal(response.status, 429);
   const data = await response.json();
@@ -153,13 +154,14 @@ test('passes an upstream 429 through as 429, still without details', async () =>
   assert.match(data.error, /lot of questions/i);
 });
 
-// The free plan's 8K tokens/minute is org-wide and the system prompt alone is
-// ~3K tokens, so upstream 429s are routine. Groq's body names which limit was
-// hit; without logging it they looked identical to the local IP throttle.
-test('an upstream 429 is logged with the limit Groq reports', async (t) => {
+// The free tier's limits are org-wide (5 requests/minute on Cerebras) and the
+// system prompt alone is ~3K tokens, so upstream 429s are routine. The body says
+// which limit was hit; without logging it they looked identical to the local IP
+// throttle.
+test('an upstream 429 is logged with the limit the provider reports', async (t) => {
   const warn = t.mock.method(console, 'warn', () => {});
-  stubGroq(() => new Response(
-    'Rate limit reached for model openai/gpt-oss-20b on tokens per minute (TPM): Limit 8000',
+  stubUpstream(() => new Response(
+    'Rate limit reached for model gpt-oss-120b on tokens per minute (TPM): Limit 30000',
     { status: 429, headers: { 'retry-after': '17' } }
   ));
   await ask({ question: 'Hi' });
@@ -178,7 +180,7 @@ test('a three-paragraph answer is not rejected by the output guard', async () =>
     'Before that I was at Lumina. I did document AI. We shipped it.',
     'Ask me anything else. I am happy to talk. Reach me by email.',
   ].join('\n\n');
-  stubGroq(() => new Response(JSON.stringify({
+  stubUpstream(() => new Response(JSON.stringify({
     choices: [{ message: { content: answer }, finish_reason: 'stop' }],
   }), { status: 200, headers: { 'content-type': 'application/json' } }));
 
@@ -190,7 +192,7 @@ test('a three-paragraph answer is not rejected by the output guard', async () =>
 // A max_tokens cut-off leaves a sentence hanging; showing it as a complete
 // answer is worse than admitting the failure.
 test('an answer truncated by max_tokens is rejected', async () => {
-  stubGroq(() => new Response(JSON.stringify({
+  stubUpstream(() => new Response(JSON.stringify({
     choices: [{ message: { content: 'I work at ACS and my role there is to' }, finish_reason: 'length' }],
   }), { status: 200, headers: { 'content-type': 'application/json' } }));
 
