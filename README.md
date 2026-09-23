@@ -23,7 +23,7 @@ Vanilla HTML / CSS / JS with a static build step and no browser runtime dependen
 | `blog/` | Blog index + posts; the "AI This Week" digest section and `blog/feed.xml` are regenerated weekly (see below) |
 | `scripts/` | Static-site build, local server, image optimization, and manual AI-news/newsletter tools |
 | `netlify.toml` | Netlify security headers + functions directory |
-| `netlify/functions/ask.mjs` | Serverless proxy to Cerebras (`gpt-oss-120b`) for the chat widget |
+| `netlify/functions/ask.mjs` | Serverless proxy to Groq (`openai/gpt-oss-20b`) for the chat widget |
 | `netlify/functions/submission-created.mjs` | Fired by Netlify on newsletter signup; emails the confirmation link |
 | `netlify/functions/confirm.mjs` | Double opt-in landing page; records the confirmed address on POST |
 | `netlify/functions/unsubscribe.mjs` | One-click unsubscribe (RFC 8058); suppression happens on POST only |
@@ -67,7 +67,7 @@ operations and in Netlify for the serverless functions:
 | Secret | Purpose |
 |---|---|
 | `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID` | Read form submissions; address the Blobs stores |
-| `CEREBRAS_API_KEY` | Powers the "Ask Pranav" chat widget (`netlify/functions/ask.mjs`) — without it the widget returns its friendly error |
+| `GROQ_API_KEY` | Powers the "Ask Pranav" chat widget (`netlify/functions/ask.mjs`) — without it the widget returns its friendly error |
 | `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` | Outbound mail (newsletter confirmation emails) |
 | `NEWSLETTER_FROM` | From header, e.g. `Pranav Dhawan <you@example.com>` |
 | `SITE_URL` | Optional: canonical site origin used in signed links (defaults to `https://pranavdhawan.com`; www is stripped because the 301 breaks one-click POSTs) |

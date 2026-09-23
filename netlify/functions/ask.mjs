@@ -1,10 +1,10 @@
 import { KNOWLEDGE } from './lib/knowledge.mjs';
 
-const UPSTREAM_URL = 'https://api.cerebras.ai/v1/chat/completions';
-// Moved off Groq, whose free plan (8K tokens/minute, 200K/day, org-wide) fit
-// only ~50 questions a day against a ~3K-token system prompt. Cerebras's free
-// tier allows 1M tokens/day on the larger gpt-oss, capped at 5 requests/minute.
-const MODEL = 'gpt-oss-120b';
+const GROQ_URL = 'https://api.groq.com/openai/v1/chat/completions';
+// llama-3.1-8b-instant was shut down on 2026-08-16 and is now enterprise-only,
+// so every request 502'd. This is Groq's own migration target for it: free-plan
+// eligible and on their Production tier, unlike the preview models.
+const MODEL = 'openai/gpt-oss-20b';
 const MAX_QUESTION_LENGTH = 500;
 const MAX_HISTORY_MESSAGES = 6;
 const MAX_HISTORY_CONTENT_LENGTH = 1500;
@@ -91,7 +91,7 @@ const MAX_BODY_BYTES = 64 * 1024;
 // Hard cap on array length before any per-entry work: bounds a hostile payload
 // without changing results for real clients, which send at most 6 entries.
 const MAX_HISTORY_INPUT = 50;
-// Generous upstream ceiling; a hung upstream must not hold the instance until
+// Generous ceiling for Groq; a hung upstream must not hold the instance until
 // the platform kills the invocation.
 const UPSTREAM_TIMEOUT_MS = 30_000;
 
@@ -147,7 +147,7 @@ export default async function handler(request) {
     return json({ error: `Questions are limited to ${MAX_QUESTION_LENGTH} characters.` }, 400);
   }
 
-  const apiKey = process.env.CEREBRAS_API_KEY;
+  const apiKey = process.env.GROQ_API_KEY;
   if (!apiKey) {
     return json({ error: FRIENDLY_ERROR }, 500);
   }
@@ -158,9 +158,9 @@ export default async function handler(request) {
     { role: 'user', content: question }
   ];
 
-  let upstreamResponse;
+  let groqResponse;
   try {
-    upstreamResponse = await fetch(UPSTREAM_URL, {
+    groqResponse = await fetch(GROQ_URL, {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -185,32 +185,32 @@ export default async function handler(request) {
     return json({ error: FRIENDLY_ERROR }, 502);
   }
 
-  if (upstreamResponse.status === 429) {
+  if (groqResponse.status === 429) {
     // The body says which limit tripped (TPM, RPD, ...) — the one fact that
     // separates "free plan exhausted" from the local IP throttle above.
-    const detail = await upstreamResponse.text().then((t) => t.slice(0, 300)).catch(() => '<unreadable>');
+    const detail = await groqResponse.text().then((t) => t.slice(0, 300)).catch(() => '<unreadable>');
     console.warn('Ask Pranav upstream rate limited', {
       model: MODEL,
-      retryAfter: upstreamResponse.headers.get('retry-after'),
+      retryAfter: groqResponse.headers.get('retry-after'),
       detail,
     });
     return json({ error: "I'm getting a lot of questions right now — give it a few seconds and ask again." }, 429);
   }
-  if (!upstreamResponse.ok) {
+  if (!groqResponse.ok) {
     // The visitor only ever sees FRIENDLY_ERROR, which is right — but with
     // nothing logged here, a rejected key or a retired model looked identical
     // to every other 502 and could only be diagnosed by guesswork. Server-side
     // only: the body can echo request content, so cap it and never return it.
-    const detail = await upstreamResponse.text().then((t) => t.slice(0, 300)).catch(() => '<unreadable>');
+    const detail = await groqResponse.text().then((t) => t.slice(0, 300)).catch(() => '<unreadable>');
     console.error('Ask Pranav upstream rejected the request', {
-      status: upstreamResponse.status,
+      status: groqResponse.status,
       model: MODEL,
       detail,
     });
     return json({ error: FRIENDLY_ERROR }, 502);
   }
 
-  const data = await upstreamResponse.json().catch(() => null);
+  const data = await groqResponse.json().catch(() => null);
   const choice = data?.choices?.[0];
   const answer = choice?.message?.content?.trim();
   if (!answer) {
