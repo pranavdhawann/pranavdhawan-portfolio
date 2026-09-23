@@ -153,6 +153,23 @@ test('passes an upstream 429 through as 429, still without details', async () =>
   assert.match(data.error, /lot of questions/i);
 });
 
+// The free plan's 8K tokens/minute is org-wide and the system prompt alone is
+// ~3K tokens, so upstream 429s are routine. Groq's body names which limit was
+// hit; without logging it they looked identical to the local IP throttle.
+test('an upstream 429 is logged with the limit Groq reports', async (t) => {
+  const warn = t.mock.method(console, 'warn', () => {});
+  stubGroq(() => new Response(
+    'Rate limit reached for model openai/gpt-oss-20b on tokens per minute (TPM): Limit 8000',
+    { status: 429, headers: { 'retry-after': '17' } }
+  ));
+  await ask({ question: 'Hi' });
+  assert.equal(warn.mock.callCount(), 1);
+  const [message, details] = warn.mock.calls[0].arguments;
+  assert.match(message, /rate limited/i);
+  assert.equal(details.retryAfter, '17');
+  assert.match(details.detail, /tokens per minute/);
+});
+
 // SYSTEM_PROMPT allows three paragraphs; a tighter sentence ceiling silently
 // turned valid answers into the generic error message.
 test('a three-paragraph answer is not rejected by the output guard', async () => {

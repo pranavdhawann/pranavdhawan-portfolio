@@ -186,6 +186,14 @@ export default async function handler(request) {
   }
 
   if (groqResponse.status === 429) {
+    // The body says which limit tripped (TPM, RPD, ...) — the one fact that
+    // separates "free plan exhausted" from the local IP throttle above.
+    const detail = await groqResponse.text().then((t) => t.slice(0, 300)).catch(() => '<unreadable>');
+    console.warn('Ask Pranav upstream rate limited', {
+      model: MODEL,
+      retryAfter: groqResponse.headers.get('retry-after'),
+      detail,
+    });
     return json({ error: "I'm getting a lot of questions right now — give it a few seconds and ask again." }, 429);
   }
   if (!groqResponse.ok) {
