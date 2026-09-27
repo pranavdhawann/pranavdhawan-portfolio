@@ -315,7 +315,7 @@ body {
    HERO SECTION
    ========================================== */
 .hero {
-    min-height: 85vh;
+    min-height: 70vh;
     display: flex;
     align-items: center;
     color: var(--text-primary);
@@ -455,7 +455,6 @@ body {
     align-items: center;
     position: relative;
     z-index: 1;
-    min-height: 80vh;
 }
 
 .hero-content {
@@ -1575,7 +1574,7 @@ section {
     .hero-container {
         flex-direction: column;
         text-align: center;
-        padding: 2rem 0;
+        padding: 2rem var(--gutter);
         gap: 2rem;
     }
 
@@ -2154,6 +2153,17 @@ section {
     .client-work-grid { grid-template-columns: 1fr; }
 }
 
+/* On phones the count squeezed "Client work" onto two lines and the nested
+   card padding left ~230px of text. Drop the count to its own row and trim
+   the padding so the title, toggle and cards all get the width back. */
+@media (max-width: 480px) {
+    .client-work-summary { flex-wrap: wrap; row-gap: 0.25rem; padding: 1rem 1.25rem; }
+    .client-work-count { order: 1; flex-basis: 100%; }
+    .client-work-details .writing-intro { padding: 0 1.25rem; }
+    .client-work-details .client-work-grid { padding: 0 1rem 1.25rem; gap: 1.5rem; }
+    .client-card { padding: 1.25rem; }
+}
+
 .writing-tag {
     font-size: var(--fs-2xs);
     font-weight: 500;
@@ -2509,7 +2519,10 @@ section {
 [data-theme="dark"] .btn-secondary:hover,
 [data-theme="dark"] .social-link:hover,
 [data-theme="dark"] .timeline-toggle:hover,
-[data-theme="dark"] .contact-copy.is-copied {
+[data-theme="dark"] .contact-copy.is-copied,
+[data-theme="dark"] .skip-link,
+[data-theme="dark"] .client-work-summary:hover,
+[data-theme="dark"] .client-work-summary:hover .client-work-count {
     color: #1A1A1A;
 }
 

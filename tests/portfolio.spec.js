@@ -370,6 +370,41 @@ test('the skip link moves keyboard focus into main', async ({ page }) => {
   await expect(page.locator('#main-content')).toBeFocused();
 });
 
+// The same preventDefault() skipped the URL update, so sections could not be
+// linked to and Back did nothing after using the nav.
+test('nav clicks record the section in the URL so Back returns', async ({ page }) => {
+  await openPortfolio(page);
+  await page.locator('.nav-menu a[href="#projects"]').click();
+  await expect(page).toHaveURL(/#projects$/);
+  await page.goBack();
+  await expect(page).not.toHaveURL(/#projects$/);
+});
+
+// The mobile hero once reset its padding to `2rem 0`, dropping the shared
+// gutter so wrapped hero text could run to the screen edge.
+test('mobile hero keeps the page gutter', async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await openPortfolio(page);
+  const padding = await page.locator('.hero-container').evaluate((el) => getComputedStyle(el).paddingLeft);
+  expect(parseFloat(padding)).toBeGreaterThanOrEqual(16);
+});
+
+// axe can't see these: the skip link sits off-screen until focused and the
+// disclosure only turns yellow on hover. Both kept light text on the yellow fill.
+test('yellow-filled states use dark text in dark mode', async ({ page }) => {
+  await page.emulateMedia({ colorScheme: 'dark' });
+  await openPortfolio(page);
+  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
+
+  await page.keyboard.press('Tab');
+  await expect(page.locator('.skip-link')).toHaveCSS('color', 'rgb(26, 26, 26)');
+
+  const summary = page.locator('.client-work-summary');
+  await summary.hover();
+  await expect(summary).toHaveCSS('color', 'rgb(26, 26, 26)');
+  await expect(summary.locator('.client-work-count')).toHaveCSS('color', 'rgb(26, 26, 26)');
+});
+
 // The orbit runs on requestAnimationFrame, which the blanket reduced-motion CSS
 // rule cannot reach — it has to opt out in JavaScript. expect.poll samples the
 // transform repeatedly: with motion wrongly enabled the value keeps changing
@@ -418,7 +453,7 @@ test('portfolio presents client work collapsed inside featured projects and link
   await expect(projects.getByText('Client work', { exact: false }).first()).toBeVisible();
   await expect(page.locator('.client-card', { hasText: 'Aevantis Aerospace' }).getByRole('link', { name: 'Visit site' })).toHaveAttribute('href', 'https://aevantisaerospace.com/');
   await expect(page.locator('.client-card', { hasText: 'Admiles Media' }).getByRole('link', { name: 'Visit site' })).toHaveAttribute('href', 'https://admiles.in/');
-  await expect(page.locator('.client-card', { hasText: 'Aevantis Aerospace' })).toContainText('CLIENT WORK');
+  await expect(page.locator('.client-card', { hasText: 'Aevantis Aerospace' })).toContainText('AEROSPACE');
   await expect(page.getByRole('link', { name: 'Privacy', exact: true })).toHaveAttribute('href', 'privacy.html');
 });
 

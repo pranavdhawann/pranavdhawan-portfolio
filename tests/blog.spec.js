@@ -150,7 +150,7 @@ test('blog distinguishes original writing from the curated digest and retains po
   await openBlog(page);
   await expect(page.getByRole('heading', { name: 'Written by me' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'AI THIS WEEK' })).toBeVisible();
-  await expect(page.getByRole('link', { name: 'Portfolio', exact: true })).toHaveAttribute('href', '../index.html');
+  await expect(page.getByRole('link', { name: 'Portfolio', exact: true })).toHaveAttribute('href', '../');
   await expect(page.getByRole('link', { name: 'Privacy', exact: true })).toHaveAttribute('href', '../privacy.html');
 });
 

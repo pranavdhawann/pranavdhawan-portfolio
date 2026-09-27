@@ -139,6 +139,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             // scrolls the page but leaves focus in the nav (WCAG 2.4.1).
             if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
             target.focus({ preventScroll: true });
+            // preventDefault() also skips the URL update, so sections could not be
+            // bookmarked or shared and Back did nothing. Record the hash ourselves.
+            if (location.hash !== href) history.pushState(null, '', href);
         }
     });
 });
@@ -1017,7 +1020,7 @@ if (heroTitle && heroSection) {
     });
 })();
 
-// Experience timeline — the two current roles are shown, everything earlier
+// Experience timeline — the current roles are shown, everything earlier
 // (plus education) is behind this toggle. Expanded by default the section ran
 // 5,300px, roughly half the page, and pushed the projects below it out of sight.
 (() => {

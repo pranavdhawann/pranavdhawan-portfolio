@@ -16,7 +16,7 @@ Vanilla HTML / CSS / JS with a static build step and no browser runtime dependen
 
 | File | Purpose |
 |---|---|
-| `index.html` | Single page: hero / about / skills / projects / experience / client work / contact |
+| `index.html` | Single page: hero / about / skills / experience / projects (with client work) / contact |
 | `styles.css` | Design tokens + responsive breakpoints (1400 / 1024 / 768 / 480 / 360) |
 | `script.js` | Portfolio-only behavior (hero, skills graph, chat, contact), single IIFE per module |
 | `site-common.js` | Shared by every page: analytics, theme toggle, footer year. Loaded *instead of* `script.js` on the blog and privacy pages, which don't need the rest |
@@ -40,9 +40,6 @@ scheduled `.github/workflows/update-ai-news.yml` run, which also emails the
 digest to confirmed subscribers once the newsletter secrets are configured;
 `npm run news:update` / `npm run news:send` remain for manual runs.
 The feed source list lives in `scripts/fetch-ai-news.mjs`.
-
-Send the digest manually with `npm run news:send` once the required environment
-variables are configured.
 
 ### Newsletter subscription (double opt-in)
 
