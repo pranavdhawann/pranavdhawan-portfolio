@@ -1,6 +1,384 @@
 {
-  "updated": "2026-09-22",
+  "updated": "2026-09-28",
   "items": [
+    {
+      "title": "Anthropic Infosys",
+      "url": "https://www.anthropic.com/news/anthropic-infosys",
+      "date": "2026-09-28",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Launching Meta Enterprise Platform",
+      "url": "https://about.fb.com/news/2026/09/launching-meta-enterprise-platform/",
+      "date": "2026-09-28",
+      "summary": "Today we are starting Meta Enterprise Platform to help businesses use AI to grow, and Chirantan \"CJ\" Desai will join Meta as Chief Enterprise Platform Officer The post Launching Meta Enterprise Platform appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "Holo4: powering generalist computer-use agents",
+      "url": "https://huggingface.co/blog/Hcompany/holo4",
+      "date": "2026-09-28",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "New formulation helps RNA vaccines withstand high temperatures",
+      "url": "https://news.mit.edu/2026/new-formulation-helps-rna-vaccines-withstand-high-temperatures-0928",
+      "date": "2026-09-28",
+      "summary": "MIT engineers have found a way to stabilize the lipid nanoparticles used to deliver RNA vaccines, which could allow the vaccines to be more widely distributed.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Proaction boosts sales 60% and saves 75+ hours with Codex",
+      "url": "https://openai.com/index/proaction",
+      "date": "2026-09-25",
+      "summary": "With Codex, GPT-Live-1, and GPT-6 Astra, Proaction builds, operates, and sells modern fleet management faster.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "MIT students gain a humanist lens on technical innovation in Tulsa, Oklahoma",
+      "url": "https://news.mit.edu/2026/mit-students-gain-humanist-lens-technical-innovation-tulsa-oklahoma-0925",
+      "date": "2026-09-25",
+      "summary": "The PKG Center for Social Impact expands Code.Tulsa experiential learning program.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Learning to Stop without Learning to Stop: Self-Supervised Confidence Training Improves Reasoning Efficiency",
+      "url": "https://arxiv.org/abs/2609.31619v1",
+      "date": "2026-09-25",
+      "summary": "Reasoning models often generate very long reasoning traces, making inference computationally expensive. Existing approaches typically improve efficiency either through inference-time early-stopping mechanisms or by explicitly encouraging shorter reasoning during training, for example through reinforcement learning with length penalties. We show that substantial efficiency gains can instead emerge from a different kind of supervision: \\textit{confidence}. Using a self-supervised procedure, we fine-tune reasoning models to predict their confidence in the answer at intermediate points along their own reasoning trajectories using only 600 training problems. Confidence is used only as a training target: the loss contains no objective for reasoning length, efficiency, or stopping. At inference, the fine-tuned models use the standard generation procedure, with no confidence elicitation or early-stopping mechanism. Despite this, self-supervised confidence fine-tuning makes reasoning more efficient, reducing generated tokens by up to 25\\% at matched accuracy across Gemma, Qwen, Nemotron, and GPT-OSS models on mathematical, scientific, and coding reasoning benchmarks, with efficiency gains comparable to methods that explicitly optimize for shorter reasoning. Analysis of reasoning episodes further shows that confidence supervision largely preserves the base models' high-level reasoning composition rather than selectively suppressing particular behaviors. Our results suggest that efficient reasoning may emerge as a downstream consequence of learning metacognitive signals, without being directly optimized.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Gap-free Differentially Private PCA for Gaussian Data",
+      "url": "https://arxiv.org/abs/2609.31614v1",
+      "date": "2026-09-25",
+      "summary": "We give a gap-free differentially private algorithm for the principal component analysis (PCA) problem with Gaussian data.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "First-Order Stationarity of Reverse Diffusions",
+      "url": "https://arxiv.org/abs/2609.31612v1",
+      "date": "2026-09-25",
+      "summary": "Recent literature has shown a strong connection between optimization and sampling. We develop the corresponding first-order theory for diffusion models. First, the SDE-based reverse-time flows of overdamped and underdamped Langevin diffusions contract relative Fisher divergences at explicit exponential rates whenever the stationary potential of the forward process is strongly convex---a condition on the noising process one chooses, not on the data. This is a unique advantage of SDE-based reverse diffusion, absent in the reverse process based on ODEs. Second, we incorporate discretization and establish averaged first-order stationarity bounds---the sampling analog of averaged gradient-norm guarantees in nonconvex optimization---for samplers of both overdamped and underdamped diffusion models. As in nonconvex optimization, the convexity-free certificate is local: it guarantees score consistency, not global mode weights.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Statistical attribute alignment for black-box generative AI via output post-processing",
+      "url": "https://arxiv.org/abs/2609.31607v1",
+      "date": "2026-09-25",
+      "summary": "Generative AI systems are increasingly used, but aligning their outputs with user requirements poses a continuing challenge. Here, we aim to ensure that the distribution of an attribute of an AI-generated output aligns with a user-specified target. This is motivated by examples such as fairness, where we want to ensure that a protected attribute (e.g., gender, race, or age categories) follows a desired distribution, and synthetic data generation, where we want the generated data to be representative of a target distribution. We study the practically important black-box access setting, where a user can repeatedly query a generative AI model. The goal is to return $m\\ge 1$ outputs whose joint attribute distribution is as close as possible to this target. For both exact and approximate alignment, we develop algorithms that minimize the expected number of queries to the generator, and we further demonstrate their optimality as the number of requested outputs $m \\rightarrow \\infty$. Experiments on text-to-image generation and geocoded persona generation tasks show that our post-processing algorithms improve statistical attribute alignment, complementing prompting-based interventions.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "User Model Extraction via Belief Self-Distillation",
+      "url": "https://arxiv.org/abs/2609.31603v1",
+      "date": "2026-09-25",
+      "summary": "Large language models (LLMs) implicitly infer attributes of their users and adapt their behavior accordingly, yet these beliefs remain difficult to inspect and causally manipulate. We introduce Belief Self-Distillation (BSD), a unified read-write framework that bridges linear and causal probing by learning a compact user representation that can be both decoded and written back into the model. The frozen LLM acts as its own teacher, distilling beliefs from natural conversations without external annotations. Unlike conventional probing, BSD isolates not only information present in activations, but a state whose causal role can be directly tested. Across multiple model families, BSD faithfully recovers user beliefs and enables substantially stronger interventions than matched hidden-state steering. Crucially, we find that refusal depends not only on the request, but on the model's inferred user intent: changing this belief alters refusal while holding the request fixed. We further uncover a striking cross-model regularity: independently trained LLMs converge on a shared geometry for representing their users. Together, these results reveal implicit user models as readable and causally writable internal states with direct implications for AI safety, shaping how models condition safety decisions on whom they believe they are interacting with.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "New LoRA Skills Should Read but Never Write",
+      "url": "https://arxiv.org/abs/2609.31600v1",
+      "date": "2026-09-25",
+      "summary": "Low-rank adapters (LoRA) make it cheap to fine-tune a large language model once per task, but combining several independently trained adapters into one model remains difficult: merging the updates in weight space causes interference, retraining on all task data is expensive, and routing between separate adapters gives up the goal of a single combined model. We trace the difficulty to two choices that every composition method makes implicitly. A LoRA update admits infinitely many equivalent factorizations; the choice among them is invisible while an adapter serves alone, but it determines what a learned interaction between adapters can see. A coupling between an old skill and a new one can likewise point in either direction, and the direction decides whether the old skills keep computing what they computed before. We introduce READ (Read-only Expansion of Adapter Deltas), which fixes both choices: each adapter is rewritten into a balanced canonical form that preserves its update exactly, and the coupling grows in one direction only, so a new skill can read the input subspaces of old skills but cannot write into their output subspaces. The only trainable object at each append is the new skill's row of the coupling matrix, and the composed update folds into the base weights with no inference cost, routing, or task-specific rules. We evaluate READ across four benchmark suites and two model families, adding skills one at a time. Across several families, READ improves every suite average over the strongest published baselines built from the same adapters---by more than twenty points on SuperGLUE and more than seven points on the domain suite---and nearly all complete addition sequences end above every direct baseline. Factor coordinates and coupling direction, which a lone adapter never exposes, are what decide whether composed skills survive.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Common-Mode Collapse and Recovery in Direct Feedback Alignment",
+      "url": "https://arxiv.org/abs/2609.31589v1",
+      "date": "2026-09-25",
+      "summary": "Direct feedback alignment (DFA) trains hidden layers through fixed random projections of output error. With tanh hidden units and independent sigmoid outputs, plain stochastic gradient descent can stall near the loss of a constant predictor of class frequencies. We trace this stall to the error's common mode, the component shared across inputs. An exact mean-covariance decomposition separates a rank-one update formed by the mean teaching signal and mean presynaptic activity. Its leading component drives tanh units toward saturation. At initialization, random feedback provides no systematic correction of the shared error on average; readout learning limits its duration. A reduced model initialized from the network, without fitted parameters, predicts the concentration of activation sensitivity across 48 settings. On MNIST, class decodability largely survives collapse, but readout learning remains slow at a fixed learning rate. Adam learns faster despite deeper collapse. Calibrating the baseline readout to the class prior suppresses collapse and speeds learning; weaker feedback trades less collapse for slower learning. Replacing errors by their signs sustains collapse; subtracting the signal's batch mean prevents sustained collapse and improves learning in the tested setting. Related effects occur in deeper and convolutional networks and on CIFAR-10, with severity and cost depending on the readout, optimizer and input statistics.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Compact Documentation for Coding Agents: A Benchmark, an Optimizer, and Why It Does Not Transfer",
+      "url": "https://arxiv.org/abs/2609.31587v1",
+      "date": "2026-09-25",
+      "summary": "We investigate whether natural-language documentation helps coding agents resolve software issues, and we build the tools to construct and evaluate it. We introduce a roundtrip benchmark that scores code descriptions by whether code regenerated from them passes the original tests, and show that completeness, not length, drives a description's fidelity. Using the benchmark as an optimization signal, we discover a description-writing prompt that reaches full fidelity and generalizes to unseen files. We then test the hypothesis that motivated the work: that better documentation helps an agent resolve real repository issues. Across two model families and ten repositories, and against a positive control confirming that our evaluation can detect a genuine improvement, we find that it does not. When the source is present, neither static compact documentation nor retrieved context beats the issue alone. We report this negative result together with the benchmark and the optimizer, and we characterize the boundary at which documentation helps.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Claude Discovers Novel Enzyme System",
+      "url": "https://www.anthropic.com/news/claude-discovers-novel-enzyme-system",
+      "date": "2026-09-24",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing Gemini 3.8 Live with Live Avatar",
+      "url": "https://deepmind.google/blog/introducing-gemini-38-live-with-live-avatar/",
+      "date": "2026-09-24",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Model Release"
+    },
+    {
+      "title": "The Biggest News From Connect 2026",
+      "url": "https://about.fb.com/news/2026/09/the-biggest-news-from-connect-2026/",
+      "date": "2026-09-24",
+      "summary": "Yesterday at Connect, we announced that we're bringing Muse to our AI glasses, launched Meta VR Glasses, and more. The post The Biggest News From Connect 2026 appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "Accelerating vision-language models with LFM2.5-VL-DSpark",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm2-5-vl-dspark",
+      "date": "2026-09-24",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Estimating suicide risk from text",
+      "url": "https://news.mit.edu/2026/estimating-suicide-risk-from-text-0924",
+      "date": "2026-09-24",
+      "summary": "A new language-processing tool could help identify the highest-risk individuals from natural language, enabling swifter interventions.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "The promise and peril of using visual AI to study cities",
+      "url": "https://news.mit.edu/2026/studying-cities-using-visual-ai-fabio-duarte-martina-mazzarello-carlo-ratti-fan-zhang-book-0924",
+      "date": "2026-09-24",
+      "summary": "In their new book, “How AI Sees the City,” the leaders of MIT’s Senseable City Lab examine the technology’s implications for researching urban life.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Two years of OpenAI Academy",
+      "url": "https://openai.com/index/two-years-of-openai-academy",
+      "date": "2026-09-23",
+      "summary": "Marking two years of OpenAI Academy and bringing AI skills to even more communities.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "OpenAI extends cyber access to Ukraine for civilian defense",
+      "url": "https://openai.com/index/openai-extends-cyber-access-to-ukraine-for-civilian-defense",
+      "date": "2026-09-23",
+      "summary": "OpenAI is extending access to its Daybreak program to the Government of Ukraine to support the cyber defense of civilian infrastructure.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Sam Altman’s remarks at the United Nations Security Council",
+      "url": "https://openai.com/index/sam-altman-un-security-council-remarks",
+      "date": "2026-09-23",
+      "summary": "OpenAI CEO Sam Altman discusses AI safety, human control, and international cooperation in remarks to the United Nations Security Council.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Harvey turns legal context into stronger drafts with GPT-6 Astra",
+      "url": "https://openai.com/index/harvey-from-context-to-confidence-with-astra",
+      "date": "2026-09-23",
+      "summary": "GPT-6 Astra produces more structured, context-aware legal documents, freeing lawyers to focus on strategy.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How invideo improves color grading 3x with GPT‑6 Astra",
+      "url": "https://openai.com/index/invideo-builds-with-gpt-6-astra",
+      "date": "2026-09-23",
+      "summary": "With GPT‑6 Astra, invideo plans edits with greater precision, improves color correction and grading threefold, and produces 50 custom effects in one day.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Ringg’s AI agents resolve up to 65% of customer calls with OpenAI",
+      "url": "https://openai.com/index/ringg",
+      "date": "2026-09-23",
+      "summary": "Using GPT-5.6, Ringg powers multilingual agents across voice, chat, WhatsApp, and web for 90% less cost vs. GPT-4.1.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing MentalHealthBench",
+      "url": "https://openai.com/index/introducing-mentalhealthbench",
+      "date": "2026-09-23",
+      "summary": "MentalHealthBench is an expert-informed benchmark for evaluating helpful and safe AI responses across realistic mental health conversations.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "ChatGPT Ads expands to Southeast Asia and Taiwan",
+      "url": "https://openai.com/index/chatgpt-ads-expands-southeast-asia-taiwan",
+      "date": "2026-09-23",
+      "summary": "ChatGPT Ads is expanding to Southeast Asia and Taiwan, giving eligible businesses new ways to reach people across more than 60 countries.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Airbnb widens access to GPT-6 Astra and OpenAI frontier models",
+      "url": "https://openai.com/index/airbnb-gpt-6-astra",
+      "date": "2026-09-23",
+      "summary": "Learn how Airbnb is expanding access to GPT-6 Astra and OpenAI frontier models to help engineering teams solve bugs, design systems, and ship faster.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Grab and OpenAI bring practical AI skills to Southeast Asia",
+      "url": "https://openai.com/index/grab-openai-ai-skills-southeast-asia",
+      "date": "2026-09-23",
+      "summary": "OpenAI and Grab launch GO Forward with AI, a regional programme helping 30,000 partners build practical AI skills across Southeast Asia.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Advancing Private AI Compute with secure, server-side memory",
+      "url": "https://deepmind.google/blog/advancing-private-ai-compute-with-secure-server-side-memory/",
+      "date": "2026-09-23",
+      "summary": "Introducing private, server-side memory to Private AI Compute for personal AI.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "Gemini 3.8 text-to-speech says hello",
+      "url": "https://deepmind.google/blog/say-hello-to-gemini-38-text-to-speech/",
+      "date": "2026-09-23",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Google Beam expands with new regions, partners, and customers",
+      "url": "https://blog.google/innovation-and-ai/technology/research/google-beam-expansion/",
+      "date": "2026-09-23",
+      "summary": "We’re expanding Google Beam to five new countries, and partnering with Industrious for an extended network.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing Ray-Ban Meta Audio and More AI Glasses Styles",
+      "url": "https://about.fb.com/news/2026/09/introducing-ray-ban-meta-audio-glasses-new-styles-plus-muse/",
+      "date": "2026-09-23",
+      "summary": "Today at Connect, we introduced Ray-Ban Meta Audio, our first-ever audio glasses, and our biggest expansion of AI glasses. The post Introducing Ray-Ban Meta Audio and More AI Glasses Styles appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "How to Use NVIDIA Warp and MjWarp to Accelerate Robotics Simulation and Learning Workflows",
+      "url": "https://huggingface.co/blog/nvidia/how-to-use-nvidia-warp-and-mjwarp",
+      "date": "2026-09-23",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "MIT welcomes David Siegel SM ’86, PhD ’91 as its next Innovation Fellow",
+      "url": "https://news.mit.edu/2026/mit-welcomes-david-siegel-innovation-fellow-0923",
+      "date": "2026-09-23",
+      "summary": "Computer scientist, entrepreneur, and philanthropist will collaborate with the MIT Schwarzman College of Computing to advance AI and scientific discovery.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Better prompt caching for GPT-6",
+      "url": "https://openai.com/index/better-prompt-caching-for-gpt-6",
+      "date": "2026-09-22",
+      "summary": "Learn how GPT-6 improves prompt caching with higher cache hit rates, new diagnostics, explicit breakpoints, and controls that reduce latency and costs.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing GPT-6 Sol and Luna",
+      "url": "https://openai.com/index/introducing-gpt-6-sol-and-luna",
+      "date": "2026-09-22",
+      "summary": "Meet GPT-6 Sol and Luna, two models that bring frontier intelligence to everyday work with different balances of capability and cost.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Parallel cut research time and cost in half with GPT‑6 Astra",
+      "url": "https://openai.com/index/parallel-cuts-time-and-cost-with-astra",
+      "date": "2026-09-22",
+      "summary": "GPT‑6 Astra allowed Parallel’s agents to research and synthesize labor-market data in half the time and at half the cost vs. prior models.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Priorities and principles for effective third party assessments",
+      "url": "https://openai.com/index/priorities-principles-third-party-assessments",
+      "date": "2026-09-22",
+      "summary": "OpenAI outlines priorities and principles for rigorous, secure, and independent third-party AI safety assessments of frontier models and safeguards.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How UK AISI and EvalEval Are Making Benchmark Results Reproducible",
+      "url": "https://huggingface.co/blog/evaleval-aisi",
+      "date": "2026-09-22",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Research"
+    },
+    {
+      "title": "Poitras Center to fuel early careers of 50 young scientists dedicated to psychiatric disorders research",
+      "url": "https://news.mit.edu/2026/poitras-center-to-fuel-early-careers-50-young-scientists-psychiatric-disorders-research-0922",
+      "date": "2026-09-22",
+      "summary": "Patricia and James Poitras ’63 provide fellowships for graduate students and postdocs who will shape the future of mental health research.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
     {
       "title": "Transformers now runs llama.cpp quants",
       "url": "https://huggingface.co/blog/transformers-llama-cpp-quants",
@@ -17,6 +395,15 @@
       "summary": "",
       "sourceId": "huggingface",
       "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Simreal-AI/Simreal-MLBench (trending AI repo)",
+      "url": "https://github.com/Simreal-AI/Simreal-MLBench",
+      "date": "2026-09-21",
+      "summary": "[Public preview] Externally scored agentic ML research benchmark: 60 tasks, real competition ground truth. Open protocol, operated evaluation. (★ 160)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
       "category": "Open Source"
     },
     {
@@ -1413,393 +1800,6 @@
       "sourceId": "huggingface",
       "sourceName": "Hugging Face",
       "category": "Research"
-    },
-    {
-      "title": "Introducing Intelligence Age",
-      "url": "https://openai.com/index/introducing-intelligence-age",
-      "date": "2026-08-20",
-      "summary": "Introducing Intelligence Age, a new OpenAI blog exploring how transformative AI could reshape power, governance, the economy, and individual freedom.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Stampli cuts launch hours by 68% using ChatGPT Work",
-      "url": "https://openai.com/index/stampli",
-      "date": "2026-08-20",
-      "summary": "With a fixed deadline and design resources committed elsewhere, Stampli used Codex and ChatGPT Work to compress weeks of launch production into days.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Agentic Search. More accurate and efficient results from your AI systems.",
-      "url": "https://mistral.ai/news/agentic-search/",
-      "date": "2026-08-20",
-      "summary": "The retrieval layer that helps AI systems navigate, read, and verify information inside even the most complex documents",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Up to 3.2x Faster Inference with LFM2.5-DSpark",
-      "url": "https://huggingface.co/blog/LiquidAI/lfm25-dspark",
-      "date": "2026-08-20",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Paving the way for greener ammonia production",
-      "url": "https://news.mit.edu/2026/paving-way-for-greener-ammonia-production-0820",
-      "date": "2026-08-20",
-      "summary": "New MIT research could lead to better materials for a fossil-fuel-free process for making the chemical that's essential to fertilizer and other products.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Offering Zero Data Retention for frontier models",
-      "url": "https://openai.com/index/offering-zero-data-retention-for-frontier-models",
-      "date": "2026-08-19",
-      "summary": "OpenAI reaffirms Zero Data Retention for eligible API customers and previews Private Safety Processing for advanced AI safety without compromising data privacy.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Replit expands access to software creation with GPT-5.6 Luna",
-      "url": "https://openai.com/index/replit",
-      "date": "2026-08-19",
-      "summary": "Replit introduces Free Mode, powered by GPT-5.6 Luna, so anyone can turn ideas into working software without worrying about token costs.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "5 new ways to level up your learning with Search",
-      "url": "https://blog.google/products-and-platforms/products/search/back-to-school-study-tools/",
-      "date": "2026-08-19",
-      "summary": "Here’s how you can use Google Search tools to study for classes and standardized tests.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Research"
-    },
-    {
-      "title": "mattn/tensai (trending AI repo)",
-      "url": "https://github.com/mattn/tensai",
-      "date": "2026-08-19",
-      "summary": "A tiny neural-network framework in pure Go with AVX2 SIMD kernels (GOEXPERIMENT=simd) (★ 108)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "ChatGPT Ads expands across Europe",
-      "url": "https://openai.com/index/chatgpt-ads-expands-across-europe",
-      "date": "2026-08-18",
-      "summary": "ChatGPT Ads is expanding to 31 European markets. Learn how advertisers can reach people as they explore, compare options, and make decisions.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Strengthening democratic oversight in national security",
-      "url": "https://openai.com/index/strengthening-democratic-oversight-in-national-security",
-      "date": "2026-08-18",
-      "summary": "OpenAI launches an initiative to strengthen democratic oversight of AI in national security, supporting government institutions with tools, training, and expertise.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Partnering with CodeAI to prepare the first AI generation",
-      "url": "https://openai.com/index/partnering-with-codeai",
-      "date": "2026-08-18",
-      "summary": "OpenAI and CodeAI are partnering to help students build AI literacy, think critically about AI, and develop the skills to use and shape it responsibly.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Pacing model development in an era of cyber-critical capabilities",
-      "url": "https://openai.com/index/pacing-model-development-cyber-capabilities",
-      "date": "2026-08-18",
-      "summary": "OpenAI is strengthening monitoring, alignment, and security for frontier AI models. See how new safeguards are guiding the pace of model development.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Introducing ChatGPT for Teens: Built for learning, backed by protections",
-      "url": "https://openai.com/index/chatgpt-for-teens",
-      "date": "2026-08-18",
-      "summary": "ChatGPT for Teens helps teens learn, think critically, and use AI with confidence, with stronger built-in protections, healthy-use features, and additional controls for parents.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How NVIDIA scales expertise with ChatGPT Work",
-      "url": "https://openai.com/index/nvidia/chatgpt-work",
-      "date": "2026-08-18",
-      "summary": "NVIDIA teams use ChatGPT Work to reduce manual tasks, connect fast-moving signals, and scale successful workflows globally.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Asana cleared 5 years of engineering work in 2 weeks with Codex",
-      "url": "https://openai.com/index/asana",
-      "date": "2026-08-18",
-      "summary": "Asana used OpenAI Codex to replace an outdated testing system in two weeks, completing work expected to take five years for about $12K.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How Much Memory Does Your Agent Actually Need?",
-      "url": "https://huggingface.co/blog/ibm-research/altk-evolve-hmm",
-      "date": "2026-08-18",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Multi-Vector (Late Interaction) Embedding Models with Sentence Transformers",
-      "url": "https://huggingface.co/blog/multi-vector-encoder",
-      "date": "2026-08-18",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "When AI art has no author: Study finds generated images often can’t be traced to training data",
-      "url": "https://news.mit.edu/2026/when-ai-art-has-no-author-generated-images-often-cant-be-traced-to-training-data-0818",
-      "date": "2026-08-18",
-      "summary": "A new method for surgically removing training examples from a model reveals that as datasets grow, the link between what a model learns and what it produces dissolves.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "The Defender’s Window",
-      "url": "https://openai.com/index/the-defenders-window",
-      "date": "2026-08-17",
-      "summary": "AI is reshaping cybersecurity for attackers and defenders alike. Learn how OpenAI is strengthening its defenses and what security teams can do now.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "OpenAI joins PORTS-Pike project",
-      "url": "https://openai.com/index/openai-joins-ports-pike-project",
-      "date": "2026-08-17",
-      "summary": "OpenAI joins PORTS-Pike project, expanding community investment and supporting thousands of Southern Ohio jobs",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "New policy ideas for the Intelligence Age",
-      "url": "https://openai.com/index/new-policy-ideas-for-the-intelligence-age",
-      "date": "2026-08-17",
-      "summary": "OpenAI funds 14 independent projects exploring new AI policy ideas to expand economic opportunity and strengthen societal resilience in the Intelligence Age.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Get closer to the game with Gemini and Pixel",
-      "url": "https://blog.google/products-and-platforms/products/gemini/google-gemini-pixel-football-club-partnerships/",
-      "date": "2026-08-17",
-      "summary": "Google Gemini and Pixel partner with five global football clubs to elevate the fan matchday experience through AI and Smartphone Technology.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Same Cluster, 33 Points More Utilization: What Changed Was the Order",
-      "url": "https://huggingface.co/blog/Dharma-AI/gpu-management-pt2",
-      "date": "2026-08-17",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Infrastructure"
-    },
-    {
-      "title": "Q&A: Rethinking how innovation happens",
-      "url": "https://news.mit.edu/2026/qa-eugene-fitzgerald-rethinking-how-innovation-happens-0817",
-      "date": "2026-08-17",
-      "summary": "In his latest book, Professor Eugene Fitzgerald examines the forces that turn breakthroughs into value — and why innovation resists simple formulas.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "zorost/AI-Engineering-Lab (trending AI repo)",
-      "url": "https://github.com/zorost/AI-Engineering-Lab",
-      "date": "2026-08-17",
-      "summary": "A free, self-paced 24-week AI engineering course: Python, machine learning, LLMs, RAG, fine-tuning, agents and MCP, Azure and Vertex and Bedrock, and Databricks. 43 runnable notebooks, one continuous case study. MIT licensed, no signup. By Zorost Intelligence AI Lab. (★ 308)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "State of Open Models: Summer 2026 Observations",
-      "url": "https://huggingface.co/blog/state-of-open-models-summer-2026",
-      "date": "2026-08-14",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "KaiWU5/Awesome-AI4AI (trending AI repo)",
-      "url": "https://github.com/KaiWU5/Awesome-AI4AI",
-      "date": "2026-08-14",
-      "summary": "AI4AI Survey: can AI reliably improve AI? 223 papers on long-horizon agents, benchmarks, harness design, and recursive self-improvement · updated weekly (★ 171)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "The builder’s guide to GPT‑5.6",
-      "url": "https://openai.com/index/builders-guide-to-gpt-5-6",
-      "date": "2026-08-13",
-      "summary": "Learn how startups use GPT-5.6 to build faster, more cost-efficient AI agents with smarter model selection and new Responses API capabilities.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Previewing Ultrafast mode: GPT-5.6 Sol at up to 14X the speed",
-      "url": "https://openai.com/index/previewing-ultrafast",
-      "date": "2026-08-13",
-      "summary": "Preview Ultrafast, a new OpenAI API service tier that runs GPT-5.6 Sol up to 14× faster. Powered by Cerebras, it delivers up to 750 output tokens per second.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "OpenAI appoints Dali Rajic as Chief Revenue Officer",
-      "url": "https://openai.com/index/dali-rajic-chief-revenue-officer",
-      "date": "2026-08-13",
-      "summary": "OpenAI appoints Dali Rajic as Chief Revenue Officer to lead its global revenue organization and help businesses realize the full value of AI.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Introducing Gemini 3.7 Flash",
-      "url": "https://deepmind.google/blog/introducing-gemini-3-7-flash/",
-      "date": "2026-08-13",
-      "summary": "",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Model Release"
-    },
-    {
-      "title": "Bring your spreadsheet data to life with Sheets canvas",
-      "url": "https://blog.google/products-and-platforms/products/workspace/sheets-canvas-for-google-sheets-spreadsheets/",
-      "date": "2026-08-13",
-      "summary": "Sheets canvas turns data into interactive dashboards, custom study trackers, seating charts, and more, all with a simple prompt.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Research"
-    },
-    {
-      "title": "Record, train, and deploy from one place with Strands Agents, LeRobot, and Hugging Face Storage Buckets",
-      "url": "https://huggingface.co/blog/amazon/strands-lerobot-streaming-data-loop",
-      "date": "2026-08-13",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "What We Learned by Reproducing 2,200 papers from ICML",
-      "url": "https://huggingface.co/blog/icml-2026-open-reproductions",
-      "date": "2026-08-13",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Research"
-    },
-    {
-      "title": "From assistance to execution: How enterprises put AI to work",
-      "url": "https://openai.com/index/how-enterprises-put-ai-to-work",
-      "date": "2026-08-12",
-      "summary": "OpenAI research reveals how enterprises are adopting agentic AI, using ChatGPT and Codex, and how frontier firms are pulling ahead in AI adoption.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "How RingCentral builds AI-native work from engineering to ops",
-      "url": "https://openai.com/index/ringcentral",
-      "date": "2026-08-12",
-      "summary": "See how RingCentral uses ChatGPT Work and Codex to accelerate AI product development and centralize operational intelligence across engineering and operations.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Putting sign language AI into users’ hands",
-      "url": "https://deepmind.google/blog/putting-sign-language-ai-into-users-hands/",
-      "date": "2026-08-12",
-      "summary": "Introducing sign-language-to-text (SL2T), our breakthrough model powering new sign language features for Deaf and hard of hearing users.",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Model Release"
-    },
-    {
-      "title": "Introducing OlmoEarth embeddings: Custom embedding exports from OlmoEarth Studio for downstream analysis",
-      "url": "https://huggingface.co/blog/allenai/olmoearth-embeddings",
-      "date": "2026-08-12",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Testing ads in ChatGPT",
-      "url": "https://openai.com/index/testing-ads-in-chatgpt",
-      "date": "2026-08-11",
-      "summary": "OpenAI begins testing ads in ChatGPT to support free access, with clear labeling, answer independence, strong privacy protections, and user control.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Daybreak models are now available on AWS",
-      "url": "https://openai.com/index/daybreak-models-are-now-available-on-aws",
-      "date": "2026-08-11",
-      "summary": "OpenAI and AWS are making Daybreak cybersecurity capabilities available through Amazon Bedrock to support enterprise security workflows.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "In-region inference, open models, and new European infrastructure for sovereign AI.",
-      "url": "https://mistral.ai/news/regional-inference-open-models-new-compute/",
-      "date": "2026-08-11",
-      "summary": "Mistral is bringing together the inference infrastructure, open models, and long-term commitments Europe needs to control its AI future, and setting a roadmap for the world.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Thinking of ACE? We Can Do It with Fewer Tokens",
-      "url": "https://huggingface.co/blog/ibm-research/altk-evolve-sldd",
-      "date": "2026-08-11",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
     }
   ]
 }
