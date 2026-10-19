@@ -1,6 +1,393 @@
 {
-  "updated": "2026-10-12",
+  "updated": "2026-10-19",
   "items": [
+    {
+      "title": "Public Benefit Fund",
+      "url": "https://www.anthropic.com/news/public-benefit-fund",
+      "date": "2026-10-18",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Giving AI a “crystal clear” view of the materials world",
+      "url": "https://news.mit.edu/2026/giving-ai-crystal-clear-view-of-materials-world-1018",
+      "date": "2026-10-18",
+      "summary": "New research can help AI models understand crystalline materials in 3D and reason about their properties.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "How Itaú is building generative AI for its entire customer base",
+      "url": "https://openai.com/index/itau-generative-ai",
+      "date": "2026-10-16",
+      "summary": "With ia.i, a conversational interface, and the IARA governance platform, Itaú is applying its AI First strategy to customers and employees — in one of Brazil’s most regulated sectors.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Benefit Street Partners answers questions faster with Codex",
+      "url": "https://openai.com/index/benefit-street-partners",
+      "date": "2026-10-16",
+      "summary": "Anant Kumar builds tools to compare loan valuations and analyze credit agreements, using Codex for code review and faster follow-ups.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Stack Overflow for Agents triples signups with ChatGPT plugin",
+      "url": "https://openai.com/index/stack-overflow-chatgpt-plugin",
+      "date": "2026-10-16",
+      "summary": "Two engineers shipped Stack Overflow for Agents in a few weeks with Codex, and its ChatGPT plugin helped drive up to 10× growth in agent creation.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "AN Update ON Independent Evaluators",
+      "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
+      "date": "2026-10-16",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Research"
+    },
+    {
+      "title": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
+      "url": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
+      "date": "2026-10-16",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
+      "url": "https://huggingface.co/blog/reflection-beam",
+      "date": "2026-10-16",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Fostering community amid Kendall Square’s innovation",
+      "url": "https://news.mit.edu/2026/fostering-community-amid-kendall-square-innovation-1016",
+      "date": "2026-10-16",
+      "summary": "The 18th annual Kendall Square Association Annual Meeting explored how new technologies could be a force for shared prosperity in society.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Bringing GPT-Rosalind to academic research labs",
+      "url": "https://openai.com/index/introducing-the-rosalind-academic-plan",
+      "date": "2026-10-15",
+      "summary": "Introducing the Rosalind Academic Plan, offering eligible academic labs sponsored access to GPT-Rosalind and tools to advance life sciences research.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Teaching students to think and learn through questions",
+      "url": "https://openai.com/index/teaching-students-to-think-and-learn-through-questions",
+      "date": "2026-10-15",
+      "summary": "Celebrate Teachers’ Day with AI for Educators in Brazilian Portuguese and see how Study Mode can help teachers support active, step-by-step learning.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Sullivan & Cromwell brings legal expertise into agreement review",
+      "url": "https://openai.com/index/sullivan-cromwell",
+      "date": "2026-10-15",
+      "summary": "In collaboration with OpenAI, Sullivan & Cromwell developed Agreement Analyzer, an AI tool for identifying issues in a draft agreement.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Offering Expanded Claude Access Across All Three Branches OF Government",
+      "url": "https://www.anthropic.com/news/offering-expanded-claude-access-across-all-three-branches-of-government",
+      "date": "2026-10-15",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Accelerating the search for antimicrobial peptides with Google Antigravity",
+      "url": "https://deepmind.google/blog/accelerating-antimicrobial-discovery/",
+      "date": "2026-10-15",
+      "summary": "Accelerating the search for novel antimicrobial peptides using Google Antigravity for Science.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "More Than Three Quarters of Small Business Owners Say AI Makes Them More Productive, But Most Need More Guidance",
+      "url": "https://about.fb.com/news/2026/10/more-than-three-quarters-of-small-business-owners-say-ai-makes-them-more-productive-but-most-need-more-guidance/",
+      "date": "2026-10-15",
+      "summary": "New Meta research across nine APAC markets shows how AI is helping small businesses grow, compete with larger rivals and reach customers across borders. The post More Than Three Quarters of Small Business Owners Say AI Makes Them More Productive, But Most Need More Guidance appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Research"
+    },
+    {
+      "title": "Introducing Timestral",
+      "url": "https://mistral.ai/news/timestral/",
+      "date": "2026-10-15",
+      "summary": "State-of-the-art probabilistic forecasting in four sizes (5M–209M params), CPU-efficient, zero-shot ready.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
+      "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
+      "date": "2026-10-15",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Apertus 1.5 Release Notes",
+      "url": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
+      "date": "2026-10-15",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+      "url": "https://huggingface.co/blog/meta-muse-spark-open",
+      "date": "2026-10-15",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Welcome FLUX.3 Image Klein in Diffusers",
+      "url": "https://huggingface.co/blog/flux-3",
+      "date": "2026-10-15",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "State of Supply Chain Sustainability Report finds corporate commitment at record high, but governance lags behind",
+      "url": "https://news.mit.edu/2026/state-of-supply-chain-sustainability-report-1015",
+      "date": "2026-10-15",
+      "summary": "MIT's Center for Transportation and Logistics finds sustainability commitments are strong, but governance gaps and external disruptions prevent execution.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "AI model decodes the language cells use to communicate",
+      "url": "https://news.mit.edu/2026/ai-model-decodes-language-cells-use-communicate-1015",
+      "date": "2026-10-15",
+      "summary": "A new computational approach reveals how cells communicate to assemble into tissues. This could accelerate stem cell engineering, improve disease models, and inform therapies.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Q&A: The “collision” between AI, your brain, and society",
+      "url": "https://news.mit.edu/2026/collision-between-ai-your-brain-and-society-eric-so-book-1015",
+      "date": "2026-10-15",
+      "summary": "In a new book, Professor Eric So explores how the technology affects our thinking skills.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Amp puts AI agents to work beyond code with OpenAI models",
+      "url": "https://openai.com/index/amp-beyond-coding",
+      "date": "2026-10-14",
+      "summary": "See how Amp pushes the frontier of what agents can do with GPT-6 Astra, Ultrafast, GPT-Live-1, and Sign in with ChatGPT.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "SentinelOne cuts malware analysis from weeks to hours",
+      "url": "https://openai.com/index/sentinelone",
+      "date": "2026-10-14",
+      "summary": "With OpenAI Daybreak, SentinelOne cuts weeks of malware analysis to hours, creating capacity to investigate more threats.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How Third Moment Research runs 10,000 agents for 36+ hours",
+      "url": "https://openai.com/index/third-moment-research",
+      "date": "2026-10-14",
+      "summary": "With GPT-6 Astra and GPT-6.1 Sol, Codex, and Daybreak for cybersecurity, this AI lab builds agents that focus for days and improve with use.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "How Block is building AI-powered security with OpenAI technology",
+      "url": "https://openai.com/index/block-ai-powered-security",
+      "date": "2026-10-14",
+      "summary": "Block is building AI-powered security with OpenAI. Its security team investigates threats faster and proposes patches in minutes.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "The EU’s next chapter in AI is agentic",
+      "url": "https://openai.com/index/the-eus-next-chapter-in-ai-is-agentic",
+      "date": "2026-10-14",
+      "summary": "New analysis shows how agentic AI adoption is growing across EU enterprises and small businesses—and where deeper use could unlock more value.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "2026 US Midterms",
+      "url": "https://www.anthropic.com/news/2026-us-midterms",
+      "date": "2026-10-14",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Singapore Office Opening",
+      "url": "https://www.anthropic.com/news/singapore-office-opening",
+      "date": "2026-10-14",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Google DeepMind and Singapore Government collaborate to build fine-tuned AI model for scam detection",
+      "url": "https://deepmind.google/blog/on-device-ai-scam-detection-mddi/",
+      "date": "2026-10-14",
+      "summary": "Learn how Google DeepMind and GovTech Singapore uses lightweight on-device Gemma models to intercept conversational scams in private chats with zero cloud data egress.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Meta, Milan’s Pinacoteca di Brera, and EssilorLuxottica Expand Access to Art Through AI Glasses",
+      "url": "https://about.fb.com/news/2026/10/meta-milans-pinacoteca-di-brera-and-essilorluxottica-expand-access-to-art-through-ai-glasses/",
+      "date": "2026-10-14",
+      "summary": "Today, Meta, Pinacoteca di Brera and EssilorLuxottica are proud to launch “Sensing Art – Discovering Masterpieces Beyond What Meets the Eye.” This pilot aims to explore how AI glasses can make art more accessible for people who are blind or with low vision – in collaboration with the some of Italy’s leading sight loss charities – the Associazione Nazionale Subvedenti (ANS), the Unione Italiana dei Ciechi e degli Ipovedenti (UICI), and the Fondazione Istituto dei Ciechi di Milano. In one of the first projects of its kind in the world, Pinacoteca di Brera will use AI glasses developed by Meta and EssilorLuxottica to enhance the experience for blind and visually impaired people. Over one million people in Italy are blind or visually impaired, and art and culture is one of the places where accessibility can be a challenge. AI glasses give people who are blind or low vision access to transformative AI technology that can help with everyday tasks like reading text, identifying objects and accessing information about the world around them. At Meta we believe the future is for everyone, which is why we wanted to bring together this partnership. How It Works at Pinacoteca di Brera The AI glasses have been integrated with the museum’s existing Grande Brera app, which includes an audio tour guide, developed by ANS for blind and low vision visitors. The tour uses the DescriVedendo method which translates an artwork’s shapes, composition and visual details into spoken words. When a visitor stands in front of one of eight selected artworks on the itinerary as part of this pilot, they can activate artwork recognition directly from the glasses and listen to the corresponding audio description through the open-ear speakers built into the frames. The open-ear speakers help the visitor stay fully aware of their surroundings and means they can engage more naturally with people around them. The itinerary is completed by short orientation tracks between one work and the next. Visitors can also choose to utilize additional tools available through the AI glasses: Meta AI allows users to ask questions about the context and surrounding environment Be My Eyes connects visitors through the glasses with sighted volunteers and qualified operators to receive real-time support in orientation and practical task management, both during the tour. Accessibility Is Built Together The pilot project was developed through phases of testing and consultation with blind and visually impaired people. Their direct involvement helped shape both the experience and how visitors access it. “When innovation addresses real needs, it can create tangible value in people’s lives. Technology reaches its greatest potential when it succeeds in making information and daily experiences more accessible, natural, and immediate – like with our AI glasses. It is through initiatives like this—born from an ongoing dialogue with people with disabilities — that we work toward a future with more opportunities for everyone.” – Maxine Williams, VP Accessibility Meta “Making heritage accessible means creating the conditions so that everyone can build their own relationship with art. DescriVedendo has for years represented an important part of our commitment, and today we can enrich it with an additional possibility, born from the encounter between cultural expertise, technology, and people’s experience. The Pinacoteca continues to be a place of experimentation in which to explore new languages and tools capable of bringing a universal heritage closer to an ever-wider audience.” – Angelo Crespi, Director of Grande Brera How to Access the Tour The tour will be available at the Pinacoteca di Brera upon reservation, with AI glasses available Tuesday through Friday from 10:00 AM to 4:30 PM. For booking details and further information, please visit the page at this link. The post Meta, Milan’s Pinacoteca di Brera, and EssilorLuxottica Expand Access to Art Through AI Glasses appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "HiRO-ACEv2: Simulating extreme weather at 3 km resolution for a fraction of the cost",
+      "url": "https://huggingface.co/blog/allenai/hiro-acev2",
+      "date": "2026-10-14",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Researchers improve weather forecasts looking two to six weeks out",
+      "url": "https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014",
+      "date": "2026-10-14",
+      "summary": "A new machine-learning approach broke records for weather forecasting for an important time frame in emergency planning.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Higgsfield takes AI video from 1 minute to over 10",
+      "url": "https://openai.com/index/higgsfield-longer-videos-voice",
+      "date": "2026-10-13",
+      "summary": "Higgsfield brings creators longer videos with GPT-6 Astra, precise visuals with GPT-Image-2.5, and a path to voice filmmaking with GPT-Live.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Developing Gemini 4 Argon responsibly and safely",
+      "url": "https://deepmind.google/blog/developing-gemini-4-argon-responsibly-and-safely/",
+      "date": "2026-10-13",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Gemini 4 Argon for Robotics",
+      "url": "https://deepmind.google/blog/gemini-4-argon-for-robotics/",
+      "date": "2026-10-13",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Gemini 4 Argon: Built to solve your hardest problems",
+      "url": "https://deepmind.google/blog/introducing-gemini-4-argon/",
+      "date": "2026-10-13",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Your Algorithm, Your Words: New Ways to Shape What You See on Facebook",
+      "url": "https://about.fb.com/news/2026/10/introducing-your-algorithm-facebook/",
+      "date": "2026-10-13",
+      "summary": "We’re introducing new AI-powered tools that help you shape what you see in Feed and Reels by telling us what you’re interested in, in your own words. The post Your Algorithm, Your Words: New Ways to Shape What You See on Facebook appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "Run fast, private agents on-device with LFM2.5-24B-A2B",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm25-24b-a2b",
+      "date": "2026-10-13",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "How artificial neural networks build their own learning machinery",
+      "url": "https://news.mit.edu/2026/how-artificial-neural-networks-build-their-own-learning-machinery-1013",
+      "date": "2026-10-13",
+      "summary": "Machine-learning networks can learn without detailed instructions from a designer. Those that do may offer insight into how the brain reorganizes itself during learning.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "MIT Lincoln Laboratory hosts National Security Commission on Emerging Biotechnology",
+      "url": "https://news.mit.edu/2026/mit-lincoln-laboratory-hosts-national-security-commission-emerging-biotechnology-1013",
+      "date": "2026-10-13",
+      "summary": "Roadshow event highlights Massachusetts' defense-biotechnology ecosystem.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Q&A: Building accountability behind our words — and AI’s — in civic conversations",
+      "url": "https://news.mit.edu/2026/qa-building-accountability-behind-our-words-and-ai-civic-conversations-1013",
+      "date": "2026-10-13",
+      "summary": "Professor Deb Roy contends there should be someone who is “answerable” for every piece of text in public life, no matter its origins.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
     {
       "title": "Sophos cuts threat investigation time by 96% with OpenAI Daybreak",
       "url": "https://openai.com/index/sophos",
@@ -369,6 +756,15 @@
       "sourceId": "mit-ai",
       "sourceName": "MIT News — AI",
       "category": "Research"
+    },
+    {
+      "title": "Fazmin/AILearningGuide (trending AI repo)",
+      "url": "https://github.com/Fazmin/AILearningGuide",
+      "date": "2026-10-05",
+      "summary": "Interactive desktop app with 51 labs covering ML fundamentals, transformers, RAG, agents, fine-tuning and quantization and more. (★ 208)",
+      "sourceId": "github-trending",
+      "sourceName": "GitHub",
+      "category": "Open Source"
     },
     {
       "title": "Our approach to EU text provenance rules",
@@ -1397,409 +1793,13 @@
       "category": "Research"
     },
     {
-      "title": "Introducing the Australian Youth Safety Blueprint",
-      "url": "https://openai.com/index/australian-youth-safety-blueprint",
-      "date": "2026-09-18",
-      "summary": "OpenAI introduces the Australian Youth Safety Blueprint, a six-pillar roadmap for safer AI experiences that protect and empower young people.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Accenture Embedded Evaluation",
-      "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
-      "date": "2026-09-18",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Research"
-    },
-    {
-      "title": "New experts join Google’s AI & Economy team",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/expanding-ai-economy-research-bench/",
-      "date": "2026-09-18",
-      "summary": "We are expanding our AI & Economy team with world-class academic advisors, fellows, and core internal researchers.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Research"
-    },
-    {
-      "title": "Co-creating the future of fashion with Google",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/google-flow-fashion-week/",
-      "date": "2026-09-18",
-      "summary": "Google worked side-by-side with designers Jane Wade and Sergio Hudson to custom-design Google Flow tools to prep for NYFW.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Prostujemy: fakty o walce z oszukańczymi reklamami w Polsce",
-      "url": "https://about.fb.com/news/2026/09/prostujemy-fakty-o-walce-z-oszukanczymi-reklamami-w-polsce/",
-      "date": "2026-09-18",
-      "summary": "Na początku tego tygodnia fundacja Instrat opublikowała raport dotyczący jednego z najtrudniejszych wyzwań, z jakimi mierzy się cała branża – reklam o charakterze oszukańczym. To poważne i złożone wyzwanie, które dotyczy firm technologicznych, banków i całego społeczeństwa. Ciężko pracujemy, by przeciwdziałać działaniom wyrafinowanych i zdeterminowanych przestępców wykorzystują zaawansowane systemy sztucznej inteligencji, narzędzia chroniące użytkowników oraz współpracując z organami ścigania i partnerami z branży. Rozliczanie nas z naszych działań jest w pełni uzasadnione, ale ten raport tego nie robi. To fikcja, która wprowadza opinię publiczną w błąd, przygotowana przez kancelarię prawną reprezentującą osobę, która pozwała Metę. Właśnie w tym kontekście należy go oceniać. Aby uzasadnić swoje tezy, raport opiera się na szeregu błędnych założeń, nieprecyzyjnych definicji i w niewłaściwy sposób przedstawia podejście Mety do zwalczania reklam o charakterze oszukańczym. Poniżej wskazujemy najważniejsze błędy raportu: Raport błędnie traktuje każdą usuniętą przez nas reklamę jako oszustwo Opisując metodologię szacowania przychodów, autorzy piszą: „Aby określić, które reklamy w zbiorze danych były oszukańcze, wykorzystaliśmy informację o tym, czy zostały one usunięte przez Metę”. To zafałszowuje i drastycznie zawyża ich wyliczenia. Nasze systemy działają w oparciu o szeroki zakres standardów i zasad reklamowych – dotyczących towarów i usług objętych ograniczeniami, własności intelektualnej osób trzecich, jakości i formatu reklam oraz wielu innych – a nie wyłącznie oszustw. Podstawa szacunku przychodów jest więc błędna od samego początku. Wyliczenia w raporcie się nie zgadzają Aby uzyskać kwotę, która przyciągnie uwagę, autorzy pomnożyli trzy wartości – ile osób zobaczyło reklamę, jak często ją widziało i ile kosztowała – z których dwie są jedynie założeniami, a jedna szacunkiem. Zasięg: Do wyliczenia liczby osób, które zobaczyły reklamy w Polsce, autorzy wykorzystali dane o zasięgu w całej Unii Europejskiej. Liczby dotyczące 27 państw zostały więc potraktowane jak dane o polskich użytkownikach, co drastycznie zawyża wynik. Częstotliwość: Raport zakłada, że każdą reklamę jedna osoba widzi trzy razy – na podstawie szacunku ze strony internetowej amerykańskiej firmy, opartego na danych z małej próby 2800 jej klientów. Dane te nie dotyczą ani Polski, ani reklam o charakterze oszukańczym. Cena: Autorzy przyznają, że nie byli w stanie oszacować kosztu (CPM) empirycznie, dlatego u podstaw wyliczeń leży w dużej mierze abstrakcyjna liczba (20,65 zł). Ustawiony profil, niewiarygodne dane Część wniosków raportu opiera się na próbie zaledwie 108 reklam zaobserwowanych na jednym urządzeniu z systemem iOS, na profilu, który autorzy wcześniej celowo przygotowali tak, aby przyciągało określone typy reklam – wyświetlając je i klikając w nie. Takie podejście nie jest reprezentatywne dla doświadczenia przeciętnego użytkownika. Konto zaprojektowane tak, by przyciągać określone reklamy, nie pokazuje, co widzi typowa osoba w Polsce. Autorzy wskazują również, że przy innych decyzjach klasyfikacyjnych konkluzją raportu mogłaby być wartość „bliska 70%” – bez żadnego uzasadnienia – co pokazuje, jak elastyczne są te dane. Autorzy nie przedstawiają również szczegółów dotyczących tego, w jaki sposób ustalali, czy zobaczona przez nich reklama miała charakter oszukańczy. Wnioski dla całego roku na podstawie danych z trzech dni Raport formułuje tezy i wnioski dotyczące całego roku, a opiera je na danych z zaledwie trzech pojedynczych dni – w październiku, grudniu i styczniu – które następnie ekstrapoluje. Dane z tych trzech dni różniły się między sobą nawet o 80%. Te trzy liczby zostały uśrednione i przemnożone do wartości rocznej, bez marginesu błędu i bez żadnych korekt. Jeśli trzy punkty danych różnią się między sobą o 80%, nie mogą stanowić podstawy jednej, przedstawianej kategorycznie liczby obrazującej roczną skalę. Co naprawdę robimy w sprawie oszustw Nikt nie chce oszustw na naszych platformach – ani osoby, które z nich korzystają, ani uczciwi reklamodawcy, ani z pewnością my. Oszukańcze reklamy szkodzą osobom korzystającym z naszych platform, podkopują zaufanie i działają na szkodę uczciwych firm, które budują swoje marki na platformach Mety. Dlatego znacząco inwestujemy w zespoły i technologie, które wykrywają, blokują i usuwają oszustów, zanim wyrządzą szkodę. Oszuści to wytrwali przestępcy, którzy nieustannie szukają nowych sposobów obchodzenia naszych zabezpieczeń. W miarę jak ich działania stają się coraz bardziej wyrafinowane, rozwijamy również nasze mechanizmy ochrony. Do naszych najnowszych działań w Polsce należą: Ulepszony system AI przeciw podszywaniu się. Polska znajduje się w pierwszej grupie krajów w Europie, w których wdrożyliśmy nowy system AI ograniczający podszywanie się pod osoby publiczne. Od momentu wdrożenia wykrył i usunął w Polsce o 50% więcej reklam podszywających się pod znane osoby niż poprzedni system. Weryfikacja reklamodawców. Ponieważ usługi finansowe to kategoria szczególnie często wykorzystywana przez oszustów, rozszerzamy w Polsce proces identyfikacji – weryfikacji będziemy wymagać od 100% reklamodawców usług finansowych kierujących reklamy do Polski. To część naszych zdecydowanych działań, których celem jest to, aby do końca 2026 roku 90% przychodów reklamowych Mety na świecie pochodziło od zweryfikowanych reklamodawców. Centrum ochrony przed oszustwami. Na Facebooku i Instagramie uruchomiliśmy centrum ochrony przed oszustwami, które w aplikacji podpowiada, jak rozpoznawać i zgłaszać oszustwa. Wiemy, że oszustwo często wychodzi na jaw z opóźnieniem: ktoś zamówił produkt, który nigdy nie dotarł, albo zapłacił po kliknięciu reklamy. Wtedy trudno już odnaleźć i zgłosić reklamę, treść czy konto, przez które do oszustwa doszło. W pamięci zostają jedynie fragmenty: kliknięta reklama, profil, do którego ktoś napisał, strona, która wyglądała podejrzanie. Dlatego w Centrum Ochrony przed Oszustwami, udostępniliśmy asystenta Meta AI, który ułatwia zgłaszanie oszustw. Podczas rozmowy z asystentem AI, użytkownik może poprosić o przeanalizowanie ostatnich interakcji, aby pomóc i przyspieszyć odnalezienie na Facebooku i Instagramie elementu, który chce zgłosić. Badanie fundacji Instrat w niewłaściwy sposób przedstawia naszą pracę na rzecz zwalczania oszustw i nasze zobowiązanie do przejrzystości reklam. Fakty są inne – nasze działania przynoszą efekty. Od lipca 2025 do czerwca 2026 roku usunęliśmy 137 000 reklam o charakterze oszukańczym, z czego ponad 88% zanim ktokolwiek je zgłosił. Od lipca 2024 r. do czerwca 2026 r. wskaźnik zgłoszeń oszukańczych reklam – czyli jak często użytkownicy zgłaszali oszukańczą reklamę w przeliczeniu na wyświetlenie reklamy – spadł w Polsce o 83% – co wyraźnie pokazuje nasze postępy w ograniczaniu oszukańczych reklam – i kontynuujemy kluczowe działania, by osiągnąć dalsze, odczuwalne spadki. Ten raport jest częścią szerszej kampanii, w której centrum stoi zupełnie nieprawdziwy zarzut: że Meta świadomie i celowo przymyka oko na reklamy o charakterze oszukańczym. Podważa on zaangażowanie i ciężką pracę tysięcy pracowników firmy, którzy codziennie mierzą się z tym problemem. Walka z oszustami nigdy się nie kończy, a my jesteśmy zdeterminowani, by wykorzystywać wszystkie dostępne zasoby do zwalczania oszustw i ochrony osób korzystających z naszych platform. The post Prostujemy: fakty o walce z oszukańczymi reklamami w Polsce appeared first on Meta Newsroom .",
-      "sourceId": "meta-ai",
-      "sourceName": "Meta",
-      "category": "Product Update"
-    },
-    {
-      "title": "A new chapter for MIT Reads",
-      "url": "https://news.mit.edu/2026/new-chapter-mit-reads-0918",
-      "date": "2026-09-18",
-      "summary": "A new focus on fiction and memoir aims to help the MIT community celebrate the power of storytelling and strengthen social connection.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "kraayenjon/awesome-jev (trending AI repo)",
-      "url": "https://github.com/kraayenjon/awesome-jev",
-      "date": "2026-09-18",
-      "summary": "A curated list of Jev use cases, projects, SDKs, and resources. Jev is TypeSafe AI's System One model for fast, typed decisions in software — Choice, Score, and Noul with calibrated probabilities. (★ 103)",
+      "title": "receptron/laya (trending AI repo)",
+      "url": "https://github.com/receptron/laya",
+      "date": "2026-09-19",
+      "summary": "Run Laya, the open-source Jev-compatible System-1 decision model, from Node.js / TypeScript via ONNX Runtime (★ 962)",
       "sourceId": "github-trending",
       "sourceName": "GitHub",
       "category": "Open Source"
-    },
-    {
-      "title": "How Cooley is accelerating IPO work with ChatGPT",
-      "url": "https://openai.com/index/cooley-gopublic",
-      "date": "2026-09-17",
-      "summary": "Cooley built GO Public with ChatGPT Work to bring intelligence to the IPO process, helping lawyers surface issues earlier and focus judgment where it matters most.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Introducing Astra for Law",
-      "url": "https://openai.com/index/astra-for-law",
-      "date": "2026-09-17",
-      "summary": "OpenAI for Law brings frontier intelligence for law, custom firm workflows, connected legal data sources, and legal-grade controls for confidential client work.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Life Sciences Verification Program",
-      "url": "https://www.anthropic.com/news/life-sciences-verification-program",
-      "date": "2026-09-17",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Making global data easier to explore",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/google-un-data-commons-platform/",
-      "date": "2026-09-17",
-      "summary": "Google and the UN system have launched the UN System Data Commons, a new open platform making global statistics accessible and easy to search.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "AbdelStark/awesome-typesafe-jev (trending AI repo)",
-      "url": "https://github.com/AbdelStark/awesome-typesafe-jev",
-      "date": "2026-09-17",
-      "summary": "Awesome Jev: a source-backed field guide to TypeSafe's System One model, with SDKs, live demos, agent tools, and independent evaluations. (★ 443)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "Helping older adults use AI in everyday life",
-      "url": "https://openai.com/index/helping-older-adults-use-ai-in-everyday-life",
-      "date": "2026-09-16",
-      "summary": "OpenAI and AARP are bringing free, hands-on ChatGPT workshops to 1,000 older adults across 10 U.S. cities to build practical AI skills safely.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Reimagining advertising with AI",
-      "url": "https://openai.com/index/reimagining-advertising-with-ai",
-      "date": "2026-09-16",
-      "summary": "Explore new AI-powered advertising experiences from OpenAI, including Sponsored Agents, tools for marketers, and integrations with HubSpot and Shopify.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Hex turns complex analysis into visual reports with GPT‑6 Astra",
-      "url": "https://openai.com/index/hex-gpt-6-astra",
-      "date": "2026-09-16",
-      "summary": "GPT-6 Astra helps Hex’s data agents turn answers into interactive visualizations that employees are proud to share.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How to connect AI usage to business value",
-      "url": "https://openai.com/index/how-to-connect-ai-usage-to-business-value",
-      "date": "2026-09-16",
-      "summary": "Learn how ChatGPT Work and Codex analytics help teams understand AI usage and spend, identify training needs, and connect adoption to business outcomes.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Our framework for reporting model misalignment",
-      "url": "https://openai.com/index/model-misalignment-reporting-framework",
-      "date": "2026-09-16",
-      "summary": "OpenAI shares a framework for tracking, investigating, and disclosing model misalignment, alongside six reports of unexpected or concerning model behavior.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How workers are unlocking new ways of working",
-      "url": "https://openai.com/index/unlocking-new-ways-of-working",
-      "date": "2026-09-16",
-      "summary": "New OpenAI Economic Research shows how workers use AI beyond traditional roles and which new activities become recurring parts of their work.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Canadian Start-up smartARM Uses AI to Create Intuitive Bionic Prosthetics",
-      "url": "https://about.fb.com/news/2026/09/canadian-start-up-smartarm-uses-ai-to-create-intuitive-bionic-prosthetics/",
-      "date": "2026-09-16",
-      "summary": "People and companies are using AI hardware and software to make life easier and more accessible for everyone. That’s the case with smartARM, a Toronto-based startup developing a vision-first bionic arm prototype that uses open-source software, with Meta AI glasses as an optional add-on, to explore more intuitive prosthetic control for people living with limb differences. Many traditional prosthetic hands require users to switch manually between grip patterns for different objects, making it cumbersome to move everyday items. Something as seemingly natural as picking up a glass, and then a spoon, becomes a multistep process. smartARM addressed this by developing AI hardware and software that understands the environment, and automatically selects a suitable grip for the object – so users can intuitively move between everyday tasks. smartARM’s prosthetic arm “sees” through a camera embedded in its palm. The team is using DINOv2, Meta’s open-source vision model, to help it recognize everyday objects from just a few reference photos, supporting smartARM’s grip-selection software.This allows it to grip and pick up objects based on direct visual feature reading, without needing prior understanding or additional programming. The arm can adapt almost instantly to objects trained on just a few photos – something that could take weeks previously. smartARM uses Meta AI Glasses and the Meta Wearables Device Access Toolkit to extend and improve object recognition and understanding, providing more data from the egocentric point of view the glasses offer. Meta AI glasses give the arm additional context to better understand what the user is trying to interact with. It also lets users add new objects, through the device app on their phones, giving everyone in the smartARM community a way to personalize their prosthetic around their everyday needs. For the people who wear it, the results are life altering: a bionic arm that works from the first try, with no training required. Long-time smartARM user and former NFL player Shaquem Griffin described what it feels like to use it: “Of all the tech packed into it, scalability and accessibility matter most to me. This is the future of consumer prosthetics.” “Building a capable hand is only part of the challenge. Making it intuitive to use matters just as much,” said Hamayal Choudhry, smartARM’s Founder and CEO. “By helping the arm recognize everyday objects and select a suitable grip, we’re working toward an experience where people can focus more on what they want to do and less on how to operate their prosthetic.” The post Canadian Start-up smartARM Uses AI to Create Intuitive Bionic Prosthetics appeared first on Meta Newsroom .",
-      "sourceId": "meta-ai",
-      "sourceName": "Meta",
-      "category": "Open Source"
-    },
-    {
-      "title": "Mistral and Mozilla are bringing open, private and multilingual AI to your web browser",
-      "url": "https://mistral.ai/news/mistral-x-mozilla/",
-      "date": "2026-09-16",
-      "summary": "Open, private and multilingual AI is coming to your web browser. Mistral and Mozilla team up to put powerful, trustworthy AI where you already browse.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "New AI technique could make minimally invasive surgeries safer and more precise",
-      "url": "https://news.mit.edu/2026/new-ai-technique-could-make-minimally-invasive-surgeries-safer-more-precise-0916",
-      "date": "2026-09-16",
-      "summary": "This patient-specific method, called xvr, helps doctors use X-rays for surgical navigation in fields such as orthopedics and neurosurgery.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Measure by measure, studying society accurately",
-      "url": "https://news.mit.edu/2026/studying-society-accurately-naoki-egami-0916",
-      "date": "2026-09-16",
-      "summary": "Naoki Egami has become a standout in political methodology, helping refine tools that give scholars durable results.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Introducing Gemini 3.8 Live and 3.8 Live Extended Thinking",
-      "url": "https://deepmind.google/blog/introducing-gemini-3-8-live-and-3-8-live-extended-thinking/",
-      "date": "2026-09-15",
-      "summary": "",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Model Release"
-    },
-    {
-      "title": "AI for Societal Impact",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-societal-impact/",
-      "date": "2026-09-15",
-      "summary": "Explore this collection to see how experts and local leaders are using AI breakthroughs to ensure everyone can share the opportunity of AI.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Building AI to accelerate science and improve lives",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-applications-science-people/",
-      "date": "2026-09-15",
-      "summary": "The true measure of AI is who it helps. Here’s how it’s impacting lives today. We're focused on key areas where advanced technology can help make extraordinary progress …",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "AI for everyone in every language",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-for-every-language/",
-      "date": "2026-09-15",
-      "summary": "We’re moving beyond traditional text translation to build models that understand the world’s rich, living languages exactly as they are expressed.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "New insights from Google’s AI & Economy ATLAS",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/ai-economy-atlas-september-2026/",
-      "date": "2026-09-15",
-      "summary": "We’ve translated ATLAS’s millions of global data points into an interactive, open-access experience.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Présentation de Meta One : Un service d’abonnement offrant davantage de fonctionnalités et d’IA pour créer, se connecter et se démarquer",
-      "url": "https://about.fb.com/news/2026/09/presentation-de-meta-one-un-service-dabonnement-offrant-davantage-de-fonctionnalites-et-dia-pour-creer-se-connecter-et-se-demarquer/",
-      "date": "2026-09-15",
-      "summary": "À retenir Nous lançons Meta One, un nouveau service d’abonnement sur nos applications qui offre un usage accru de l’IA et des fonctionnalités d’expression enrichies, ainsi que des outils professionnels pour les créateurs et les entreprises. Les offres Meta One sont déployées progressivement, avec plus de 50 fonctionnalités lancées et 15 millions d’abonnements et d’essais à ce jour. L’expérience principale sur nos applications et Meta AI restera gratuite. Aujourd’hui, nous lançons Meta One, un nouveau service d’abonnement qui apporte davantage de valeur aux applications et aux expériences que des milliards de personnes utilisent déjà, avec des offres destinées aux particuliers, aux créateurs et aux entreprises. Meta One offre aux abonnés davantage de fonctionnalités d’expression et un usage accru de l’IA, aide les créateurs à consacrer plus de temps à la création et moins de temps à se demander ce qui fonctionne, et propose aux entreprises de nouveaux outils pour les aider à se développer. L’expérience principale sur nos applications et Meta AI a toujours été gratuite, et cela ne changera pas. Les abonnements donnent accès à des fonctionnalités plus spécialisées et à un usage étendu de l’IA, allant au-delà de ce qu’une expérience gratuite conçue pour des milliards de personnes peut offrir. Nous lançons Meta One avec plus de 50 fonctionnalités sur Instagram, Facebook, WhatsApp et Meta AI, avant de l’étendre progressivement à Edits, aux lunettes IA et à d’autres produits. Offres pour les particuliers et les utilisateurs avancés de l’IA Plus tôt cette année, nous avons lancé les offres Meta One pour un seul produit — Instagram Plus, Facebook Plus et WhatsApp Plus — qui proposent de nouvelles fonctionnalités exclusives permettant davantage de connexion et de créativité sur Instagram et Facebook, ainsi que davantage d’organisation et de personnalisation sur WhatsApp. Ces offres affichent une forte rétention et nous continuons à les développer. Instagram Plus a récemment ajouté des polices personnalisées pour les messages privés (DM) et les Stories, des notifications lorsque certaines personnes regardent votre Story, ainsi que des aperçus des DM. Facebook Plus ajoute des options de personnalisation pour Messenger, propose davantage d’insights sur les Reels et étend les super réactions aux Reels et aux publications du Feed. WhatsApp Plus testera prochainement le stockage des sauvegardes des discussions et des médias, ainsi que les Focus Schedules, qui vous aident à préserver les moments qui comptent le plus en mettant en sourdine ou en masquant certaines discussions selon un calendrier défini. Meta One va encore plus loin avec les offres groupées Core et Premium, qui combinent les fonctionnalités de nos offres pour un seul produit avec un usage accru de certaines de nos fonctionnalités d’IA nécessitant le plus de puissance de calcul. Cela signifie davantage de génération de contenus multimedia avec Meta AI, notamment la création et la modification d’images et la génération de vidéos grâce aux modèles Muse, ainsi qu’un usage accru des outils d’IA intégrés aux applications, comme Restyle sur Instagram. Meta AI restera gratuit pour les usages du quotidien. Core et Premium s’adressent aux personnes qui souhaitent bénéficier d’encore plus de liberté créative avec nos outils d’IA. Lors des premiers tests, plus de la moitié des abonnés ont utilisé à la fois les fonctionnalités d’IA et d’expression proposées dans nos offres groupées. Les fonctionnalités d’IA comme Restyle et les effets vocaux sur Instagram figurent parmi les principales raisons ayant motivé leur abonnement. Offres pour les créateurs et les entreprises Développer une audience et gérer une entreprise sur les réseaux sociaux demande un travail constant : créer du contenu, suivre ce qui trouve un écho auprès de son audience et se démarquer auprès de nouveaux publics. Les offres Meta One pour les créateurs et les entreprises intègrent davantage d’outils professionnels et d’IA directement dans les applications que votre audience et vos clients utilisent déjà. Vous pouvez ainsi gérer votre présence sans avoir à créer un nouveau compte ni à télécharger une nouvelle application. Meta One propose de nouvelles fonctionnalités qui vous aident à établir votre présence et à transformer l’attention en action : un profil enrichi qui met en avant votre site web, vos différents établissements et ce que les utilisateurs disent de vous ; un bouton « Suivre » plus visible sur vos Reels ; ainsi que des invitations à vous suivre envoyées automatiquement aux personnes qui interagissent avec votre contenu. Vous pouvez également répondre à vos clients de jour comme de nuit grâce à un accès accru à Meta Business Agent. Nous continuerons à ajouter des fonctionnalités et des capacités d’agents conçues pour aider les petites entreprises et les créateurs dans l’ensemble de leurs activités de marketing, de gestion, de création de contenu et d’optimisation. Par exemple, nous intégrerons bientôt Edits Plus à Meta One, une nouvelle offre qui propose davantage de stockage dans le cloud afin de synchroniser vos projets et d’y accéder depuis différents appareils, ainsi qu’un usage accru du futur assistant Edits, qui vous aide à analyser vos insights Instagram et à trouver de nouvelles idées. Comment commencer Les offres Meta One sont désormais disponibles dans le monde entier, à partir de 2,49 € par mois pour les offres sur un seul produit, 6,99 € par mois pour les offres groupées destinées aux particuliers et 16,99 € par mois pour les offres groupées destinées aux créateurs et aux entreprises. Offres pour un seul produit Instagram Plus (2,99 €/mois) : exprimez-vous, créez des liens plus étroits avec vos amis et personnalisez votre expérience de nouvelles façons. WhatsApp Plus (2,49 €/mois) : restez organisé et exprimez votre personnalité grâce à des thèmes et des icônes exclusifs, des stickers avec effets spéciaux et la possibilité d’épingler davantage de discussions. Facebook Plus (2,99 €/mois) : personnalisez Facebook à votre image et enrichissez votre expérience grâce à des fonctionnalités telles que des icônes d’application personnalisées, des super cœurs et bien plus encore. Offres groupées pour les particuliers et les utilisateurs avancés de l’IA Core (6,99 €/mois) : utilisez davantage Restyle pour vos Stories sur Instagram, profitez plus souvent des effets vocaux et des outils créatifs, et générez davantage d’images et de vidéos avec Meta AI. Exprimez-vous également davantage de façons grâce aux fonctionnalités de nos offres individuelles (Instagram Plus, WhatsApp Plus et Facebook Plus). Premium (20,99 €/mois) : tout ce qui est inclus dans Core, avec les niveaux d’usage les plus élevés pour créer du contenu avec Meta AI et sur l’ensemble de notre famille d’applications. Offres groupées pour les entreprises et les créateurs Essential (à partir de 16,99 €/mois) : établissez votre présence et renforcez la confiance auprès de nouveaux publics. Accédez à des outils pour gérer votre présence et bénéficiez d’un accès accru à Meta Business Agent sur WhatsApp afin de répondre à vos clients 24h/24 et 7j/7. L’offre comprend également un badge vérifié, un canal vérifié dans l’application WhatsApp Business et une protection contre l’usurpation d’identité, afin que les utilisateurs sachent que vous êtes bien la personne ou l’entreprise que vous affirmez être, sous réserve d’une vérification réussie. Advanced (à partir de 54,99 €/mois) : investissez dans des outils de niveau professionnel. Profitez de fonctionnalités de publication avancées, comme la programmation des Stories jusqu’à 30 jours à l’avance, l’ajout de liens dans les publications organiques et les Reels, des données analytiques exportables et des insights plus approfondis sur votre audience. Donnez aux membres de votre équipe accès à votre compte sans partager votre mot de passe et bénéficiez de davantage d’appareils associés et de crédits de diffusion pour les entreprises sur WhatsApp. Vous bénéficiez également d’un nombre encore plus important de réponses de Meta Business Agent. Expert (à partir de 169 €/mois) et Max (à partir de 549 €/mois) : passez à l’échelle et optimisez vos activités. Ces offres comprennent nos niveaux d’accès les plus élevés aux fonctionnalités et à la capacité de Meta Business Agent pour les équipes qui gèrent leurs activités à grande échelle. Les offres, les avantages, les tarifs et la disponibilité peuvent varier selon les régions, les applications et les comptes. Pour connaître les fonctionnalités spécifiquement disponibles pour votre compte, commencez le processus d’abonnement. The post Présentation de Meta One : Un service d’abonnement offrant davantage de fonctionnalités et d’IA pour créer, se connecter et se démarquer appeared first on Meta Newsroom .",
-      "sourceId": "meta-ai",
-      "sourceName": "Meta",
-      "category": "Product Update"
-    },
-    {
-      "title": "Introducing Meta One: A Subscription Service With More Features and AI to Create, Connect, and Stand Out",
-      "url": "https://about.fb.com/news/2026/09/introducing-meta-one-subscription-service-more-features-ai/",
-      "date": "2026-09-15",
-      "summary": "We're introducing Meta One, a new subscription service on Facebook, Instagram, WhatsApp, and Meta AI that offers more AI usage, enhanced expression features, and tools for creators and businesses. The post Introducing Meta One: A Subscription Service With More Features and AI to Create, Connect, and Stand Out appeared first on Meta Newsroom .",
-      "sourceId": "meta-ai",
-      "sourceName": "Meta",
-      "category": "Product Update"
-    },
-    {
-      "title": "Your Agent Aced the Task. Will It Do It Again?",
-      "url": "https://huggingface.co/blog/ibm-research/altk-evolve-consistency",
-      "date": "2026-09-15",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "How Fyxer built an AI executive assistant people trust",
-      "url": "https://openai.com/index/fyxer",
-      "date": "2026-09-14",
-      "summary": "Fyxer uses OpenAI models, fine-tuning, memory, and real user feedback to organize inboxes and draft emails in each user’s voice.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Perplexity trusts GPT-6 Astra with end-to-end systems",
-      "url": "https://openai.com/index/perplexity-improving-accuracy-with-astra",
-      "date": "2026-09-14",
-      "summary": "Perplexity uses Astra to write communications, change software, and monitor production systems, and checks in much less frequently than with earlier models.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Watch astronaut Christina Koch and Google’s James Manyika discuss space, technology, and discovery.",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/dialogues-christina-koch/",
-      "date": "2026-09-14",
-      "summary": "Christina Koch sits down with James Manyika, Google’s Senior Vice President of Research, Labs, Technology & Society.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Research"
-    },
-    {
-      "title": "DevFest is back",
-      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/devfest2026/",
-      "date": "2026-09-14",
-      "summary": "DevFest 2026 is back and here’s how you can connect with one of the more than 800 global events to build, secure, and scale in the agentic AI era.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "New method enables AI for safety-critical situations",
-      "url": "https://news.mit.edu/2026/new-method-enables-ai-safety-critical-situations-0914",
-      "date": "2026-09-14",
-      "summary": "The “HardFlow” algorithm could help generative AI models produce high-quality outputs that obey strict requirements when “pretty close” doesn’t cut it.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "MIT spinout turns plastic waste into resilient building materials",
-      "url": "https://news.mit.edu/2026/mit-spinout-turns-plastic-waste-into-resilient-building-materials-0914",
-      "date": "2026-09-14",
-      "summary": "Atlas Building Composites is commercializing MIT research to turn plastic waste into parts for buildings and other infrastructure.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users",
-      "url": "https://openai.com/index/scaling-storage-one-billion-users-part-one",
-      "date": "2026-09-11",
-      "summary": "Learn how OpenAI evolved Habitat from a Python library into a globally distributed storage platform serving 1 billion ChatGPT users and 22M requests per second.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Cognition helps Devin test its own work with GPT‑6 Astra",
-      "url": "https://openai.com/index/cognition-devin-testing-with-astra",
-      "date": "2026-09-11",
-      "summary": "GPT‑6 Astra improves Devin’s ability to test software and show that it works, with the goal of helping engineers review less code and ship more.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Claude Corps",
-      "url": "https://www.anthropic.com/news/claude-corps",
-      "date": "2026-09-11",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Lifesaving Lincoln Laboratory device wins 2026 Excellence in Technology Transfer Award",
-      "url": "https://news.mit.edu/2026/lifesaving-lincoln-laboratory-technology-wins-tech-transfer-award-0911",
-      "date": "2026-09-11",
-      "summary": "The handheld catheterization device AI-GUIDE, created by Lincoln Laboratory and Massachusetts General Hospital, promises improved health outcomes for injured service members and civilians.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "How a researcher uses Codex and ChatGPT to search for new antimicrobial molecules",
-      "url": "https://openai.com/index/using-codex-chatgpt-to-search-for-new-antimicrobials",
-      "date": "2026-09-10",
-      "summary": "César de la Fuente’s lab uses Codex and ChatGPT to search living and extinct genomes for antimicrobial candidates to fight drug-resistant infections.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Now everyone can put data to work",
-      "url": "https://openai.com/index/put-data-to-work",
-      "date": "2026-09-10",
-      "summary": "Meet the Data agent in ChatGPT Work. Connect company data, uncover insights, and build interactive dashboards with AI using natural language.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Introducing ChatGPT for Financial Services",
-      "url": "https://openai.com/index/introducing-chatgpt-financial-services",
-      "date": "2026-09-10",
-      "summary": "Introducing ChatGPT for Financial Services, combining built-in financial data and GPT-6 Astra for research, modeling, and client-ready materials.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Expanding AI access and cyber defense for federal, state, local, and tribal governments",
-      "url": "https://openai.com/index/expanding-ai-access-us-government",
-      "date": "2026-09-10",
-      "summary": "OpenAI and GSA will offer eligible federal, state, local, and tribal governments $0 license fees, 50% off usage, and expanded cyber defense support.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Build more natural voice experiences with GPT‑Live‑1 in the API",
-      "url": "https://openai.com/index/introducing-gpt-live-1-in-the-api",
-      "date": "2026-09-10",
-      "summary": "GPT‑Live‑1 brings natural, full-duplex voice conversations to the API, with stronger instruction following, custom voices, and telephony support.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
     }
   ]
 }
