@@ -1,6 +1,492 @@
 {
-  "updated": "2026-10-26",
+  "updated": "2026-11-02",
   "items": [
+    {
+      "title": "Introducing the Grid Protectors Program",
+      "url": "https://openai.com/index/grid-protectors-program",
+      "date": "2026-11-02",
+      "summary": "OpenAI’s Grid Protectors Program will work with utilities to help future compute campuses support grid reliability and protect consumer electricity costs.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "Making it easier for websites to express AI training preferences",
+      "url": "https://openai.com/index/helping-websites-express-ai-training-preferences",
+      "date": "2026-10-30",
+      "summary": "OpenAI will honor a shared robots.txt signal to help website operators communicate their AI training preferences to participating providers.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Community safety report and new protections for teens",
+      "url": "https://openai.com/index/community-safety-report-and-new-protections-for-teens",
+      "date": "2026-10-30",
+      "summary": "OpenAI is strengthening violence prevention in ChatGPT with expanded safeguards, earlier interventions, and a new commitment to public safety reporting.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Fair use benefits everyone",
+      "url": "https://openai.com/index/fair-use-benefits-everyone",
+      "date": "2026-10-30",
+      "summary": "OpenAI shares excerpts from court briefs by creators, academics, accessibility advocates, and legal experts, among others, on how fair use supports AI training and innovation.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Speeding up planning decisions with AI",
+      "url": "https://deepmind.google/blog/speeding-up-planning-decisions-with-ai/",
+      "date": "2026-10-30",
+      "summary": "Google DeepMind and UK government work together to reduce planning assessment times",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "nemotron-halloween",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-halloween",
+      "date": "2026-10-30",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "MIT affiliates named 2026 Schmidt Sciences AI2050 Fellows",
+      "url": "https://news.mit.edu/2026/mit-affiliates-named-schmidt-sciences-ai2050-fellows-1030",
+      "date": "2026-10-30",
+      "summary": "Five MIT faculty members and two additional alumni are honored with fellowships to advance research on beneficial AI.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Q&A: Hey AI, who should I vote for this year?",
+      "url": "https://news.mit.edu/2026/qa-hey-ai-who-should-i-vote-for-this-year-1030",
+      "date": "2026-10-30",
+      "summary": "MIT professors Adam Berinsky and Chara Podimata discuss a new project to track how AI chatbots are responding to questions about the 2026 U.S. midterm elections.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Latent Reasoning in Continuous Space for Unified Multimodal Models",
+      "url": "https://arxiv.org/abs/2610.42149v1",
+      "date": "2026-10-30",
+      "summary": "Unified Multimodal Models (UMMs) achieve remarkable success on diverse multimodal understanding and generation tasks, yet they still struggle to effectively leverage language-based chain-of-thought reasoning for image generation. As a result, existing reasoning-augmented UMMs often fail to inherit the test-time scaling and fine-grained controllability observed in large language models. We attribute this failure to a fundamental modality mismatch: reasoning is performed in a discrete token space, whereas image generation operates in a continuous space. To bridge this gap, we introduce a Latent Reasoning framework in Continuous space (LARC), which alleviates the token-level bottleneck by reasoning over continuous hidden states. Specifically, the training framework consists of two stages: (i) curriculum supervised fine-tuning (SFT), and (ii) information-gain reinforcement learning (RL). First, the curriculum SFT stage gradually converts token-level reasoning into latent reasoning. Subsequently, the information-gain RL stage self-evolves latent reasoning without ground truth supervision. Experiments across diverse text-to-image generation benchmarks show that LARC consistently improves generation quality, prompt following, and compositional fidelity. Notably, LARC achieves state-of-the-art performance on GenEval with a 7%p gain over BAGEL and demonstrates clear test-time scaling behavior, outperforming token-based generation under both parallel and sequential test-time scaling strategies.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Flide: Accelerating Decision Inference with Exact State Forking",
+      "url": "https://arxiv.org/abs/2610.42148v1",
+      "date": "2026-10-30",
+      "summary": "Decision models such as Jev have emerged as a highly promising paradigm for LLM agent systems, providing lightweight and reliable categorical reasoning for rapid System One execution. However, existing generation-oriented inference engines fail to support these workloads effectively, suffering from severe prefix recomputation overheads or distorted output probabilities. To address this challenge, we propose Flide, an efficient and exact inference engine that decouples the logical tree structure of a decision request from its physical execution within a single flattened token stream. Through ForkAttention, Flide navigates request dependencies using GPU-resident indices across both standard attention and recurrent Gated DeltaNet layers, guaranteeing in exact arithmetic that every query branch evaluates identically to an isolated forward pass. By expressing branch topologies directly in GPU-resident metadata, Flide accommodates diverse request mixtures with a compact set of pre-recorded execution graphs while enabling expanding agent histories to resume from checkpoints saved in earlier passes. Extensive evaluations on public hybrid and decision models demonstrate that Flide answers queries up to 9.5 times faster than vLLM and SGLang while staying closest to a float32 reference in total variation distance. By unifying physical execution throughput with mathematical exactness, Flide establishes a principled foundation for scalable, latency-critical decision intelligence in agent systems.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Latent Sparse Attention: Towards Subquadratic Ultra-Long Context Attention",
+      "url": "https://arxiv.org/abs/2610.42147v1",
+      "date": "2026-10-30",
+      "summary": "Agentic workflows are increasingly shifting towards long-horizon tasks, such as open-ended scientific work, where models benefit from long context windows. However, at ultra-long context (above 1M tokens), full attention is prohibitively expensive. A promising approach is sparse attention, in which a dedicated indexer selects a subset of keys for the attention. Yet current methods of indexing either still have quadratic cost in context size or lose accuracy at ultra-long context scale. We address this with Latent Sparse Attention (LSA), an efficient attention method that maintains accuracy at ultra-long context. In LSA, keys are hierarchically clustered in a learned latent space, and queries score the hierarchy of clusters instead of scoring every key, making prefill, decode and training faster at long context. We propose two variants, Distilled-LSA (D-LSA), which can be applied to pre-trained models via distillation, and Native-LSA (N-LSA), which is trained natively on the next-token loss alone. On GLM-5.3-FLASH (QWEN-3.8-27B) at 10M tokens, D-LSA speeds up one attention layer by 22.7x (72.4x) in prefill and 4.6x (42.5x) in decode over its original sparse attention (full attention), while keeping similar accuracy across a variety of tasks. N-LSA matches the accuracy of full attention with a training speedup of 1.6x per layer at 128k tokens. LSA offers practical and efficient attention for models to benefit from ultra-long context.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Hierarchical World Models with Implicit Dynamics",
+      "url": "https://arxiv.org/abs/2610.42146v1",
+      "date": "2026-10-30",
+      "summary": "Planning with world models enables test-time adaptation for embodied agents, offering superior generalization over direct policy learning. However, long-horizon tasks remain hindered by cumulative errors and search complexity. Existing hierarchical methods often use rigid macro-actions or latent skills, leading to brittle representations and limited fine-grained control. We introduce ID-WM (Implicit Dynamics World Models), a hierarchical world model that decouples state-space reachability from local control. Our framework utilizes a high-level model to sample feasible transitions across the state manifold and a low-level world model as an inverse dynamics solver to ground these transitions into precise actions. This allows the planner to identify reachable subgoals without being constrained by low-level execution details. By prioritizing local physical feasibility over global behavioral patterns, ID-WM synthesizes novel long-horizon plans from short segments, transcending the specific behavioral modes seen during training. We demonstrate its effectiveness across three navigation and manipulation suites, achieving a 38.5% improvement over state-of-the-art policy and diffusion-based planners. Crucially, by leveraging this hierarchical structure to mitigate compounding errors, our approach yields a 135% performance gain over single-level world model MPC, particularly in complex, unseen configurations for long-horizon tasks. Videos can be viewed at https://id-wm.github.io",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "RoboArchitect: Automating the Design of Robotic Agents with Persistent Memory",
+      "url": "https://arxiv.org/abs/2610.42141v1",
+      "date": "2026-10-30",
+      "summary": "Recent work shows that a frozen robot policy performs far better inside an agent harness, where control code decides when to query the policy, consult vision tools, or command the arm directly. Yet today these harnesses are built by hand and redesigned for each new robot or benchmark. We show that harness design can be automated, offering a strong alternative to finetuning on a novel setup. In RoboArchitect, a coding model observes a robot's rollouts, diagnoses failures, and iteratively revises the harness around the frozen policy. The harness evolves on a set of episodes for its optimization and is evaluated on held-out scenes and tasks. Without updating any model weights, RoboArchitect raises average success from 9.7% to 43.3% on unseen scenes (4.5x) and from 12.7% to 40.2% on unseen tasks (3.2x), across multiple benchmarks and policies. The gains are largest where the benchmark is far from the policy's training data: wrapping a general-purpose policy, the evolved harness yields a specialist that often outperforms even the finetuned version. Intuitive control strategies are automatically designed, such as lifting a jammed arm clear or reaching in horizontally when an obstacle blocks the way from above. The harness also evolves its own persistent memory, carrying learned experience, such as effective grasp depths, into later decisions. These results suggest that substantial headroom in robotic manipulation lies in the agent harness, and its design can be effectively automated and optimized without weight updates.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Counting on Dummies: Privacy Amplification with Observable Counts and Truncated Batches",
+      "url": "https://arxiv.org/abs/2610.42139v1",
+      "date": "2026-10-30",
+      "summary": "In many practical deployments of Differentially Private Stochastic Gradient Descent (DP-SGD), the server processes data in batches. Randomly sampling these batches allows for better privacy bounds via privacy amplification results. Most sampling schemes with provable privacy amplification, including Poisson sampling and random allocation, result in variable batch sizes. The privacy guarantee of these schemes requires that the batch sizes are not revealed. In distributed settings, the server performing the aggregation or any party observing the communication traffic may learn these batch sizes. Furthermore, in both centralized and distributed settings, memory and computation constraints may require each batch to be of some maximum size $s$, necessitating truncation of the batch when it exceeds this limit. It is known that this truncation can result in a significant increase in privacy loss. In this work, we address both of these challenges via a simple mechanism that uses a random number of \\emph{dummy points} to privatize the batch size and maintain the privacy guarantee even under truncation. We demonstrate that our mechanism is easy to implement in a distributed setting, and provide a general analysis of this mechanism for both Poisson sampling and random allocation. Our analysis is designed to support efficient and relatively tight privacy accounting. It also effectively amplifies the privacy of the count releases by subsampling, making the expected number of dummy points asymptotically smaller than what is needed to directly privatize the (sensitivity-one) batch sizes with non-negative noise. For Poisson sampling with truncated batches, we demonstrate empirically that our mechanism achieves better privacy--efficiency tradeoffs than the direct accounting for truncation recently given by (Ganesh, 2025).",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "A Better Critic Matters for Distribution Matching Distillation",
+      "url": "https://arxiv.org/abs/2610.42135v1",
+      "date": "2026-10-30",
+      "summary": "Distribution Matching Distillation (DMD) trains a few-step student using the difference between a teacher's score and an online critic's estimate of the student distribution's score. We investigate what the critic needs, in capacity and in information, to provide a reliable training signal. On the capacity side, controlled experiments across seven SiT model sizes on ImageNet show that increasing teacher size while keeping a small critic fixed can degrade student quality and cause training collapse. Scaling the critic alongside the teacher, a strategy we call joint scaling, prevents collapse in our experiments and allows the student to benefit from larger teachers. On the information side, rather than forcing the critic to model a step-agnostic mixture of student outputs, we introduce a step-aware critic (STAC) that conditions on the student's generation step to estimate step-specific scores. Together, joint scaling and STAC consistently improve few-step distillation across class-conditional ImageNet generation, text-to-image generation with SDXL and FLUX.2, and text-to-video generation with Wan2.1.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Instance-dependent sequential limits as an exact information ledger",
+      "url": "https://arxiv.org/abs/2610.42133v1",
+      "date": "2026-10-30",
+      "summary": "Instance-dependent limits for bandit regret, sequential tests, best-arm identification and Markov decision processes are proved by one chain. It runs from a divergence decomposition through data processing to a statistic, a testing step that turns a class guarantee into a requirement on the history, and optimization over alternatives and allocations. Only the first step is an identity. This work writes the chain as an exact ledger. By the chain rule, data processing loses exactly a conditional divergence, which vanishes for arms in natural exponential families at the per-arm counts and reward sums. A one-parameter family of martingale identities extends the decomposition to every tilt between two instances. The classical limits follow by relaxations with named defects. All defects but the asymptotic step's can be computed from an algorithm's own runs, the uniform quantification's only when the class guarantee is a number. On seven published sources, from movie ratings to engine replacement, the ledger locates the difference between standard algorithms and the classical limits. For identification among trained models and for Wald's test the largest term is usually the uniform quantification's.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "An updated Model Spec for more capable and beneficial AI",
+      "url": "https://openai.com/index/updated-model-spec",
+      "date": "2026-10-29",
+      "summary": "OpenAI’s updated Model Spec outlines five core values to guide more capable AI toward sound judgment, human agency, and faithfulness to human intent.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How we detect frontier model misalignment",
+      "url": "https://openai.com/index/how-we-detect-frontier-model-misalignment",
+      "date": "2026-10-29",
+      "summary": "OpenAI uses layered monitoring to detect frontier model misalignment and unauthorized agent behavior so responders can intervene before incidents escalate.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How Ropes & Gray is developing AI for transactional diligence",
+      "url": "https://openai.com/index/ropes-gray-ai-diligence",
+      "date": "2026-10-29",
+      "summary": "Ropes & Gray is developing AI for transactional diligence with OpenAI. Lawyers review grouped documents, summaries, and reports before advising clients.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Credit Saison achieves 954% ROI in a ChatGPT Enterprise pilot",
+      "url": "https://openai.com/index/credit-saison",
+      "date": "2026-10-29",
+      "summary": "Credit Saison’s ChatGPT Enterprise pilot delivered 954% ROI. See how leaders and employees helped turn the results into companywide adoption.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Expanding Partnership Gsa",
+      "url": "https://www.anthropic.com/news/expanding-partnership-gsa",
+      "date": "2026-10-29",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "AI For Science Expands Foundations Research Institutions",
+      "url": "https://www.anthropic.com/news/ai-for-science-expands-foundations-research-institutions",
+      "date": "2026-10-29",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Research"
+    },
+    {
+      "title": "The Future Is for Everyone: Meta and CNIB Partner to Support Canadians Who Are Blind, Deafblind or Have Low Vision",
+      "url": "https://about.fb.com/news/2026/10/the-future-is-for-everyone-meta-and-cnib-partner-to-support-canadians-who-are-blind-deafblind-or-have-low-vision/",
+      "date": "2026-10-29",
+      "summary": "We believe the future is for everyone. That’s why Meta is partnering with CNIB – a non-profit founded in 1918 that empowers Canadians impacted by blindness to live their dreams – to help bring the benefit of AI glasses to more Canadians who are blind, Deafblind or have low vision. The goal of the partnership is to help people who are blind, Deafblind or have low vision explore the possibilities of AI wearable technology, and draw on the knowledge, expertise and lived experience of the community to shape a more accessible future. Funding from Meta will support CNIB in four areas: Listening to the community: Engaging people across Canada to understand their experiences, and how AI glasses can support greater independence in everyday life. Supporting community champions: Supporting Canadians who are blind, Deafblind or have low vision to lead in-person peer training and demonstrations, and gather candid product feedback in their communities. Informing product development: Sharing community insights with Meta’s accessibility and product teams to help improve future technology. Making learning accessible: Providing accessible guides, training materials and resources that people can use wherever they are. Along with funding to help advance inclusive innovation, Meta is donating AI glasses through CNIB Come to Work program, which will put tools into the hands of people exploring employment opportunities and building their careers. The program provides training and practical resources to help participants assess how wearable technology can assist them in securing employment, succeeding at work and pursuing their goals. People use Meta’s AI glasses for everything from listening to music, to live translation and hands-free calls. But for people who are blind or have low vision, the difference they make can be life-changing — helping with everyday tasks like reading text, identifying objects and describing the world around them, and helping people live more independently. This partnership builds on our work with blind and low vision communities around the world, including donating Ray-Ban Meta glasses to every blind veteran in America in partnership with the Blinded Veterans Association, and our work with Vision Ireland. “The best technology is shaped with the people who will use it,” said Angela Bonfanti, President and CEO of CNIB. “People who are blind, Deafblind or have low vision bring valuable expertise about where barriers remain and how tools like AI glasses can offer greater choice, freedom and independence in everyday life. This partnership creates a direct path for that expertise to inform Meta’s work and help shape what comes next.” “We believe the future is for everyone. Partnerships like this one get Meta’s AI glasses to more blind, Deafblind and low-vision Canadians at work and in their daily lives. Working directly with CNIB and its community—the people who use the glasses every day—helps us build better products for everyone,” said Maxine Williams, VP of Accessibility, Meta. Learn more about Meta’s accessibility work and the features built into Meta’s AI glasses here. The post The Future Is for Everyone: Meta and CNIB Partner to Support Canadians Who Are Blind, Deafblind or Have Low Vision appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "Le Chonk: Built for Coders, Trusted by Defenders.",
+      "url": "https://mistral.ai/news/mistral-large-4-oss/",
+      "date": "2026-10-29",
+      "summary": "The weights of Mistral Large 4 (Le Chonk) are now open. A 1T parameter multimodal model, and best open-weight model for coding, trained in Europe.",
+      "sourceId": "mistral",
+      "sourceName": "Mistral AI",
+      "category": "Open Source"
+    },
+    {
+      "title": "Granite Switch 4.1.1 — Update models like you update software",
+      "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1-1",
+      "date": "2026-10-29",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Product Update"
+    },
+    {
+      "title": "Announcing Project ProtoStar: Making Publicly Funded Science AI-Ready",
+      "url": "https://huggingface.co/blog/announcing-project-protostar",
+      "date": "2026-10-29",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
+      "url": "https://huggingface.co/blog/mistral-large4",
+      "date": "2026-10-29",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and Decisions on Apple Platforms",
+      "url": "https://huggingface.co/blog/anydecisionmodel",
+      "date": "2026-10-29",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "OpenAI and ServiceNow expand partnership across enterprise workflows",
+      "url": "https://openai.com/index/openai-servicenow-partnership-expansion",
+      "date": "2026-10-28",
+      "summary": "OpenAI and ServiceNow expand their partnership to bring OpenAI models and agents into ServiceNow and ServiceNow workflows into ChatGPT and Codex.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "The future of the firm",
+      "url": "https://openai.com/index/the-future-of-the-firm",
+      "date": "2026-10-28",
+      "summary": "How AI might enter the org chart—beneath, beside, and between us.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Legora is building the agentic operating system for legal work",
+      "url": "https://openai.com/index/legora",
+      "date": "2026-10-28",
+      "summary": "See how Legora uses OpenAI models, ChatGPT, and Codex to accelerate legal workflows, expand contract analysis, and free lawyers to focus on higher-value work.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Gemini 4 Carbon: Our next frontier model",
+      "url": "https://deepmind.google/blog/gemini-4-carbon-our-next-frontier-model/",
+      "date": "2026-10-28",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Meta Partners With Five US Universities to Accelerate Medical and Scientific Breakthroughs",
+      "url": "https://about.fb.com/news/2026/10/meta-partners-with-five-us-universities-to-accelerate-medical-and-scientific-breakthroughs/",
+      "date": "2026-10-28",
+      "summary": "Meta is bringing Superintelligence models, research funding, and direct researcher collaboration to US universities that are using our models to solve critical issues in science and medicine. The post Meta Partners With Five US Universities to Accelerate Medical and Scientific Breakthroughs appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Research"
+    },
+    {
+      "title": "Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built for Everyone",
+      "url": "https://about.fb.com/news/2026/10/muse-is-now-available-in-singapore-the-worlds-first-personal-ai-agent-built-for-everyone/",
+      "date": "2026-10-28",
+      "summary": "Today we’re announcing Muse is now available in Singapore. The post Muse Is Now Available in Singapore: The World’s First Personal AI Agent Built for Everyone appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "3 Questions: Why infrastructure is entering a defining era",
+      "url": "https://news.mit.edu/2026/3-questions-why-infrastructure-is-entering-defining-era-1028",
+      "date": "2026-10-28",
+      "summary": "Professor Ali Jadbabaie describes how AI, digital transformation, climate change, and complex geopolitics are forcing engineers and policymakers to rethink how infrastructure is designed, built, and managed.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Making machines that can listen",
+      "url": "https://news.mit.edu/2026/making-machines-that-can-listen-paris-smaragdis-1028",
+      "date": "2026-10-28",
+      "summary": "Professor Paris Smaragdis develops computers with superhuman hearing for applications like speech recognition, music understanding, and environmental monitoring.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Retell uses OpenAI models to help power 100M monthly calls",
+      "url": "https://openai.com/index/retell-ai",
+      "date": "2026-10-27",
+      "summary": "GPT-6 Astra tops Retell’s voice agent benchmark, while Codex helps it reach a $1.6M annual revenue run rate per employee.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "OpenAI expands partnership with Oracle to bring its apps to ChatGPT",
+      "url": "https://openai.com/index/oracle-apps-in-chatgpt",
+      "date": "2026-10-27",
+      "summary": "OpenAI and Oracle are expanding their partnership to bring business applications and AI agents into ChatGPT and power new Oracle offerings.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How Check Point accelerates vulnerability research with Daybreak",
+      "url": "https://openai.com/index/check-point-daybreak",
+      "date": "2026-10-27",
+      "summary": "With OpenAI Daybreak, Check Point speeds up the research behind new security protections, enabling its analysts to turn vulnerability intelligence into customer defenses faster.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "S1 Sec",
+      "url": "https://www.anthropic.com/news/s1-sec",
+      "date": "2026-10-27",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Genie 4: A new generation of world simulation",
+      "url": "https://deepmind.google/blog/genie-4-a-new-generation-of-world-simulation/",
+      "date": "2026-10-27",
+      "summary": "Genie 4: our new world model unlocking unprecedented realism in real-time simulation.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Build specialized multimodal models with LFM3",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm3",
+      "date": "2026-10-27",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Can we trust LLMs to judge whether a research idea is novel?",
+      "url": "https://huggingface.co/blog/allenai/novelty-bench",
+      "date": "2026-10-27",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Research"
+    },
+    {
+      "title": "Learner collaborates with MIT peers to develop book of AI insights",
+      "url": "https://news.mit.edu/2026/learner-prabha-jha-collaborates-with-mit-peers-to-develop-book-of-ai-insights-1027",
+      "date": "2026-10-27",
+      "summary": "Prabha Jha used her experience with MIT Open Learning’s program for senior executives to develop AI solutions for her employer, Verizon, and to write a book.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Greptile takes bug detection beyond code review with GPT-6 Astra",
+      "url": "https://openai.com/index/greptile-code-review-codex-astra",
+      "date": "2026-10-26",
+      "summary": "How Greptile uses GPT-6 Astra to test user workflows, Daybreak to strengthen security, and Codex to reduce rework.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Working with academic communities to build scientific understanding",
+      "url": "https://openai.com/index/building-scientific-understanding-with-academic-communities",
+      "date": "2026-10-26",
+      "summary": "OpenAI shares model results on the Kakeya conjecture, Exponential Time Hypothesis, and quantum chromodynamics—and how researchers can verify and build on them.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "GPT-6.1 Sol helps CodeRabbit strengthen security across complex codebases",
+      "url": "https://openai.com/index/gpt-6-1-sol-coderabbit-code-security",
+      "date": "2026-10-26",
+      "summary": "CodeRabbit uses GPT-6.1 Sol to investigate security risks across complex codebases. Its security agent helps developers review findings and proposed fixes.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "ChatGPT’s expanding world of work",
+      "url": "https://openai.com/index/chatgpt-expanding-world-of-work",
+      "date": "2026-10-26",
+      "summary": "Explore OpenAI Signals data on 165 work activities across nearly 100 countries, revealing how people use ChatGPT for work and how usage changes over time.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How Fanatics and OpenAI streamline the fan experience",
+      "url": "https://openai.com/index/fanatics-streamline-fan-experience",
+      "date": "2026-10-26",
+      "summary": "Fanatics uses OpenAI to help fans complete their game-day outfits with Shop the Look. Testing across roughly 30,000 MLB products showed 10% higher engagement.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How Ultrafast cut incident investigation from hours to minutes at OpenAI",
+      "url": "https://openai.com/index/openai-cut-incident-investigation",
+      "date": "2026-10-26",
+      "summary": "See how OpenAI engineers use Codex Ultrafast to investigate incidents in minutes. Explore faster security analysis, code refactoring, and daily workflows.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing GPT-6.1 Terra",
+      "url": "https://openai.com/index/introducing-gpt-6-1-terra",
+      "date": "2026-10-26",
+      "summary": "Bringing fast and capable computer use to everyone",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Our newest AI Quest: Mapping the human brain",
+      "url": "https://blog.google/products-and-platforms/products/education/ai-quests-polar-peaks/",
+      "date": "2026-10-26",
+      "summary": "Learn AI literacy via Google’s latest AI Quests lesson on neuroscience, “Polar Peaks.”",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "At New York Climate Week 2026, MIT connects with a global network",
+      "url": "https://news.mit.edu/2026/at-new-york-climate-week-mit-connects-global-network-1026",
+      "date": "2026-10-26",
+      "summary": "A cross-section of the MIT community convened discussions on topics ranging from data centers and super pollutants to agriculture and education.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Anima helps clinics cut call waits by 75% with GPT-6 and GPT-Live",
+      "url": "https://openai.com/index/anima",
+      "date": "2026-10-23",
+      "summary": "Anima expands what care teams can do with OpenAI models, giving them more capacity to respond to patients.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
     {
       "title": "Rapidly scaling online storage to serve over 1 billion ChatGPT users (Part II)",
       "url": "https://openai.com/index/scaling-storage-one-billion-users-part-two",
@@ -522,6 +1008,24 @@
       "sourceId": "mit-ai",
       "sourceName": "MIT News — AI",
       "category": "Research"
+    },
+    {
+      "title": "How Grupo Boticário uses AI to strengthen human connections",
+      "url": "https://openai.com/index/grupo-boticario",
+      "date": "2026-10-16",
+      "summary": "Almost 50 years after starting in a compounding pharmacy in Paraná, the group operates a proprietary agent platform that autonomously resolves up to 80% of resellers’ operational requests—enabling the sales force to take on an advisory role.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "How Localiza reorganized work around generative AI",
+      "url": "https://openai.com/index/localiza-generative-ai",
+      "date": "2026-10-16",
+      "summary": "See how Localiza uses ChatGPT Enterprise, the OpenAI API, Codex, and 60+ specialized agents to reorganize work and build AI-native mobility experiences.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
     },
     {
       "title": "How Itaú is building generative AI for its entire customer base",
@@ -1296,510 +1800,6 @@
       "sourceId": "huggingface",
       "sourceName": "Hugging Face",
       "category": "Open Source"
-    },
-    {
-      "title": "A model guide for the GPT-6 family",
-      "url": "https://openai.com/index/practical-guide-building-gpt-6",
-      "date": "2026-10-02",
-      "summary": "Learn how startups can choose GPT-6 models, tune reasoning effort, improve prompts and skills, coordinate tools, and prepare workflows for production.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Chatham scales its capital markets expertise with OpenAI",
-      "url": "https://openai.com/index/chatham-financial",
-      "date": "2026-10-02",
-      "summary": "Chatham Financial uses Codex and GPT-5.6 to build technology and redesign workflows, cutting trade validation from 30 minutes to under 4.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Claude Frontier Academy",
-      "url": "https://www.anthropic.com/news/claude-frontier-academy",
-      "date": "2026-10-02",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "The latest AI news we announced in September 2026",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/google-ai-updates-september-2026/",
-      "date": "2026-10-02",
-      "summary": "Here are Google’s latest AI updates from September 2026",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Open-sourcing AstaBrief, the fast report-generation model in Asta",
-      "url": "https://huggingface.co/blog/allenai/astabrief",
-      "date": "2026-10-02",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "AutoSynthData: Generating Training Data for Enterprise Agents",
-      "url": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata",
-      "date": "2026-10-02",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Product Update"
-    },
-    {
-      "title": "Computational tools for society’s most complex challenges",
-      "url": "https://news.mit.edu/2026/computational-tools-for-societys-most-complex-challenges-cathy-wu-1002",
-      "date": "2026-10-02",
-      "summary": "Associate Professor Cathy Wu uses reinforcement learning to help map out improvements to transportation and other multifaceted systems.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Documenting the tech worker movement",
-      "url": "https://news.mit.edu/2026/documenting-tech-worker-movement-0918",
-      "date": "2026-10-02",
-      "summary": "Writing as a participant and researcher, PhD student JS Tan SM ’22 has co-authored a new book about the rise of tech worker protests and the employer backlash that followed.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "3 Questions: A new resource to empower young entrepreneurs",
-      "url": "https://news.mit.edu/2026/3-questions-new-resource-empower-young-entrepreneurs-1002",
-      "date": "2026-10-02",
-      "summary": "Martin Trust Center Managing Director Bill Aulet introduces Dear Dreamer, a free platform for middle and high school students who want to learn about entrepreneurship.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Less Decoder is More Encoder: Geometric Representation Learning from Novel View Synthesis",
-      "url": "https://arxiv.org/abs/2610.03717v1",
-      "date": "2026-10-02",
-      "summary": "This paper examines the role of Novel View Synthesis (NVS) in geometric representation learning. In principle, NVS should reason about 3D scene structure, thereby enabling transferable multi-view geometric representations. Yet, existing encoder-based NVS methods yield poor representations. This is not because of a lack of supervisory signal, but rather due to inconspicuous architectural choices: \\textit{spatially expressive decoders} that dilute representational capabilities of the scene encoder, and \\textit{low-level pixel-space targets} that hinder feature learning. We present SNAP, a self-supervised encoder-decoder transformer that addresses both through a pose-conditioned local decoder and a latent-space reconstruction objective. SNAP is task agnostic, and we show that it is competitive with special-purpose geometry-supervised methods. SNAP also performs competitively against self-supervised representations across five tasks: visual localization, pose estimation, point correspondence, depth estimation, and robot manipulation. Remarkably, SNAP's patch features exhibit emergent viewpoint invariance that approaches heavily supervised models despite lower compute and data budgets. Under camera shifts where standard 2D representations collapse, SNAP degrades more gracefully, revealing that restricting decoder expressivity actively prevents the suppression of transferable geometric structure. https://snap-nvs.github.io",
-      "sourceId": "arxiv",
-      "sourceName": "arXiv",
-      "category": "Research"
-    },
-    {
-      "title": "4DCodeBench: Benchmarking Agents on Inverse Graphics of Dynamic Scenes",
-      "url": "https://arxiv.org/abs/2610.03715v1",
-      "date": "2026-10-02",
-      "summary": "We introduce 4DCodeBench, a benchmark for 4D inverse graphics through code generation, in which agents reconstruct dynamic scenes from video as executable graphics programs. To accomplish this, agents must translate visual observations into compact representations of scene structure and dynamics, by implementing abstractions such as physical simulations to reproduce complex behavior. To evaluate this capability, we curate a set of real-world videos and construct synthetic scenes spanning diverse physical phenomena, including deformation, fluid flow, and fracture. We perform extensive benchmarking of frontier models, finding that strong static reconstruction capabilities do not yet translate into reliable reconstruction of complex dynamics. 4DCodeBench provides a testbed for tracking progress toward agents that can interpret the dynamics of the world through code. Our benchmark is available at https://github.com/4DCodeBench/4DCodeBench",
-      "sourceId": "arxiv",
-      "sourceName": "arXiv",
-      "category": "Research"
-    },
-    {
-      "title": "What Should World Models Forget? Stratified Retention for Continual Adaptation",
-      "url": "https://arxiv.org/abs/2610.03713v1",
-      "date": "2026-10-02",
-      "summary": "Continual learning treats degradation on previously seen data as evidence of failure, a convention inherited from settings with a stationary prediction target, where a correct label remains correct indefinitely. World models do not satisfy this condition. Their prediction target is the environment, which changes, so knowledge that was accurate when acquired may later become false, and discarding it is required behavior rather than a defect. Non-stationary ground truth is well studied in the concept drift literature and in the temporal factuality of language models, but has not been formulated for world models, which are distinctive in that they also encode knowledge that must never be revised. We argue that continual world models require retention stratified by invariance timescale, separating invariants such as physics and object permanence, which must never be revised, from instance-level facts that should be revised as soon as the environment changes. Standard forgetting metrics cannot distinguish a world model that has correctly revised outdated knowledge from one that has suffered catastrophic forgetting, and consequently rank a frozen model highest, while existing physical-reasoning benchmarks evaluate only frozen checkpoints. We propose differential retention, which reports invariant regression testing across the adaptation stream jointly with revision latency, without aggregation.",
-      "sourceId": "arxiv",
-      "sourceName": "arXiv",
-      "category": "Research"
-    },
-    {
-      "title": "RNADyn: A Benchmark for Generating and Understanding RNA Dynamics",
-      "url": "https://arxiv.org/abs/2610.03712v1",
-      "date": "2026-10-02",
-      "summary": "Ribonucleic acid (RNA) functions through conformational changes that are not fully captured by static structures. However, large-scale standardized RNA dynamics data remain limited, and existing approaches typically treat trajectory generation and dynamics understanding as separate objectives. Here, we introduce RNADynBench, a standardized RNA molecular dynamics (MD) benchmark with 2585 quality-controlled 100-ns all-atom trajectories and leakage-controlled splits. Building on RNADynBench, we develop RNADynNet, a unified model for RNA dynamics learning that uses a shared backbone for both trajectory generation and dynamics fingerprint extraction from a single conformer. It combines coordinate denoising, single-frame-to-trajectory alignment, and physical grounding to connect all-atom trajectory generation with dynamics representation learning. Physical grounding improves both generated dynamics and the physical information recoverable from these fingerprints. Across both test sets, including the high-flexibility challenge set, the generated trajectories achieve RMSF correlations of 0.875 and 0.766, while single-conformer predictions show comparable agreement with MD-derived dynamics. RNADynBench and RNADynNet together establish a benchmark and unified modeling framework for generating and understanding RNA dynamics.",
-      "sourceId": "arxiv",
-      "sourceName": "arXiv",
-      "category": "Research"
-    },
-    {
-      "title": "EyeRobot 2.0: Active Gaze for Precise Manipulation without Wrist Cameras",
-      "url": "https://arxiv.org/abs/2610.03710v1",
-      "date": "2026-10-02",
-      "summary": "Inspired by human vision, we introduce a framework using active gaze to enable fine-grained bimanual manipulation with only a single stereo camera. EyeRobot 2.0 physically attends to a 3D fixation point in the scene by swiveling two eye viewpoints to center their gaze on it. The resulting images are processed foveally by allocating more visual tokens to the image centers, focusing computation on task-relevant features. Such Active Visual Fixation (AVF) requires carefully coordinated gaze during task execution, which we accomplish hierarchically by first training a low-level gaze servoing policy conditioned on a goal object, then training a target selector which emits fixation goals based on task progress. Both modules are trained with RL on real-world data: the first is trained with a dense geometric reward and the second co-trains with the BC gripper policy which allows it to discover fixation sequences that can resemble a human's fixation sequence while performing the task. EyeRobot 2.0 further takes advantage of fixation by canonicalizing gripper information into a fixation-relative SE(3) frame, which compacts the size of the action distribution to learn. We collect teleoperation data for 7 real-world and 6 simulated tasks, and conduct over 1000 physical and 1800 simulated robot trials comparing EyeRobot 2.0 against passive stereo and ego + wrist camera policies trained on the same data. Removing wrist cameras is costly for standard policies: with only passive stereo, real-world success drops from 52% to 27%. EyeRobot 2.0 closes this gap with only stereo, outperforming passive stereo by 40% in real and 20% in sim. It matches ego + wrist policies when their wrist views are clear (69% vs. 64%), and more than doubles their success when grasped objects occlude the wrist cameras (48% vs. 22%)",
-      "sourceId": "arxiv",
-      "sourceName": "arXiv",
-      "category": "Research"
-    },
-    {
-      "title": "From Mixing to Tearing: Graph Decomposition in Decentralized Optimization via Message Passing",
-      "url": "https://arxiv.org/abs/2610.03709v1",
-      "date": "2026-10-02",
-      "summary": "We study the minimization of sums of smooth strongly convex functions over undirected graphs, with each function held by one agent and communication restricted to neighbors in the graph. Existing decentralized methods, whether based on gossip or on routing over spanning trees, typically use the network to mix or aggregate information to enable {\\it prescribed} local optimization updates. What this communication-centered viewpoint lacks is a general framework that uses graph structure to {\\it jointly} design the optimization subproblems and the cooperative computation and communication through which agents solve them cooperatively. We develop such a framework from first principles, jointly designing the linear representation of agreement constraints, the blocks of the resulting dual variables (jointly optimized), and connected cluster of agents that cooperatively solve each block subproblem over the assigned subgraph. GATE (Graph-Tearing message passing) is a first instance of this framework: one variable per edge and tree blocks. At each iteration, agents update their assigned edge variables by minimizing the sum of the two endpoint cost-to-go messages and relaxing the result. The messages are updated through local minimizations following the tree recursion. To reduce per-iteration computational and communication costs, we develop GATE-S, a surrogate variant using tractable local models and lightweight message parametrizations. We establish linear convergence with a rate explicit in the interplay among function regularity, network topology, and the chosen partition, revealing the effects of graph decomposition. Numerical experiments are conducted to validate the theoretical results and evaluate the efficiency of our algorithms.",
-      "sourceId": "arxiv",
-      "sourceName": "arXiv",
-      "category": "Research"
-    },
-    {
-      "title": "LESSER: Post-Training Data Selection with Output-Layer Gradients",
-      "url": "https://arxiv.org/abs/2610.03702v1",
-      "date": "2026-10-02",
-      "summary": "The choice of post-training data for large language models substantially affects downstream performance. Gradient-based data selection is a popular approach that ranks training data by how well their gradients align with those of a small validation set. However, ranking with full-parameter gradients requires an expensive backward pass on every sample, making computation intractable for large candidate pools. This raises a natural question: can we approximate full-gradient features at a fraction of the cost? Conveniently, we find that output-layer gradients suffice for effective data selection, yet require only the cheaper forward pass. We implement this as LESSER, a drop-in wrapper for selection methods that reduces the feature-extraction FLOP cost by $9.7\\times$ for SFT and $3.0\\times$ for RL benchmarks, while tracking full-gradient performance on downstream tasks. Empirically, we find that even when output-layer and full gradients rank individual samples differently, they select batches with aligned gradients.",
-      "sourceId": "arxiv",
-      "sourceName": "arXiv",
-      "category": "Research"
-    },
-    {
-      "title": "Language Models that Play Chess and Explain Their Moves",
-      "url": "https://arxiv.org/abs/2610.03695v1",
-      "date": "2026-10-02",
-      "summary": "Modern chess engines are silent experts: they play at a superhuman level, but do not offer explanations for their play. On the other hand, language models (LMs) can generate plausible-sounding explanations, but their weak playing strength limits the utility of their explanations. We introduce Queen, a 4B-parameter chess-language model that can explain its moves and plans while playing at the level of a typical Grandmaster. Our novel framework enables domain-specific reasoning through complementary components: an encoder-decoder architecture and an iterative distillation algorithm. This architecture integrates a silent expert chess encoder with an instruction-tuned LM through cross-attention, which we train via a question-answering curriculum to extract chess concepts from the encoder's representations. Building on this domain-adapted model, we iteratively improve its explanations with a natural-language analog of the Bellman update: the model analyzes the positions after its top candidate moves and consolidates them into an explanation of the current position, which is then distilled back into the model. Over seven iterations, our model gains over 900 Elo points (1782 to 2697), substantially surpassing all frontier models on both playing strength and puzzle accuracy, despite containing three orders of magnitude fewer parameters. Furthermore, LM-based evaluations show that our explanations are fluent and approach GPT-5.6-Sol (high) in coherence. The generality of our architecture and training procedure suggests a recipe for applying language models to domains where silent expert encoders are available, like games, robotics, and computer use.",
-      "sourceId": "arxiv",
-      "sourceName": "arXiv",
-      "category": "Research"
-    },
-    {
-      "title": "The eternal complement",
-      "url": "https://openai.com/index/the-eternal-complement",
-      "date": "2026-10-01",
-      "summary": "Advanced AI may matter most for the routine work behind breakthrough ideas. Explore why execution could shape the next economy and the pace of progress.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How Albertsons Companies is reimagining retail from the inside out",
-      "url": "https://openai.com/index/albertsons-reimagining-retail",
-      "date": "2026-10-01",
-      "summary": "Albertsons Cos. is using ChatGPT Enterprise and the OpenAI API to help teams work faster and make grocery shopping easier for millions of customers.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "The Den frees up 10-15 hours a week to grow with ChatGPT Work",
-      "url": "https://openai.com/index/the-den-family-social",
-      "date": "2026-10-01",
-      "summary": "As it opens a new location, the social club prepares grant applications in 2 hours instead of 3 days and liquor-license materials in 3 hours instead of 4 days.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Barclays Scales Claude",
-      "url": "https://www.anthropic.com/news/barclays-scales-claude",
-      "date": "2026-10-01",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Announcing Ranveer Singh as Brand Ambassador for Ray-Ban and Ray-Ban Meta in India along with Exciting New Updates to our AI Glasses",
-      "url": "https://about.fb.com/news/2026/10/announcing-ranveer-singh-as-brand-ambassador-for-ray-ban-and-ray-ban-meta-in-india-along-with-exciting-new-updates-to-our-ai-glasses/",
-      "date": "2026-10-01",
-      "summary": "Ranveer Singh becomes the first Brand Ambassador for Ray-Ban and Ray-Ban Meta in India. The post Announcing Ranveer Singh as Brand Ambassador for Ray-Ban and Ray-Ban Meta in India along with Exciting New Updates to our AI Glasses appeared first on Meta Newsroom .",
-      "sourceId": "meta-ai",
-      "sourceName": "Meta",
-      "category": "Product Update"
-    },
-    {
-      "title": "New tool lets users repair AI-generated 3D models, then fabricate them just the way they want",
-      "url": "https://news.mit.edu/2026/instructmesh-tool-lets-users-repair-ai-3d-models-then-fabricate-them-1001",
-      "date": "2026-10-01",
-      "summary": "“InstructMesh” can generate designs for everyday objects that are easy to edit and fabricate for both experts and newcomers to 3D modeling.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Disrupting a coordinated model-distillation campaign",
-      "url": "https://openai.com/index/disrupting-a-coordinated-model-distillation-campaign",
-      "date": "2026-09-30",
-      "summary": "Learn how OpenAI disrupted a campaign to extract protected model reasoning and is strengthening defenses against adversarial distillation.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Helping small businesses put AI to work",
-      "url": "https://openai.com/index/helping-small-businesses-put-ai-to-work",
-      "date": "2026-09-30",
-      "summary": "OpenAI is partnering with America’s SBDC to expand hands-on AI training and local support for small businesses, alongside a new report on how small teams are using AI.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Gemini 4 Argon: our next era of frontier intelligence",
-      "url": "https://deepmind.google/blog/gemini-4-argon-our-next-era-of-frontier-intelligence/",
-      "date": "2026-09-30",
-      "summary": "",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Research"
-    },
-    {
-      "title": "Introducing SynthID Bio",
-      "url": "https://deepmind.google/blog/introducing-synthid-bio/",
-      "date": "2026-09-30",
-      "summary": "Proof of concept for watermarking AI-generated proteins while preserving biological function.",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Research"
-    },
-    {
-      "title": "Open TTS Leaderboard: Scalable Evaluation for Multilingual Text-to-Speech and Voice Cloning",
-      "url": "https://huggingface.co/blog/open-tts-leaderboard",
-      "date": "2026-09-30",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Research"
-    },
-    {
-      "title": "MIT Transit Lab to develop an AI platform for public transit agencies",
-      "url": "https://news.mit.edu/2026/mit-transit-lab-to-develop-ai-platform-public-transit-agencies-0930",
-      "date": "2026-09-30",
-      "summary": "With $2.1 million funding from Google.org, the open-source Public Transit Intelligence Hub will unify public transit monitoring, operations, and passenger communication.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Open Source"
-    },
-    {
-      "title": "This game-playing AI is the new champ at Stratego",
-      "url": "https://news.mit.edu/2026/game-playing-ai-stratego-new-champ-0930",
-      "date": "2026-09-30",
-      "summary": "Able to defeat top-ranked human players and more efficient than other models, the new system could help decision-makers in military maneuvers or business negotiations.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "DevDay 2026 Recap",
-      "url": "https://openai.com/index/devday-2026-recap",
-      "date": "2026-09-29",
-      "summary": "Explore more than 20 announcements from OpenAI DevDay 2026, including GPT-6 Astra, ChatGPT, Codex, APIs, security, and new tools for builders.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Introducing GPT-6.1 Sol",
-      "url": "https://openai.com/index/introducing-gpt-6-1-sol",
-      "date": "2026-09-29",
-      "summary": "Meet GPT-6.1 Sol: near-Astra intelligence for coding, computer use, and professional work at one-fifth of Astra’s standard API input and output token prices.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Introducing dots",
-      "url": "https://openai.com/index/introducing-dots",
-      "date": "2026-09-29",
-      "summary": "Dots by OpenAI are proactive assistants that can keep working across complex projects and everyday tasks. Learn how dots help you stay in control while work moves forward.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "The Future Is for Everyone: Muse for Small Business",
-      "url": "https://about.fb.com/news/2026/09/introducing-muse-small-business/",
-      "date": "2026-09-29",
-      "summary": "We’re launching Muse for Small Business, a personal AI agent that works in the background to help your small business reach its goals. The post The Future Is for Everyone: Muse for Small Business appeared first on Meta Newsroom .",
-      "sourceId": "meta-ai",
-      "sourceName": "Meta",
-      "category": "Product Update"
-    },
-    {
-      "title": "NVIDIA Kumo Tabular Sets a New Accuracy-Efficiency Frontier for Tabular Prediction",
-      "url": "https://huggingface.co/blog/nvidia/kumo-tabular",
-      "date": "2026-09-29",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Getting the Source Right, Not Just the Fact: Source-Aware Verification for MCP Agents",
-      "url": "https://huggingface.co/blog/MultiverseComputingCAI/getting-the-source-right-not-just-the-fact-source",
-      "date": "2026-09-29",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "The effects of an “algorithmic monoculture” depend on the details",
-      "url": "https://news.mit.edu/2026/algorithmic-monoculture-effects-depend-on-details-0929",
-      "date": "2026-09-29",
-      "summary": "In a study focusing on hiring decisions, MIT researchers found the use of a single algorithm by many firms could benefit job seekers in certain situations.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Who we become when we talk to machines",
-      "url": "https://news.mit.edu/2026/when-we-talk-to-machines-sherry-turkle-book-0929",
-      "date": "2026-09-29",
-      "summary": "Professor Sherry Turkle’s new book, “Artificial Intimacy,” offers a withering critique of chatbots and the antisocial dynamics she believes they encourage.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "How we will do better for Australia",
-      "url": "https://openai.com/index/how-we-will-do-better-for-australia",
-      "date": "2026-09-28",
-      "summary": "OpenAI apologises for incidents involving Australian government websites and outlines stronger safeguards and support to strengthen Australia’s cyber defences.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Towards safety cases for frontier AI training",
-      "url": "https://openai.com/index/towards-safety-cases-for-frontier-ai-training",
-      "date": "2026-09-28",
-      "summary": "Our early guidelines for safety cases in frontier AI training cover technical safeguards, operational practices, and investigating misalignment incidents",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "The Lenfest Institute grows landmark program with expanded OpenAI support",
-      "url": "https://openai.com/index/lenfest-ai-collaborative-expansion",
-      "date": "2026-09-28",
-      "summary": "OpenAI is expanding the Lenfest AI Collaborative and Fellowship Program with $5 million in funding and up to $5 million in software credits and engineering support.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Basis completes a tax workbook 2x faster with GPT-6 Astra",
-      "url": "https://openai.com/index/basis-tax-workbook-with-astra",
-      "date": "2026-09-28",
-      "summary": "GPT-6 Astra completed a 50-tab tax workbook twice as fast as GPT-5.6 Sol, and its stronger understanding of user intent gives Basis more confidence in real-world use.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Are you a Codex Original?",
-      "url": "https://openai.com/form/codex-originals",
-      "date": "2026-09-28",
-      "summary": "We’re collecting real stories of builders, tinkerers, researchers, and creators who are using Codex to do incredible things. If you want to be a part of the next chapter of the Codex Originals program, tell us more about your story and project below.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Watch the winning trailer from the Future Vision XPRIZE, The Gifted.",
-      "url": "https://blog.google/innovation-and-ai/technology/ai/winner-future-vision-xprize/",
-      "date": "2026-09-28",
-      "summary": "Watch the winning trailer from the Future Vision XPRIZE, The Gifted.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Hallo, Deutschland!",
-      "url": "https://mistral.ai/news/hallo-deutschland/",
-      "date": "2026-09-28",
-      "summary": "Mistral opens a Munich hub for Physics AI and Industrial AI research, partnering with German industry.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Research"
-    },
-    {
-      "title": "Welcome RL Environments to the hub",
-      "url": "https://huggingface.co/blog/rl-environments",
-      "date": "2026-09-28",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Anthropic Infosys",
-      "url": "https://www.anthropic.com/news/anthropic-infosys",
-      "date": "2026-09-28",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Launching Meta Enterprise Platform",
-      "url": "https://about.fb.com/news/2026/09/launching-meta-enterprise-platform/",
-      "date": "2026-09-28",
-      "summary": "Today we are starting Meta Enterprise Platform to help businesses use AI to grow, and Chirantan \"CJ\" Desai will join Meta as Chief Enterprise Platform Officer The post Launching Meta Enterprise Platform appeared first on Meta Newsroom .",
-      "sourceId": "meta-ai",
-      "sourceName": "Meta",
-      "category": "Product Update"
-    },
-    {
-      "title": "Holo4: powering generalist computer-use agents",
-      "url": "https://huggingface.co/blog/Hcompany/holo4",
-      "date": "2026-09-28",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "New formulation helps RNA vaccines withstand high temperatures",
-      "url": "https://news.mit.edu/2026/new-formulation-helps-rna-vaccines-withstand-high-temperatures-0928",
-      "date": "2026-09-28",
-      "summary": "MIT engineers have found a way to stabilize the lipid nanoparticles used to deliver RNA vaccines, which could allow the vaccines to be more widely distributed.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "BlueRingsLabs/no-shortcuts (trending AI repo)",
-      "url": "https://github.com/BlueRingsLabs/no-shortcuts",
-      "date": "2026-09-26",
-      "summary": "Free Course : Data, Machine Learning, Deep Learning and AI Engineering, the long way round: the math, the code, the systems and the security. 173 lessons, 166 runnable labs, no shortcuts. Free under CC BY-NC 4.0. (★ 111)",
-      "sourceId": "github-trending",
-      "sourceName": "GitHub",
-      "category": "Open Source"
-    },
-    {
-      "title": "Lowe’s answers millions of home improvement questions with OpenAI",
-      "url": "https://openai.com/index/lowes",
-      "date": "2026-09-25",
-      "summary": "Lowe’s uses OpenAI models to power Mylow and Mylow Companion, helping customers and associates answer 25M+ questions and move home improvement projects forward.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Wayfair boosts catalog accuracy and support speed with OpenAI",
-      "url": "https://openai.com/index/wayfair",
-      "date": "2026-09-25",
-      "summary": "Wayfair uses OpenAI models to improve ecommerce support and product catalog accuracy, automating ticket triage and enhancing millions of product attributes at scale.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Proaction boosts sales 60% and saves 75+ hours with Codex",
-      "url": "https://openai.com/index/proaction",
-      "date": "2026-09-25",
-      "summary": "With Codex, GPT-Live-1, and GPT-6 Astra, Proaction builds, operates, and sells modern fleet management faster.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "MIT students gain a humanist lens on technical innovation in Tulsa, Oklahoma",
-      "url": "https://news.mit.edu/2026/mit-students-gain-humanist-lens-technical-innovation-tulsa-oklahoma-0925",
-      "date": "2026-09-25",
-      "summary": "The PKG Center for Social Impact expands Code.Tulsa experiential learning program.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Learning to Stop without Learning to Stop: Self-Supervised Confidence Training Improves Reasoning Efficiency",
-      "url": "https://arxiv.org/abs/2609.31619v1",
-      "date": "2026-09-25",
-      "summary": "Reasoning models often generate very long reasoning traces, making inference computationally expensive. Existing approaches typically improve efficiency either through inference-time early-stopping mechanisms or by explicitly encouraging shorter reasoning during training, for example through reinforcement learning with length penalties. We show that substantial efficiency gains can instead emerge from a different kind of supervision: \\textit{confidence}. Using a self-supervised procedure, we fine-tune reasoning models to predict their confidence in the answer at intermediate points along their own reasoning trajectories using only 600 training problems. Confidence is used only as a training target: the loss contains no objective for reasoning length, efficiency, or stopping. At inference, the fine-tuned models use the standard generation procedure, with no confidence elicitation or early-stopping mechanism. Despite this, self-supervised confidence fine-tuning makes reasoning more efficient, reducing generated tokens by up to 25\\% at matched accuracy across Gemma, Qwen, Nemotron, and GPT-OSS models on mathematical, scientific, and coding reasoning benchmarks, with efficiency gains comparable to methods that explicitly optimize for shorter reasoning. Analysis of reasoning episodes further shows that confidence supervision largely preserves the base models' high-level reasoning composition rather than selectively suppressing particular behaviors. Our results suggest that efficient reasoning may emerge as a downstream consequence of learning metacognitive signals, without being directly optimized.",
-      "sourceId": "arxiv",
-      "sourceName": "arXiv",
-      "category": "Research"
     }
   ]
 }
