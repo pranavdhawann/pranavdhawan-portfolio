@@ -1,6 +1,654 @@
 {
-  "updated": "2026-11-09",
+  "updated": "2026-11-16",
   "items": [
+    {
+      "title": "LVMH’s Media Division announces strategic partnership with OpenAI",
+      "url": "https://openai.com/index/lvmh-media-division-partnership",
+      "date": "2026-11-16",
+      "summary": "LVMH’s Media Division and OpenAI announce a partnership to support journalism with AI and make its publications more accessible through ChatGPT.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Advancing computer-use agents for healthcare teams",
+      "url": "https://openai.com/index/advancing-computer-use-for-healthcare-teams",
+      "date": "2026-11-16",
+      "summary": "",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "More ways to move care forward with ChatGPT for Healthcare",
+      "url": "https://openai.com/index/more-ways-to-move-care-forward-with-chatgpt-for-healthcare",
+      "date": "2026-11-16",
+      "summary": "Introducing computer-use agents, improved clinical answers, and new healthcare plugins that work across healthcare software to get real work done.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "The King’s Trust and OpenAI launch £1m partnership",
+      "url": "https://openai.com/index/the-kings-trust-and-openai",
+      "date": "2026-11-16",
+      "summary": "The King’s Trust and OpenAI launch a £1m partnership to help up to 25,000 young people across the UK build practical AI skills for work.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "New Ask Maps features to help with holiday travel and prep",
+      "url": "https://blog.google/products-and-platforms/products/maps/ask-maps-holiday-travel-features-2026/",
+      "date": "2026-11-16",
+      "summary": "Plan holiday road trips, get route tips, find local appointments, and search your saved lists with new Ask Maps features.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "94% of Singapore Small Business Owners Surveyed Say More AI Guidance Is Needed",
+      "url": "https://about.fb.com/news/2026/11/94-of-singapore-small-business-owners-surveyed-say-more-ai-guidance-is-needed/",
+      "date": "2026-11-16",
+      "summary": "More than 180 small businesses, heartland merchants and creator-entrepreneurs joined Meta Upskill Day 2026 in Singapore, part of Meta's Small Business Growth Academy, with Senior Minister of State Low Yen Ling attending as Guest of Honour. The post 94% of Singapore Small Business Owners Surveyed Say More AI Guidance Is Needed appeared first on Meta Newsroom .",
+      "sourceId": "meta-ai",
+      "sourceName": "Meta",
+      "category": "Product Update"
+    },
+    {
+      "title": "A step toward defining the Standard Model on a lattice",
+      "url": "https://openai.com/index/step-toward-defining-the-standard-model",
+      "date": "2026-11-15",
+      "summary": "Explore a candidate nonperturbative lattice definition of the Standard Model and how GPT-6 Astra helped turn the idea into a detailed proof.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Our new blog for science",
+      "url": "https://openai.com/index/our-new-blog-for-science",
+      "date": "2026-11-15",
+      "summary": "The OpenAI science blog shares new findings, practical methods, and firsthand accounts from researchers using AI to advance scientific discovery.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Introducing ChatGPT Wallet",
+      "url": "https://openai.com/index/introducing-chatgpt-wallet",
+      "date": "2026-11-13",
+      "summary": "Introducing ChatGPT Wallet, a secure way for agents in ChatGPT Work, Codex, and dots to complete purchases with user approval and existing card protections.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Shield helps technicians hand off legacy portal work with OpenAI",
+      "url": "https://openai.com/business/customer-stories/shield",
+      "date": "2026-11-13",
+      "summary": "Shield uses OpenAI to help IT technicians hand off work in legacy portals. Its Forge agents navigate systems so technicians can focus on issues needing their judgment.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Anthropic IS Endorsing SB 53",
+      "url": "https://www.anthropic.com/news/anthropic-is-endorsing-sb-53",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Our Approach TO Understanding And Addressing AI Harms",
+      "url": "https://www.anthropic.com/news/our-approach-to-understanding-and-addressing-ai-harms",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "A New Initiative For Developing Third Party Model Evaluations",
+      "url": "https://www.anthropic.com/news/a-new-initiative-for-developing-third-party-model-evaluations",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Research"
+    },
+    {
+      "title": "Protecting Well Being OF Users",
+      "url": "https://www.anthropic.com/news/protecting-well-being-of-users",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Accenture Embedded Evaluation",
+      "url": "https://www.anthropic.com/news/accenture-embedded-evaluation",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Research"
+    },
+    {
+      "title": "Improving Fable 5 S Biology Safeguards",
+      "url": "https://www.anthropic.com/news/improving-fable-5-s-biology-safeguards",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Challenges IN Red Teaming AI Systems",
+      "url": "https://www.anthropic.com/news/challenges-in-red-teaming-ai-systems",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Deprecation Commitments",
+      "url": "https://www.anthropic.com/news/deprecation-commitments",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Product Update"
+    },
+    {
+      "title": "Securing America S Compute Advantage Anthropic S Position ON The Diffusion Rule",
+      "url": "https://www.anthropic.com/news/securing-america-s-compute-advantage-anthropic-s-position-on-the-diffusion-rule",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "anthropic",
+      "sourceName": "Anthropic",
+      "category": "Infrastructure"
+    },
+    {
+      "title": "Build a Robot Pick-and-Place Simulation with SimReady Assets",
+      "url": "https://huggingface.co/blog/nvidia/simready-assets-robot-pick-and-place",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "XYBench: Helping with the problem behind the question",
+      "url": "https://huggingface.co/blog/allenai/xybench",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "llama.cpp v1.0.0 : A stronger foundation for the local AI ecosystem",
+      "url": "https://huggingface.co/blog/ggml-org/llama-cpp-v1",
+      "date": "2026-11-13",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "New AI “copilot” helps engineers design better structures",
+      "url": "https://news.mit.edu/2026/new-ai-copilot-helps-engineers-design-better-structures-1113",
+      "date": "2026-11-13",
+      "summary": "The system asks humans for feedback to increase trust in machine-generated designs for buildings and bridges.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Helping robots fit into the human workplace",
+      "url": "https://news.mit.edu/2026/helping-robots-fit-into-human-workplace-1113",
+      "date": "2026-11-13",
+      "summary": "Founded by Anthony Jules ’92, SM ’92 and Professor Emeritus Rodney Brooks, Robust AI’s robots are designed to collaborate with humans in factories and warehouses.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "Pairing AIS with RF: Analysis of a Markovian Approach for Maritime Data Fusion",
+      "url": "https://arxiv.org/abs/2611.18563v1",
+      "date": "2026-11-13",
+      "summary": "Monitoring maritime activities is important for safety and security, particularly for detecting illegal activities, but remains challenging due to the size and complexity of the maritime domain. The Automatic Identification System (AIS) is commonly used for this purpose, despite its known vulnerabilities. In contrast, space-based radio frequency (RF) observations provide an independent source of vessel activity but lack ship identification and therefore cannot identify vessels on their own. Following the CRISP-DM process, this study applies a Pair Hidden Markov Model (PHMM) to align individual RF detections with AIS trajectories, using temporal and spatial information while modeling noise and timing discrepancies. We evaluate it on NOAA AIS data with synthetic RF detections against nearest-neighbor baselines and analyze its errors with bias tests on trajectory length, sampling density, stationarity and AIS--RF distance. The length-corrected Forward score reaches a top-1 precision of $0.7776$ on the validation split of multi-candidate detections, where errors are possible, and an AUC of $0.637$ for detecting dark vessels among the detections that pass the prefilter. With a single RF detection, the score mostly reflects the AIS trajectory itself, and its errors favor longer and more stationary trajectories. A log-odds score, which compares the full model with a null model without match transitions, raises precision to $0.8580$ and AUC to $0.852$. Its length-corrected variant no longer shows a significant bias towards stationary trajectories and short inter-message distances, but still favors candidates farther from the RF detection. A time-weighted nearest-neighbor baseline without fitting remains ahead (precision $0.9013$, AUC $0.904$), so this single-detection, hand-designed PHMM formulation approaches but does not beat it.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "FETTUCCINE: Fast and efficient brain-to-text decoding on mobile devices",
+      "url": "https://arxiv.org/abs/2611.18561v1",
+      "date": "2026-11-13",
+      "summary": "Recent advances in speech neuroprostheses have enabled new communication avenues for people who have lost the ability to speak due to neurological illness or injury. These systems can decode neural activity during attempted speech into text by relying on language priors to achieve high decoding accuracy. This performance currently comes at the cost of using a compute-intensive language modeling stack, presenting a major bottleneck for real-world use. Further, current language models incur highly variable and disruptive inference latencies, limiting communication throughput and preventing users from reliably participating in natural conversation. We introduce FETTUCCINE, an end-to-end brain-to-text framework that leverages the speed and portability of automatic speech recognition (ASR) models to address the aforementioned practical challenges, while achieving usable (<10%) word error rates (WER), efficient adaptation to neural non-stationarities, and reliable performance on mobile devices. When evaluated using publicly available data from an intracortical speech neuroprosthesis user, FETTUCCINE outperforms previous end-to-end methods, achieving as low as 4.39% WER. Most notably, our models successfully run on a commercially-available mobile device with throughput reaching up to 370x real-time, providing the first demonstration of brain-to-text decoding on a mobile device. We also show that our models can be successfully finetuned to extend usable performance to future days. Beyond performance, our approach enables localization of the neural features most relevant for decoding via gradient-based saliency maps, which we show align with well-established physiological priors across different ASR model families. Taken together, our results show that FETTUCCINE overcomes core infrastructural and computational barriers, yielding a new class of portable brain-to-text communication.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Training Reasoning Models in Simulation to Natively Use Real Robots",
+      "url": "https://arxiv.org/abs/2611.18562v1",
+      "date": "2026-11-13",
+      "summary": "Robot-use agents (RUAs) have emerged as a promising approach to general-purpose robot control. However, strong performance has so far been achieved only by frontier proprietary models such as GPT-6 Astra and Claude Fable 5.2, whereas open-weight models remain substantially less capable. We show that an open-weight 27B reasoning model can be trained to use real robots natively through reinforcement learning, entirely in simulation and without demonstrations. Like a computer-use agent (CUA), the model observes the environment, reasons in a chain of thought, and generates the next end-effector pose, without any harness. We build a Post-training Engine for Agentic Robotics (PEAR) and use it to train the model on simulated robot tasks at scale with robot-use reinforcement learning (RURL), mirroring how frontier models acquire computer use. We find that the skills acquired in simulation generalize well beyond the training tasks: they transfer to an unseen robot, to the real world, and to novel instructions. After training on LIBERO and RoboDojo in simulation, the model succeeds in 60% of our trials on a real dual-arm robot, whereas the base model succeeds in none. On LIBERO, training raises the success rate from 1.6% to 74.4%, approaching GPT-6 Astra and GPT-6.1 Sol at maximum reasoning effort. Compared with $π_{0.5}$, a vision-language-action model fine-tuned on demonstrations, our model is substantially more robust to changes in the task itself. On LIBERO-Pro, $π_{0.5}$ succeeds in only 0.75% of episodes when assigned a new task in a familiar scene whereas our model succeeds in 57.4%. Finally, the model retains its general capabilities, with no measurable degradation on nine reasoning, coding and vision benchmarks. These results highlight robot-use reinforcement learning as a promising component of foundation-model post-training.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "BAL: Bidirectional Autoregression in Latent Space for Learning Human Movement Representations",
+      "url": "https://arxiv.org/abs/2611.18559v1",
+      "date": "2026-11-13",
+      "summary": "Learning semantically meaningful human movement representations from 3D pose sequences is essential for human behavior modeling. Existing self-supervised methods derive supervision from artificial assumptions, e.g., invariance to augmentation within a certain range or recoverability of masked regions at a certain temporal scale, introducing heuristic hyperparameters that make the learned semantics sensitive to their settings. We propose BAL, a self-supervised framework that instead exploits supervision intrinsic to human movement: the natural ordering structure of everyday behavior. BAL autoregressively predicts in a semantically abstract latent space, analogous to how humans anticipate others' actions rather than their precise joint configurations. Bidirectional autoregressive prediction, both forward and backward in time, fully leverages these ordering constraints while enabling representation extraction using both past and future context at inference. To suppress representation collapse, BAL decomposes each prediction target into a global component capturing sequence-level semantics and a local component capturing context-independent movement. We prove that the local targets retain nontrivial angular diversity unless the representations are completely collapsed, preserving a meaningful training signal. Experiments on large-scale datasets demonstrate that BAL's representations are highly effective for motion captioning, forecasting, and interpolation, outperforming baselines on most evaluation metrics.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "WeightBench: Evaluating Language Models as Weight-Space Programmers",
+      "url": "https://arxiv.org/abs/2611.18553v1",
+      "date": "2026-11-13",
+      "summary": "Recent work shows that large language models (LLMs) can operate directly on the parameters of other neural networks. They can read what a network was trained to do, fix a network that fails, and write working networks from scratch, all without gradient descent. This capability has been termed Weight-Space Programming (WSP). Exploring this new paradigm systematically requires a robust benchmark. We introduce WEIGHTBENCH, a benchmark that evaluates LLMs of increasing capability on 42 WSP tasks across five tracks: reading, fixing and writing weights, recognizing edits that are impossible, and data-free compression. The networks whose weights the LLMs read and edit range from 2K-parameter control policies to 7B-parameter language models. Experimental benchmark results show that frontier agents can already read small networks and write working control policies without ever running them, but cannot yet patch language models, compress them without data, or tell an impossible edit from a hard one. On all 42 tasks, Claude Opus 5.5 reaches a macro score of 0.535 (Sonnet 5.5 0.466, Haiku 5.5 0.402, DeepSeek v4-flash 0.215); on the 38 tasks it was run on, GPT-6.1-sol reaches 0.568 against Opus's 0.546. Code, the task registry, our OS-level sandbox harness, and the live leaderboard are publicly available at https://github.com/Aayush-Marasini/WeightBench.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Imitation Bootstrapped Multi-Agent Reinforcement Learning",
+      "url": "https://arxiv.org/abs/2611.18543v1",
+      "date": "2026-11-13",
+      "summary": "Demonstrations are an effective way to accelerate single-agent reinforcement learning (RL), but extending this idea to multi-agent reinforcement learning (MARL) is non-trivial as it is difficult and often impossible for a single person to teleoperate multiple agents simultaneously. Round-Robin Behavior Cloning (R2BC) addresses this by letting a single demonstrator control one agent at a time while the others execute their current policies. However, the resulting imitation policies are limited by the quality of the demonstrations. We propose Imitation Bootstrapped Multi-Agent Reinforcement Learning (IBMARL), a framework that extends Imitation Bootstrapped Reinforcement Learning (IBRL) to cooperative teams and uses R2BC to train the imitation policies. At each time step, every agent receives one action proposal from its imitation policy and one from its RL policy, and an ensemble of centralized critics selects among the per-agent combinations of the two. A gated imitation penalty, a soft Q-filtered behavior cloning loss, regularizes each RL policy toward its imitation policy only where the critics value the imitation action more, so that after training each agent executes its RL policy alone, without the centralized critics. On four cooperative multi-agent RL benchmarks, IBMARL surpasses its imitation policies $2.6$-$4.2\\times$ faster than demonstration-based baselines on two tasks, is the only method to surpass it on the other two, and exceeds the demonstrator itself on two of the four. With real human demonstrations IBMARL still surpasses imitation learning alone, and does so more than twice as fast as the best baseline.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Elliptic Sampling: Optimal Interpolant Schedules for Gaussians and Beyond",
+      "url": "https://arxiv.org/abs/2611.18542v1",
+      "date": "2026-11-13",
+      "summary": "Generative modeling based on stochastic interpolants requires specifying two key choices: an interpolant schedule bridging the initial and target distributions, and an efficient discretization of the resulting probability-flow ODE. In this work, we introduce a new framework for joint schedule/discretization design based on the analyticity properties of the (complexified) ODE trajectories, which in turn ensure good numerical behavior. Our formulation can be solved exactly via conformal mapping, yielding a natural family of variance-preserving elliptic schedules, parametrized by Jacobi elliptic functions. Pairing an elliptic schedule with a tailored discretization, we obtain Zoloflow, a new sampling algorithm closely connected to Zolotarev's optimal rational function approximants. Crucially, both the elliptic schedule and Zoloflow explicitly incorporate the condition number $κ$ of the target distribution and reduce to the classical trig schedule in the limit $κ\\rightarrow 1$. For Gaussian targets, Zoloflow achieves minimax optimality among all oblivious score-span algorithms, attaining total-variation error $\\varepsilon$ using $Θ(\\logκ\\,\\log(\\sqrt d/\\varepsilon))$ (exact) score queries. For the log-concave case, the elliptic schedule allows sampling with at most $\\varepsilon$ 2-Wasserstein-error by requiring merely $\\widetilde{O}(\\sqrt{d} \\, \\mathrm{polylog}(κ, 1/\\varepsilon))$ score evaluations. Complementing these theoretical results, we empirically evaluate the elliptic schedule on general (non-log-concave) target distributions, including detailed comparisons with alternative schedule proposals on both synthetic benchmarks and existing image generation datasets.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "Why Finite Intelligence Works in an Infinite World: A Mathematical Theory",
+      "url": "https://arxiv.org/abs/2611.18538v1",
+      "date": "2026-11-13",
+      "summary": "An information system often has to learn before it knows what it will be asked. A finite representation can succeed without recording an infinite environment in full when those asks share collective structure, rather than demand unrelated facts scattered arbitrarily across it. We formalize this phenomenon through future-task information, the minimum retained information needed to preserve decision value relative to the available evidence. A joint decision-regret state records posterior comparisons among actions for every permitted task. Under compactness assumptions, every retained representation admits a calibrated replacement based on this state, preserving all task regrets without increasing information; the resulting information-regret curve equals an operational coding rate. Two exact boundaries govern finite preservation: weak-star closure for a fixed action count, and the singular mass of the source-evidence law when all finite action menus are admitted. Collective structure determines information requirements beyond individual-question difficulty. Families with identical source laws, pairwise task metrics, and individual-task rates can have different high-resolution exponents. Covariance-identical coordinate and parity families have different exact rate-distortion curves, with optimal parity retention characterized by a sharp Fourier-entropy inequality. For balanced nested task families, refinement sizes and weighted reach determine the rate within an additive constant, attained by prefix coding under explicit decay conditions. Nonlinear learning and computational separations distinguish preservation from efficient discovery and use. The proposed mathematical theory identifies which shared decision requirements allow finite information to remain useful for infinitely many possible purposes.",
+      "sourceId": "arxiv",
+      "sourceName": "arXiv",
+      "category": "Research"
+    },
+    {
+      "title": "How Amplitude ships product improvements in 1–2 days with OpenAI",
+      "url": "https://openai.com/business/customer-stories/amplitude",
+      "date": "2026-11-12",
+      "summary": "Built primarily on OpenAI models, Amplitude’s proactive product agent, Wave, identifies what to build, helps teams ship changes with coding agents, and measures the impact.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Gondola doubles revenue as its team builds more with Codex",
+      "url": "https://openai.com/business/customer-stories/gondola",
+      "date": "2026-11-12",
+      "summary": "Gondola helps creatives get credit and get hired, with Codex raising its lead engineer’s output by 50% and ChatGPT simplifying daily work.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Holiday Extras is rethinking what it can build with Codex",
+      "url": "https://openai.com/business/customer-stories/holidays-extras-codex",
+      "date": "2026-11-12",
+      "summary": "With Codex, Holiday Extras is turning customer expertise into better apps, higher booking conversion and new possibilities for growth.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Supporting research on AI and children’s safety",
+      "url": "https://openai.com/index/children-first-declaration",
+      "date": "2026-11-12",
+      "summary": "OpenAI commits $2 million to research on AI and children’s safety. The work supports shared tools to measure risks and opportunities for young people.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Gilbert + Tobin rethinks the business of law with AI",
+      "url": "https://openai.com/index/gilbert-tobin-sam-nickless",
+      "date": "2026-11-12",
+      "summary": "A conversation with Sam Nickless, Partner and Chief Executive Officer at Gilbert + Tobin.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing Gemini 4 Hydrogen",
+      "url": "https://deepmind.google/blog/introducing-gemini-4-hydrogen/",
+      "date": "2026-11-12",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Model Release"
+    },
+    {
+      "title": "Google Search gets a major upgrade with Gemini 4 Hydrogen",
+      "url": "https://blog.google/products-and-platforms/products/search/gemini-4-hydrogen-search-upgrade/",
+      "date": "2026-11-12",
+      "summary": "We are bringing Gemini 4 Hydrogen to Google Search globally to provide you with more helpful, visual, and intuitive responses.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "LLMON: An LLM-Native Markup Language, now in Granite 4.1 3B and 8B",
+      "url": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite",
+      "date": "2026-11-12",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "The Definitive Fine-Tuning Guide for 3D Generation Models",
+      "url": "https://huggingface.co/blog/3d-lora-finetuning",
+      "date": "2026-11-12",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Three Lincoln Laboratory technologies receive 2026 R&D 100 Awards",
+      "url": "https://news.mit.edu/2026/lincoln-laboratory-technologies-receive-rd-100-awards-1112",
+      "date": "2026-11-12",
+      "summary": "A secure operating system, a quantum microsystem platform, and a 5G interference-canceling algorithm are named among the year's most significant innovations.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "New research could lead to faster, trustworthy AI models for climate prediction",
+      "url": "https://news.mit.edu/2026/new-research-could-lead-faster-trustworthy-ai-models-climate-prediction-1112",
+      "date": "2026-11-12",
+      "summary": "MIT scientists developed a training method to generate models that simulate the effects of human activities on climate much more quickly than other approaches.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "ChatGPT Plus for veterans and servicemembers",
+      "url": "https://openai.com/index/chatgpt-plus-for-veterans",
+      "date": "2026-11-11",
+      "summary": "More than 20,000 veterans and transitioning service members have claimed a free year of ChatGPT Plus. See how they use it to prepare for civilian careers.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "JioStar’s chief architect on AI discovery at 500M-user scale",
+      "url": "https://openai.com/index/jiostar-vijay-seshadri",
+      "date": "2026-11-11",
+      "summary": "JioStar’s Vijay Seshadri explains AI discovery at 500M-user scale. Read his lessons on evals, guardrails, and taking AI into production.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "AlphaGenome 2: Deciphering how cells read DNA to better understand disease",
+      "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/",
+      "date": "2026-11-11",
+      "summary": "Predicting how DNA sequences and their variations impact specific human cell types and disease.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Gemini Decisions API: Fast, calibrated multimodal decisions",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
+      "date": "2026-11-11",
+      "summary": "Meet the Gemini Decisions API, powered by our state-of-the-art model Gemini Decision for fast, calibrated multimodal decisions.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Try Tabletop: Customizable, collaborative spaces for groups to plan, play and do more together.",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-labs/tabletop/",
+      "date": "2026-11-11",
+      "summary": "Tabletop is a new Google Labs experiment for group collaboration. Build interactive itineraries, polls, and brackets with your team. Join the waitlist.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Experience the art and legacy of Dr. Esther Mahlangu",
+      "url": "https://blog.google/company-news/outreach-and-initiatives/arts-culture/esther-mahlangu/",
+      "date": "2026-11-11",
+      "summary": "A new online archive of Esther Mahlangu’s life and art is now on Google Arts & Culture.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "BotPsy: On-Device Personal Assistant with a Sub-Billion-Parameter Agentic Language Model",
+      "url": "https://huggingface.co/blog/qvac/botpsy",
+      "date": "2026-11-11",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Token Pooling-Aware Training for Multi-Vector Embedding Models",
+      "url": "https://huggingface.co/blog/token-pooling",
+      "date": "2026-11-11",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Helping caregivers use AI in everyday life",
+      "url": "https://openai.com/index/helping-caregivers-use-ai-in-everyday-life",
+      "date": "2026-11-10",
+      "summary": "OpenAI Academy is bringing free, hands-on ChatGPT workshops to caregivers in five U.S. cities, helping them build practical AI skills for everyday life.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Introducing Businesses in ChatGPT",
+      "url": "https://openai.com/index/introducing-businesses-chatgpt",
+      "date": "2026-11-10",
+      "summary": "Manage your business information, get insights about how your business shows up, and turn interest into action in ChatGPT.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Closing the AI guidance gap in education",
+      "url": "https://openai.com/index/closing-ai-guidance-gap-education",
+      "date": "2026-11-10",
+      "summary": "New ThinkYoung research and lessons from OpenAI’s EMEA education partnerships on supporting teachers, AI literacy, and independent learning.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Singapore Airlines elevates travel & work with OpenAI technology",
+      "url": "https://openai.com/index/singapore-airlines-travel-work",
+      "date": "2026-11-10",
+      "summary": "Discover how Singapore Airlines uses OpenAI models and API to enhance customer support, travel discovery, and employee productivity, doubling CSAT for its Kris chatbot.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Work at the Frontier: AI’s effect on freelance work",
+      "url": "https://openai.com/index/ai-effect-on-freelance-work",
+      "date": "2026-11-10",
+      "summary": "New research from OpenAI and Upwork finds shifting demand for freelance work, new skill combinations, and larger budgets and more hours for AI-related projects.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "Cogent and OpenAI build cyber defense factories for enterprises",
+      "url": "https://openai.com/index/cogent-security",
+      "date": "2026-11-10",
+      "summary": "Cogent combines OpenAI models with enterprise context to help automatically remediate vulnerabilities with agents.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Gemini 4 Carbon is now available",
+      "url": "https://deepmind.google/blog/gemini-4-carbon-is-now-available/",
+      "date": "2026-11-10",
+      "summary": "",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Introducing AlphaProof Code: a breakthrough in verifying complex software at depth",
+      "url": "https://deepmind.google/blog/introducing-alphaproof-code/",
+      "date": "2026-11-10",
+      "summary": "AlphaProof Code agents wrote three million lines of proofs in Lean to verify Signal’s core encryption.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Opening the datasets behind our AI weather models",
+      "url": "https://deepmind.google/blog/opening-the-datasets-behind-our-ai-weather-models/",
+      "date": "2026-11-10",
+      "summary": "Foundational precipitation and geostationary satellite datasets to observe the planet clearly.",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "Gemini Intelligence: New features, on more devices",
+      "url": "https://blog.google/products-and-platforms/platforms/android/gemini-intelligence-november-features-devices/",
+      "date": "2026-11-10",
+      "summary": "Gemini Intelligence is rolling out to more devices. See how expanded capabilities across these devices help you do more.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "We’re bringing Adobe’s creative and productivity tools closer to your everyday Google apps.",
+      "url": "https://blog.google/company-news/inside-google/company-announcements/adobe-google-partnership-integration/",
+      "date": "2026-11-10",
+      "summary": "Google and Adobe are integrating creative and productivity tools. Edit PDFs in Drive and use Adobe AI in Gemini. See what’s new in this partnership.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Google Cloud launches Gemini for healthcare.",
+      "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/google-cloud/gemini-for-healthcare/",
+      "date": "2026-11-10",
+      "summary": "Google Cloud launches Gemini for healthcare to unify clinical data and automate workflows. Reduce administrative burnout. See how it works.",
+      "sourceId": "google-ai",
+      "sourceName": "Google AI",
+      "category": "Model Release"
+    },
+    {
+      "title": "Pay for Hugging Face Hub with your Google Cloud Account",
+      "url": "https://huggingface.co/blog/hub-gcp-marketplace",
+      "date": "2026-11-10",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "Decision Models in Hugging Face",
+      "url": "https://huggingface.co/blog/decision",
+      "date": "2026-11-10",
+      "summary": "",
+      "sourceId": "huggingface",
+      "sourceName": "Hugging Face",
+      "category": "Open Source"
+    },
+    {
+      "title": "MIT-led team receives funding to develop next-generation alternatives to modern weed killers",
+      "url": "https://news.mit.edu/2026/mit-led-team-receives-funding-next-generation-alternatives-modern-weed-killers-1110",
+      "date": "2026-11-10",
+      "summary": "With up to $53 million from ARPA-H, the researchers will use AI to generate safer herbicides that reduce dependence on imports and improve the security of the U.S. food supply.",
+      "sourceId": "mit-ai",
+      "sourceName": "MIT News — AI",
+      "category": "Research"
+    },
+    {
+      "title": "ChatGPT Enterprise now available in AWS Marketplace",
+      "url": "https://openai.com/index/chatgpt-enterprise-aws-marketplace",
+      "date": "2026-11-09",
+      "summary": "ChatGPT Enterprise is now available through AWS Marketplace, helping organizations simplify procurement through existing AWS purchasing and billing relationships.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Control Room: A central system to track and stop model workloads across our research infrastructure",
+      "url": "https://openai.com/index/control-room",
+      "date": "2026-11-09",
+      "summary": "Learn how OpenAI’s Control Room tracks model workloads across our research infrastructure and can rapidly stop them when safety or security concerns arise.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Research"
+    },
+    {
+      "title": "CodeRabbit scales agentic software development and ships 20x more",
+      "url": "https://openai.com/index/coderabbit-codex-daybreak",
+      "date": "2026-11-09",
+      "summary": "CodeRabbit uses OpenAI models to govern and trust AI-generated code and Codex to ship 20 times more software with the same engineering team.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Kuken Industries searches 70 years of drawings in minutes",
+      "url": "https://openai.com/index/kuken",
+      "date": "2026-11-09",
+      "summary": "Kuken Industries uses the OpenAI API to search 70 years of cooling tower drawings. Engineers can find the drawing for a repair in 4.5 minutes, down from nearly an hour.",
+      "sourceId": "openai",
+      "sourceName": "OpenAI",
+      "category": "Product Update"
+    },
+    {
+      "title": "Gemini Robotics 2.5 accelerates real-world general dexterity",
+      "url": "https://deepmind.google/blog/gemini-robotics-2-5-accelerates-real-world-physical-intelligence/",
+      "date": "2026-11-09",
+      "summary": "Our most capable vision-language-action model enhances robot dexterity, reliability, and safety",
+      "sourceId": "deepmind",
+      "sourceName": "Google DeepMind",
+      "category": "Research"
+    },
+    {
+      "title": "BAIR at CoRL 2026",
+      "url": "https://bair.berkeley.edu/blog/2026/11/09/bair-at-corl-2026/",
+      "date": "2026-11-09",
+      "summary": "The Conference on Robot Learning (CoRL) takes place November 9–12, 2026, in Austin, Texas. BAIR faculty, postdocs and students will be presenting research at various sessions, including an Early Career Keynote from Professor Negar Mehr. See below for the full schedule of sessions with BAIR members, including papers co-authored with collaborators at other universities and companies. .corl { font-size: 0.95rem; text-align: left; } .corl [hidden] { display: none !important; } .corl p, .corl ul, .corl li { text-align: left; } .corl a { word-break: break-word; } .corl-sans, .corl-meta, .corl-stat, .corl-nav, .corl-tools, .corl-time, .corl-tag, .corl-board, .corl-day-sub, .corl-venue, .corl-chair, .corl-also, .corl-sources, .corl-program { font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif; } .corl-meta { color: #555; margin: 0 0 1.2em; } .corl-meta span + span::before { content: \"·\"; margin: 0 0.5em; color: #aaa; } .corl-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.6rem; margin: 0 0 1.4em; } .corl-stat { border: 1px solid #e3e3e3; border-radius: 6px; padding: 0.7rem 0.8rem; line-height: 1.25; } .corl-stat strong { display: block; font-size: 1.7rem; font-weight: 900; color: #003262; } .corl-stat span { display: block; font-size: 0.8rem; color: #333; } .corl-stat small { display: block; font-size: 0.75rem; color: #777; } .corl-nav { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0 0 1.2em; } .corl-nav a { border: 1px solid #cfd8e3; border-radius: 4px; padding: 0.3rem 0.7rem; text-decoration: none; font-weight: 700; font-size: 0.85rem; } .corl-nav a small { font-weight: 400; color: #777; margin-left: 0.3em; } .corl-nav a:hover { background: #f2f6fb; } .corl-nav-note { font-size: 0.8rem; color: #777; } .corl-notes { background: #f7f7f7; border-left: 3px solid #FDB515; padding: 0.8rem 1rem; margin: 0 0 1.4em; font-size: 0.85rem; } .corl-notes p { margin: 0 0 0.5em; } .corl-notes p:last-child { margin-bottom: 0; } .corl-tools { display: flex; flex-wrap: wrap; gap: 0.6rem; align-items: flex-end; margin: 0 0 0.4em; font-size: 0.85rem; } .corl-tools label { display: block; font-size: 0.75rem; color: #555; margin-bottom: 0.2em; } .corl-tools .corl-field { flex: 1 1 14rem; } .corl-tools input, .corl-tools select { width: 100%; font: inherit; padding: 0.35rem 0.5rem; border: 1px solid #ccc; border-radius: 4px; height: auto; margin: 0; } .corl-tools button { font: inherit; padding: 0.35rem 0.8rem; border: 1px solid #ccc; border-radius: 4px; background: #fff; cursor: pointer; } .corl-status { font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif; font-size: 0.75rem; color: #777; margin: 0 0 1.5em; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.5em; } .corl-empty { padding: 1rem; border: 1px dashed #ccc; border-radius: 6px; text-align: center; } .corl-day { margin-top: 2.2em; } .corl-day > h2 { border-bottom: 2px solid #003262; padding-bottom: 0.3rem; margin-bottom: 0.2rem; } .corl-day-sub { font-size: 0.8rem; color: #666; margin: 0 0 1em; } .corl-day-sub span + span::before { content: \"·\"; margin: 0 0.5em; color: #aaa; } .corl-session { display: grid; grid-template-columns: 7.5rem 1fr; gap: 1rem; padding: 1rem 0; border-top: 1px solid #eee; } .corl-session:first-of-type { border-top: 0; } .corl-session.corl-featured { background: #fffbf0; border-left: 3px solid #FDB515; padding-left: 0.8rem; } .corl-time { font-weight: 700; font-size: 0.9rem; line-height: 1.3; } .corl-time small { display: block; font-weight: 400; font-size: 0.7rem; color: #777; text-transform: uppercase; letter-spacing: 0.03em; } .corl-tag { display: inline-block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.1rem 0.45rem; border-radius: 3px; background: #eef2f7; color: #003262; } .corl-tag.k-keynote { background: #FDB515; color: #1a1a1a; } .corl-tag.k-oral { background: #003262; color: #fff; } .corl-tag.k-spotlight { background: #3b7ea1; color: #fff; } .corl-tag.k-poster { background: #eef2f7; color: #003262; } .corl-tag.k-lbr { background: #e7f3ec; color: #145a32; } .corl-tag.k-workshop { background: #f1ecf7; color: #4a2a75; } .corl-session h3 { margin: 0.35rem 0 0.15rem; font-size: 1.05rem; } .corl-venue { font-size: 0.8rem; color: #666; margin: 0 0 0.6em; } .corl-chair { font-weight: 700; color: #333; } .corl-paper, .corl-appearance { margin: 0 0 0.9em; } .corl-paper h4, .corl-appearance h4 { font-size: 0.92rem; margin: 0 0 0.2em; line-height: 1.35; font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif; font-weight: 700; } .corl-board { display: inline-block; font-size: 0.72rem; color: #555; border: 1px solid #ddd; border-radius: 3px; padding: 0 0.35rem; margin-bottom: 0.25em; } .corl-authors { font-size: 0.82rem; margin: 0 0 0.2em; line-height: 1.45; } .corl-also, .corl-sources, .corl-program, .corl-see { font-size: 0.75rem; color: #666; margin: 0 0 0.15em; } .corl-see { font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif; font-style: italic; } .corl-talk { font-style: italic; margin: 0 0 0.2em; } .corl-appearance p { font-size: 0.85rem; margin: 0 0 0.2em; } .corl-organizers { margin: 0; padding-left: 1.1rem; } .corl-organizers li { margin-bottom: 0.5em; font-size: 0.88rem; } .corl-organizers p { margin: 0; font-size: 0.82rem; color: #444; } .corl-about { margin-top: 2.5em; border-top: 2px solid #003262; padding-top: 0.5em; font-size: 0.85rem; } .corl-about-links { font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif; display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; } @media (max-width: 40em) { .corl-stats { grid-template-columns: repeat(2, 1fr); } .corl-session { grid-template-columns: 1fr; gap: 0.3rem; } .corl-time small { display: inline; margin-left: 0.4em; } .corl-time { font-size: 1rem; } .corl-venue, .corl-also, .corl-sources, .corl-program, .corl-board, .corl-tag, .corl-time small, .corl-day-sub, .corl-stat small, .corl-nav-note, .corl-see { font-size: 0.8rem; } .corl-authors { font-size: 0.9rem; } } @media print { .corl-tools, .corl-status, .corl-nav, .corl-empty { display: none !important; } } November 9–12, 2026 Austin, Texas All times CST · UTC−6 33 Main-conference papers 4 Late-breaking results (LBR) posters 10 Orals &amp; spotlights 3 orals · 7 spotlights 4 Days of research November 9–12 Mon Nov 9 Tue Nov 10 Wed Nov 11 Thu Nov 12 Main conference Nov 9–11 · Workshops Nov 12 Times shown for oral and spotlight papers are session windows. Individual presentation order is not specified. Papers appear in both their talk and poster sessions. Paper inclusion: At least one author is affiliated with UC Berkeley; joint affiliations qualify. Faculty talks, session-chair roles and workshop participation are also included. Late-breaking results: Four late-breaking posters with Berkeley authors are listed so far. This list may grow as more late-breaking posters are confirmed. Find a paper or person Session type All sessions Keynote Orals Spotlights Posters Late-breaking results Workshops Reset Showing all sessions Updated November 8, 2026 No matching sessions. Try a surname, a shorter paper title, or reset the filters. Monday , November 9 Main conference 10 papers + 3 LBR posters 9:00–9:30 AM CST Spotlight · S1 Generalist policies, memory and transfer Hilton Austin MEM: Multi-Scale Embodied Memory for Vision Language Action Models Marcel Torne, Karl Pertsch, Homer Walke, Kyle Vedder, Suraj Nair, Brian Ichter, Allen Z. Ren, Haohuan Wang, Jiaming Tang, Kyle Stachowicz, Karan Dhabalia, Michael Robert Equi, Quan Vuong, Jost Tobias Springenberg, Sergey Levine, Chelsea Finn, Danny Driess Also at Poster Session I · 5:00–6:30 PM · Poster 42 · JW Marriott Paper ↗ Diagnosing Compositional Generalization in Sequential Robot Tasks Yixiao Wang, Cheng-En Wu, Lingfeng Sun, Pengcheng Wang, Xiang Ji, Boyuan Liang, Guojian Zhan, Masayoshi Tomizuka Also at Poster Session I · 5:00–6:30 PM · Poster 115 · JW Marriott Paper ↗ 12:00–1:30 PM CST · LUNCH BREAK Late-breaking results · Posters Agentic Robotics Griffin · Level 2 · JW Marriott Austin Griffin board 119 · LBR #15 Scaling Online Exploration for Robot Agents Runhan Huang, Xiangcheng Zhang, Haoyu Chen, Yitong Li, Yen-Jen Wang, Bohan Lyu, Haotian Ye, Chuye Hong, Yixuan Wang, Chloe Su, Haoyu Xiong, Yangzhen Wu, Enze Xie, Travis Manderson, Stefano Ermon, Pieter Abbeel, Antonio Torralba, Dawn Song, Weirui Ye, Yilun Du Griffin board 120 · LBR #19 Reconstruct, Practice, Go Real: Guided Self-Improvement for Embodied Agents Yen-Jen Wang, Haozhe Jiang, Shuying Deng, Haoru Xue, Weirui Ye, Rocky Duan, Nika Haghtalab, S. Shankar Sastry, Pieter Abbeel, Haozhi Qi Also at Agentic Robotics workshop · Thursday, November 12 · 4:15–5:55 PM Griffin board 131 · LBR #54 Flip Anything with Agentic Robotics Self-Learning Shuangyu Xie, Kaiyuan Chen, Ken Goldberg GitHub ↗ Late-breaking results program ↗ 2:00–2:30 PM CST Keynote Early Career Keynote II Hilton Austin Session chair: Ken Goldberg Professor Negar Mehr How Can Robots Learn to Interact and Coordinate with Others? Session details ↗ 5:00–6:30 PM CST Posters Poster Session I JW Marriott Poster 42 MEM: Multi-Scale Embodied Memory for Vision Language Action Models Marcel Torne, Karl Pertsch, Homer Walke, Kyle Vedder, Suraj Nair, Brian Ichter, Allen Z. Ren, Haohuan Wang, Jiaming Tang, Kyle Stachowicz, Karan Dhabalia, Michael Robert Equi, Quan Vuong, Jost Tobias Springenberg, Sergey Levine, Chelsea Finn, Danny Driess Authors listed under Monday, Spotlight S1 Paper ↗ Poster 57 Large Video Planner Enables Generalizable Robot Control Boyuan Chen, Tianyuan Zhang, Haoran Geng, Caiyi Zhang, Peihao Li, Kiwhan Song, William T. Freeman, Jitendra Malik, Pieter Abbeel, Russ Tedrake, Vincent Sitzmann, Yilun Du Paper ↗ Poster 68 How to Peel with a Knife: Aligning Fine-Grained Manipulation with Human Preference Toru Lin, Shuying Deng, Zhao-Heng Yin, Pieter Abbeel, Jitendra Malik Paper ↗ Poster 97 HiRE: Hindsight Reward Editing for Policy Finetuning Haoyi Niu, Zhengtao Han, Yufeng Ji, Zhongyu Li, Koushil Sreenath Paper ↗ Poster 113 Scalable Behavior Cloning with Open Data, Training, and Evaluation Arthur Allshire, Himanshu Gaurav Singh, Ritvik Singh, Adam Rashid, Hongsuk Choi, David McAllister, Justin Yu, Yiyuan Chen, Huang Huang, Pieter Abbeel, Xi Chen, Rocky Duan, Phillip Isola, Jitendra Malik, Fred Shentu, Guanya Shi, Philipp Wu, Angjoo Kanazawa Paper ↗ Poster 115 Diagnosing Compositional Generalization in Sequential Robot Tasks Yixiao Wang, Cheng-En Wu, Lingfeng Sun, Pengcheng Wang, Xiang Ji, Boyuan Liang, Guojian Zhan, Masayoshi Tomizuka Authors listed under Monday, Spotlight S1 Paper ↗ Poster 142 AsyncVLA: An Asynchronous VLA for Fast and Robust Navigation on the Edge Noriaki Hirose, Catherine Glossop, Dhruv Shah, Sergey Levine Paper ↗ Poster 159 GLST: Global-Local Spatio-Temporal Memory Decomposition Framework for Online Chained-Goal Navigation Yousef Liang, Ryan Ardalan, Yarden Goraly, Chenhao Zhu, Jonas Frey, Claire Tomlin, Marco Pavone, S. Shankar Sastry Paper ↗ Poster 202 ENPIRE: Agentic Robot Policy Self-Improvement in the Real World Wenli Xiao, Jia Xie, Tonghe Zhang, Haotian Lin, Letian Fu, Haoru Xue, Jalen Lu, Yi Yang, Cunxi Dai, Zi Wang, Jimmy Wu, Guanzhi Wang, S. Shankar Sastry, Ken Goldberg, Linxi Fan, Yuke Zhu, Guanya Shi Paper ↗ Poster 225 Energy-Based Policy Orchestration Weirui Ye, Yen-Jen Wang, Elvis Hsieh, Zhiyang Dou, Shibo Zhao, Pieter Abbeel, Yilun Du, Leslie Pack Kaelbling, Tomás Lozano-Pérez Paper ↗ Tuesday , November 10 Main conference 11 papers + 1 LBR poster 9:00–9:30 AM CST Oral · O4 Reinforcement learning and motion reasoning Hilton Austin Flow Policy Gradients for Robot Control Brent Yi, Hongsuk Choi, Himanshu Gaurav Singh, Xiaoyu Huang, Takara E. Truong, Carmelo Sferrazza, Yi Ma, Rocky Duan, Pieter Abbeel, Guanya Shi, Karen Liu, Angjoo Kanazawa Also at Poster Session II · 5:00–6:30 PM · Poster 63 · JW Marriott Paper ↗ 10:30–11:00 AM CST Oral · O5 Dexterous learning, grasping and assembly Hilton Austin EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data Ruijie Zheng, Dantong Niu, Yuqi Xie, Jing Wang, Mengda Xu, Yunfan Jiang, Fernando Castañeda, Fengyuan Hu, You Liang Tan, Letian Fu, Trevor Darrell, Furong Huang, Yuke Zhu, Danfei Xu, Linxi Fan Also at Poster Session II · 5:00–6:30 PM · Poster 54 · JW Marriott Paper ↗ 11:30 AM–12:00 PM CST Oral · O7 Humanoid data, control and skills Hilton Austin Session chair: Koushil Sreenath SuperMimic: Scaling Humanoid Whole-Body Control with One Differentiable World Model Qiayuan Liao, Yiyang Shao, Junfeng Long, Kevin Zakka, Roberto Horowitz, Pieter Abbeel, Koushil Sreenath Also at Poster Session II · 5:00–6:30 PM · Poster 217 · JW Marriott Paper ↗ 12:00–1:30 PM CST · LUNCH BREAK Late-breaking results · Posters Real2Sim2Real Griffin · Level 2 · JW Marriott Austin Griffin board 122 · LBR #26 RoboSimStudio: An Interactive Toolkit for Rapid Real2Sim of Robot Manipulation Tasks Kaiyuan Chen, Shuangyu Xie, Uksang Yoo, Xinyue Zhu, Cael Magner, Alvin Zhu, Daehwa Kim, Eric Heiden, Erwin Coumans, Miles Macklin, Spencer Huang, Ken Goldberg Late-breaking results program ↗ 5:00–6:30 PM CST Posters Poster Session II JW Marriott Poster 7 DiscreteRTC: Discrete Diffusion Policies are Natural Asynchronous Executors Pengcheng Wang, Kaiwen Hong, Chensheng Peng, Katherine Rose Driggs-Campbell, Masayoshi Tomizuka, Chenfeng Xu, Chen Tang Paper ↗ Poster 39 Improving Robotic Generalist Policies via Flow Reversal Steering Andy Tang, William Chen, Andrew Wagenmaker, Chelsea Finn, Sergey Levine Paper ↗ Poster 54 EgoScale: Scaling Dexterous Manipulation with Diverse Egocentric Human Data Ruijie Zheng, Dantong Niu, Yuqi Xie, Jing Wang, Mengda Xu, Yunfan Jiang, Fernando Castañeda, Fengyuan Hu, You Liang Tan, Letian Fu, Trevor Darrell, Furong Huang, Yuke Zhu, Danfei Xu, Linxi Fan Authors listed under Tuesday, Oral O5 Paper ↗ Poster 63 Flow Policy Gradients for Robot Control Brent Yi, Hongsuk Choi, Himanshu Gaurav Singh, Xiaoyu Huang, Takara E. Truong, Carmelo Sferrazza, Yi Ma, Rocky Duan, Pieter Abbeel, Guanya Shi, Karen Liu, Angjoo Kanazawa Authors listed under Tuesday, Oral O4 Paper ↗ Poster 77 Why Does Action Chunking Improve Behavioral Cloning Performance in Robotic Control? Filippo Lazzati, Kyle Stachowicz, William Chen, Alberto Maria Metelli, Andrew Wagenmaker, Sergey Levine Paper ↗ Poster 142 FTP-1: A Generalist Foundation Tactile Policy Across Tactile Sensors for Contact-Rich Manipulation Chengbo Yuan, Zicheng Zhang, Mingjie Zhou, Wendi Chen, Yi Wang, Zhuoyang Liu, Dantong Niu, Shuo Wang, Hui Zhang, Wenkang Zhang, Yingdong Hu, Yuanqing Gong, Wanli Xing, Chuan Wen, Cewu Lu, Kaifeng Zhang, Yang Gao Paper ↗ Poster 153 PTLD: Sim-to-Real Privileged Tactile Latent Distillation for Dexterous Manipulation Rosy Chen, Mustafa Mukadam, Michael Kaess, Tingfan Wu, Francois Robert Hogan, Jitendra Malik, Akash Sharma Paper ↗ Poster 184 Counterfactual Video Generation Enables Scalable Humanoid Loco-Manipulation Zihan Wang, Zhen Wu, Pieter Abbeel, Rocky Duan, Jitendra Malik, Carmelo Sferrazza, Karen Liu, Guanya Shi, Angjoo Kanazawa Paper ↗ Poster 189 VLK: Learning Humanoid Loco-Manipulation from Synthetic Interactions in Reconstructed Scenes Yen-Jen Wang, Jiaman Li, Sirui Chen, Takara E. Truong, Pei Xu, Pieter Abbeel, Rocky Duan, Koushil Sreenath, Angjoo Kanazawa, Carmelo Sferrazza, Guanya Shi, Karen Liu Paper ↗ Poster 195 Social Humanoid: Socially Responsive Human–Humanoid Interaction Vongani Hlavutelo Maluleke, James Ni, Kie Horiuchi, Lea Wilken, Jiahui Lei, Evonne Ng, Roei Herzig, Jitendra Malik, Trevor Darrell, Angjoo Kanazawa Poster 217 SuperMimic: Scaling Humanoid Whole-Body Control with One Differentiable World Model Qiayuan Liao, Yiyang Shao, Junfeng Long, Kevin Zakka, Roberto Horowitz, Pieter Abbeel, Koushil Sreenath Authors listed under Tuesday, Oral O7 Paper ↗ Wednesday , November 11 Main conference 12 papers 8:30–9:00 AM CST Spotlight · S6 Optimization, agentic planning and evaluation Hilton Austin Session chair: Negar Mehr Playful Agentic Robot Learning Junyi Zhang, Jiaxin Ge, Hanjun Yoo, Letian Fu, Zihan Yang, Yaowei Liu, Raj Saravanan, Shaofeng Yin, Justin Yu, Dantong Niu, Zirui Wang, Roei Herzig, Ken Goldberg, Yutong Bai, David M. Chan, Ion Stoica, Angjoo Kanazawa, Jiahui Lei, Haiwen Feng, Trevor Darrell Also at Poster Session III · 10:30 AM–12:00 PM · Poster 99 · JW Marriott Paper ↗ GaP: A Graph-as-Policy Multi-Agent Self-Learning Harness For Variational Automation Tasks Kaiyuan Chen, Shuangyu Xie, Letian Fu, Justin Yu, William Pacini, Sandeep Bajamahal, Hudson Kim, Jaimyn Drake, Daehwa Kim, Haoru Xue, Jonathan Francis, Christian Juette, Peter Schaldenbrand, Muhammet Yunus Seker, Ruwan Wickramarachchi, Uksang Yoo, Guanzhi Wang, Adithyavairavan Murali, Balakumar Sundaralingam, S. Shankar Sastry, Yuke Zhu, Linxi Fan, Spencer Huang, Ken Goldberg Also at Poster Session III · 10:30 AM–12:00 PM · Poster 100 · JW Marriott Paper ↗ 9:00–9:30 AM CST Spotlight · S7 Humanoid locomotion and whole-body control Hilton Austin LadderMan: Learning Humanoid Perceptive Ladder Climbing Siheng Zhao, Yuanhang Zhang, Ziqi Lu, Pieter Abbeel, Rocky Duan, Koushil Sreenath, Yue Wang, Karen Liu, Guanya Shi Also at Poster Session III · 10:30 AM–12:00 PM · Poster 195 · JW Marriott Paper ↗ ResSafe: Learning Safety Filtering with Residual Reinforcement Learning for Humanoids Gechen Qu, Tong Zhang, Bike Zhang, Yen-Jen Wang, Koushil Sreenath, Claire Tomlin, Jason Jangho Choi Also at Poster Session III · 10:30 AM–12:00 PM · Poster 198 · JW Marriott Paper ↗ TANGO: Humanoid Navigation in Cluttered Environments with a Whole-Body Vision-Language-Action Model Anqi Li, Yuxin Chen, Zhaobo Li, Zhuo Cao, Junli Ren, Masayoshi Tomizuka, Dhruv Shah Also at Poster Session III · 10:30 AM–12:00 PM · Poster 200 · JW Marriott Paper ↗ 10:30 AM–12:00 PM CST Posters Poster Session III JW Marriott Poster 51 Do as I Do: Dexterous Manipulation Data from Everyday Human Videos Bhawna Paliwal, Haritheja Etukuru, William Liang, Pieter Abbeel, Nur Muhammad Mahi Shafiullah, Jitendra Malik Paper ↗ Poster 68 WARP-RM: A Warp-Augmented Relative Progress Reward Model for Data Curation Justin Yu, Andrew Goldberg, Kavish Kondap, Karim El-Refai, Ethan Ransing, Qianzhong Chen, Mac Schwager, Fred Shentu, Philipp Wu, Ken Goldberg Paper ↗ Poster 99 Playful Agentic Robot Learning Junyi Zhang, Jiaxin Ge, Hanjun Yoo, Letian Fu, Zihan Yang, Yaowei Liu, Raj Saravanan, Shaofeng Yin, Justin Yu, Dantong Niu, Zirui Wang, Roei Herzig, Ken Goldberg, Yutong Bai, David M. Chan, Ion Stoica, Angjoo Kanazawa, Jiahui Lei, Haiwen Feng, Trevor Darrell Authors listed under Wednesday, Spotlight S6 Paper ↗ Poster 100 GaP: A Graph-as-Policy Multi-Agent Self-Learning Harness For Variational Automation Tasks Kaiyuan Chen, Shuangyu Xie, Letian Fu, Justin Yu, William Pacini, Sandeep Bajamahal, Hudson Kim, Jaimyn Drake, Daehwa Kim, Haoru Xue, Jonathan Francis, Christian Juette, Peter Schaldenbrand, Muhammet Yunus Seker, Ruwan Wickramarachchi, Uksang Yoo, Guanzhi Wang, Adithyavairavan Murali, Balakumar Sundaralingam, S. Shankar Sastry, Yuke Zhu, Linxi Fan, Spencer Huang, Ken Goldberg Authors listed under Wednesday, Spotlight S6 Paper ↗ Poster 135 T-Rex: Tactile-Reactive Dexterous Manipulation Dantong Niu, Zhuoyang Liu, Zekai Wang, Boning Shao, Zhao-Heng Yin, Anirudh Pai, Yuvan Sharma, Stefano Saravalle, Ruijie Zheng, Jing Wang, Ryan Punamiya, Mengda Xu, Yuqi Xie, Yunfan Jiang, Letian Fu, Konstantinos Kallidromitis, Matteo Gioia, Junyi Zhang, Jiaxin Ge, Haiwen Feng, Fabio Galasso, Wei Zhan, David M. Chan, Yutong Bai, Roei Herzig, Jiahui Lei, Fei-Fei Li, Ken Goldberg, Jitendra Malik, Pieter Abbeel, Yuke Zhu, Danfei Xu, Linxi Fan, Trevor Darrell Paper ↗ Poster 148 Tactile Curiosity Drives Robot Interaction Klemens Iten, Alexander Proshkin, Bhavya Sukhija, Stelian Coros, Andreas Krause, Pieter Abbeel, Carmelo Sferrazza Paper ↗ Poster 159 RPL: Learning Robust Humanoid Perceptive Locomotion on Challenging Terrains Yuanhang Zhang, Younggyo Seo, Juyue Chen, Yifu Yuan, Koushil Sreenath, Pieter Abbeel, Carmelo Sferrazza, Karen Liu, Rocky Duan, Guanya Shi Paper ↗ Poster 175 TEXEDO: Test Time Scaling for Controller-aware Language-conditioned Humanoid Motion Generation Jianuo Cao, Yuxin Chen, Yuzhen Song, Masayoshi Tomizuka, Chenran Li, Thomas Tian Paper ↗ Poster 178 CLIFT: Turning Gemini Robotics On-Device into Humanoid Specialists via Non-Invasive Closed-Loop Iterative Fine-Tuning Yuxin Chen, Hari Srikanth, Nathan Jew, Menglin Wu, Pengcheng Wang, Junli Ren, Masayoshi Tomizuka, Peng Xu, Jinyu Xie, Thomas Tian Paper ↗ Poster 195 LadderMan: Learning Humanoid Perceptive Ladder Climbing Siheng Zhao, Yuanhang Zhang, Ziqi Lu, Pieter Abbeel, Rocky Duan, Koushil Sreenath, Yue Wang, Karen Liu, Guanya Shi Authors listed under Wednesday, Spotlight S7 Paper ↗ Poster 198 ResSafe: Learning Safety Filtering with Residual Reinforcement Learning for Humanoids Gechen Qu, Tong Zhang, Bike Zhang, Yen-Jen Wang, Koushil Sreenath, Claire Tomlin, Jason Jangho Choi Authors listed under Wednesday, Spotlight S7 Paper ↗ Poster 200 TANGO: Humanoid Navigation in Cluttered Environments with a Whole-Body Vision-Language-Action Model Anqi Li, Yuxin Chen, Zhaobo Li, Zhuo Cao, Junli Ren, Masayoshi Tomizuka, Dhruv Shah Authors listed under Wednesday, Spotlight S7 Paper ↗ Thursday , November 12 Workshops Talks, papers and organizing roles 8:40–9:50 AM CST Workshop Roadmap to Sample-Efficient Real-World Reinforcement Learning (R2RL) · Keynote block JW Marriott · Room 213 Zhiyuan “Paul” Zhou Sergey Levine’s lab. Speaks during the keynote block. Session details ↗ 9:40–10:15 AM CST Workshop Bimanual Dexterous Tool Use · Spotlights JW Marriott · Rooms 303–304 T-Rex: Tactile-Reactive Dexterous Manipulation Dantong Niu, Zhuoyang Liu, Zekai Wang, Boning Shao, Zhao-Heng Yin, Anirudh Pai, Yuvan Sharma, Stefano Saravalle, Ruijie Zheng, Jing Wang, Ryan Punamiya, Mengda Xu, Yuqi Xie, Yunfan Jiang, Letian Fu, Konstantinos Kallidromitis, Matteo Gioia, Junyi Zhang, Jiaxin Ge, Haiwen Feng, Fabio Galasso, Wei Zhan, David M. Chan, Yutong Bai, Roei Herzig, Jiahui Lei, Fei-Fei Li, Ken Goldberg, Jitendra Malik, Pieter Abbeel, Yuke Zhu, Danfei Xu, Linxi Fan, Trevor Darrell Authors listed under Wednesday, Poster Session III Paper ↗ Do as I Do: Dexterous Manipulation Data from Everyday Human Videos Bhawna Paliwal, Haritheja Etukuru, William Liang, Pieter Abbeel, Nur Muhammad Mahi Shafiullah, Jitendra Malik Authors listed under Wednesday, Poster Session III Paper ↗ Workshop program ↗ 10:15–10:40 AM CST Workshop Bimanual Dexterous Tool Use · Posters &amp; demos JW Marriott · Rooms 303–304 T-Rex: Tactile-Reactive Dexterous Manipulation Dantong Niu, Zhuoyang Liu, Zekai Wang, Boning Shao, Zhao-Heng Yin, Anirudh Pai, Yuvan Sharma, Stefano Saravalle, Ruijie Zheng, Jing Wang, Ryan Punamiya, Mengda Xu, Yuqi Xie, Yunfan Jiang, Letian Fu, Konstantinos Kallidromitis, Matteo Gioia, Junyi Zhang, Jiaxin Ge, Haiwen Feng, Fabio Galasso, Wei Zhan, David M. Chan, Yutong Bai, Roei Herzig, Jiahui Lei, Fei-Fei Li, Ken Goldberg, Jitendra Malik, Pieter Abbeel, Yuke Zhu, Danfei Xu, Linxi Fan, Trevor Darrell Authors listed under Wednesday, Poster Session III Paper ↗ Do as I Do: Dexterous Manipulation Data from Everyday Human Videos Bhawna Paliwal, Haritheja Etukuru, William Liang, Pieter Abbeel, Nur Muhammad Mahi Shafiullah, Jitendra Malik Authors listed under Wednesday, Poster Session III Paper ↗ Workshop program ↗ 10:35–11:05 AM CST Workshop Everything Beneath the Policy · Posters Hilton Austin · Salon E, 4th floor TouchScale: 500 Hours of Human Vision and Touch for Visual-Tactile Learning Dayou Li, Hao Wang, Qianqian Yang, Zihao Zhu, Haoquan Fang, Ziyao Zeng, Yan Han, Zihan Wang, Yan Wang, Baoru Huang, Dilin Wang, Kenji Shimada, Yiyue Luo, Manling Li, Teresa Lv, Mustafa Mukadam, Rakesh Ranjan, Ruohan Zhang, Qi He, Changliu Liu, Xu Chen, Marco Pavone, Bangya Liu, Jiachen Li, Masayoshi Tomizuka, Zhiwen Fan Workhorse: Learning Robust Whole-Body Humanoid Loco-Manipulation from Human Data Songbo Hu, Qiayuan Liao, Yufeng Chi, Kevin Zakka, Sophia Shao, Pieter Abbeel, Koushil Sreenath Paper ↗ Workshop program ↗ 10:40–11:10 AM CST Workshop Bimanual Dexterous Tool Use · Invited talk JW Marriott · Rooms 303–304 Professor Jitendra Malik Talk title has not been announced. Session details ↗ 11:50 AM–12:20 PM CST Workshop R2RL · Panel discussion JW Marriott · Room 213 Zhiyuan “Paul” Zhou Panel with workshop speakers and audience volunteers. Session details ↗ 2:45–3:05 PM CST Workshop Agentic Robotics · Invited talk Room to be announced Professor Ken Goldberg Talk title has not been announced. Session details ↗ Approx. 2:55–3:25 PM CST Workshop Sim-to-Real-to-Field · Invited talks Hilton Austin · Salon E, 4th floor Professor Claire Tomlin Shared invited-talk block with Michael Lutter (Boston Dynamics). Session details ↗ 4:15–5:55 PM CST Workshop Agentic Robotics · Live demos &amp; posters Room to be announced ASPIRE: Agentic /Skills Discovery for Robotics Runyu Lu, Yubo Wu, Ethan Kou, Haotian Lin, Letian Fu, Wenli Xiao, Ajay Mandlekar, Yinzhen Xu, Guanya Shi, Ken Goldberg, Ang Chen, Mosharaf Chowdhury, Jan Kautz, Yuke Zhu, Linxi Fan, Guanzhi Wang Agentic World Action Models Zhuoyang Liu, Dantong Niu, Botong Zhang, Boning Shao, Jing Wang, Ruijie Zheng, Yuvan Sharma, Runyu Lu, Jiaming Liu, Renrui Zhang, Roei Herzig, Yutong Bai, Ken Goldberg, Danfei Xu, Yuke Zhu, Guanzhi Wang, Linxi Fan, Trevor Darrell Reconstruct, Practice, Go Real: Guided Self-Improvement for Embodied Agents Yen-Jen Wang, Haozhe Jiang, Shuying Deng, Haoru Xue, Weirui Ye, Rocky Duan, Nika Haghtalab, S. Shankar Sastry, Pieter Abbeel, Haozhi Qi Authors listed under Monday, Late-breaking results, Agentic Robotics Workshop program ↗ Additional involvement Workshop organizers BAIR behind the program Workshop organizing roles. Do Robots Need World Models? Lasse Peters, Negar Mehr’s lab — organizer. Sim-to-Real-to-Field S. Shankar Sastry, Bike Zhang, Siming He, Jonas Frey — organizers. “Oops, I Erred” Sergey Levine — faculty advisor. Zhiyuan “Paul” Zhou and Renhao Wang — organizers. Dexterous Manipulation: Full-Stack Robotics on Learning and Design Jitendra Malik — organizer. Workshop: 2:00–6:00 PM. About this schedule Schedule compiled from the conference program, paper and project pages, and workshop programs. Workshop schedules may change; consult each linked program for updates. Coverage includes 33 main-conference papers, 4 late-breaking results posters and the workshop contributions listed above. The main conference demo track is not covered. Main-conference poster numbers follow an unofficial paper index; check the official program on the day. Hilton stage content will also be streamed to viewing rooms at the Marriott. Paper affiliations reviewed November 6, 2026; late-breaking results updated November 8, 2026. Official CoRL program ↗ BAIR faculty ↗ Unofficial paper &amp; poster index ↗ Back to top ↑ (function () { \"use strict\"; var root = document.querySelector(\".corl\"); if (!root) return; var tools = root.querySelector(\".corl-tools\"); var search = document.getElementById(\"corl-search\"), type = document.getElementById(\"corl-type\"); var status = document.getElementById(\"corl-status\"), empty = document.getElementById(\"corl-empty\"); var sessions = Array.prototype.slice.call(root.querySelectorAll(\".corl-session\")); tools.hidden = false; function norm(s) { return s.normalize(\"NFKD\").replace(/[̀-ͯ]/g, \"\").toLowerCase(); } function filter() { var tokens = norm(search.value.trim()).split(/\\s+/).filter(Boolean), visible = 0; sessions.forEach(function (s) { var kindOK = !type.value || s.dataset.kind === type.value; var cards = Array.prototype.slice.call(s.querySelectorAll(\".corl-paper\")); var any = false; if (cards.length) { var body = s.querySelector(\".corl-body\").cloneNode(true); Array.prototype.forEach.call(body.querySelectorAll(\".corl-paper\"), function (n) { n.remove(); }); var base = norm(s.querySelector(\".corl-time\").textContent + \" \" + body.textContent); cards.forEach(function (c) { var hay = base + \" \" + norm(c.textContent); var m = tokens.every(function (t) { return hay.indexOf(t) !== -1; }); c.hidden = !m; any = any || m; }); } else { var hay = norm(s.textContent); any = tokens.every(function (t) { return hay.indexOf(t) !== -1; }); } s.hidden = !(kindOK && any); if (!s.hidden) visible++; }); Array.prototype.forEach.call(root.querySelectorAll(\".corl-day\"), function (d) { d.hidden = !Array.prototype.some.call(d.querySelectorAll(\".corl-session\"), function (s) { return !s.hidden; }); }); empty.hidden = visible > 0; status.textContent = (!search.value && !type.value) ? \"Showing all sessions\" : visible + \" matching session\" + (visible === 1 ? \"\" : \"s\"); } function reset() { search.value = \"\"; type.value = \"\"; filter(); } search.addEventListener(\"input\", filter); type.addEventListener(\"change\", filter); document.getElementById(\"corl-reset\").addEventListener(\"click\", function () { reset(); search.focus(); }); Array.prototype.forEach.call(root.querySelectorAll(\".corl-nav a, .corl-see a\"), function (a) { a.addEventListener(\"click\", reset); }); window.addEventListener(\"beforeprint\", reset); })();",
+      "sourceId": "bair",
+      "sourceName": "Berkeley AI Research",
+      "category": "Research"
+    },
     {
       "title": "Expanding Teen Account Protections to Teens Around the World",
       "url": "https://about.fb.com/news/2026/11/expanding-teen-account-protections-to-teens-around-the-world/",
@@ -1152,654 +1800,6 @@
       "sourceId": "github-trending",
       "sourceName": "GitHub",
       "category": "Open Source"
-    },
-    {
-      "title": "Build more responsive apps with the Decisions API",
-      "url": "https://openai.com/index/decisions-api",
-      "date": "2026-10-22",
-      "summary": "Fast, focused, low-cost decisions for any application.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "What FDE means at OpenAI",
-      "url": "https://openai.com/index/forward-deployed-engineering-means",
-      "date": "2026-10-22",
-      "summary": "What forward deployed engineering means at OpenAI",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Uber brings ChatGPT Work to all employees with OpenAI",
-      "url": "https://openai.com/index/uber-chatgpt-work-rollout",
-      "date": "2026-10-22",
-      "summary": "Uber is rolling out ChatGPT Work to more than 30,000 employees, helping teams research, analyze data, create presentations, and complete complex workflows.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Open Call Guest Investigators Life Sciences",
-      "url": "https://www.anthropic.com/news/open-call-guest-investigators-life-sciences",
-      "date": "2026-10-22",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Donating Agent Skills TO The Agentic AI Foundation",
-      "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
-      "date": "2026-10-22",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Beyond tree cover: mapping the world’s forest types",
-      "url": "https://deepmind.google/blog/beyond-tree-cover-mapping-the-worlds-forest-types/",
-      "date": "2026-10-22",
-      "summary": "A global map categorizing every 10-meter patch of land on Earth into distinct forest types.",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Research"
-    },
-    {
-      "title": "Turning Database Grading into RL Rewards: Post-Training Agents with ThinkingBox",
-      "url": "https://huggingface.co/blog/microsoft/thinkingbox-training",
-      "date": "2026-10-22",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Ensemble forecasting with IBM Granite time-series models",
-      "url": "https://huggingface.co/blog/ibm-research/granite-timeseries-ensemble-r1",
-      "date": "2026-10-22",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "This design software reimagines everyday objects as self-aware devices",
-      "url": "https://news.mit.edu/2026/design-software-reimagines-everyday-objects-as-self-aware-devices-1022",
-      "date": "2026-10-22",
-      "summary": "“X-Hinges” helps design and 3D print items like lamps and gloves with an interactive twist: automatically embedded sensors that perceive and adaptively respond to human contact.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "How AT&T is rethinking in-house legal work with OpenAI",
-      "url": "https://openai.com/index/att-legal",
-      "date": "2026-10-21",
-      "summary": "AT&T is working with OpenAI to make legal knowledge easier to access. Learn how its LegalEdge team is rethinking intake and scaling legal judgment.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Broad access through consistent standards",
-      "url": "https://openai.com/index/broad-access-through-consistent-standards",
-      "date": "2026-10-21",
-      "summary": "How OpenAI works with distribution partners to uphold consistent safeguards, support responsible access, and clarify expectations in our Usage Policies.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "OpenAI models are coming to Google Cloud",
-      "url": "https://openai.com/index/openai-models-google-cloud",
-      "date": "2026-10-21",
-      "summary": "OpenAI and Google Cloud are bringing frontier models and Codex workflows to Gemini’s Model Garden, available through Google Cloud Marketplace.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Patch the Planet: global response coordination as agents uncover critical vulnerabilities",
-      "url": "https://openai.com/index/coordinated-disclosure-of-critical-vulnerabilities",
-      "date": "2026-10-21",
-      "summary": "Patch the Planet connects security researchers, maintainers, and incident responders to help address critical vulnerabilities across open source.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Open Source"
-    },
-    {
-      "title": "ChatGPT Ads expands to 26 new countries as over 100,000 advertisers have used the platform",
-      "url": "https://openai.com/index/chatgpt-ads-expands-26-new-countries",
-      "date": "2026-10-21",
-      "summary": "From local businesses to global brands, more advertisers can now reach people as they explore, compare and decide what to buy in ChatGPT.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Using thousands of AI agents to uncover new leads in biological data",
-      "url": "https://openai.com/index/scaling-ai-research-for-complex-biological-data",
-      "date": "2026-10-21",
-      "summary": "See how OpenAI, PerturbAI, and Scripps Research used distributed AI agents to uncover promising research leads in data from millions of brain cells.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Cloudflare links vulnerability discovery to defense with OpenAI",
-      "url": "https://openai.com/index/cloudflare-cyber",
-      "date": "2026-10-21",
-      "summary": "Cloudflare uses OpenAI Daybreak to investigate vulnerabilities and propose fixes for review. Its developers use Codex to build faster and improve code quality.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How we built ChatGPT’s novel ad stack for user trust and relevance",
-      "url": "https://openai.com/index/building-chatgpt-ad-stack",
-      "date": "2026-10-21",
-      "summary": "Learn how OpenAI built ChatGPT’s LLM-powered ad stack to understand conversational intent, keep ads separate from answers, and deliver relevant ads at scale.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Democratic governance of frontier AI, part II: Empowering cyber defenders",
-      "url": "https://openai.com/index/empowering-cyber-defenders",
-      "date": "2026-10-21",
-      "summary": "OpenAI outlines a blueprint for empowering cyber defenders with frontier AI, stronger safeguards, modernized cybersecurity, and more resilient public institutions.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Enterprise Frontier Safeguards",
-      "url": "https://www.anthropic.com/news/enterprise-frontier-safeguards",
-      "date": "2026-10-21",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Christopher Stubbs Joins Long Term Benefit Trust",
-      "url": "https://www.anthropic.com/news/christopher-stubbs-joins-long-term-benefit-trust",
-      "date": "2026-10-21",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Southeast Asia’s digital economy to hit $368 billion",
-      "url": "https://blog.google/company-news/inside-google/around-the-globe/google-asia/e-conomy-sea-report-2026/",
-      "date": "2026-10-21",
-      "summary": "Widespread AI adoption is propelling Southeast Asia's digital economy to a projected $368 billion in 2026 and $1 trillion by 2035.",
-      "sourceId": "google-ai",
-      "sourceName": "Google AI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Mistral Advances AI for Engineering with NVIDIA",
-      "url": "https://mistral.ai/news/mistral-nvidia-ai-for-industrial-engineering/",
-      "date": "2026-10-21",
-      "summary": "Mistral is collaborating with NVIDIA to develop a new generation of AI-native engineering workflows powered by NVIDIA accelerated computing.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "NVIDIA Kumo Relational Outperforms Supervised Machine Learning on Relational Data, No Training Required",
-      "url": "https://huggingface.co/blog/nvidia/kumo-relational",
-      "date": "2026-10-21",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "How Specializing the Vocabulary of SLMs Can Cut Inference Cost by 77% in Real Applications",
-      "url": "https://huggingface.co/blog/Dharma-AI/vocabx-vocabulary-specialization",
-      "date": "2026-10-21",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Profiling TorchNeuron (Part 1): System-level profiling on AWS Trainium.",
-      "url": "https://huggingface.co/blog/amazon/profiling-torchneuron-part-1",
-      "date": "2026-10-21",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Granite Speech 5.0: Transcribe, Translate, and Attribute more Accurately and Faster",
-      "url": "https://huggingface.co/blog/ibm-granite/granite-speech-5",
-      "date": "2026-10-21",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Franchisee reconciles cash in 94% less time with ChatGPT Work",
-      "url": "https://openai.com/index/ted-taylor-restaurant",
-      "date": "2026-10-20",
-      "summary": "An independent Schlotzsky’s and Cinnabon franchisee cut menu repricing time by 95% and built a workflow that could free up $100K in cash flow.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Terminal X matches senior investor judgment 88.6% with GPT-6.1",
-      "url": "https://openai.com/index/terminal-x",
-      "date": "2026-10-20",
-      "summary": "Terminal X’s Eval Agent grades outputs against a 54-criterion rubric, catching 25% more deviances from a fund’s mandate with GPT-6.1 Sol.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "OpenAI acquires Orchestra Bio",
-      "url": "https://openai.com/index/openai-to-acquire-orchestra-bio",
-      "date": "2026-10-20",
-      "summary": "OpenAI is acquiring Orchestra Bio to bring AI-powered operations to life sciences R&D, helping biopharma teams accelerate drug development and advance new treatments.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Detecting And Preventing Distillation Attacks",
-      "url": "https://www.anthropic.com/news/detecting-and-preventing-distillation-attacks",
-      "date": "2026-10-20",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Disrupting AI Espionage",
-      "url": "https://www.anthropic.com/news/disrupting-AI-espionage",
-      "date": "2026-10-20",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Voxtral 3",
-      "url": "https://mistral.ai/news/voxtral-3/",
-      "date": "2026-10-20",
-      "summary": "Voxtral 3: Mistral's voice agent SDK for real-time speech in 50+ languages, accurate transcription, emotional TTS, deep tool use.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Hugging Face ❤️ TorchTPU: TPUs, Natively",
-      "url": "https://huggingface.co/blog/hf-torchtpu",
-      "date": "2026-10-20",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "AnyLanguageModel 1.0: One Year of Local Models on Apple Platforms",
-      "url": "https://huggingface.co/blog/anylanguagemodel-1-0",
-      "date": "2026-10-20",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "MPS in PyTorch 2.15",
-      "url": "https://huggingface.co/blog/mps-pytorch-2-15",
-      "date": "2026-10-20",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Advancing coding in low‑resource programming languages",
-      "url": "https://openai.com/index/low-resource-programming-languages",
-      "date": "2026-10-19",
-      "summary": "Learn how OpenAI is improving ChatGPT across low-resource programming languages, with new evaluations for software engineering, SQLite, and COBOL migration.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Strengthening Our Safeguards Through Collaboration With US Caisi And UK Aisi",
-      "url": "https://www.anthropic.com/news/strengthening-our-safeguards-through-collaboration-with-us-caisi-and-uk-aisi",
-      "date": "2026-10-19",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Expanding Project Glasswing",
-      "url": "https://www.anthropic.com/news/expanding-project-glasswing",
-      "date": "2026-10-19",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "TorchNeuron: running HF models on AWS Trainium is easier than ever",
-      "url": "https://huggingface.co/blog/hf-torchneuron",
-      "date": "2026-10-19",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Why teaching AI about symmetry could make prenatal diagnosis more reliable",
-      "url": "https://news.mit.edu/2026/teaching-ai-about-symmetry-could-make-prenatal-diagnosis-more-reliable-1019",
-      "date": "2026-10-19",
-      "summary": "A model developed by researchers at MIT and Boston Children's Hospital adjusts scans on the fly to track fetal movement, potentially sparing families repeat hospital visits.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Public Benefit Fund",
-      "url": "https://www.anthropic.com/news/public-benefit-fund",
-      "date": "2026-10-18",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Giving AI a “crystal clear” view of the materials world",
-      "url": "https://news.mit.edu/2026/giving-ai-crystal-clear-view-of-materials-world-1018",
-      "date": "2026-10-18",
-      "summary": "New research can help AI models understand crystalline materials in 3D and reason about their properties.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "How Grupo Boticário uses AI to strengthen human connections",
-      "url": "https://openai.com/index/grupo-boticario",
-      "date": "2026-10-16",
-      "summary": "Almost 50 years after starting in a compounding pharmacy in Paraná, the group operates a proprietary agent platform that autonomously resolves up to 80% of resellers’ operational requests—enabling the sales force to take on an advisory role.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How Localiza reorganized work around generative AI",
-      "url": "https://openai.com/index/localiza-generative-ai",
-      "date": "2026-10-16",
-      "summary": "See how Localiza uses ChatGPT Enterprise, the OpenAI API, Codex, and 60+ specialized agents to reorganize work and build AI-native mobility experiences.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How Itaú is building generative AI for its entire customer base",
-      "url": "https://openai.com/index/itau-generative-ai",
-      "date": "2026-10-16",
-      "summary": "With ia.i, a conversational interface, and the IARA governance platform, Itaú is applying its AI First strategy to customers and employees — in one of Brazil’s most regulated sectors.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Benefit Street Partners answers questions faster with Codex",
-      "url": "https://openai.com/index/benefit-street-partners",
-      "date": "2026-10-16",
-      "summary": "Anant Kumar builds tools to compare loan valuations and analyze credit agreements, using Codex for code review and faster follow-ups.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Stack Overflow for Agents triples signups with ChatGPT plugin",
-      "url": "https://openai.com/index/stack-overflow-chatgpt-plugin",
-      "date": "2026-10-16",
-      "summary": "Two engineers shipped Stack Overflow for Agents in a few weeks with Codex, and its ChatGPT plugin helped drive up to 10× growth in agent creation.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "AN Update ON Independent Evaluators",
-      "url": "https://www.anthropic.com/news/an-update-on-independent-evaluators",
-      "date": "2026-10-16",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Research"
-    },
-    {
-      "title": "Scaling Indic Pretraining: 2.8 Trillion Tokens and an Open Data Generation Pipeline",
-      "url": "https://huggingface.co/blog/nvidia/scaling-indic-pretraining",
-      "date": "2026-10-16",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Welcome Beam: a 501B open model you can own, customize, and scale",
-      "url": "https://huggingface.co/blog/reflection-beam",
-      "date": "2026-10-16",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Fostering community amid Kendall Square’s innovation",
-      "url": "https://news.mit.edu/2026/fostering-community-amid-kendall-square-innovation-1016",
-      "date": "2026-10-16",
-      "summary": "The 18th annual Kendall Square Association Annual Meeting explored how new technologies could be a force for shared prosperity in society.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Bringing GPT-Rosalind to academic research labs",
-      "url": "https://openai.com/index/introducing-the-rosalind-academic-plan",
-      "date": "2026-10-15",
-      "summary": "Introducing the Rosalind Academic Plan, offering eligible academic labs sponsored access to GPT-Rosalind and tools to advance life sciences research.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Teaching students to think and learn through questions",
-      "url": "https://openai.com/index/teaching-students-to-think-and-learn-through-questions",
-      "date": "2026-10-15",
-      "summary": "Celebrate Teachers’ Day with AI for Educators in Brazilian Portuguese and see how Study Mode can help teachers support active, step-by-step learning.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "Sullivan & Cromwell brings legal expertise into agreement review",
-      "url": "https://openai.com/index/sullivan-cromwell",
-      "date": "2026-10-15",
-      "summary": "In collaboration with OpenAI, Sullivan & Cromwell developed Agreement Analyzer, an AI tool for identifying issues in a draft agreement.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "Offering Expanded Claude Access Across All Three Branches OF Government",
-      "url": "https://www.anthropic.com/news/offering-expanded-claude-access-across-all-three-branches-of-government",
-      "date": "2026-10-15",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Accelerating the search for antimicrobial peptides with Google Antigravity",
-      "url": "https://deepmind.google/blog/accelerating-antimicrobial-discovery/",
-      "date": "2026-10-15",
-      "summary": "Accelerating the search for novel antimicrobial peptides using Google Antigravity for Science.",
-      "sourceId": "deepmind",
-      "sourceName": "Google DeepMind",
-      "category": "Research"
-    },
-    {
-      "title": "More Than Three Quarters of Small Business Owners Say AI Makes Them More Productive, But Most Need More Guidance",
-      "url": "https://about.fb.com/news/2026/10/more-than-three-quarters-of-small-business-owners-say-ai-makes-them-more-productive-but-most-need-more-guidance/",
-      "date": "2026-10-15",
-      "summary": "New Meta research across nine APAC markets shows how AI is helping small businesses grow, compete with larger rivals and reach customers across borders. The post More Than Three Quarters of Small Business Owners Say AI Makes Them More Productive, But Most Need More Guidance appeared first on Meta Newsroom .",
-      "sourceId": "meta-ai",
-      "sourceName": "Meta",
-      "category": "Research"
-    },
-    {
-      "title": "Introducing Timestral",
-      "url": "https://mistral.ai/news/timestral/",
-      "date": "2026-10-15",
-      "summary": "State-of-the-art probabilistic forecasting in four sizes (5M–209M params), CPU-efficient, zero-shot ready.",
-      "sourceId": "mistral",
-      "sourceName": "Mistral AI",
-      "category": "Model Release"
-    },
-    {
-      "title": "Granite Switch 4.1: Chat, Decisions, and Speech from One Endpoint",
-      "url": "https://huggingface.co/blog/ibm-granite/granite-switch-4-1",
-      "date": "2026-10-15",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Apertus 1.5 Release Notes",
-      "url": "https://huggingface.co/blog/swiss-ai/apertus-v15-release-notes",
-      "date": "2026-10-15",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
-      "url": "https://huggingface.co/blog/meta-muse-spark-open",
-      "date": "2026-10-15",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "Welcome FLUX.3 Image Klein in Diffusers",
-      "url": "https://huggingface.co/blog/flux-3",
-      "date": "2026-10-15",
-      "summary": "",
-      "sourceId": "huggingface",
-      "sourceName": "Hugging Face",
-      "category": "Open Source"
-    },
-    {
-      "title": "State of Supply Chain Sustainability Report finds corporate commitment at record high, but governance lags behind",
-      "url": "https://news.mit.edu/2026/state-of-supply-chain-sustainability-report-1015",
-      "date": "2026-10-15",
-      "summary": "MIT's Center for Transportation and Logistics finds sustainability commitments are strong, but governance gaps and external disruptions prevent execution.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "AI model decodes the language cells use to communicate",
-      "url": "https://news.mit.edu/2026/ai-model-decodes-language-cells-use-communicate-1015",
-      "date": "2026-10-15",
-      "summary": "A new computational approach reveals how cells communicate to assemble into tissues. This could accelerate stem cell engineering, improve disease models, and inform therapies.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Q&A: The “collision” between AI, your brain, and society",
-      "url": "https://news.mit.edu/2026/collision-between-ai-your-brain-and-society-eric-so-book-1015",
-      "date": "2026-10-15",
-      "summary": "In a new book, Professor Eric So explores how the technology affects our thinking skills.",
-      "sourceId": "mit-ai",
-      "sourceName": "MIT News — AI",
-      "category": "Research"
-    },
-    {
-      "title": "Amp puts AI agents to work beyond code with OpenAI models",
-      "url": "https://openai.com/index/amp-beyond-coding",
-      "date": "2026-10-14",
-      "summary": "See how Amp pushes the frontier of what agents can do with GPT-6 Astra, Ultrafast, GPT-Live-1, and Sign in with ChatGPT.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "SentinelOne cuts malware analysis from weeks to hours",
-      "url": "https://openai.com/index/sentinelone",
-      "date": "2026-10-14",
-      "summary": "With OpenAI Daybreak, SentinelOne cuts weeks of malware analysis to hours, creating capacity to investigate more threats.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "How Third Moment Research runs 10,000 agents for 36+ hours",
-      "url": "https://openai.com/index/third-moment-research",
-      "date": "2026-10-14",
-      "summary": "With GPT-6 Astra and GPT-6.1 Sol, Codex, and Daybreak for cybersecurity, this AI lab builds agents that focus for days and improve with use.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Research"
-    },
-    {
-      "title": "How Block is building AI-powered security with OpenAI technology",
-      "url": "https://openai.com/index/block-ai-powered-security",
-      "date": "2026-10-14",
-      "summary": "Block is building AI-powered security with OpenAI. Its security team investigates threats faster and proposes patches in minutes.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "The EU’s next chapter in AI is agentic",
-      "url": "https://openai.com/index/the-eus-next-chapter-in-ai-is-agentic",
-      "date": "2026-10-14",
-      "summary": "New analysis shows how agentic AI adoption is growing across EU enterprises and small businesses—and where deeper use could unlock more value.",
-      "sourceId": "openai",
-      "sourceName": "OpenAI",
-      "category": "Product Update"
-    },
-    {
-      "title": "2026 US Midterms",
-      "url": "https://www.anthropic.com/news/2026-us-midterms",
-      "date": "2026-10-14",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
-    },
-    {
-      "title": "Singapore Office Opening",
-      "url": "https://www.anthropic.com/news/singapore-office-opening",
-      "date": "2026-10-14",
-      "summary": "",
-      "sourceId": "anthropic",
-      "sourceName": "Anthropic",
-      "category": "Product Update"
     }
   ]
 }
