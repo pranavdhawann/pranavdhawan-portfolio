@@ -2172,10 +2172,6 @@ section {
     color: var(--accent);
 }
 
-.ai-news-title {
-    margin-top: 5rem;
-}
-
 .writing-date {
     color: var(--text-secondary);
     font-weight: 500;
@@ -2251,57 +2247,6 @@ section {
     }
 }
 
-.newsletter {
-    max-width: 560px;
-    margin: 4rem auto 0;
-    padding: 2rem;
-    text-align: center;
-    background: var(--bg-card);
-    border: 3px solid var(--border);
-    box-shadow: var(--shadow);
-}
-
-.newsletter-title {
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: var(--fs-2xl);
-    font-weight: 800;
-    color: var(--text-primary);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
-.newsletter-row {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.newsletter-row input {
-    flex: 1;
-    min-width: 200px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: var(--fs-base);
-    color: var(--text-primary);
-    background: var(--bg-primary);
-    border: 3px solid var(--border);
-    padding: 0.7rem 0.85rem;
-}
-
-.newsletter-row input:focus {
-    outline: 3px solid var(--accent);
-    outline-offset: 1px;
-}
-
-.newsletter-submit {
-    min-width: 0;
-    padding: 12px 28px;
-}
-
-.newsletter .contact-status {
-    margin-top: 0.9rem;
-}
-
 /* ==========================================
    CONTACT EMAIL + FORM
    ========================================== */
@@ -2340,19 +2285,6 @@ section {
 .contact-copy:hover { transform: translate(-2px, -2px); box-shadow: var(--shadow); }
 .contact-copy:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 .contact-copy.is-copied { background: var(--teal); }
-
-/* Shared with the blog newsletter form, which reuses .contact-hp for its
-   honeypot and .contact-status for its inline feedback. */
-
-.contact-status {
-    text-align: center;
-    font-weight: 500;
-    min-height: 1.2em;
-    color: var(--text-secondary);
-    margin: 0;
-}
-
-.contact-status.is-error { color: var(--error-text); }
 
 .contact-grid {
     display: grid;
@@ -2474,6 +2406,34 @@ section {
 
 .article-nav a { font-weight: 700; color: var(--text-primary); text-decoration: none; }
 .article-nav a:hover { color: var(--accent); }
+
+/* Author card + calls to action at the foot of a post */
+.article-author {
+    margin: 2.5rem 0 0;
+    padding: 1.25rem 1.5rem;
+    background: var(--bg-card);
+    border: 3px solid var(--border);
+    box-shadow: var(--shadow);
+}
+
+.article-author p { margin: 0; }
+.article-author strong { color: var(--text-primary); }
+
+.article-author .article-author-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin-top: 0.75rem;
+}
+
+.article-author-links a { font-weight: 700; }
+
+/* Homepage "Writing" teaser: reuses the blog's .writing-list rows */
+.writing-more {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
 
 @media (max-width: 480px) {
     .article-body h1 { font-size: var(--fs-4xl); }

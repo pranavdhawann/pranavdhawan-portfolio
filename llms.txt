@@ -1,0 +1,36 @@
+# Pranav Dhawan
+
+> Personal portfolio of Pranav Dhawan — AI engineer, data scientist, and founder of SideQuest India. Builds production AI systems: workplace automation, document intelligence, RAG, NLP, and computer vision.
+
+## About
+
+- Founder, SideQuest India (July 2026 – present): a social platform for discovering plans and connecting through real-world experiences. First web experience reached 500+ users in its first 7 days.
+- AI Workplace Engineer Intern, American Chemical Society, Washington, DC (May 2026 – present): AI-orchestrated service-desk workflow across Microsoft Copilot, Ivanti, and SharePoint automating roughly 245 of 350 monthly tickets; onboarding/offboarding agent; AI governance framework.
+- Independent Contractor – AI, Siva Info LLC, New York, NY (June 2026 – present): edition-aware PDF-diff tooling; XML tagging pipeline taken from 32% to 99% completeness and accuracy across ~3,000 entries.
+- Machine Learning Engineer, Lumina Datamatics, Chennai, India (February 2024 – August 2024): YOLOv8 document intelligence pipeline on AWS SageMaker (10,000+ documents per day); hybrid RAG system for legal document search.
+- MS Data Science, George Washington University (August 2024 – May 2026, GPA 3.74/4.0). B.Tech Computer Science and Engineering, Manipal University Jaipur (August 2020 – May 2024, GPA 8.51/10.0).
+- Earlier internships: HCLTech (machine learning), EY (analytics).
+
+## Pages
+
+- [Portfolio](https://pranavdhawan.com/): experience, skills, featured projects, and contact details
+- [Blog](https://pranavdhawan.com/blog/): short posts on lessons from AI and ML projects
+- [Why my AI assistant's memory stays on my machine](https://pranavdhawan.com/blog/local-first-memory.html): the case for a local, cited, permission-gated memory layer
+- [Recall first: picking a PII model that runs on-device](https://pranavdhawan.com/blog/pii-detection.html): benchmarking four transformers across 54 PII entity types
+- [Why I split my legal RAG into two models](https://pranavdhawan.com/blog/rag-hallucinations.html): routing factual fields to extractive QA to stop hallucinated dates
+- [When the simple model wins](https://pranavdhawan.com/blog/multimodal-finding.html): a multimodal equity-forecasting benchmark where a standalone LSTM stayed competitive
+- [Blog RSS feed](https://pranavdhawan.com/blog/feed.xml)
+- [Resume (PDF)](https://pranavdhawan.com/Pranav_Dhawan_Resume.pdf)
+
+## Projects
+
+- [Singularity](https://github.com/pranavdhawann/singularity): local-first memory and permission layer for AI assistants (TypeScript, RAG, SQLite FTS5, Ollama)
+- [Edge-Based PII Detection & Censoring System](https://github.com/pranavdhawann/Final-Project-Group4): 98.1% F1 across 54 PII entity types with DeBERTa served via ONNX
+- [Multimodal Techniques for Equity Forecasting](https://github.com/pranavdhawann/spring-2026-group4): benchmark of 10+ architectures on FinMultiTime
+- [Stock Screen](https://github.com/pranavdhawann/stock-screen): real-time AI-powered market research terminal (archived)
+
+## Contact
+
+- Email: pranavdhawan99@gmail.com
+- GitHub: https://github.com/pranavdhawann
+- LinkedIn: https://linkedin.com/in/pranavvdhawann

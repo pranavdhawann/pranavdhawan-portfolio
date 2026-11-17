@@ -4,55 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Pranav Dhawan</title>
-    <meta name="description" content="Short notes from Pranav Dhawan on lessons from his AI and ML projects: RAG, multimodal forecasting, and the tradeoffs behind them.">
+    <title>Blog — Pranav Dhawan</title>
+    <meta name="description" content="Short notes from Pranav Dhawan on lessons from his AI and ML projects: RAG, PII detection, local-first AI, multimodal forecasting, and the tradeoffs behind them.">
     <meta name="author" content="Pranav Dhawan">
     <meta name="theme-color" content="#FFD600" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#15151E" media="(prefers-color-scheme: dark)">
     <link rel="canonical" href="https://pranavdhawan.com/blog/">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Blog | Pranav Dhawan">
-    <meta property="og:description" content="Notes from Pranav Dhawan on AI and ML engineering projects, plus a weekly auto-curated AI digest.">
+    <meta property="og:title" content="Blog — Pranav Dhawan">
+    <meta property="og:description" content="Notes from Pranav Dhawan on AI and ML engineering projects and the tradeoffs behind them.">
     <meta property="og:url" content="https://pranavdhawan.com/blog/">
     <meta property="og:image" content="https://pranavdhawan.com/images/og-card.png">
-    <meta property="og:image:alt" content="Pranav Dhawan, AI Engineer. Notes on RAG, multimodal forecasting, and a weekly AI digest.">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pranav Dhawan, AI Engineer. Notes on RAG, PII detection, local-first AI, and multimodal forecasting.">
     <meta property="og:site_name" content="Pranav Dhawan">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Blog | Pranav Dhawan">
-    <meta name="twitter:description" content="Notes from Pranav Dhawan on AI and ML engineering projects, plus a weekly auto-curated AI digest.">
+    <meta name="twitter:title" content="Blog — Pranav Dhawan">
+    <meta name="twitter:description" content="Notes from Pranav Dhawan on AI and ML engineering projects and the tradeoffs behind them.">
     <meta name="twitter:image" content="https://pranavdhawan.com/images/og-card.png">
-    <meta name="twitter:image:alt" content="Pranav Dhawan, AI Engineer. Notes on RAG, multimodal forecasting, and a weekly AI digest.">
-    <link rel="alternate" type="application/rss+xml" title="AI This Week | Pranav Dhawan" href="feed.xml">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD600' stroke='%231A1A1A' stroke-width='6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Space Grotesk,sans-serif' font-size='42' font-weight='800' fill='%231A1A1A'%3EP%3C/text%3E%3C/svg%3E">
+    <meta name="twitter:image:alt" content="Pranav Dhawan, AI Engineer. Notes on RAG, PII detection, local-first AI, and multimodal forecasting.">
+    <link rel="alternate" type="application/rss+xml" title="Pranav Dhawan — Blog" href="feed.xml">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@type": "Blog",
-        "name": "Blog | Pranav Dhawan",
+        "@id": "https://pranavdhawan.com/blog/#blog",
+        "name": "Blog — Pranav Dhawan",
         "url": "https://pranavdhawan.com/blog/",
         "description": "Short notes from Pranav Dhawan on lessons from his AI and ML projects.",
-        "author": { "@type": "Person", "name": "Pranav Dhawan", "url": "https://pranavdhawan.com/" },
+        "inLanguage": "en",
+        "author": { "@type": "Person", "@id": "https://pranavdhawan.com/#person", "name": "Pranav Dhawan", "url": "https://pranavdhawan.com/" },
         "blogPost": [
+            {
+                "@type": "BlogPosting",
+                "headline": "Why my AI assistant's memory stays on my machine",
+                "url": "https://pranavdhawan.com/blog/local-first-memory.html",
+                "datePublished": "2026-11-17",
+                "author": { "@id": "https://pranavdhawan.com/#person" }
+            },
+            {
+                "@type": "BlogPosting",
+                "headline": "Recall first: picking a PII model that runs on-device",
+                "url": "https://pranavdhawan.com/blog/pii-detection.html",
+                "datePublished": "2026-11-17",
+                "author": { "@id": "https://pranavdhawan.com/#person" }
+            },
             {
                 "@type": "BlogPosting",
                 "headline": "When the simple model wins",
                 "url": "https://pranavdhawan.com/blog/multimodal-finding.html",
                 "datePublished": "2026-07-07",
-                "author": { "@type": "Person", "name": "Pranav Dhawan" }
+                "author": { "@id": "https://pranavdhawan.com/#person" }
             },
             {
                 "@type": "BlogPosting",
                 "headline": "Why I split my legal RAG into two models",
                 "url": "https://pranavdhawan.com/blog/rag-hallucinations.html",
                 "datePublished": "2026-06-30",
-                "author": { "@type": "Person", "name": "Pranav Dhawan" }
+                "author": { "@id": "https://pranavdhawan.com/#person" }
             }
         ]
     }
     </script>
     <script src="../theme-init.js"></script>
     <script src="../site-common.js" defer></script>
-    <script src="newsletter.js" defer></script>
     <script data-goatcounter="https://pranavdhawan.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
     <link rel="stylesheet" href="../styles.css">
 </head>
@@ -75,10 +93,25 @@
     <main class="main-content" id="main-content" tabindex="-1">
         <section class="writing">
             <div class="container">
-                <h1 class="visually-hidden">Blog</h1>
-                <h2 class="section-title article-section-title">Written by me</h2>
-                <p class="writing-intro">Short lessons from my projects: the kind of tradeoffs that do not make it into a resume bullet.</p>
+                <h1 class="section-title">BLOG</h1>
+                <p class="writing-intro">Short lessons from my projects: the kind of tradeoffs that do not make it into a resume bullet. <a href="feed.xml">Subscribe via RSS</a>.</p>
                 <ul class="writing-list">
+                    <li class="writing-row">
+                        <span class="writing-date"><time datetime="2026-11-17">Nov 17, 2026</time></span>
+                        <div class="writing-row-main">
+                            <a class="writing-row-title" href="local-first-memory.html" data-analytics="blog:local-first-memory">Why my AI assistant's memory stays on my machine</a>
+                            <span class="writing-tag">AI Assistants &middot; Local-First</span>
+                            <p>Assistants hide the context they pick and scatter your history. Singularity keeps memory local, cited to the exact source, behind a redaction gate.</p>
+                        </div>
+                    </li>
+                    <li class="writing-row">
+                        <span class="writing-date"><time datetime="2026-11-17">Nov 17, 2026</time></span>
+                        <div class="writing-row-main">
+                            <a class="writing-row-title" href="pii-detection.html" data-analytics="blog:pii-detection">Recall first: picking a PII model that runs on-device</a>
+                            <span class="writing-tag">NLP &middot; Privacy</span>
+                            <p>Four transformers, 54 entity types, one held-out set. Why recall decided it, and how DeBERTa ended up running locally in under 100ms.</p>
+                        </div>
+                    </li>
                     <li class="writing-row">
                         <span class="writing-date"><time datetime="2026-07-07">Jul 7, 2026</time></span>
                         <div class="writing-row-main">
@@ -96,125 +129,6 @@
                         </div>
                     </li>
                 </ul>
-
-                <h2 class="section-title ai-news-title">AI THIS WEEK</h2>
-                <!-- AI-NEWS:START -->
-                <p class="writing-intro">A weekly digest of AI developments curated from official lab blogs, arXiv, and GitHub.<br><a href="feed.xml">Subscribe via RSS</a><br>Latest edition: Nov 16, 2026.</p>
-                <ul class="writing-list">
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-16">Nov 16, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://openai.com/index/lvmh-media-division-partnership" target="_blank" rel="noopener noreferrer">LVMH’s Media Division announces strategic partnership with OpenAI</a>
-                        <span class="writing-tag">Product Update &middot; OpenAI &middot; openai.com</span>
-                        <p>LVMH’s Media Division and OpenAI announce a partnership to support journalism with AI and make its publications more accessible through ChatGPT.</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-16">Nov 16, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://blog.google/products-and-platforms/products/maps/ask-maps-holiday-travel-features-2026/" target="_blank" rel="noopener noreferrer">New Ask Maps features to help with holiday travel and prep</a>
-                        <span class="writing-tag">Product Update &middot; Google AI &middot; blog.google</span>
-                        <p>Plan holiday road trips, get route tips, find local appointments, and search your saved lists with new Ask Maps features.</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-16">Nov 16, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://about.fb.com/news/2026/11/94-of-singapore-small-business-owners-surveyed-say-more-ai-guidance-is-needed/" target="_blank" rel="noopener noreferrer">94% of Singapore Small Business Owners Surveyed Say More AI Guidance Is Needed</a>
-                        <span class="writing-tag">Product Update &middot; Meta &middot; about.fb.com</span>
-                        <p>More than 180 small businesses, heartland merchants and creator-entrepreneurs joined Meta Upskill Day 2026 in Singapore, part of Meta&#39;s Small Business Growth Academy, with Senior Minister of State Low Yen Ling attending…</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-16">Nov 16, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://openai.com/index/advancing-computer-use-for-healthcare-teams" target="_blank" rel="noopener noreferrer">Advancing computer-use agents for healthcare teams</a>
-                        <span class="writing-tag">Product Update &middot; OpenAI &middot; openai.com</span>
-                        <p>Full details at the source.</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-13">Nov 13, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://www.anthropic.com/news/anthropic-is-endorsing-sb-53" target="_blank" rel="noopener noreferrer">Anthropic IS Endorsing SB 53</a>
-                        <span class="writing-tag">Product Update &middot; Anthropic &middot; anthropic.com</span>
-                        <p>Full details at the source.</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-13">Nov 13, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://huggingface.co/blog/nvidia/simready-assets-robot-pick-and-place" target="_blank" rel="noopener noreferrer">Build a Robot Pick-and-Place Simulation with SimReady Assets</a>
-                        <span class="writing-tag">Open Source &middot; Hugging Face &middot; huggingface.co</span>
-                        <p>Full details at the source.</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-13">Nov 13, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://news.mit.edu/2026/new-ai-copilot-helps-engineers-design-better-structures-1113" target="_blank" rel="noopener noreferrer">New AI “copilot” helps engineers design better structures</a>
-                        <span class="writing-tag">Research &middot; MIT News — AI &middot; news.mit.edu</span>
-                        <p>The system asks humans for feedback to increase trust in machine-generated designs for buildings and bridges.</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-13">Nov 13, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://arxiv.org/abs/2611.18563v1" target="_blank" rel="noopener noreferrer">Pairing AIS with RF: Analysis of a Markovian Approach for Maritime Data Fusion</a>
-                        <span class="writing-tag">Research &middot; arXiv &middot; arxiv.org</span>
-                        <p>Monitoring maritime activities is important for safety and security, particularly for detecting illegal activities, but remains challenging due to the size and complexity of the maritime domain. The Automatic…</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-12">Nov 12, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://deepmind.google/blog/introducing-gemini-4-hydrogen/" target="_blank" rel="noopener noreferrer">Introducing Gemini 4 Hydrogen</a>
-                        <span class="writing-tag">Model Release &middot; Google DeepMind &middot; deepmind.google</span>
-                        <p>Full details at the source.</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-09">Nov 9, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://bair.berkeley.edu/blog/2026/11/09/bair-at-corl-2026/" target="_blank" rel="noopener noreferrer">BAIR at CoRL 2026</a>
-                        <span class="writing-tag">Research &middot; Berkeley AI Research &middot; bair.berkeley.edu</span>
-                        <p>The Conference on Robot Learning (CoRL) takes place November 9–12, 2026, in Austin, Texas. BAIR faculty, postdocs and students will be presenting research at various sessions, including an Early Career Keynote from…</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-07">Nov 7, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://github.com/Turboheartblaze/resp-fortuna-vision-public-preview" target="_blank" rel="noopener noreferrer">Turboheartblaze/resp-fortuna-vision-public-preview (trending AI repo)</a>
-                        <span class="writing-tag">Open Source &middot; GitHub &middot; github.com</span>
-                        <p>👁️ FortunaVision — chart-first market + treasury workstation, static, no keys: TradingView&#39;s open-source chart engine beside Fortuna&#39;s SVG engine, Auto Levels, regime, order flow, dealer gamma, drawings, indicator…</p>
-                    </div>
-                </li>
-                <li class="writing-row">
-                    <span class="writing-date"><time datetime="2026-11-05">Nov 5, 2026</time></span>
-                    <div class="writing-row-main">
-                        <a class="writing-row-title" href="https://mistral.ai/news/build-with-studio/" target="_blank" rel="noopener noreferrer">Le Chonk brings the brains. Studio puts it to work.</a>
-                        <span class="writing-tag">Product Update &middot; Mistral AI &middot; mistral.ai</span>
-                        <p>Build and deploy enterprise agents, workflows and apps faster with Mistral Studio and Le Chonk full control over your models, data and infrastructure.</p>
-                    </div>
-                </li>
-                </ul>
-                <!-- AI-NEWS:END -->
-
-                <aside class="newsletter" aria-labelledby="newsletterTitle">
-                    <h2 class="newsletter-title" id="newsletterTitle">Get this digest in your inbox</h2>
-                    <form class="newsletter-form" name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-                        <input type="hidden" name="form-name" value="newsletter">
-                        <p class="contact-hp" hidden>
-                            <label>Leave this empty if you're human: <input type="text" name="bot-field"></label>
-                        </p>
-                        <div class="newsletter-row">
-                            <label class="visually-hidden" for="nl-email">Email address</label>
-                            <input id="nl-email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-                            <button class="btn btn-primary newsletter-submit" type="submit" data-analytics="newsletter-subscribe">Subscribe</button>
-                        </div>
-                        <p class="contact-status" id="newsletterStatus" role="status" aria-live="polite"></p>
-                    </form>
-                </aside>
             </div>
         </section>
     </main>

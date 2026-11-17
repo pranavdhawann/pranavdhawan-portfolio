@@ -27,82 +27,30 @@ async function openBlog(page) {
   await page.goto(`${pageUrl}blog/`);
 }
 
-test('blog renders personal posts and the AI digest with sourced list entries', async ({ page }) => {
+test('blog lists the hand-published posts, each linking to a page that loads', async ({ page, request }) => {
   await openBlog(page);
 
   await expect(page).toHaveTitle(/Blog/);
-  await expect(page.getByRole('heading', { name: 'AI THIS WEEK' })).toBeVisible();
+  await expect(page.getByRole('heading', { level: 1, name: 'BLOG' })).toBeVisible();
 
-  const digestEntries = page.locator('.writing-list .writing-row-title[target="_blank"]');
-  expect(await digestEntries.count()).toBeGreaterThanOrEqual(6);
-
-  // Every digest entry links to a real external source over https.
-  for (const href of await digestEntries.evaluateAll((links) => links.map((a) => a.href))) {
-    expect(href).toMatch(/^https:\/\//);
+  const entries = page.locator('.writing-list .writing-row-title');
+  expect(await entries.count()).toBeGreaterThanOrEqual(4);
+  for (const href of await entries.evaluateAll((links) => links.map((a) => a.href))) {
+    const response = await request.get(href);
+    expect(response.ok(), href).toBe(true);
   }
   await expect(page.locator('.writing-list .writing-tag').first()).toBeVisible();
   await expect(page.locator('.writing-list .writing-date').first()).toBeVisible();
 });
 
-test('newsletter signup keeps input and button on one row at desktop width', async ({ page }) => {
-  await page.setViewportSize({ width: 1280, height: 900 });
+test('the blog carries no signup form or third-party content', async ({ page }) => {
   await openBlog(page);
-
-  const box = page.locator('.newsletter');
-  await expect(box).toBeVisible();
-  const input = box.locator('#nl-email');
-  const button = box.getByRole('button', { name: 'Subscribe' });
-  await expect(input).toBeVisible();
-  await expect(button).toBeVisible();
-
-  const [inputBox, buttonBox] = [await input.boundingBox(), await button.boundingBox()];
-  expect(Math.abs(inputBox.y - buttonBox.y)).toBeLessThan(8);
+  await expect(page.locator('form')).toHaveCount(0);
+  await expect(page.locator('.writing-list a[target="_blank"]')).toHaveCount(0);
 });
 
-test('subscribing shows the success message when the form POST succeeds', async ({ page }) => {
-  await openBlog(page);
-  let postedFormName = '';
-  await page.route('**/*', (route) => {
-    if (route.request().method() === 'POST') {
-      // Assert AFTER the route resolves — a failed expectation inside a route
-      // handler aborts the request and surfaces as a confusing timeout.
-      postedFormName = route.request().postData() || '';
-      return route.fulfill({ status: 200, body: '' });
-    }
-    return route.continue();
-  });
-
-  await page.locator('#nl-email').fill('reader@example.com');
-  await page.getByRole('button', { name: 'Subscribe' }).click();
-  // Double opt-in: the address is not on the list until the emailed link is clicked,
-  // so the confirmation copy must not claim otherwise.
-  await expect(page.locator('#newsletterStatus')).toHaveText(/check your inbox/i);
-  await expect(page.locator('#nl-email')).toHaveValue('');
-  expect(postedFormName).toContain('form-name=newsletter');
-});
-
-test('the newsletter form cannot be submitted twice by double-clicking', async ({ page }) => {
-  await openBlog(page);
-  let posts = 0;
-  await page.route('**/*', async (route) => {
-    if (route.request().method() === 'POST') {
-      posts += 1;
-      await new Promise((r) => setTimeout(r, 400));
-      return route.fulfill({ status: 200, body: '' });
-    }
-    return route.continue();
-  });
-
-  await page.locator('#nl-email').fill('reader@example.com');
-  const button = page.getByRole('button', { name: 'Subscribe' });
-  await button.click();
-  await expect(button).toBeDisabled();
-  await expect(page.locator('#newsletterStatus')).toHaveText(/check your inbox/i);
-  expect(posts).toBe(1);
-});
-
-// script.js and newsletter.js both used to register the data-analytics click
-// listener, so every blog CTA was counted twice in GoatCounter.
+// Two scripts once registered the data-analytics click listener, so every blog
+// CTA was counted twice in GoatCounter.
 test('a CTA click fires exactly one analytics event', async ({ page }) => {
   await openBlog(page);
   await page.evaluate(() => {
@@ -115,21 +63,6 @@ test('a CTA click fires exactly one analytics event', async ({ page }) => {
 
   await page.locator('a.writing-row-title[data-analytics="blog:rag-hallucinations"]').click();
   expect(await page.evaluate(() => window.__hits)).toEqual(['blog:rag-hallucinations']);
-});
-
-test('a failed signup shows the error message with a fallback contact', async ({ page }) => {
-  await openBlog(page);
-  await page.route('**/*', (route) => (
-    route.request().method() === 'POST'
-      ? route.fulfill({ status: 500, body: '' })
-      : route.continue()
-  ));
-
-  await page.locator('#nl-email').fill('reader@example.com');
-  await page.getByRole('button', { name: 'Subscribe' }).click();
-  const status = page.locator('#newsletterStatus');
-  await expect(status).toHaveText(/Something went wrong/);
-  await expect(status).toHaveClass(/is-error/);
 });
 
 test('blog page has no axe accessibility violations', async ({ page }) => {
@@ -146,10 +79,8 @@ test('blog page has no axe accessibility violations in dark mode', async ({ page
   expect(results.violations).toEqual([]);
 });
 
-test('blog distinguishes original writing from the curated digest and retains portfolio navigation', async ({ page }) => {
+test('blog retains portfolio navigation', async ({ page }) => {
   await openBlog(page);
-  await expect(page.getByRole('heading', { name: 'Written by me' })).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'AI THIS WEEK' })).toBeVisible();
   await expect(page.getByRole('link', { name: 'Portfolio', exact: true })).toHaveAttribute('href', '../');
   await expect(page.getByRole('link', { name: 'Privacy', exact: true })).toHaveAttribute('href', '../privacy.html');
 });
@@ -159,7 +90,7 @@ test('blog uses the self-hosted site fonts', async ({ page }) => {
   await expect(page.locator('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]')).toHaveCount(0);
 });
 
-// The writing/digest list carries no fill and no shadow, so its rules are the
+// The writing list carries no fill and no shadow, so its rules are the
 // only thing separating one entry from the next. If they sink into the page
 // background the list reads as an undifferentiated wall of text — and axe
 // cannot see it, because WCAG 1.4.11 contrast is not statically checkable.
@@ -203,7 +134,7 @@ for (const theme of ['light', 'dark']) {
   });
 }
 
-test('digest entry links use the site focus ring, not the browser default', async ({ page }) => {
+test('post links use the site focus ring, not the browser default', async ({ page }) => {
   await openBlog(page);
   const firstEntry = page.locator('.writing-list .writing-row-title').first();
   await firstEntry.evaluate((el) => el.focus());

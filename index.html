@@ -5,11 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pranav Dhawan — AI Engineer &amp; Data Scientist</title>
-    <meta name="description" content="Portfolio of Pranav Dhawan — AI Workplace Engineer Intern at the American Chemical Society, MS in Data Science from George Washington University. Building production AI, ML, and analytics systems.">
+    <meta name="description" content="Pranav Dhawan — founder of SideQuest India and AI Workplace Engineer Intern at the American Chemical Society. Building production AI, ML, and analytics systems.">
     <meta name="author" content="Pranav Dhawan">
     <meta name="theme-color" content="#FFD600" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#15151E" media="(prefers-color-scheme: dark)">
     <link rel="canonical" href="https://pranavdhawan.com/">
+    <link rel="alternate" type="application/rss+xml" title="Pranav Dhawan — Blog" href="blog/feed.xml">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
@@ -17,7 +18,7 @@
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://pranavdhawan.com/">
     <meta property="og:title" content="Pranav Dhawan — AI Engineer & Data Scientist">
-    <meta property="og:description" content="AI Workplace Engineer Intern | MS Data Science @ GWU. Building production AI, ML, and analytics systems.">
+    <meta property="og:description" content="Founder, SideQuest India | AI Workplace Engineer Intern @ ACS | MS Data Science, GWU. Building production AI, ML, and analytics systems.">
     <meta property="og:image" content="https://pranavdhawan.com/images/og-card.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
@@ -26,12 +27,12 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pranav Dhawan — AI Engineer & Data Scientist">
-    <meta name="twitter:description" content="AI Workplace Engineer Intern | MS Data Science @ GWU. Building production AI, ML, and analytics systems.">
+    <meta name="twitter:description" content="Founder, SideQuest India | AI Workplace Engineer Intern @ ACS | MS Data Science, GWU. Building production AI, ML, and analytics systems.">
     <meta name="twitter:image" content="https://pranavdhawan.com/images/og-card.png">
     <meta name="twitter:image:alt" content="Pranav Dhawan — AI Engineer. Production service-desk automation; 98.1% F1 across 54 PII entity types.">
 
-    <!-- Favicon: inline SVG, neobrutalism yellow with 'P' -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23FFD600' stroke='%231A1A1A' stroke-width='6'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' dominant-baseline='middle' font-family='Space Grotesk,sans-serif' font-size='42' font-weight='800' fill='%231A1A1A'%3EP%3C/text%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
     <!-- Sets the colour theme before paint (separate file to satisfy CSP) -->
     <script src="theme-init.js"></script>
@@ -50,9 +51,11 @@
     {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "https://pranavdhawan.com/#person",
         "name": "Pranav Dhawan",
         "url": "https://pranavdhawan.com/",
-        "image": "https://pranavdhawan.com/images/og-card.png",
+        "image": "https://pranavdhawan.com/images/photo.png",
+        "description": "AI engineer, data scientist, and founder of SideQuest India, building production AI systems: workplace automation, document intelligence, RAG, NLP, and computer vision.",
         "jobTitle": "Founder, SideQuest India | AI Workplace Engineer Intern",
         "worksFor": [
             { "@type": "Organization", "name": "SideQuest India", "url": "https://sidequestindia.com/" },
@@ -62,11 +65,13 @@
         "alumniOf": [
             {
                 "@type": "CollegeOrUniversity",
-                "name": "George Washington University"
+                "name": "George Washington University",
+                "url": "https://www.gwu.edu/"
             },
             {
                 "@type": "CollegeOrUniversity",
-                "name": "Manipal University Jaipur"
+                "name": "Manipal University Jaipur",
+                "url": "https://jaipur.manipal.edu/"
             }
         ],
         "email": "pranavdhawan99@gmail.com",
@@ -80,15 +85,31 @@
             "https://github.com/pranavdhawann",
             "https://linkedin.com/in/pranavvdhawann"
         ],
-        "knowsAbout": ["Machine Learning", "Computer Vision", "Natural Language Processing", "Agentic AI", "Data Science"]
+        "knowsAbout": ["Machine Learning", "Computer Vision", "Natural Language Processing", "Agentic AI", "Retrieval-Augmented Generation", "Document Intelligence", "Workflow Automation", "AI Governance", "Data Science"]
     }
     </script>
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "Pranav Dhawan",
-        "url": "https://pranavdhawan.com/"
+        "@graph": [
+            {
+                "@type": "WebSite",
+                "@id": "https://pranavdhawan.com/#website",
+                "name": "Pranav Dhawan",
+                "url": "https://pranavdhawan.com/",
+                "inLanguage": "en",
+                "publisher": { "@id": "https://pranavdhawan.com/#person" }
+            },
+            {
+                "@type": "ProfilePage",
+                "@id": "https://pranavdhawan.com/#profilepage",
+                "url": "https://pranavdhawan.com/",
+                "name": "Pranav Dhawan — AI Engineer & Data Scientist",
+                "inLanguage": "en",
+                "isPartOf": { "@id": "https://pranavdhawan.com/#website" },
+                "mainEntity": { "@id": "https://pranavdhawan.com/#person" }
+            }
+        ]
     }
     </script>
 </head>
@@ -688,6 +709,39 @@
                         </article>
                     </div>
                 </details>
+            </div>
+        </section>
+
+        <section id="writing" class="writing-teaser">
+            <div class="container">
+                <h2 class="section-title">WRITING</h2>
+                <ul class="writing-list">
+                    <li class="writing-row">
+                        <span class="writing-date"><time datetime="2026-11-17">Nov 17, 2026</time></span>
+                        <div class="writing-row-main">
+                            <a class="writing-row-title" href="blog/local-first-memory.html" data-analytics="home-post:local-first-memory">Why my AI assistant's memory stays on my machine</a>
+                            <span class="writing-tag">AI Assistants &middot; Local-First</span>
+                            <p>Assistants hide the context they pick and scatter your history. Singularity keeps memory local, cited to the exact source, behind a redaction gate.</p>
+                        </div>
+                    </li>
+                    <li class="writing-row">
+                        <span class="writing-date"><time datetime="2026-11-17">Nov 17, 2026</time></span>
+                        <div class="writing-row-main">
+                            <a class="writing-row-title" href="blog/pii-detection.html" data-analytics="home-post:pii-detection">Recall first: picking a PII model that runs on-device</a>
+                            <span class="writing-tag">NLP &middot; Privacy</span>
+                            <p>Four transformers, 54 entity types, one held-out set. Why recall decided it, and how DeBERTa ended up running locally in under 100ms.</p>
+                        </div>
+                    </li>
+                    <li class="writing-row">
+                        <span class="writing-date"><time datetime="2026-07-07">Jul 7, 2026</time></span>
+                        <div class="writing-row-main">
+                            <a class="writing-row-title" href="blog/multimodal-finding.html" data-analytics="home-post:multimodal-finding">When the simple model wins</a>
+                            <span class="writing-tag">Time Series &middot; Multimodal ML</span>
+                            <p>My thesis benchmarked 10+ models for stock forecasting. The surprise: a standalone LSTM stayed competitive with fused multimodal models.</p>
+                        </div>
+                    </li>
+                </ul>
+                <p class="writing-more"><a class="project-link" href="blog/" data-analytics="home-blog-all">All posts <span aria-hidden="true">&rarr;</span></a></p>
             </div>
         </section>
 

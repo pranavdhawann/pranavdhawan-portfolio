@@ -16,7 +16,8 @@ const contentTypes = {
   '.txt': 'text/plain; charset=utf-8',
   '.woff2': 'font/woff2',
   '.webp': 'image/webp',
-  '.avif': 'image/avif'
+  '.avif': 'image/avif',
+  '.svg': 'image/svg+xml'
 };
 
 function readConfiguredHeaders(rootDir) {

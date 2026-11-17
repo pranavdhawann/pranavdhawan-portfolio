@@ -19,7 +19,7 @@ function upstreamOk(content = 'stub answer') {
 function ask(body, method = 'POST') {
   return handler(new Request('http://localhost/.netlify/functions/ask', {
     method,
-    headers: { 'Content-Type': 'application/json' },
+    headers: { 'Content-Type': 'application/json', Origin: 'http://localhost' },
     body: method === 'POST' ? JSON.stringify(body) : undefined
   }));
 }
@@ -38,7 +38,7 @@ afterEach(() => {
 function askWith(headers, body = { question: 'Who are you?' }) {
   return handler(new Request('http://localhost/.netlify/functions/ask', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json', ...headers },
+    headers: { 'Content-Type': 'application/json', Origin: 'http://localhost', ...headers },
     body: JSON.stringify(body)
   }));
 }
@@ -51,6 +51,29 @@ test('rejects non-POST requests with 405', async () => {
 test('rejects requests from a disallowed Origin with 403', async () => {
   const response = await askWith({ Origin: 'https://evil.example' });
   assert.equal(response.status, 403);
+});
+
+test('rejects requests that carry no Origin at all', async () => {
+  const response = await handler(new Request('http://localhost/.netlify/functions/ask', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ question: 'Who are you?' })
+  }));
+  assert.equal(response.status, 403);
+  assert.equal(fetchCalls.length, 0);
+});
+
+test('rejects an oversized body even without a Content-Length header', async () => {
+  const response = await ask({ question: 'hi', history: [{ role: 'user', content: 'x'.repeat(70 * 1024) }] });
+  assert.equal(response.status, 413);
+  assert.equal(fetchCalls.length, 0);
+});
+
+test('caps replayed user turns at the question limit', async () => {
+  await ask({ question: 'hi', history: [{ role: 'user', content: 'x'.repeat(1400) }, { role: 'assistant', content: 'y'.repeat(1400) }] });
+  const [, user, assistant] = fetchCalls[0].body.messages;
+  assert.equal(user.content.length, 500);
+  assert.equal(assistant.content.length, 1400);
 });
 
 test('allows requests from the configured Origin', async () => {

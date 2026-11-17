@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why my AI assistant's memory stays on my machine — Pranav Dhawan</title>
+    <meta name="description" content="Why I built Singularity, a local-first memory and permission layer for AI assistants: inspectable context, citations to the exact source, and a redaction gate on every outbound call.">
+    <meta name="author" content="Pranav Dhawan">
+    <meta name="theme-color" content="#FFD600" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#15151E" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://pranavdhawan.com/blog/local-first-memory.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Why my AI assistant's memory stays on my machine — Pranav Dhawan">
+    <meta property="og:description" content="Why I built a local-first memory and permission layer for AI assistants.">
+    <meta property="og:url" content="https://pranavdhawan.com/blog/local-first-memory.html">
+    <meta property="og:image" content="https://pranavdhawan.com/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pranav Dhawan — AI Engineer. Why AI assistant memory should be local, cited, and gated.">
+    <meta property="og:site_name" content="Pranav Dhawan">
+    <meta property="article:published_time" content="2026-11-17">
+    <meta property="article:author" content="Pranav Dhawan">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Why my AI assistant's memory stays on my machine — Pranav Dhawan">
+    <meta name="twitter:description" content="Why I built a local-first memory and permission layer for AI assistants.">
+    <meta name="twitter:image" content="https://pranavdhawan.com/images/og-card.png">
+    <meta name="twitter:image:alt" content="Pranav Dhawan — AI Engineer. Why AI assistant memory should be local, cited, and gated.">
+    <link rel="alternate" type="application/rss+xml" title="Pranav Dhawan — Blog" href="feed.xml">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Why my AI assistant's memory stays on my machine",
+        "description": "Why I built a local-first memory and permission layer for AI assistants.",
+        "datePublished": "2026-11-17",
+        "dateModified": "2026-11-17",
+        "inLanguage": "en",
+        "articleSection": "AI Assistants",
+        "keywords": ["local-first software", "AI assistants", "RAG", "SQLite FTS5", "Ollama", "privacy"],
+        "author": { "@type": "Person", "@id": "https://pranavdhawan.com/#person", "name": "Pranav Dhawan", "url": "https://pranavdhawan.com/" },
+        "publisher": { "@id": "https://pranavdhawan.com/#person" },
+        "isPartOf": { "@id": "https://pranavdhawan.com/blog/#blog" },
+        "image": "https://pranavdhawan.com/images/og-card.png",
+        "mainEntityOfPage": "https://pranavdhawan.com/blog/local-first-memory.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Pranav Dhawan", "item": "https://pranavdhawan.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://pranavdhawan.com/blog/" },
+            { "@type": "ListItem", "position": 3, "name": "Why my AI assistant's memory stays on my machine", "item": "https://pranavdhawan.com/blog/local-first-memory.html" }
+        ]
+    }
+    </script>
+    <script src="../theme-init.js"></script>
+    <script src="../site-common.js" defer></script>
+    <script data-goatcounter="https://pranavdhawan.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <!-- Only the two symbols this page uses, so the toggle renders identically
+         to the portfolio instead of falling back to a text glyph. -->
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+        <symbol id="icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+        </symbol>
+        <symbol id="icon-moon" viewBox="0 0 24 24">
+            <path d="M20 13.5A8 8 0 1 1 10.5 4a6.5 6.5 0 0 0 9.5 9.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
+        </symbol>
+    </svg>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <nav class="navbar" aria-label="Main"><div class="nav-logo"><a href="../">PRANAV DHAWAN</a></div><div class="nav-right"><a class="nav-link" href="../">Portfolio</a><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg class="icon icon-sun" aria-hidden="true" focusable="false"><use href="#icon-sun"></use></svg><svg class="icon icon-moon" aria-hidden="true" focusable="false"><use href="#icon-moon"></use></svg></button></div></nav>
+    <main class="main-content article" id="main-content" tabindex="-1">
+        <article class="container article-body">
+            <p class="article-back"><a href="./">&larr; Back to blog</a></p>
+            <p class="article-meta"><time datetime="2026-11-17">Nov 17, 2026</time> &middot; AI Assistants &middot; Local-First &middot; 3 min read</p>
+            <h1>Why my AI assistant's memory stays on my machine</h1>
+
+            <p>AI assistants have a memory problem, and it is not that they forget. It is that
+                they hide the context they picked, and they scatter your history across chats. The
+                durable layer — everything you have told an assistant over months — ends up owned
+                by whichever product you happened to use. Singularity is my attempt to move that
+                layer back onto my own machine.</p>
+
+            <h2>What it does</h2>
+            <p>Singularity is a local memory and permission layer for AI assistants. It imports
+                your chat history and project files and answers from them with citations you can
+                open to the <strong>exact source range</strong> — not "based on your documents,"
+                but this file, these lines.</p>
+
+            <h2>The redaction gate</h2>
+            <p>The part I care about most: every outbound model call is held behind a redaction
+                gate that I approve before anything leaves the machine. The assistant can propose
+                what to send; it cannot decide on its own. Every import, call, approval, denial,
+                and answer lands on a single auditable SQLite timeline, so "what did it share,
+                and when?" always has an answer.</p>
+
+            <h2>Boring technology on purpose</h2>
+            <p>It is built in TypeScript on Fastify and React, with SQLite FTS5 for retrieval. It
+                is model-agnostic: Ollama, any OpenAI-compatible endpoint, or a fully offline mock.
+                Nothing in the stack requires an account or a cloud service to keep the memory
+                itself working.</p>
+
+            <h2>The lesson</h2>
+            <p>Keeping memory local makes two things inspectable at once: what the assistant
+                knows, and what it is about to share. That is the same instinct behind my
+                <a href="pii-detection.html">PII detection work</a> — privacy holds when the
+                architecture enforces it, not when a setting promises it.</p>
+
+            <aside class="article-author" aria-label="About the author">
+                <p><strong>Pranav Dhawan</strong> is an AI engineer and the founder of SideQuest India. He builds production AI systems: workplace automation, document intelligence, and RAG.</p>
+                <p class="article-author-links">
+                    <a href="../#projects" data-analytics="post-cta:projects">See my projects</a>
+                    <a href="../#contact" data-analytics="post-cta:contact">Get in touch</a>
+                </p>
+            </aside>
+
+            <nav class="article-nav" aria-label="More posts">
+                <a href="pii-detection.html">&larr; Previous: Recall first: picking a PII model that runs on-device</a>
+                <a href="./">Back to blog &rarr;</a>
+            </nav>
+        </article>
+    </main>
+    <footer class="footer"><div class="container"><p><span id="copyrightYear">2026</span> | Pranav Dhawan | <a href="../privacy.html">Privacy</a></p></div></footer>
+</body>
+
+</html>

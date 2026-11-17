@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recall first: picking a PII model that runs on-device — Pranav Dhawan</title>
+    <meta name="description" content="How I benchmarked four transformers for PII detection across 54 entity types, why recall decided it, and how DeBERTa ended up running locally in under 100ms.">
+    <meta name="author" content="Pranav Dhawan">
+    <meta name="theme-color" content="#FFD600" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#15151E" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://pranavdhawan.com/blog/pii-detection.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Recall first: picking a PII model that runs on-device — Pranav Dhawan">
+    <meta property="og:description" content="Benchmarking four transformers for on-device PII detection, and why recall decided it.">
+    <meta property="og:url" content="https://pranavdhawan.com/blog/pii-detection.html">
+    <meta property="og:image" content="https://pranavdhawan.com/images/og-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Pranav Dhawan — AI Engineer. Why recall decided the model choice for on-device PII detection.">
+    <meta property="og:site_name" content="Pranav Dhawan">
+    <meta property="article:published_time" content="2026-11-17">
+    <meta property="article:author" content="Pranav Dhawan">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Recall first: picking a PII model that runs on-device — Pranav Dhawan">
+    <meta name="twitter:description" content="Benchmarking four transformers for on-device PII detection, and why recall decided it.">
+    <meta name="twitter:image" content="https://pranavdhawan.com/images/og-card.png">
+    <meta name="twitter:image:alt" content="Pranav Dhawan — AI Engineer. Why recall decided the model choice for on-device PII detection.">
+    <link rel="alternate" type="application/rss+xml" title="Pranav Dhawan — Blog" href="feed.xml">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Recall first: picking a PII model that runs on-device",
+        "description": "Benchmarking four transformers for on-device PII detection, and why recall decided it.",
+        "datePublished": "2026-11-17",
+        "dateModified": "2026-11-17",
+        "inLanguage": "en",
+        "articleSection": "NLP",
+        "keywords": ["PII detection", "named entity recognition", "DeBERTa", "ONNX", "on-device inference", "privacy"],
+        "author": { "@type": "Person", "@id": "https://pranavdhawan.com/#person", "name": "Pranav Dhawan", "url": "https://pranavdhawan.com/" },
+        "publisher": { "@id": "https://pranavdhawan.com/#person" },
+        "isPartOf": { "@id": "https://pranavdhawan.com/blog/#blog" },
+        "image": "https://pranavdhawan.com/images/og-card.png",
+        "mainEntityOfPage": "https://pranavdhawan.com/blog/pii-detection.html"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "Pranav Dhawan", "item": "https://pranavdhawan.com/" },
+            { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://pranavdhawan.com/blog/" },
+            { "@type": "ListItem", "position": 3, "name": "Recall first: picking a PII model that runs on-device", "item": "https://pranavdhawan.com/blog/pii-detection.html" }
+        ]
+    }
+    </script>
+    <script src="../theme-init.js"></script>
+    <script src="../site-common.js" defer></script>
+    <script data-goatcounter="https://pranavdhawan.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+
+<body>
+    <!-- Only the two symbols this page uses, so the toggle renders identically
+         to the portfolio instead of falling back to a text glyph. -->
+    <svg class="icon-sprite" aria-hidden="true" focusable="false">
+        <symbol id="icon-sun" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.2"/>
+            <path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
+        </symbol>
+        <symbol id="icon-moon" viewBox="0 0 24 24">
+            <path d="M20 13.5A8 8 0 1 1 10.5 4a6.5 6.5 0 0 0 9.5 9.5z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="miter"/>
+        </symbol>
+    </svg>
+
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <nav class="navbar" aria-label="Main"><div class="nav-logo"><a href="../">PRANAV DHAWAN</a></div><div class="nav-right"><a class="nav-link" href="../">Portfolio</a><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg class="icon icon-sun" aria-hidden="true" focusable="false"><use href="#icon-sun"></use></svg><svg class="icon icon-moon" aria-hidden="true" focusable="false"><use href="#icon-moon"></use></svg></button></div></nav>
+    <main class="main-content article" id="main-content" tabindex="-1">
+        <article class="container article-body">
+            <p class="article-back"><a href="./">&larr; Back to blog</a></p>
+            <p class="article-meta"><time datetime="2026-11-17">Nov 17, 2026</time> &middot; NLP &middot; Privacy &middot; 3 min read</p>
+            <h1>Recall first: picking a PII model that runs on-device</h1>
+
+            <p>For a graduate project I built a system that detects and censors personally
+                identifiable information — names, addresses, SSNs, dates of birth, 54 entity
+                types in all — entirely on the user's machine. No text leaves the device. That one
+                constraint shaped almost every decision that followed.</p>
+
+            <h2>The metric comes before the model</h2>
+            <p>The two ways this system can fail are not equally bad. A false positive blacks out
+                a word that was harmless; mildly annoying. A false negative leaks someone's SSN.
+                So before comparing any models I decided to weight recall heavily: missing PII is
+                worse than over-censoring.</p>
+
+            <h2>Four models, one held-out set</h2>
+            <p>I benchmarked BERT, RoBERTa, DistilBERT, and DeBERTa on the same held-out set, so
+                the comparison was about the architectures and nothing else. DeBERTa won with a
+                <strong>98.1% F1 and 97.9% recall</strong>. Its disentangled attention encodes
+                content and position separately, which is a real advantage when the hard part of
+                the task is finding exactly where an entity starts and ends.</p>
+
+            <h2>Making it run locally</h2>
+            <p>A model that wins the benchmark but needs a server defeats the purpose. I exported
+                the model through ONNX and got inference <strong>under 100ms on-device</strong>.
+                Around it sits a Streamlit demo, Tesseract OCR so PDFs and images can be processed
+                too, and SHAP/LIME explanations so a user can see entity-level confidence instead
+                of trusting a black box with their private data.</p>
+
+            <h2>The lesson</h2>
+            <p>Privacy protection at scale is an engineering problem, not just a legal one. A
+                policy can say personal data must not leave the machine; only the architecture
+                can make that true. And the order matters: decide which error you cannot afford,
+                pick the metric that punishes it, and only then pick the model.</p>
+
+            <aside class="article-author" aria-label="About the author">
+                <p><strong>Pranav Dhawan</strong> is an AI engineer and the founder of SideQuest India. He builds production AI systems: workplace automation, document intelligence, and RAG.</p>
+                <p class="article-author-links">
+                    <a href="../#projects" data-analytics="post-cta:projects">See my projects</a>
+                    <a href="../#contact" data-analytics="post-cta:contact">Get in touch</a>
+                </p>
+            </aside>
+
+            <nav class="article-nav" aria-label="More posts">
+                <a href="multimodal-finding.html">&larr; Previous: When the simple model wins</a>
+                <a href="local-first-memory.html">Next: Why my AI assistant's memory stays on my machine &rarr;</a>
+            </nav>
+        </article>
+    </main>
+    <footer class="footer"><div class="container"><p><span id="copyrightYear">2026</span> | Pranav Dhawan | <a href="../privacy.html">Privacy</a></p></div></footer>
+</body>
+
+</html>

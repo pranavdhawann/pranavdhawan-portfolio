@@ -1,7 +1,6 @@
 // Global: respect reduced-motion preference
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const SVG_NS = 'http://www.w3.org/2000/svg';
-const XLINK_NS = 'http://www.w3.org/1999/xlink';
 
 // Engines without IntersectionObserver used to throw on the bare `new`
 // constructors below, killing every later module on the page. This shim reports observed elements as visible immediately so
@@ -31,7 +30,6 @@ function createSvgIcon(symbolId, className = 'icon') {
     icon.setAttribute('focusable', 'false');
     const use = document.createElementNS(SVG_NS, 'use');
     use.setAttribute('href', `#${symbolId}`);
-    use.setAttributeNS(XLINK_NS, 'href', `#${symbolId}`);
     icon.appendChild(use);
     return icon;
 }
@@ -264,22 +262,14 @@ if (heroTitle && heroSection) {
         else detachTilt();
     };
 
-    if (typeof prefersReducedMotion.addEventListener === 'function') {
-        prefersReducedMotion.addEventListener('change', syncTilt);
-    } else if (typeof prefersReducedMotion.addListener === 'function') {
-        prefersReducedMotion.addListener(syncTilt);
-    }
+    prefersReducedMotion.addEventListener('change', syncTilt);
 
     new IntersectionObserver((entries) => {
         entries.forEach(entry => { heroVisible = entry.isIntersecting; });
         syncTilt();
     }, { threshold: 0 }).observe(heroSection);
 
-    if (typeof finePointerQuery.addEventListener === 'function') {
-        finePointerQuery.addEventListener('change', syncTilt);
-    } else if (typeof finePointerQuery.addListener === 'function') {
-        finePointerQuery.addListener(syncTilt);
-    }
+    finePointerQuery.addEventListener('change', syncTilt);
 
     syncTilt();
 }
@@ -496,45 +486,31 @@ if (heroTitle && heroSection) {
             if (activeMode !== 'pointer') startPointerMode();
         }
 
-        if ('IntersectionObserver' in window) {
-            new IntersectionObserver((entries) => {
-                entries.forEach((entry) => { avatarVisible = entry.isIntersecting; });
-                syncMode();
-            }, { threshold: 0 }).observe(wrapper);
-        }
+        new IntersectionObserver((entries) => {
+            entries.forEach((entry) => { avatarVisible = entry.isIntersecting; });
+            syncMode();
+        }, { threshold: 0 }).observe(wrapper);
 
         syncMode();
         window.addEventListener('resize', syncMode, { passive: true });
 
-        const bindModeListener = (query) => {
-            if (typeof query.addEventListener === 'function') {
-                query.addEventListener('change', syncMode);
-                return;
-            }
-
-            if (typeof query.addListener === 'function') {
-                query.addListener(syncMode);
-            }
-        };
-
-        bindModeListener(pointerTypeQuery);
-        bindModeListener(hoverQuery);
-        bindModeListener(prefersReducedMotion);
+        [pointerTypeQuery, hoverQuery, prefersReducedMotion].forEach((query) => {
+            query.addEventListener('change', syncMode);
+        });
     }
 
-    const trySetup = () => setup();
     const hidePupils = () => eyes.forEach((eye) => { eye.el.style.display = 'none'; });
     base.addEventListener('error', hidePupils, { once: true });
     eyeL.addEventListener('error', hidePupils, { once: true });
     eyeR.addEventListener('error', hidePupils, { once: true });
-    if (!base.complete) base.addEventListener('load', trySetup, { once: true });
-    if (!eyeL.complete) eyeL.addEventListener('load', trySetup, { once: true });
+    if (!base.complete) base.addEventListener('load', setup, { once: true });
+    if (!eyeL.complete) eyeL.addEventListener('load', setup, { once: true });
     // An image that already failed before this script ran is `complete` with a
     // zero naturalWidth and will never fire `error`, so the listeners above
     // never hide the pupils. Catch that state directly.
     const failedEarly = [base, eyeL, eyeR].some((img) => img.complete && img.naturalWidth === 0);
     if (failedEarly) hidePupils();
-    else if (base.complete && eyeL.complete) trySetup();
+    else if (base.complete && eyeL.complete) setup();
 })();
 
 /* ==========================================
@@ -800,16 +776,12 @@ if (heroTitle && heroSection) {
 
     };
 
-    if ('IntersectionObserver' in window) {
-        const observer = new IntersectionObserver((entries) => {
-            if (!entries.some((entry) => entry.isIntersecting)) return;
-            observer.disconnect();
-            initialize();
-        }, { rootMargin: '300px 0px' });
-        observer.observe(svg);
-    } else {
+    const observer = new IntersectionObserver((entries) => {
+        if (!entries.some((entry) => entry.isIntersecting)) return;
+        observer.disconnect();
         initialize();
-    }
+    }, { rootMargin: '300px 0px' });
+    observer.observe(svg);
 })();
 
 // Chat Widget — "Ask Pranav" floating pill assistant

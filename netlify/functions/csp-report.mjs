@@ -8,6 +8,11 @@ const WINDOW_MS = 60_000;
 const MAX_REPORTS_PER_WINDOW = 30;
 const MAX_BODY_BYTES = 16 * 1024;
 
+// The in-memory limiter below resets on cold start; this is the durable one.
+export const config = {
+  rateLimit: { windowLimit: 30, windowSize: 60, aggregateBy: ['ip'] },
+};
+
 const recentHits = new Map();
 
 const isRateLimited = (ip) => {
@@ -32,12 +37,11 @@ export default async function handler(request) {
     return new Response(null, { status: 429 });
   }
 
-  if (Number(request.headers.get('content-length') || 0) > MAX_BODY_BYTES) {
-    return new Response(null, { status: 413 });
-  }
-
   // Keep reports aggregate-only: browser CSP reports can include visitor URLs.
   const body = await request.text().catch(() => '');
+  if (body.length > MAX_BODY_BYTES) {
+    return new Response(null, { status: 413 });
+  }
   let report;
   try {
     report = JSON.parse(body);
@@ -49,7 +53,8 @@ export default async function handler(request) {
   const directive = legacy?.['violated-directive'] || modern?.effectiveDirective || modern?.violatedDirective;
   if (directive) {
     console.warn('CSP violation', {
-      directive,
+      // Attacker-controlled string: log a bounded prefix only.
+      directive: String(directive).slice(0, 80),
       shape: legacy ? 'legacy' : 'reporting-api',
     });
   }

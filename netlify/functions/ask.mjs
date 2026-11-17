@@ -10,8 +10,10 @@ const MAX_HISTORY_MESSAGES = 6;
 const MAX_HISTORY_CONTENT_LENGTH = 1500;
 const FRIENDLY_ERROR = "I couldn't answer right now — try again in a moment, or reach Pranav through the contact section.";
 
-// Only allow browser calls from the site itself. Requests with no Origin (curl,
-// server-to-server, unit tests) fall through to the rate limiter below.
+// Only allow browser calls from the site itself. Browsers always send Origin on
+// a POST fetch, so a request without one is not the widget and is refused too.
+// A same-origin request (deploy previews, netlify dev) is allowed without being
+// listed. Origin is spoofable outside a browser; the rate limits are the backstop.
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://pranavdhawan.com,https://www.pranavdhawan.com,https://pranavdhawan.netlify.app')
   .split(',')
   .map((origin) => origin.trim())
@@ -31,6 +33,17 @@ export const config = {
     windowSize: 60,
     aggregateBy: ['ip'],
   },
+};
+
+const isAllowedOrigin = (request) => {
+  const origin = request.headers.get('origin');
+  if (!origin) return false;
+  if (ALLOWED_ORIGINS.includes(origin)) return true;
+  try {
+    return origin === new URL(request.url).origin;
+  } catch {
+    return false;
+  }
 };
 
 const clientIp = (request) =>
@@ -85,8 +98,7 @@ const json = (body, status = 200) =>
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
   });
 
-// Cap request bodies before parsing them: json() would otherwise happily read a
-// arbitrarily large payload before any validation ran.
+// Cap request bodies before parsing them.
 const MAX_BODY_BYTES = 64 * 1024;
 // Hard cap on array length before any per-entry work: bounds a hostile payload
 // without changing results for real clients, which send at most 6 entries.
@@ -110,7 +122,13 @@ const sanitizeHistory = (history) => {
     .slice(-MAX_HISTORY_MESSAGES)
     .map((entry) => ({
       role: entry.role,
-      content: entry.content.slice(0, MAX_HISTORY_CONTENT_LENGTH)
+      // A "user" turn is a past question, so it gets the question cap; only
+      // answers need the longer one. Keeps replayed history from smuggling a
+      // long prompt past the 500-character limit.
+      content: entry.content.slice(
+        0,
+        entry.role === 'user' ? MAX_QUESTION_LENGTH : MAX_HISTORY_CONTENT_LENGTH
+      )
     }));
 };
 
@@ -119,8 +137,7 @@ export default async function handler(request) {
     return json({ error: 'Method not allowed.' }, 405);
   }
 
-  const origin = request.headers.get('origin');
-  if (origin && !ALLOWED_ORIGINS.includes(origin)) {
+  if (!isAllowedOrigin(request)) {
     return json({ error: 'Forbidden.' }, 403);
   }
 
@@ -130,11 +147,13 @@ export default async function handler(request) {
 
   let payload;
   try {
-    const contentLength = Number(request.headers.get('content-length') || 0);
-    if (contentLength > MAX_BODY_BYTES) {
+    // Measure the body itself: Content-Length is absent on chunked requests
+    // and trivially understated.
+    const raw = await request.text();
+    if (raw.length > MAX_BODY_BYTES) {
       return json({ error: 'Payload too large.' }, 413);
     }
-    payload = await request.json();
+    payload = JSON.parse(raw);
   } catch {
     return json({ error: 'Invalid JSON body.' }, 400);
   }
@@ -217,10 +236,10 @@ export default async function handler(request) {
     console.error('Ask Pranav upstream returned no answer', { model: MODEL });
     return json({ error: FRIENDLY_ERROR }, 502);
   }
-  // max_tokens truncation leaves a sentence hanging mid-word; better to show the
+  // Truncation at the token cap leaves a sentence hanging mid-word; better to show the
   // friendly error than to present a cut-off answer as if it were complete.
   if (choice.finish_reason === 'length') {
-    console.warn('Ask Pranav response truncated by max_tokens');
+    console.warn('Ask Pranav response truncated at the token cap');
     return json({ error: FRIENDLY_ERROR }, 502);
   }
   if (!isSafeAnswer(answer)) {

@@ -1,6 +1,6 @@
 # pranavdhawan-portfolio
 
-Static portfolio site for Pranav Dhawan
+Static portfolio site for Pranav Dhawan.
 
 **Live:** https://pranavdhawan.com/
 
@@ -12,65 +12,62 @@ Vanilla HTML / CSS / JS with a static build step and no browser runtime dependen
 - Inline SVG sprite for the small icon set used by the page
 - Neobrutalism design system — hard borders, offset shadows, flat bold color. Palette + tokens in `styles.css :root`.
 
+## Development
+
+Requires Node 20.9+.
+
+| Command | What it does |
+|---|---|
+| `npm ci` | Install dependencies |
+| `npm run dev` | Build into `public/` and serve it at http://localhost:4321 |
+| `npm run build` | Production build (what Netlify runs) |
+| `npm run check` | Build, HTML validation, header check, node tests, Playwright + axe |
+
+Playwright needs its browser once: `npx playwright install chromium`.
+
 ## Files
 
 | File | Purpose |
 |---|---|
-| `index.html` | Single page: hero / about / skills / experience / projects (with client work) / contact |
+| `index.html` | Single page: hero / about / skills / experience / projects (with client work) / writing teaser / contact |
 | `styles.css` | Design tokens + responsive breakpoints (1400 / 1024 / 768 / 480 / 360) |
 | `script.js` | Portfolio-only behavior (hero, skills graph, chat, contact), single IIFE per module |
 | `site-common.js` | Shared by every page: analytics, theme toggle, footer year. Loaded *instead of* `script.js` on the blog and privacy pages, which don't need the rest |
-| `blog/` | Blog index + posts; the "AI This Week" digest section and `blog/feed.xml` are regenerated weekly (see below) |
-| `scripts/` | Static-site build, local server, image optimization, and manual AI-news/newsletter tools |
-| `netlify.toml` | Netlify security headers + functions directory |
+| `blog/` | Blog index, posts, and `feed.xml` — all written and published by hand (see below) |
+| `scripts/` | Static-site build, local server, image optimization, OG-card generator |
+| `favicon.svg` | Site icon; the build derives `apple-touch-icon.png` from it |
+| `llms.txt` | Plain-text summary of the site for AI crawlers and answer engines (hand-maintained) |
+| `robots.txt`, `sitemap.xml` | Crawl directives (hand-maintained) |
+| `netlify.toml` | Netlify security headers, cache rules, functions directory |
 | `netlify/functions/ask.mjs` | Serverless proxy to OpenAI (`gpt-6-luna`) for the chat widget |
-| `netlify/functions/submission-created.mjs` | Fired by Netlify on newsletter signup; emails the confirmation link |
-| `netlify/functions/confirm.mjs` | Double opt-in landing page; records the confirmed address on POST |
-| `netlify/functions/unsubscribe.mjs` | One-click unsubscribe (RFC 8058); suppression happens on POST only |
+| `netlify/functions/csp-report.mjs` | Receives browser CSP violation reports |
 | `netlify/functions/lib/knowledge.mjs` | Curated first-person knowledge base embedded in the chat system prompt |
 | `package.json`, `tests/` | Local validation, Playwright smoke tests, and axe accessibility checks |
 | `images/photo.png` (487×476), `images/eye.png` | Drive the cursor-tracking avatar eyes |
 | `Pranav_Dhawan_Resume.pdf` | Download target |
 
-## Weekly AI news digest
+## Publishing a blog post
 
-The blog page carries an "AI This Week" section generated from official lab
-feeds, arXiv, and GitHub. It refreshes every Monday at 06:15 UTC via the
-scheduled `.github/workflows/update-ai-news.yml` run, which also emails the
-digest to confirmed subscribers once the newsletter secrets are configured;
-`npm run news:update` / `npm run news:send` remain for manual runs.
-The feed source list lives in `scripts/fetch-ai-news.mjs`.
+Posts are plain HTML files. Nothing is generated, so a new post touches each of these by hand:
 
-### Newsletter subscription (double opt-in)
+1. `blog/<slug>.html` — copy an existing post; update the title, description, Open Graph/Twitter tags, canonical URL, both JSON-LD blocks, the visible date, and the prev/next links (and the previous newest post's "next" link).
+2. `blog/index.html` — a row at the top of the list and an entry in the `Blog` JSON-LD `blogPost` array.
+3. `blog/feed.xml` — an `<item>` at the top, and bump `lastBuildDate`.
+4. `sitemap.xml` and `llms.txt` — the new URL (and the blog index `lastmod`).
+5. `index.html` — the Writing section shows the three most recent posts.
 
-1. A visitor submits the blog signup form (Netlify Forms).
-2. Netlify fires `netlify/functions/submission-created.mjs`, which emails a
-   confirmation link signed with `UNSUBSCRIBE_SECRET`.
-3. Clicking it opens `confirm.mjs`, which records the address only on POST —
-   a GET just renders the button, because mail scanners follow every link in an
-   email and a GET-triggered opt-in proves nothing about consent.
-4. `send-newsletter.mjs` mails only addresses in the confirmed store, minus
-   anything on the unsubscribe suppression list.
+`npm run test:function` runs `tests/blog-posts.node.mjs`, which fails if a post file exists but is missing from the index, feed, sitemap, or `llms.txt`, or if its canonical URL, date, or headline disagree with its JSON-LD. Pushing to `main` deploys.
 
-Unsubscribing works the same way in reverse: `List-Unsubscribe-Post` one-click
-POSTs are honoured immediately, and a human clicking the link gets a confirm
-button rather than being unsubscribed by a link prefetcher.
+## Environment variables
 
-### Secrets
+Set in Netlify for the serverless functions:
 
-Set the applicable variables in the local environment for manual newsletter
-operations and in Netlify for the serverless functions:
-
-| Secret | Purpose |
+| Variable | Purpose |
 |---|---|
-| `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID` | Read form submissions; address the Blobs stores |
 | `OPENAI_API_KEY` | Powers the "Ask Pranav" chat widget (`netlify/functions/ask.mjs`) — without it the widget returns its friendly error |
-| `SMTP_HOST` / `SMTP_PORT` / `SMTP_USER` / `SMTP_PASS` | Outbound mail (newsletter confirmation emails) |
-| `NEWSLETTER_FROM` | From header, e.g. `Pranav Dhawan <you@example.com>` |
-| `SITE_URL` | Optional: canonical site origin used in signed links (defaults to `https://pranavdhawan.com`; www is stripped because the 301 breaks one-click POSTs) |
-| `ALLOWED_ORIGINS` | Optional: comma-separated origins allowed to call the chat function |
-| `UNSUBSCRIBE_SECRET` | Signs confirmation and unsubscribe tokens — rotating it invalidates every live link. Tokens also expire on their own (confirm 7 days, unsubscribe 180 days). |
-| `NEWSLETTER_ADDRESS` | Postal address in the mail footer. **Set this.** CAN-SPAM and the Gmail/Yahoo bulk-sender rules require a real address, and the in-repo fallback is deliberately city-level only so no home address is committed or mailed. Use a PO box or virtual mailbox. |
+| `ALLOWED_ORIGINS` | Optional: comma-separated origins allowed to call the chat function. Requests from the function's own origin are always allowed; requests with no `Origin` header are refused |
+
+The newsletter was discontinued along with the auto-generated digest. `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `SMTP_*`, `NEWSLETTER_*`, `UNSUBSCRIBE_SECRET`, and `SITE_URL` are no longer read by anything and can be deleted from Netlify and from the GitHub repository secrets.
 
 ## Analytics
 

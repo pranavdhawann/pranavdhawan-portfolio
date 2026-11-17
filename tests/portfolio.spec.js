@@ -576,6 +576,37 @@ test('structured data describes the site owner as a Person', async ({ page }) =>
   expect(data.sameAs).toContain('https://github.com/pranavdhawann');
 });
 
+test('structured data links the site, profile page and person by @id', async ({ page }) => {
+  await openPortfolio(page);
+
+  const blocks = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const [person, site] = blocks.map((block) => JSON.parse(block));
+  expect(person['@id']).toBe('https://pranavdhawan.com/#person');
+  const profile = site['@graph'].find((node) => node['@type'] === 'ProfilePage');
+  expect(profile.mainEntity['@id']).toBe(person['@id']);
+});
+
+test('the favicon is a crawlable file, not a data URI', async ({ page, request }) => {
+  await openPortfolio(page);
+
+  const href = await page.locator('link[rel="icon"]').getAttribute('href');
+  expect(href).toBe('favicon.svg');
+  const response = await request.get(new URL(href, page.url()).href);
+  expect(response.ok()).toBe(true);
+});
+
+test('the writing teaser links to every post it lists and to the blog index', async ({ page, request }) => {
+  await openPortfolio(page);
+
+  const hrefs = await page.locator('#writing a').evaluateAll((links) => links.map((a) => a.getAttribute('href')));
+  expect(hrefs).toContain('blog/');
+  expect(hrefs.length).toBeGreaterThanOrEqual(3);
+  for (const href of hrefs) {
+    const response = await request.get(new URL(href, page.url()).href);
+    expect(response.ok(), href).toBe(true);
+  }
+});
+
 test('hash navigation clears the fixed navbar via scroll padding', async ({ page }) => {
   await openPortfolio(page);
 

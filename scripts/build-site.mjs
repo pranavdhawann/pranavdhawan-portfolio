@@ -3,8 +3,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { transform as transformJavaScript } from 'esbuild';
 import { transform as transformCss } from 'lightningcss';
+import sharp from 'sharp';
 import { optimizeImages } from './optimize-images.mjs';
-import { rewriteBlogLastmod } from './lib/sitemap-lastmod.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const publish = path.join(root, 'public');
@@ -18,10 +18,12 @@ const assets = [
   'robots.txt',
   'sitemap.xml',
   'privacy.html',
+  'favicon.svg',
+  'llms.txt',
   'images',
   'blog',
 ];
-const browserScripts = ['script.js', 'site-common.js', 'theme-init.js', 'blog/newsletter.js'];
+const browserScripts = ['script.js', 'site-common.js', 'theme-init.js'];
 const fontAssets = [
   {
     source: 'node_modules/@fontsource-variable/dm-sans/files/dm-sans-latin-wght-normal.woff2',
@@ -37,11 +39,6 @@ await rm(publish, { recursive: true, force: true });
 await mkdir(publish, { recursive: true });
 await Promise.all(assets.map((asset) => cp(path.join(root, asset), path.join(publish, asset), { recursive: true })));
 
-// blog/data holds generator runtime state (ai-news.json, newsletter-state.json)
-// that no page fetches at runtime — never publish it. If the state schema ever
-// gains subscriber addresses it would otherwise ship straight to the CDN.
-await rm(path.join(publish, 'blog', 'data'), { recursive: true, force: true });
-
 const fontsDirectory = path.join(publish, 'fonts');
 await mkdir(fontsDirectory, { recursive: true });
 await Promise.all(fontAssets.map(({ source, output }) => (
@@ -50,6 +47,13 @@ await Promise.all(fontAssets.map(({ source, output }) => (
 
 await optimizeImages(path.join(publish, 'images'));
 
+// iOS ignores SVG icons for home-screen bookmarks; derive the PNG from the
+// one favicon source rather than committing a second copy.
+await sharp(path.join(root, 'favicon.svg'), { density: 300 })
+  .resize(180, 180)
+  .png()
+  .toFile(path.join(publish, 'apple-touch-icon.png'));
+
 const cssPath = path.join(root, 'styles.css');
 const minifiedCss = transformCss({
   filename: cssPath,
@@ -57,27 +61,6 @@ const minifiedCss = transformCss({
   minify: true,
 });
 await writeFile(path.join(publish, 'styles.css'), minifiedCss.code);
-
-// The blog index changes every Monday, so its sitemap lastmod is derived from
-// the digest data rather than hand-maintained (and going stale the same week).
-const digestUpdated = await readFile(path.join(root, 'blog', 'data', 'ai-news.json'), 'utf8')
-  .then((raw) => JSON.parse(raw).updated)
-  .catch(() => null);
-
-if (digestUpdated) {
-  const sitemapPath = path.join(publish, 'sitemap.xml');
-  const sitemap = await readFile(sitemapPath, 'utf8');
-  let result;
-  try {
-    result = rewriteBlogLastmod(sitemap, digestUpdated);
-  } catch (error) {
-    throw new Error(`sitemap lastmod update failed: ${error.message}`);
-  }
-  if (!result.replaced) {
-    console.warn('sitemap.xml no longer matches the blog lastmod pattern — stale date shipped.');
-  }
-  await writeFile(sitemapPath, result.xml);
-}
 
 await Promise.all(browserScripts.map(async (relativePath) => {
   const sourcePath = path.join(root, relativePath);

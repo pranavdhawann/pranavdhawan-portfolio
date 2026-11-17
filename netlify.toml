@@ -17,14 +17,27 @@ Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 Cross-Origin-Opener-Policy = "same-origin"
 Cross-Origin-Resource-Policy = "same-origin"
 
-# Filenames are unhashed, so long caches lean on Netlify's etag revalidation —
-# except fonts, which are immutable content copied from pinned packages.
+# Fonts are copied from versions locked in package-lock.json and never change
+# under these names without a deliberate bump.
 [[headers]]
 for = "/fonts/*"
 [headers.values]
 Cache-Control = "public, max-age=31536000, immutable"
 
+# Image filenames are unhashed, so keep the hard cache short and let the CDN
+# revalidate in the background; a replaced photo shows up within a day.
 [[headers]]
 for = "/images/*"
 [headers.values]
-Cache-Control = "public, max-age=2592000"
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+
+# Social cards and feed readers fetch these cross-origin.
+[[headers]]
+for = "/images/og-card.png"
+[headers.values]
+Cross-Origin-Resource-Policy = "cross-origin"
+
+[[headers]]
+for = "/blog/feed.xml"
+[headers.values]
+Cross-Origin-Resource-Policy = "cross-origin"

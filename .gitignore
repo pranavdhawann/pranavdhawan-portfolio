@@ -13,7 +13,6 @@ playwright-report/
 netlify-dev.log
 
 # Private notes and local artifacts
-subscribers.csv
 info.txt
 deno.lock
 output/
