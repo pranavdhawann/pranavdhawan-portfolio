@@ -19,7 +19,7 @@ Requires Node 20.9+.
 | Command | What it does |
 |---|---|
 | `npm ci` | Install dependencies |
-| `npm run dev` | Build into `public/` and serve it at http://localhost:4321 |
+| `npm run dev` | Build into `public/` and serve it at `http://localhost:4321` |
 | `npm run build` | Production build (what Netlify runs) |
 | `npm run check` | Build, HTML validation, header check, node tests, Playwright + axe |
 
