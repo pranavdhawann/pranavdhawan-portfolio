@@ -32,6 +32,12 @@
 
 <body>
     <svg class="icon-sprite" aria-hidden="true" focusable="false">
+        <symbol id="icon-menu" viewBox="0 0 24 24">
+            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+        </symbol>
+        <symbol id="icon-close" viewBox="0 0 24 24">
+            <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
+        </symbol>
         <symbol id="icon-sun" viewBox="0 0 24 24">
             <circle cx="12" cy="12" r="4.5" fill="none" stroke="currentColor" stroke-width="2.2"/>
             <path d="M12 1.5v3M12 19.5v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M1.5 12h3M19.5 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
@@ -42,8 +48,44 @@
     </svg>
 
     <a class="skip-link" href="#main-content">Skip to content</a>
-    <nav class="navbar" aria-label="Main"><div class="nav-logo"><a href="./">PRANAV DHAWAN</a></div><div class="nav-right"><a class="nav-link" href="./">Portfolio</a><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false"><svg class="icon icon-sun" aria-hidden="true" focusable="false"><use href="#icon-sun"></use></svg><svg class="icon icon-moon" aria-hidden="true" focusable="false"><use href="#icon-moon"></use></svg></button></div></nav>
-
+    <nav class="navbar" id="navbar" aria-label="Main">
+        <div class="nav-logo">
+            <a href="./">PRANAV DHAWAN</a>
+        </div>
+        <div class="nav-right">
+            <ul class="nav-menu" id="navMenu">
+                <li class="nav-item">
+                    <a href="./" class="nav-link">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./#about" class="nav-link">ABOUT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./#skills" class="nav-link">SKILLS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./#experience" class="nav-link">EXPERIENCE</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./#projects" class="nav-link">PROJECTS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="./#contact" class="nav-link">CONTACT</a>
+                </li>
+                <li class="nav-item">
+                    <a href="blog/" class="nav-link">BLOG</a>
+                </li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to dark mode" aria-pressed="false">
+                <svg class="icon icon-sun" aria-hidden="true" focusable="false"><use href="#icon-sun"></use></svg>
+                <svg class="icon icon-moon" aria-hidden="true" focusable="false"><use href="#icon-moon"></use></svg>
+            </button>
+            <button class="mobile-toggle" id="mobileToggle" type="button" aria-expanded="false" aria-controls="navMenu" aria-label="Toggle navigation menu">
+                <svg class="icon icon-menu" aria-hidden="true" focusable="false"><use href="#icon-menu"></use></svg>
+                <svg class="icon icon-close" aria-hidden="true" focusable="false"><use href="#icon-close"></use></svg>
+            </button>
+        </div>
+    </nav>
     <main class="main-content article" id="main-content" tabindex="-1">
         <article class="container article-body">
             <p class="article-meta">PRIVACY</p>
@@ -66,9 +108,10 @@
             <h2>The AI chat widget</h2>
             <p>"Ask me anything" sends the question you type — and the last few messages of that
                 conversation, for context — to <a href="https://openai.com/policies/privacy-policy/" target="_blank" rel="noopener noreferrer">OpenAI</a>,
-                which runs the model that writes the reply. I do not store your questions,
-                but they do leave this site to reach OpenAI, so please do not type anything personal or
-                sensitive into it.</p>
+                which runs the model that writes the reply. The text of each question is also written to
+                this site's server logs at Netlify, my hosting provider, so I can see what people ask.
+                Nothing else about you is logged alongside it, but please do not type anything personal
+                or sensitive into it.</p>
 
             <h2>Security reporting</h2>
             <p>The site asks your browser to report content-security-policy violations back to me.

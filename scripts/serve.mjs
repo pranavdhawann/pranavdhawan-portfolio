@@ -1,5 +1,3 @@
-// Minimal dependency-free static server for the built site in public/.
-// Used for local preview: `npm run dev` builds then serves this.
 import { createReadStream } from 'node:fs';
 import { stat } from 'node:fs/promises';
 import http from 'node:http';
@@ -30,17 +28,12 @@ const BAD_REQUEST = Symbol('bad-request');
 async function resolve(urlPath) {
   let rel;
   try {
-    // decodeURIComponent throws on malformed input (e.g. GET /%); that used to
-    // escape as an unhandled rejection and kill the whole dev server.
     rel = decodeURIComponent(urlPath.split('?')[0]);
   } catch {
     return BAD_REQUEST;
   }
   if (rel.endsWith('/')) rel += 'index.html';
   let filePath = path.join(root, rel);
-  // Compare against root + separator: a bare startsWith(root) also accepts a
-  // sibling directory whose name merely begins with "public" (publicsecret/),
-  // which is outside the publish directory.
   if (filePath !== root && !filePath.startsWith(root + path.sep)) return BAD_REQUEST;
   try {
     const info = await stat(filePath);
@@ -53,8 +46,6 @@ async function resolve(urlPath) {
 }
 
 const server = http.createServer(async (req, res) => {
-  // A static host answers only reads. Without this the dev server returned 200
-  // to a form POST, so local form testing "succeeded" against nothing.
   if (req.method !== 'GET' && req.method !== 'HEAD') {
     res.writeHead(405, { 'content-type': 'text/plain', allow: 'GET, HEAD' });
     res.end('405 Method Not Allowed');
@@ -83,6 +74,5 @@ const server = http.createServer(async (req, res) => {
   createReadStream(filePath).pipe(res);
 });
 
-// Bind loopback by default; HOST=0.0.0.0 opts into LAN access explicitly.
 const host = process.env.HOST || '127.0.0.1';
 server.listen(port, host, () => console.log(`Serving public/ at http://${host}:${port}/`));

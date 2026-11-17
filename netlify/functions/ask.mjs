@@ -1,27 +1,17 @@
 import { KNOWLEDGE } from './lib/knowledge.mjs';
 
 const UPSTREAM_URL = 'https://api.openai.com/v1/chat/completions';
-// Moved off Groq, whose free plan (8K tokens/minute, 200K/day, org-wide) fit
-// only ~50 questions a day against a ~3K-token system prompt. OpenAI's cheapest
-// current model runs on prepaid credit at roughly $0.0005 a question.
 const MODEL = 'gpt-6-luna';
 const MAX_QUESTION_LENGTH = 500;
 const MAX_HISTORY_MESSAGES = 6;
 const MAX_HISTORY_CONTENT_LENGTH = 1500;
 const FRIENDLY_ERROR = "I couldn't answer right now — try again in a moment, or reach Pranav through the contact section.";
 
-// Only allow browser calls from the site itself. Browsers always send Origin on
-// a POST fetch, so a request without one is not the widget and is refused too.
-// A same-origin request (deploy previews, netlify dev) is allowed without being
-// listed. Origin is spoofable outside a browser; the rate limits are the backstop.
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS || 'https://pranavdhawan.com,https://www.pranavdhawan.com,https://pranavdhawan.netlify.app')
   .split(',')
   .map((origin) => origin.trim())
   .filter(Boolean);
 
-// In-memory IP throttle. This protects warm instances against bursts; it does
-// not survive cold starts or span regions, so pair it with Netlify's platform
-// rate limiting (dashboard) for production-grade protection.
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 15;
 const recentHits = new Map();
@@ -56,8 +46,6 @@ const isRateLimited = (ip) => {
   const hits = (recentHits.get(ip) || []).filter((time) => now - time < RATE_LIMIT_WINDOW_MS);
   hits.push(now);
   recentHits.set(ip, hits);
-  // Evict IPs whose window has fully expired; otherwise a warm instance under
-  // scanner traffic accumulates a Map entry per address forever.
   for (const [key, times] of recentHits) {
     if (key !== ip && times[times.length - 1] < now - RATE_LIMIT_WINDOW_MS) {
       recentHits.delete(key);
@@ -66,12 +54,8 @@ const isRateLimited = (ip) => {
   return hits.length > RATE_LIMIT_MAX;
 };
 
-// Test-only hook so the throttle does not leak state across cases.
 export const resetRateLimit = () => recentHits.clear();
 
-// Rejects answers that ignored the "plain text, 1-3 short paragraphs" contract.
-// The sentence ceiling has to leave room for the three paragraphs SYSTEM_PROMPT
-// allows — a tighter cap silently turns valid answers into error messages.
 const MAX_ANSWER_SENTENCES = 12;
 
 const isSafeAnswer = (answer) => {
@@ -98,19 +82,12 @@ const json = (body, status = 200) =>
     headers: { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' }
   });
 
-// Cap request bodies before parsing them.
 const MAX_BODY_BYTES = 64 * 1024;
-// Hard cap on array length before any per-entry work: bounds a hostile payload
-// without changing results for real clients, which send at most 6 entries.
 const MAX_HISTORY_INPUT = 50;
-// Generous upstream ceiling; a hung upstream must not hold the instance until
-// the platform kills the invocation.
 const UPSTREAM_TIMEOUT_MS = 30_000;
 
 const sanitizeHistory = (history) => {
   if (!Array.isArray(history)) return [];
-  // Bound the input first (abuse), filter validity, then keep the newest six
-  // (a tail full of junk entries must not evict valid ones).
   return history
     .slice(-MAX_HISTORY_INPUT)
     .filter(
@@ -122,9 +99,6 @@ const sanitizeHistory = (history) => {
     .slice(-MAX_HISTORY_MESSAGES)
     .map((entry) => ({
       role: entry.role,
-      // A "user" turn is a past question, so it gets the question cap; only
-      // answers need the longer one. Keeps replayed history from smuggling a
-      // long prompt past the 500-character limit.
       content: entry.content.slice(
         0,
         entry.role === 'user' ? MAX_QUESTION_LENGTH : MAX_HISTORY_CONTENT_LENGTH
@@ -147,8 +121,6 @@ export default async function handler(request) {
 
   let payload;
   try {
-    // Measure the body itself: Content-Length is absent on chunked requests
-    // and trivially understated.
     const raw = await request.text();
     if (raw.length > MAX_BODY_BYTES) {
       return json({ error: 'Payload too large.' }, 413);
@@ -165,6 +137,8 @@ export default async function handler(request) {
   if (question.length > MAX_QUESTION_LENGTH) {
     return json({ error: `Questions are limited to ${MAX_QUESTION_LENGTH} characters.` }, 400);
   }
+
+  console.info('Ask Pranav question', { question });
 
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
@@ -189,12 +163,7 @@ export default async function handler(request) {
         model: MODEL,
         messages,
         temperature: 0.4,
-        // Retrieval from a fixed knowledge base needs no reasoning, and Luna
-        // bills reasoning as output (its default is 'medium'). 'none' is also
-        // the only effort at which it accepts temperature; any other returns 400.
         reasoning_effort: 'none',
-        // Luna rejects max_tokens outright. 800 leaves real headroom for the
-        // 1-3 paragraphs allowed; only generated tokens are billed.
         max_completion_tokens: 800,
       }),
       signal: AbortSignal.timeout(UPSTREAM_TIMEOUT_MS)
@@ -205,8 +174,6 @@ export default async function handler(request) {
   }
 
   if (upstreamResponse.status === 429) {
-    // The body says which limit tripped (TPM, RPD, ...) — the one fact that
-    // separates "free plan exhausted" from the local IP throttle above.
     const detail = await upstreamResponse.text().then((t) => t.slice(0, 300)).catch(() => '<unreadable>');
     console.warn('Ask Pranav upstream rate limited', {
       model: MODEL,
@@ -216,10 +183,6 @@ export default async function handler(request) {
     return json({ error: "I'm getting a lot of questions right now — give it a few seconds and ask again." }, 429);
   }
   if (!upstreamResponse.ok) {
-    // The visitor only ever sees FRIENDLY_ERROR, which is right — but with
-    // nothing logged here, a rejected key or a retired model looked identical
-    // to every other 502 and could only be diagnosed by guesswork. Server-side
-    // only: the body can echo request content, so cap it and never return it.
     const detail = await upstreamResponse.text().then((t) => t.slice(0, 300)).catch(() => '<unreadable>');
     console.error('Ask Pranav upstream rejected the request', {
       status: upstreamResponse.status,
@@ -236,8 +199,6 @@ export default async function handler(request) {
     console.error('Ask Pranav upstream returned no answer', { model: MODEL });
     return json({ error: FRIENDLY_ERROR }, 502);
   }
-  // Truncation at the token cap leaves a sentence hanging mid-word; better to show the
-  // friendly error than to present a cut-off answer as if it were complete.
   if (choice.finish_reason === 'length') {
     console.warn('Ask Pranav response truncated at the token cap');
     return json({ error: FRIENDLY_ERROR }, 502);

@@ -12,7 +12,6 @@
     <link rel="canonical" href="https://pranavdhawan.com/">
     <link rel="alternate" type="application/rss+xml" title="Pranav Dhawan — Blog" href="blog/feed.xml">
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Pranav Dhawan">
     <meta property="og:locale" content="en_US">
@@ -24,7 +23,6 @@
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="Pranav Dhawan — AI Engineer. Production service-desk automation; 98.1% F1 across 54 PII entity types.">
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Pranav Dhawan — AI Engineer & Data Scientist">
     <meta name="twitter:description" content="Founder, SideQuest India | AI Workplace Engineer Intern @ ACS | MS Data Science, GWU. Building production AI, ML, and analytics systems.">
@@ -34,19 +32,14 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
 
-    <!-- Sets the colour theme before paint (separate file to satisfy CSP) -->
     <script src="theme-init.js"></script>
     <link rel="stylesheet" href="styles.css">
 
-    <!-- Preload the LCP hero avatar so it paints sooner -->
     <link rel="preload" as="image" href="images/photo.avif" type="image/avif" fetchpriority="high">
 
-    <!-- Self-hosted fonts are only discoverable after styles.css parses; preloading
-         them removes a round trip from first text paint -->
     <link rel="preload" as="font" type="font/woff2" href="fonts/dm-sans-variable.woff2" crossorigin>
     <link rel="preload" as="font" type="font/woff2" href="fonts/space-grotesk-variable.woff2" crossorigin>
 
-    <!-- Structured data for search engines (not executed, so CSP script-src does not apply) -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -122,10 +115,6 @@
         <symbol id="icon-close" viewBox="0 0 24 24">
             <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.4" stroke-linecap="square"/>
         </symbol>
-        <symbol id="icon-external" viewBox="0 0 24 24">
-            <path d="M8 6h10v10M18 6L7 17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="square"/>
-            <path d="M6 10v8h8" fill="none" stroke="currentColor" stroke-width="2.2"/>
-        </symbol>
         <symbol id="icon-github" viewBox="0 0 24 24">
             <path fill="currentColor" d="M12 .3C5.4.3 0 5.7 0 12.3c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 .1.7 2 2.7 1.5.1-.8.4-1.3.7-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.5 3.3-1.2 3.3-1.2.7 1.6.3 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6C20.6 22.1 24 17.6 24 12.3 24 5.7 18.6.3 12 .3z"/>
         </symbol>
@@ -163,7 +152,6 @@
 
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <!-- Top Navigation Bar -->
     <nav class="navbar" id="navbar" aria-label="Main">
         <div class="nav-logo">
             <a href="#home">PRANAV DHAWAN</a>
@@ -203,11 +191,9 @@
         </div>
     </nav>
 
-    <!-- Main Content Area -->
     <main class="main-content" id="main-content" tabindex="-1">
 
         <section id="home" class="hero">
-            <!-- Particle + rocket decorations injected by script.js on capable viewports only -->
 
             <div class="hero-container">
                 <div class="hero-content">
@@ -712,39 +698,6 @@
             </div>
         </section>
 
-        <section id="writing" class="writing-teaser">
-            <div class="container">
-                <h2 class="section-title">WRITING</h2>
-                <ul class="writing-list">
-                    <li class="writing-row">
-                        <span class="writing-date"><time datetime="2026-11-17">Nov 17, 2026</time></span>
-                        <div class="writing-row-main">
-                            <a class="writing-row-title" href="blog/local-first-memory.html" data-analytics="home-post:local-first-memory">Why my AI assistant's memory stays on my machine</a>
-                            <span class="writing-tag">AI Assistants &middot; Local-First</span>
-                            <p>Assistants hide the context they pick and scatter your history. Singularity keeps memory local, cited to the exact source, behind a redaction gate.</p>
-                        </div>
-                    </li>
-                    <li class="writing-row">
-                        <span class="writing-date"><time datetime="2026-11-17">Nov 17, 2026</time></span>
-                        <div class="writing-row-main">
-                            <a class="writing-row-title" href="blog/pii-detection.html" data-analytics="home-post:pii-detection">Recall first: picking a PII model that runs on-device</a>
-                            <span class="writing-tag">NLP &middot; Privacy</span>
-                            <p>Four transformers, 54 entity types, one held-out set. Why recall decided it, and how DeBERTa ended up running locally in under 100ms.</p>
-                        </div>
-                    </li>
-                    <li class="writing-row">
-                        <span class="writing-date"><time datetime="2026-07-07">Jul 7, 2026</time></span>
-                        <div class="writing-row-main">
-                            <a class="writing-row-title" href="blog/multimodal-finding.html" data-analytics="home-post:multimodal-finding">When the simple model wins</a>
-                            <span class="writing-tag">Time Series &middot; Multimodal ML</span>
-                            <p>My thesis benchmarked 10+ models for stock forecasting. The surprise: a standalone LSTM stayed competitive with fused multimodal models.</p>
-                        </div>
-                    </li>
-                </ul>
-                <p class="writing-more"><a class="project-link" href="blog/" data-analytics="home-blog-all">All posts <span aria-hidden="true">&rarr;</span></a></p>
-            </div>
-        </section>
-
         <section id="contact" class="contact">
             <div class="container">
                 <h2 class="section-title">GET IN TOUCH</h2>
@@ -761,7 +714,6 @@
                             <p class="contact-email">
                                 <a href="mailto:pranavdhawan99@gmail.com" class="contact-email-link" data-analytics="email-link">pranavdhawan99@gmail.com</a>
                                 <button class="contact-copy" type="button" data-copy="pranavdhawan99@gmail.com">Copy</button>
-                                <!-- Visible button text changes to "Copied"; this live region makes that state audible too -->
                                 <span id="copyStatus" class="visually-hidden" role="status"></span>
                             </p>
 
@@ -807,8 +759,6 @@
         </div>
     </dialog>
 
-    <!-- Outside the dialog on purpose: replies that arrive while it is closed
-         would sit inside a display:none live region and never get announced. -->
     <span id="chatAnnounce" class="visually-hidden" role="status"></span>
 
     <form class="chat-pill" id="chatForm" aria-label="Ask Pranav">

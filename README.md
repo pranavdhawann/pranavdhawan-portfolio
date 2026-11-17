@@ -29,10 +29,10 @@ Playwright needs its browser once: `npx playwright install chromium`.
 
 | File | Purpose |
 |---|---|
-| `index.html` | Single page: hero / about / skills / experience / projects (with client work) / writing teaser / contact |
+| `index.html` | Single page: hero / about / skills / experience / projects (with client work) / contact |
 | `styles.css` | Design tokens + responsive breakpoints (1400 / 1024 / 768 / 480 / 360) |
 | `script.js` | Portfolio-only behavior (hero, skills graph, chat, contact), single IIFE per module |
-| `site-common.js` | Shared by every page: analytics, theme toggle, footer year. Loaded *instead of* `script.js` on the blog and privacy pages, which don't need the rest |
+| `site-common.js` | Shared by every page: analytics, theme toggle, nav drawer, footer year. Loaded *instead of* `script.js` on the blog and privacy pages, which don't need the rest |
 | `blog/` | Blog index, posts, and `feed.xml` — all written and published by hand (see below) |
 | `scripts/` | Static-site build, local server, image optimization, OG-card generator |
 | `favicon.svg` | Site icon; the build derives `apple-touch-icon.png` from it |
@@ -43,7 +43,7 @@ Playwright needs its browser once: `npx playwright install chromium`.
 | `netlify/functions/csp-report.mjs` | Receives browser CSP violation reports |
 | `netlify/functions/lib/knowledge.mjs` | Curated first-person knowledge base embedded in the chat system prompt |
 | `package.json`, `tests/` | Local validation, Playwright smoke tests, and axe accessibility checks |
-| `images/photo.png` (487×476), `images/eye.png` | Drive the cursor-tracking avatar eyes |
+| `images/photo.png`, `images/eye.png` | Drive the cursor-tracking avatar eyes |
 | `Pranav_Dhawan_Resume.pdf` | Download target |
 
 ## Publishing a blog post
@@ -54,7 +54,8 @@ Posts are plain HTML files. Nothing is generated, so a new post touches each of 
 2. `blog/index.html` — a row at the top of the list and an entry in the `Blog` JSON-LD `blogPost` array.
 3. `blog/feed.xml` — an `<item>` at the top, and bump `lastBuildDate`.
 4. `sitemap.xml` and `llms.txt` — the new URL (and the blog index `lastmod`).
-5. `index.html` — the Writing section shows the three most recent posts.
+
+Every page carries the same navbar; if a nav item changes in `index.html`, mirror it in `privacy.html` and each file in `blog/`.
 
 `npm run test:function` runs `tests/blog-posts.node.mjs`, which fails if a post file exists but is missing from the index, feed, sitemap, or `llms.txt`, or if its canonical URL, date, or headline disagree with its JSON-LD. Pushing to `main` deploys.
 
@@ -67,13 +68,6 @@ Set in Netlify for the serverless functions:
 | `OPENAI_API_KEY` | Powers the "Ask Pranav" chat widget (`netlify/functions/ask.mjs`) — without it the widget returns its friendly error |
 | `ALLOWED_ORIGINS` | Optional: comma-separated origins allowed to call the chat function. Requests from the function's own origin are always allowed; requests with no `Origin` header are refused |
 
-The newsletter was discontinued along with the auto-generated digest. `NETLIFY_AUTH_TOKEN`, `NETLIFY_SITE_ID`, `SMTP_*`, `NEWSLETTER_*`, `UNSUBSCRIBE_SECRET`, and `SITE_URL` are no longer read by anything and can be deleted from Netlify and from the GitHub repository secrets.
-
 ## Analytics
 
-Pageviews are tracked with [GoatCounter](https://www.goatcounter.com) (free,
-no cookies, GDPR-friendly). The dashboard lives at
-https://pranavdhawan.goatcounter.com
-
----
-*Personal portfolio — content © Pranav Dhawan.*
+Pageviews and tagged clicks go to [GoatCounter](https://pranavdhawan.goatcounter.com). Chat questions are logged by `ask.mjs` and visible in the Netlify function logs.

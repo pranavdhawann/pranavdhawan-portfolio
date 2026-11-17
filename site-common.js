@@ -1,14 +1,4 @@
-// Behaviour shared by every page: analytics, theme toggle, footer year.
-// Loaded before script.js on the portfolio and *instead of* it on the blog and
-// privacy pages, which would otherwise pull in 36KB of hero/graph/chat code they
-// never use. Keeping the analytics listener here (and only here) also stops the
-// blog from registering it twice and double-counting every CTA click.
 
-// Fire a GoatCounter event. The count.js script loads async, so events fired
-// before it arrives (theme toggles, form submits within the first seconds)
-// are queued and flushed once it lands — previously they were dropped outright.
-// If the script never loads (blocked/offline), the queue is abandoned after a
-// short grace period instead of growing forever.
 const goatQueue = [];
 let goatReady = false;
 
@@ -34,20 +24,12 @@ function trackEvent(name) {
 }
 window.addEventListener('load', flushGoatQueue);
 [500, 1500, 4000, 8000].forEach((delay) => setTimeout(flushGoatQueue, delay));
-// Actually abandon the queue once the last flush attempt has passed. Without
-// this the "grace period" was only ever a comment: a blocked or offline
-// count.js left every tracked click accumulating in goatQueue for the life of
-// the page.
 setTimeout(() => {
     if (goatReady) return;
     goatAbandoned = true;
     goatQueue.length = 0;
 }, 8500);
 
-// Keep the browser UI colour in step with manual theme toggles — the
-// media-scoped meta tags only cover the prefers-color-scheme default. After the
-// first manual toggle we collapse to a single unconditioned meta carrying the
-// chosen colour, which every browser treats as authoritative.
 function syncThemeColorMeta(dark) {
     const color = dark ? '#15151E' : '#FFD600';
     let meta = null;
@@ -67,7 +49,6 @@ function syncThemeColorMeta(dark) {
     meta.removeAttribute('media');
 }
 
-// Lightweight outbound / CTA click tracking via data-analytics attributes.
 (() => {
     document.addEventListener('click', (event) => {
         const el = event.target.closest('[data-analytics]');
@@ -75,7 +56,51 @@ function syncThemeColorMeta(dark) {
     });
 })();
 
-// Theme toggle (light/dark) — persists the choice in localStorage.
+(() => {
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    function setMenuOpen(open) {
+        if (!navMenu || !mobileToggle) return;
+        navMenu.classList.toggle('active', open);
+        mobileToggle.classList.toggle('is-open', open);
+        mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    if (mobileToggle) {
+        mobileToggle.addEventListener('click', () => {
+            if (!navMenu) return;
+            const isOpen = navMenu.classList.contains('active');
+            setMenuOpen(!isOpen);
+        });
+    }
+
+    const navDrawerQuery = window.matchMedia('(max-width: 1024px)');
+
+    document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+        if (navDrawerQuery.matches && navMenu) {
+            setMenuOpen(false);
+        }
+    }));
+
+    document.addEventListener('click', (e) => {
+        if (!mobileToggle || !navMenu) return;
+        if (navDrawerQuery.matches && navMenu.classList.contains('active')) {
+            if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                setMenuOpen(false);
+            }
+        }
+    });
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key !== 'Escape' || !navMenu) return;
+        if (navDrawerQuery.matches && navMenu.classList.contains('active')) {
+            setMenuOpen(false);
+            if (mobileToggle) mobileToggle.focus();
+        }
+    });
+})();
+
 (() => {
     const toggle = document.getElementById('themeToggle');
     if (!toggle) return;
@@ -98,15 +123,11 @@ function syncThemeColorMeta(dark) {
         }
         try { localStorage.setItem('theme', dark ? 'light' : 'dark'); } catch (e) { /* ignore */ }
         syncLabel();
-        syncThemeColorMeta(!dark); // `dark` was the PRE-toggle state
+        syncThemeColorMeta(!dark);
         trackEvent('theme-' + (dark ? 'light' : 'dark'));
     });
 })();
 
-// theme-init.js applies a stored preference before paint, but the theme-color
-// meta tags are media-scoped and still answer to the OS setting. When the two
-// disagree the browser UI paints the wrong colour until the first manual
-// toggle, so reconcile them once on load.
 (() => {
     let stored = null;
     try { stored = localStorage.getItem('theme'); } catch (e) { /* ignore */ }

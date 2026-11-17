@@ -5,8 +5,6 @@ import { KNOWLEDGE } from '../netlify/functions/lib/knowledge.mjs';
 
 const html = readFileSync(new URL('../index.html', import.meta.url), 'utf8');
 
-// Every role/project the page advertises must also live in the chat knowledge
-// base, so the "Ask Pranav" bot never gives stale or incomplete answers.
 const requiredFacts = [
   'Siva Info',
   'American Chemical Society',
@@ -31,7 +29,6 @@ test('knowledge base contains the verified career and education facts', () => {
     'graduated May 2024',
     'GPA 8.51/10.0',
     'published research paper and technical report',
-    // Stock Screen is shut down; the bot must not present it as live.
     'Stock Screen is archived'
   ];
 
@@ -40,10 +37,6 @@ test('knowledge base contains the verified career and education facts', () => {
   }
 });
 
-// The list above is hand-maintained, so it can only catch a role being *removed*
-// from the page — a newly added one slips through silently. Derive the roles the
-// page currently advertises as "Current" instead: those are exactly the facts the
-// bot must not be stale on, and a new one enrols itself in this guard.
 function currentRolesOnPage(pageHtml) {
   return pageHtml
     .split('class="timeline-item"')
@@ -54,7 +47,6 @@ function currentRolesOnPage(pageHtml) {
       const org = item.match(/<h4>([^<]+)<\/h4>/);
       return {
         role: role ? role[1].trim() : null,
-        // "American Chemical Society | Washington, DC" -> "American Chemical Society"
         org: org ? org[1].split('|')[0].trim() : null,
       };
     });

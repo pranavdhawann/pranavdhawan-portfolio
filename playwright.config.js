@@ -1,6 +1,5 @@
 const { defineConfig } = require('@playwright/test');
 
-// Specs spin up their own static server in beforeAll, so no webServer is needed.
 module.exports = defineConfig({
   testDir: 'tests',
   testMatch: '**/*.spec.js',

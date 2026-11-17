@@ -1,6 +1,3 @@
-// Minimal static file server used by the Playwright specs. Serves files from the
-// repo root with the same security headers configured in netlify.toml, so tests
-// exercise the page under realistic headers.
 const fs = require('node:fs');
 const http = require('node:http');
 const path = require('node:path');
@@ -21,8 +18,6 @@ const contentTypes = {
 };
 
 function readConfiguredHeaders(rootDir) {
-  // netlify.toml lives in the repo root; when serving the built public/ output
-  // (which does not contain it) fall back one level.
   const direct = path.join(rootDir, 'netlify.toml');
   const tomlPath = fs.existsSync(direct) ? direct : path.join(rootDir, '..', 'netlify.toml');
   const content = fs.readFileSync(tomlPath, 'utf8');
@@ -50,7 +45,6 @@ async function startStaticServer(rootDir, headers) {
     let filePath = path.resolve(rootDir, relativePath);
     const isInRoot = filePath === rootDir || filePath.startsWith(rootDir + path.sep);
 
-    // Directory requests resolve to their index.html, matching Netlify.
     if (isInRoot && fs.existsSync(filePath) && fs.statSync(filePath).isDirectory()) {
       filePath = path.join(filePath, 'index.html');
     }

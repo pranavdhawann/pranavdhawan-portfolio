@@ -4,7 +4,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { readConfiguredHeaders, startStaticServer } = require('./helpers/static-server.cjs');
 
-// Built output only — see portfolio.spec.js for rationale.
 const rootDir = path.join(__dirname, '..', 'public');
 if (!fs.existsSync(path.join(rootDir, 'index.html'))) {
   throw new Error('public/index.html missing — run `npm run build` before testing.');
@@ -53,20 +52,14 @@ test('clicking outside the panel closes it', async ({ page }) => {
 test('close button closes the panel and it stays closed', async ({ page }) => {
   await openChat(page);
   await page.locator('#chatClose').click();
-  // Spans the 250ms suppressOpen window that guards against the close→refocus
-  // reopen loop; the panel must still be hidden once it expires.
   await page.waitForTimeout(300);
   await expect(page.locator('#chatPanel')).toBeHidden();
 });
 
-// Regression for the 250ms suppression window eating genuine reopens: after an
-// outside-click close, clicking straight into the pill input must reopen.
 test('clicking into the pill right after an outside-click close reopens the panel', async ({ page }) => {
   await openChat(page);
   await page.mouse.click(40, 200);
   await expect(page.locator('#chatPanel')).toBeHidden();
-  // The pill collapses to a FAB when it loses focus, so the reopen gesture is a
-  // click on the pill itself; the input inside it is zero-width until expanded.
   await page.locator('#chatForm').click();
   await expect(page.locator('#chatPanel')).toBeVisible();
 });
@@ -140,8 +133,6 @@ test('page with pill and open panel has no axe violations', async ({ page }) => 
   expect(results.violations).toEqual([]);
 });
 
-// The chat FAB and the back-to-top button share the bottom-right corner and
-// stack vertically. They must never overlap each other or the panel.
 test('mobile chat controls leave room for the back-to-top button', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(pageUrl);
@@ -150,7 +141,6 @@ test('mobile chat controls leave room for the back-to-top button', async ({ page
 
   await page.locator('#chatForm').click();
   await expect(page.locator('#chatPanel')).toBeVisible();
-  // Both controls slide in; measure resting geometry, not a frame mid-transition.
   await page.evaluate(() => Promise.all(
     ['#backToTop', '#chatForm', '#chatPanel']
       .flatMap((s) => document.querySelector(s).getAnimations())
@@ -185,9 +175,7 @@ test('mobile chat controls leave room for the back-to-top button', async ({ page
 
   expect(layout.pillOverlapsBackToTop).toBe(false);
   expect(layout.panelOverlapsPill).toBe(false);
-  // Stacked, not side by side: back-to-top sits clear above the chat FAB, and
-  // both hug the same right edge.
-  expect(layout.backToTop.bottom).toBeLessThanOrEqual(layout.pill.top - 8);
+  expect(layout.pill.bottom).toBeLessThanOrEqual(layout.backToTop.top - 8);
   expect(Math.abs(layout.backToTop.right - layout.pill.right)).toBeLessThanOrEqual(1);
 });
 
@@ -223,9 +211,6 @@ test('floating chat controls stop above the footer', async ({ page }) => {
   expect(layout.panel.bottom).toBeLessThanOrEqual(layout.pill.top - 12);
 });
 
-// Regression: `send()` bailed out on `pending` with no feedback at all, so a
-// second Enter while a request was in flight was indistinguishable from a dead
-// control. The send button now reports the busy state.
 test('the send button reports the in-flight state and recovers', async ({ page }) => {
   let release;
   const held = new Promise((resolve) => { release = resolve; });

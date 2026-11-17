@@ -1,5 +1,3 @@
-// Posts are published by hand, so nothing generates the places that list them.
-// This guard fails when a post file exists but one of those places was missed.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
@@ -35,9 +33,3 @@ for (const post of posts) {
     assert.ok(html.includes(`<h1>${posting.headline.replace(/&/g, '&amp;')}</h1>`), 'h1 differs from the JSON-LD headline');
   });
 }
-
-test('the homepage teaser only links to posts that exist', () => {
-  const links = [...read('index.html').matchAll(/href="blog\/([^"]+\.html)"/g)].map((m) => m[1]);
-  assert.ok(links.length > 0);
-  for (const link of links) assert.ok(posts.includes(link), `index.html links to missing post ${link}`);
-});

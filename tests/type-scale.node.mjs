@@ -4,10 +4,6 @@ import { readFileSync } from 'node:fs';
 
 const css = readFileSync(new URL('../styles.css', import.meta.url), 'utf8');
 
-// The sheet once carried 29 distinct font sizes across 76 declarations, picked
-// per-rule. They now resolve to one of 13 --fs-* steps. These guards keep it
-// that way: a one-off value is easy to add and impossible to spot by eye.
-
 function declaredSteps() {
   const root = css.split(':root {')[1].split('}')[0];
   return [...root.matchAll(/--fs-([\w-]+):\s*([0-9.]+)rem;/g)].map(([, name, value]) => ({
@@ -20,8 +16,6 @@ test('every font-size resolves to a type-scale token', () => {
   const offenders = [...css.matchAll(/font-size:\s*([^;]+);/g)]
     .map(([, value]) => value.trim())
     .filter((value) => !value.startsWith('var(--fs-'))
-    // The rem root itself cannot be a rem token, and .hero-title .highlight
-    // deliberately tracks whatever its parent heading is set to.
     .filter((value) => value !== '16px' && value !== 'inherit');
 
   assert.deepEqual(offenders, [], `font-size values bypassing the scale: ${offenders.join(', ')}`);

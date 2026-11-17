@@ -14,68 +14,40 @@
     src: url('fonts/space-grotesk-variable.woff2') format('woff2-variations');
 }
 
-/* Neobrutalism Design System */
 :root {
-    /* Color Palette */
     --primary: #FFD600;
     --primary-dark: #FFAB00;
     --secondary: #FF6B9D;
     --accent: #6B3FE0;
     --teal: #00C9A7;
-    /* Inline prose links. --accent is only 2.95:1 on the dark page, so the
-       dark theme needs its own lighter value rather than reusing it. */
     --link: #6B3FE0;
     --coral: #FF6B6B;
-    /* Error text on the cream background: coral itself is ~2.6:1, this is AA */
-    --error-text: #A93226;
 
-    /* Backgrounds */
     --bg-main: #FFF8E1;
     --bg-card: #FFFFFF;
-    /* Recessed surface for blocks nested inside an already-bordered card.
-       Depth here comes from the tint, not from another hard outline. */
     --surface-sunken: #FFFBEA;
 
-    /* Text */
     --text-primary: #1A1A1A;
     --text-secondary: #4A4A4A;
 
-    /* Neobrutalism */
     --border: #1A1A1A;
-    /* Hairline dividers drawn straight on --bg-main. --border is tuned for hard
-       outlines around fills, so it needs its own value per theme. */
     --rule: #1A1A1A;
-    /* Offset-shadow scale. Every box-shadow in the sheet resolves to one of
-       these steps — add a step rather than a one-off pixel value. */
     --shadow-sm: 2px 2px 0px #1A1A1A;
     --shadow: 4px 4px 0px #1A1A1A;
     --shadow-hover: 6px 6px 0px #1A1A1A;
     --shadow-lg: 8px 8px 0px #1A1A1A;
 
-    /* Spacing & Layout */
     --container-width: 1200px;
     --nav-height: 80px;
-    /* Single horizontal gutter for every top-level wrapper (.container,
-       .navbar, .hero-container). Redefined per breakpoint on :root only. */
     --gutter: 24px;
-    /* Reading measure — caps prose at ~68 characters a line, mid-range of the
-       60-75 target. Deliberately em and not ch: `ch` is the advance of "0",
-       and DM Sans's zero is far wider than its average lowercase letter, so
-       65ch measured out to 94 real characters here. 0.47em is this font's
-       actual mean advance. */
     --measure: 32em;
     --chat-resting-bottom: 20px;
     --chat-bottom-offset: var(--chat-resting-bottom);
-    /* How far the panel floats above the FAB: the FAB's own height plus a
-       12px gap, so it tracks the FAB instead of being a hand-tuned constant. */
     --chat-panel-lift: calc(var(--chat-fab-size) + 12px);
-    /* Collapsed chat FAB: its size and right offset also position .back-to-top,
-       which stacks directly above it so the two lift over the footer together. */
     --chat-fab-size: 56px;
+    --chat-pill-bottom: calc(var(--chat-bottom-offset) + var(--chat-fab-size) + 0.75rem);
     --chat-inline-offset: 1.5rem;
 
-    /* Type scale. 1rem = 16px (set on html). Every font-size in the sheet
-       resolves to one of these steps — add a step rather than a one-off value. */
     --fs-3xs: 0.7rem;
     --fs-2xs: 0.75rem;
     --fs-xs: 0.8rem;
@@ -90,19 +62,16 @@
     --fs-6xl: 3rem;
     --fs-7xl: 4rem;
 
-    /* Transitions */
     --transition-fast: 0.2s ease;
     --transition-smooth: 0.3s ease;
 }
 
-/* Reset and Base Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Accessibility: respect users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
@@ -119,7 +88,6 @@
     }
 }
 
-/* Scroll fade-in (toggled by IntersectionObserver in script.js) */
 .fade-up {
     transform: translateY(20px);
     transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -131,7 +99,6 @@
 
 html {
     scroll-behavior: smooth;
-    /* Keeps section headings clear of the fixed navbar when landing on a #hash URL directly */
     scroll-padding-top: var(--nav-height);
     font-size: 16px;
 }
@@ -162,12 +129,8 @@ body {
 
 .skip-link:focus { transform: translateY(0); }
 
-/* The chat pill is a flex container; the UA [hidden] default would lose to it,
-   so browsers without <dialog> support can actually hide the control. */
 #chatForm[hidden] { display: none; }
 
-/* Regions focused programmatically (skip link, in-page anchors) should receive
-   focus for screen readers without painting a focus ring around the whole area. */
 [tabindex="-1"]:focus { outline: none; }
 
 .icon-sprite {
@@ -191,9 +154,6 @@ body {
     padding: 0 var(--gutter);
 }
 
-/* ==========================================
-   TOP NAVIGATION BAR
-   ========================================== */
 .navbar {
     position: fixed;
     top: 0;
@@ -218,8 +178,6 @@ body {
     text-decoration: none;
     transition: all var(--transition-fast);
     letter-spacing: -0.5px;
-    /* The logo wrapped to two lines and pushed the bar out of alignment in the
-       band between the drawer breakpoint and full desktop width. */
     white-space: nowrap;
 }
 
@@ -267,7 +225,6 @@ body {
     font-weight: 800;
 }
 
-/* Mobile Toggle Button */
 .mobile-toggle {
     display: none;
     background: var(--bg-card);
@@ -303,17 +260,11 @@ body {
     display: inline-block;
 }
 
-/* ==========================================
-   MAIN CONTENT AREA
-   ========================================== */
 .main-content {
     margin-top: var(--nav-height);
     min-height: 100vh;
 }
 
-/* ==========================================
-   HERO SECTION
-   ========================================== */
 .hero {
     min-height: 70vh;
     display: flex;
@@ -325,7 +276,6 @@ body {
     padding: 2rem 0;
 }
 
-/* Particle Animation */
 .particles-container {
     position: absolute;
     top: 0;
@@ -442,9 +392,6 @@ body {
 
 .hero-container {
     max-width: 1200px;
-    /* .hero is a flex row, so this is a flex item: without an explicit width it
-       sizes to max-content and the fixed-width avatar pushes it past the
-       viewport, where .hero's overflow:hidden silently clips the text. */
     width: 100%;
     min-width: 0;
     margin: 0 auto;
@@ -492,8 +439,6 @@ body {
     padding-bottom: 2rem;
 }
 
-/* Keep short key phrases (e.g. the degree name) on one line instead of
-   wrapping mid-phrase on narrow viewports. */
 .nowrap {
     white-space: nowrap;
 }
@@ -504,19 +449,10 @@ body {
     flex-wrap: wrap;
 }
 
-/* Identical sizing for every hero CTA: 250px fits the longest label
-   ("VISIT SIDEQUEST", uppercase + letter-spacing) on one line, and equal
-   padding/line-height plus flex stretch keeps heights equal. */
 .hero-buttons .btn {
     width: 250px;
 }
 
-/* Three 250px buttons need 782px; the hero column only reaches 628px, so the
-   row wrapped 2+1 at every desktop size. Above 1200px the column is wide
-   enough for equal flex tracks (basis 0, grow 1) to fit all three on one line
-   instead, floored at max-content so "VISIT SIDEQUEST" can never be clipped.
-   Below that the uniform 250px above still applies: the wrapped rows stay the
-   same width as each other, which reads better than three unequal buttons. */
 @media (min-width: 1200px) {
     .hero-buttons .btn {
         flex: 1 1 0;
@@ -572,8 +508,6 @@ body {
 
 .hero-image {
     flex: 1;
-    /* Keeps the fixed-width .avatar-wrapper from overflowing the column layout
-       on mobile, where this item is sized to fit-content on the cross axis. */
     max-width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -604,23 +538,15 @@ body {
 
 .eye-pupil {
     position: absolute;
-    /* The script sizes the pupils by setting a percentage width, so the height
-       has to follow it. Without this the width/height attributes pin the height
-       to a constant while the width scales, squashing the pupil out of its
-       474x527 aspect ratio on every viewport but one. */
     height: auto;
     pointer-events: none;
     transition: transform 0.08s ease-out;
     will-change: transform;
 }
 
-/* Disable transition smoothing while the mobile orbit animation drives transforms */
 .avatar-wrapper.is-auto-orbit .eye-pupil {
     transition: none;
 }
-/* ==========================================
-   SECTION STYLES
-   ========================================== */
 section {
     padding: 80px 0;
 }
@@ -649,9 +575,6 @@ section {
     border: 2px solid var(--border);
 }
 
-/* ==========================================
-   ABOUT SECTION
-   ========================================== */
 .about {
     background: transparent;
 }
@@ -673,9 +596,6 @@ section {
     line-height: 1.7;
 }
 
-/* ==========================================
-   PROJECTS SECTION
-   ========================================== */
 .projects {
     position: relative;
     z-index: 1;
@@ -747,8 +667,6 @@ section {
 }
 
 .project-content h3 {
-    /* 28px fills the gap between the 40px section title and the 16-18px body,
-       so card titles read as a real second level instead of large body text. */
     font-size: var(--fs-3xl);
     font-weight: 700;
     margin-bottom: 0.75rem;
@@ -797,9 +715,6 @@ section {
     box-shadow: var(--shadow);
 }
 
-/* ==========================================
-   EXPERIENCE / TIMELINE SECTION
-   ========================================== */
 .experience {
     position: relative;
 }
@@ -893,9 +808,6 @@ section {
     margin-top: 1.5rem;
 }
 
-/* Nested inside an already-bordered .timeline-content, so this block is
-   separated by a tinted surface and one accent edge instead of a second full
-   outline — three concentric hard borders read as noise, not as structure. */
 .gpa-info {
     background: var(--surface-sunken);
     padding: 1rem 1.5rem;
@@ -955,9 +867,6 @@ section {
     gap: 0.6rem;
 }
 
-/* Same treatment as .gpa-info: these sit inside a bordered card on the same
-   --bg-card fill, so the old 2px outline framed nothing and stacked a third
-   border inside the card + tag borders. */
 .achievement-item {
     display: flex;
     align-items: flex-start;
@@ -973,8 +882,6 @@ section {
     margin-bottom: 0;
 }
 
-/* A borderless block does not need a lift and an offset shadow to acknowledge
-   the pointer — and ten cards of them made a long section twitch on scroll. */
 .achievement-item:hover {
     background: #FFF9C4;
     border-left-color: var(--accent);
@@ -984,8 +891,6 @@ section {
     color: var(--text-secondary);
     line-height: 1.6;
     font-size: var(--fs-base);
-    /* The timeline card runs the full container width, so uncapped bullets ran
-       to ~130 characters a line — the worst measure on the page. */
     max-width: var(--measure);
 }
 
@@ -993,15 +898,10 @@ section {
     color: var(--text-primary);
 }
 
-/* ==========================================
-   BACK TO TOP
-   ========================================== */
 .back-to-top {
     position: fixed;
     right: var(--chat-inline-offset);
-    /* Stacked above the chat FAB and driven by the same offset, so both rise
-       together when the footer scrolls in instead of colliding. */
-    bottom: calc(var(--chat-bottom-offset) + var(--chat-fab-size) + 0.75rem);
+    bottom: var(--chat-bottom-offset);
     width: var(--chat-fab-size);
     height: var(--chat-fab-size);
     border: 3px solid var(--border);
@@ -1045,9 +945,6 @@ section {
     outline-offset: 3px;
 }
 
-/* ==========================================
-   CHAT WIDGET — ASK PRANAV
-   ========================================== */
 .visually-hidden {
     position: absolute;
     width: 1px;
@@ -1060,18 +957,12 @@ section {
     border: 0;
 }
 
-/* Docked bottom-right and collapsed to a FAB. Centred and permanently
-   expanded, this bar sat on top of body copy at every scroll position on every
-   breakpoint — it taxed every other section to advertise itself. It expands on
-   hover, on focus-within (so keyboard and screen-reader users never meet the
-   collapsed state), and on .is-open, which the pointer handler in script.js
-   sets so a tap on the circle opens it on touch, where there is no hover. */
 .chat-pill {
     position: fixed;
     right: var(--chat-inline-offset);
     left: auto;
     transform: none;
-    bottom: var(--chat-bottom-offset);
+    bottom: var(--chat-pill-bottom);
     width: var(--chat-fab-size);
     height: var(--chat-fab-size);
     display: flex;
@@ -1093,10 +984,6 @@ section {
         gap var(--transition-smooth);
 }
 
-/* Deliberately not :hover. Expanding on hover slid the send button underneath
-   a pointer that was still travelling toward the FAB, so the click landed on
-   Send instead of opening the chat. Hover gets a colour cue only — the geometry
-   changes on intent (focus or a real click), never on passing the cursor over. */
 .chat-pill:focus-within,
 .chat-pill.is-open {
     width: min(420px, calc(100vw - (2 * var(--chat-inline-offset))));
@@ -1109,9 +996,6 @@ section {
     background: rgba(255, 255, 255, 0.85);
 }
 
-/* Collapsed the input and send button are zero-width rather than display:none,
-   so the input stays in the tab order and focusing it is what expands the
-   control. */
 .chat-pill:not(:focus-within):not(.is-open) .chat-pill-input,
 .chat-pill:not(:focus-within):not(.is-open) .chat-send {
     width: 0;
@@ -1167,15 +1051,14 @@ section {
 
 .chat-panel {
     position: fixed;
-    /* Anchored to the FAB it opens from, not to the centre of the viewport. */
     right: var(--chat-inline-offset);
     left: auto;
     transform: none;
-    bottom: calc(var(--chat-bottom-offset) + var(--chat-panel-lift));
+    bottom: calc(var(--chat-pill-bottom) + var(--chat-panel-lift));
     top: auto;
     margin: 0;
     width: min(420px, calc(100vw - (2 * var(--chat-inline-offset))));
-    max-height: min(540px, calc(100vh - var(--chat-bottom-offset) - var(--chat-panel-lift) - 2.75rem));
+    max-height: min(540px, calc(100vh - var(--chat-pill-bottom) - var(--chat-panel-lift) - 2.75rem));
     padding: 0;
     border: 3px solid var(--border);
     border-radius: 20px;
@@ -1337,9 +1220,6 @@ section {
     outline-offset: 2px;
 }
 
-/* ==========================================
-   CONTACT SECTION
-   ========================================== */
 .contact {
     position: relative;
     padding-bottom: 6rem;
@@ -1383,9 +1263,6 @@ section {
     box-shadow: var(--shadow-hover);
 }
 
-/* ==========================================
-   FOOTER
-   ========================================== */
 .footer {
     background: var(--text-primary);
     color: var(--bg-main);
@@ -1394,9 +1271,6 @@ section {
     border-top: 3px solid var(--border);
 }
 
-/* ==========================================
-   HERO ROCKETS
-   ========================================== */
 .hero-rockets {
     position: absolute;
     top: 0;
@@ -1467,9 +1341,6 @@ section {
     }
 }
 
-/* ==========================================
-   ANIMATIONS
-   ========================================== */
 @keyframes slideInLeft {
     from { transform: translateX(-50px); }
     to { transform: translateX(0); }
@@ -1480,11 +1351,6 @@ section {
     to { transform: translateX(0); }
 }
 
-/* ==========================================
-   RESPONSIVE DESIGN
-   ========================================== */
-
-/* Large Desktop */
 @media (min-width: 1400px) {
     .hero-container {
         max-width: 1400px;
@@ -1504,7 +1370,6 @@ section {
     }
 }
 
-/* Tablet */
 @media (max-width: 1024px) {
     :root {
         --gutter: 20px;
@@ -1522,10 +1387,6 @@ section {
         font-size: inherit;
     }
 
-    /* Eight links plus the theme toggle no longer fit on one bar below this
-       width — they used to shrink to 12.8px and wrap the logo instead. The
-       drawer takes over here rather than at 768. Keep the matchMedia queries
-       guarding the drawer in script.js in step with this value. */
     .mobile-toggle {
         display: inline-flex;
     }
@@ -1556,7 +1417,6 @@ section {
     }
 }
 
-/* Mobile */
 @media (max-width: 768px) {
     :root {
         --gutter: 16px;
@@ -1565,7 +1425,6 @@ section {
         --chat-inline-offset: 1rem;
     }
 
-    /* Disable decorative animations on mobile to save battery */
     .particles-container,
     .hero-rockets {
         display: none;
@@ -1695,7 +1554,6 @@ section {
     }
 }
 
-/* Small Mobile */
 @media (max-width: 480px) {
     :root {
         --chat-resting-bottom: 10px;
@@ -1797,7 +1655,6 @@ section {
     }
 }
 
-/* Tiny Mobile */
 @media (max-width: 360px) {
     :root {
         --gutter: 12px;
@@ -1820,7 +1677,6 @@ section {
     }
 }
 
-/* Landscape Mobile */
 @media (max-width: 768px) and (orientation: landscape) {
     .hero-container {
         flex-direction: row;
@@ -1837,7 +1693,6 @@ section {
 
 }
 
-/* Touch-friendly improvements */
 @media (hover: none) and (pointer: coarse) {
     .nav-link {
         padding: 15px 20px;
@@ -1853,9 +1708,6 @@ section {
     }
 }
 
-/* ==========================================
-   RESUME DOWNLOAD STYLES
-   ========================================== */
 .resume-download {
     margin: 0 0 1.5rem;
     padding: 0;
@@ -1898,7 +1750,6 @@ section {
     transform: translateY(-3px);
 }
 
-/* Mobile resume button */
 @media (max-width: 768px) {
     .resume-download {
         margin: 0 0 1rem;
@@ -1921,18 +1772,12 @@ section {
 
 }
 
-/* ==========================================
-   CONTACT CENTERED STYLES
-   ========================================== */
 .contact-content-centered {
     display: flex;
     justify-content: center;
     width: 100%;
 }
 
-/* ==========================================
-   SKILLS GRAPH
-   ========================================== */
 .skills-graph-legend {
     display: flex;
     justify-content: center;
@@ -2041,9 +1886,6 @@ section {
     .skills-graph-legend { gap: 0.6rem; font-size: var(--fs-2xs); }
 }
 
-/* ==========================================
-   NAV RIGHT GROUP + THEME TOGGLE
-   ========================================== */
 .nav-right {
     display: flex;
     align-items: center;
@@ -2082,9 +1924,6 @@ section {
 [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 [data-theme="dark"] .theme-toggle .icon-sun { display: inline-block; }
 
-/* ==========================================
-   ORG STRIP
-   ========================================== */
 .org-strip {
     margin-top: 2.5rem;
     display: flex;
@@ -2120,9 +1959,6 @@ section {
     color: var(--text-primary);
 }
 
-/* ==========================================
-   WRITING SECTION
-   ========================================== */
 .writing-intro {
     text-align: center;
     max-width: 640px;
@@ -2153,9 +1989,6 @@ section {
     .client-work-grid { grid-template-columns: 1fr; }
 }
 
-/* On phones the count squeezed "Client work" onto two lines and the nested
-   card padding left ~230px of text. Drop the count to its own row and trim
-   the padding so the title, toggle and cards all get the width back. */
 @media (max-width: 480px) {
     .client-work-summary { flex-wrap: wrap; row-gap: 0.25rem; padding: 1rem 1.25rem; }
     .client-work-count { order: 1; flex-basis: 100%; }
@@ -2177,7 +2010,6 @@ section {
     font-weight: 500;
 }
 
-/* Professional index list (replaces card grids on the blog page) */
 .writing-list {
     list-style: none;
     margin: 0 auto;
@@ -2247,9 +2079,6 @@ section {
     }
 }
 
-/* ==========================================
-   CONTACT EMAIL + FORM
-   ========================================== */
 .contact-email {
     display: inline-flex;
     align-items: center;
@@ -2313,9 +2142,6 @@ section {
     }
 }
 
-/* ==========================================
-   TIMELINE TOGGLE
-   ========================================== */
 .timeline-toggle {
     display: block;
     margin: 0 auto 4rem;
@@ -2340,13 +2166,6 @@ section {
 
 .timeline-toggle:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
-/* ==========================================
-   CHAT BUILT-BY
-   ========================================== */
-
-/* ==========================================
-   ARTICLE (BLOG) PAGES
-   ========================================== */
 .article { padding: 2rem 0 4rem; }
 
 .article-body { max-width: 720px; }
@@ -2393,7 +2212,6 @@ section {
 .article-back a { font-weight: 700; color: var(--text-primary); text-decoration: none; }
 .article-back a:hover { color: var(--accent); }
 
-/* Post-to-post navigation at the foot of an article */
 .article-nav {
     display: flex;
     flex-wrap: wrap;
@@ -2407,7 +2225,6 @@ section {
 .article-nav a { font-weight: 700; color: var(--text-primary); text-decoration: none; }
 .article-nav a:hover { color: var(--accent); }
 
-/* Author card + calls to action at the foot of a post */
 .article-author {
     margin: 2.5rem 0 0;
     padding: 1.25rem 1.5rem;
@@ -2428,20 +2245,10 @@ section {
 
 .article-author-links a { font-weight: 700; }
 
-/* Homepage "Writing" teaser: reuses the blog's .writing-list rows */
-.writing-more {
-    display: flex;
-    justify-content: center;
-    margin-top: 2rem;
-}
-
 @media (max-width: 480px) {
     .article-body h1 { font-size: var(--fs-4xl); }
 }
 
-/* ==========================================
-   DARK MODE
-   ========================================== */
 [data-theme="dark"] {
     --bg-main: #15151E;
     --bg-card: #23232F;
@@ -2449,22 +2256,16 @@ section {
     --text-primary: #F4F4F6;
     --text-secondary: #B9B9C6;
     --border: #000000;
-    /* 3.6:1 against --bg-main — pure black would be invisible (1.16:1). */
     --rule: #6E6E7C;
-    /* 7.8:1 on --bg-main, 6.7:1 on --bg-card. */
     --link: #B49CF7;
     --shadow-sm: 2px 2px 0px #000000;
     --shadow: 4px 4px 0px #000000;
     --shadow-hover: 6px 6px 0px #000000;
     --shadow-lg: 8px 8px 0px #000000;
-    /* Coral passes on the dark surface; keep errors in brand there */
-    --error-text: #FF6B6B;
 }
 
-/* Navbar stays legible: dark surface instead of the light brand yellow */
 [data-theme="dark"] .navbar { background: #1C1C26; }
 
-/* Dark text on bright fills (yellow / teal / coral / pink) */
 [data-theme="dark"] .btn-primary,
 [data-theme="dark"] .hero-title .highlight,
 [data-theme="dark"] .course-tag,
@@ -2486,7 +2287,6 @@ section {
     color: #1A1A1A;
 }
 
-/* Lighten the accent purple where it's used as text, for AA contrast on dark */
 [data-theme="dark"] .timeline-content h4,
 [data-theme="dark"] .writing-tag,
 [data-theme="dark"] .article-meta,

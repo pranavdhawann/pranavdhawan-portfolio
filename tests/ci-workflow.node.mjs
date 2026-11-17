@@ -10,14 +10,10 @@ const execFileAsync = promisify(execFile);
 test('lychee excludes profile links that reject automated link checks', async () => {
   const workflow = await readFile(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
 
-  // LinkedIn answers automated clients with HTTP 999 and can never be checked.
   assert.match(workflow, /--exclude https:\/\/linkedin\.com\/in\/pranavvdhawann/);
   assert.match(workflow, /--exclude https:\/\/www\.linkedin\.com\/in\/pranavvdhawann/);
 });
 
-// Excludes are a maintenance liability: each one hides a URL from validation
-// forever. Drop the entry when the link leaves the site, or the next broken
-// link behind that exclude goes unnoticed.
 test('lychee does not carry excludes for links the site no longer has', async () => {
   const workflow = await readFile(new URL('../.github/workflows/ci.yml', import.meta.url), 'utf8');
   const pages = await Promise.all(

@@ -1,5 +1,3 @@
-// Curated knowledge base for the "Ask Pranav" chat. Compiled from the resume
-// and interview notes; first person so the model answers naturally as Pranav.
 export const KNOWLEDGE = `
 ABOUT ME
 I'm Pranav Dhawan, based in New York City. I'm an AI Workplace Engineer Intern

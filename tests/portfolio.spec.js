@@ -4,9 +4,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { readConfiguredHeaders, startStaticServer } = require('./helpers/static-server.cjs');
 
-// Tests run against the BUILT output in public/ — the same files Netlify
-// serves — so minification and asset-copy regressions are caught locally.
-// `npm run check` builds first; if you invoke playwright directly, run it too.
 const rootDir = path.join(__dirname, '..', 'public');
 if (!fs.existsSync(path.join(rootDir, 'index.html'))) {
   throw new Error('public/index.html missing — run `npm run build` before testing.');
@@ -28,11 +25,6 @@ async function openPortfolio(page) {
   await page.goto(pageUrl);
 }
 
-// .fade-up transitions `transform`, so a reveal in flight shifts the card out
-// from under its own text and axe samples whatever is behind it instead —
-// reporting a contrast failure for colours that measure 7.2:1 at rest. Wait for
-// those transitions to finish before auditing, rather than auditing a frame
-// that never reaches a real visitor.
 async function settleReveals(page) {
   await page.waitForFunction(() => !document.getAnimations().some((animation) => {
     const target = animation.effect?.target;
@@ -42,8 +34,6 @@ async function settleReveals(page) {
   }));
 }
 
-// Only the three current roles are rendered up front; everything earlier, plus
-// education, sits behind the disclosure so the section does not run half the page.
 async function expandTimeline(page) {
   await page.locator('#timelineToggle').click();
   await expect(page.locator('#timelineExtra')).toBeVisible();
@@ -105,8 +95,6 @@ test('project cards render named screenshots inside the existing image frames', 
 
     await expect(image).toBeVisible();
     await expect(image).toHaveAttribute('src', imagePath);
-    // Alt text has to describe the screenshot, not just repeat the heading a
-    // screen-reader user has already heard.
     const alt = await image.getAttribute('alt');
     expect(alt.length).toBeGreaterThan(projectName.length + 15);
     await expect(frame.locator('source[type="image/avif"]')).toHaveAttribute('srcset', imagePath.replace('.png', '.avif'));
@@ -158,7 +146,6 @@ test('professional experience reflects updated role history', async ({ page }) =
   await expect(experience.getByText(/32% to 99%/)).toBeVisible();
   await expect(experience.locator('.tech-tag', { hasText: 'Pipeline Automation' })).toBeVisible();
 
-  // Everything past the three current roles is behind the disclosure.
   await expandTimeline(page);
 
   await expect(experience.getByRole('heading', { name: 'Machine Learning Engineer' })).toBeVisible();
@@ -173,8 +160,6 @@ test('professional experience reflects updated role history', async ({ page }) =
   await expect(experience.getByText('EY | Gurugram, India')).toBeVisible();
   await expect(experience.getByText(/Automated ETL workflows across more than five data sources/)).toBeVisible();
 
-  // The two 2021 front-end internships were dropped from the timeline; EY is
-  // now the oldest entry. Guard against them being reinstated by accident.
   await expect(experience.getByText(/Learnovate/i)).toHaveCount(0);
   await expect(experience.getByText(/Education 4/i)).toHaveCount(0);
 });
@@ -207,8 +192,6 @@ test('stock screen copy avoids unverified paid-tier language', async ({ page }) 
   await expect(card).not.toContainText('tested algorithmic models');
 });
 
-// The Cloud Run service is shut down; a "Live demo" link would send visitors to
-// an error page, so the card says why it is archived and keeps only the code.
 test('stock screen is marked archived with its reach and no live demo link', async ({ page }) => {
   await openPortfolio(page);
 
@@ -280,8 +263,6 @@ test('contact actions sit a balanced distance beneath the get in touch heading',
     return action.top - title.bottom;
   });
 
-  // Deliberately generous breathing room beneath the heading before the
-  // contact actions begin.
   expect(gap).toBeGreaterThanOrEqual(45);
   expect(gap).toBeLessThanOrEqual(130);
 });
@@ -305,9 +286,6 @@ test('mobile hamburger menu toggles expanded state', async ({ page }) => {
   await expect(menu).not.toBeVisible();
 });
 
-// .hero sets overflow:hidden, so a hero wider than the viewport is clipped
-// instead of producing a scrollbar. Assert element widths rather than page
-// scrollWidth, which stays clean even while the text is being cut off.
 for (const width of [320, 375, 390]) {
   test(`hero fits the viewport at ${width}px without clipping`, async ({ page }) => {
     await page.setViewportSize({ width, height: 812 });
@@ -358,9 +336,6 @@ test('page has a skip link and hides eye pupils after an avatar load failure', a
   }
 });
 
-// The smooth-scroll handler calls preventDefault(), which cancels the browser's
-// own fragment navigation — and with it the focus move. Without an explicit
-// focus() the skip link scrolls the page but strands keyboard users in the nav.
 test('the skip link moves keyboard focus into main', async ({ page }) => {
   await openPortfolio(page);
   await page.keyboard.press('Tab');
@@ -370,8 +345,6 @@ test('the skip link moves keyboard focus into main', async ({ page }) => {
   await expect(page.locator('#main-content')).toBeFocused();
 });
 
-// The same preventDefault() skipped the URL update, so sections could not be
-// linked to and Back did nothing after using the nav.
 test('nav clicks record the section in the URL so Back returns', async ({ page }) => {
   await openPortfolio(page);
   await page.locator('.nav-menu a[href="#projects"]').click();
@@ -380,8 +353,6 @@ test('nav clicks record the section in the URL so Back returns', async ({ page }
   await expect(page).not.toHaveURL(/#projects$/);
 });
 
-// The mobile hero once reset its padding to `2rem 0`, dropping the shared
-// gutter so wrapped hero text could run to the screen edge.
 test('mobile hero keeps the page gutter', async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await openPortfolio(page);
@@ -389,8 +360,6 @@ test('mobile hero keeps the page gutter', async ({ page }) => {
   expect(parseFloat(padding)).toBeGreaterThanOrEqual(16);
 });
 
-// axe can't see these: the skip link sits off-screen until focused and the
-// disclosure only turns yellow on hover. Both kept light text on the yellow fill.
 test('yellow-filled states use dark text in dark mode', async ({ page }) => {
   await page.emulateMedia({ colorScheme: 'dark' });
   await openPortfolio(page);
@@ -405,10 +374,6 @@ test('yellow-filled states use dark text in dark mode', async ({ page }) => {
   await expect(summary.locator('.client-work-count')).toHaveCSS('color', 'rgb(26, 26, 26)');
 });
 
-// The orbit runs on requestAnimationFrame, which the blanket reduced-motion CSS
-// rule cannot reach — it has to opt out in JavaScript. expect.poll samples the
-// transform repeatedly: with motion wrongly enabled the value keeps changing
-// and the poll times out, no fixed sleeps needed.
 test('reduced motion stops the avatar eye orbit', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.setViewportSize({ width: 390, height: 844 });
@@ -427,9 +392,7 @@ test('every nav target exists and each section is reachable from the nav', async
   const hrefs = await page.locator('.nav-menu .nav-link').evaluateAll(
     (links) => links.map((a) => a.getAttribute('href'))
   );
-  // Client work lives collapsed inside Featured Projects — no separate nav tab.
   expect(hrefs).not.toContain('#client-work');
-  // Work experience now comes before projects in both the nav and the page.
   expect(hrefs.indexOf('#experience')).toBeLessThan(hrefs.indexOf('#projects'));
 
   for (const href of hrefs.filter((h) => h.startsWith('#'))) {
@@ -501,7 +464,6 @@ test('self-hosts fonts without requesting Google Fonts', async ({ page }) => {
   await expect(page.locator('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]')).toHaveCount(0);
   const css = await (await page.request.get(`${pageUrl}styles.css`)).text();
   expect(css).toContain('@font-face');
-  // Minified CSS may normalize url() quoting, so assert on paths only.
   expect(css).toMatch(/fonts\/dm-sans-variable\.woff2/);
   expect(css).toMatch(/fonts\/space-grotesk-variable\.woff2/);
 });
@@ -595,18 +557,6 @@ test('the favicon is a crawlable file, not a data URI', async ({ page, request }
   expect(response.ok()).toBe(true);
 });
 
-test('the writing teaser links to every post it lists and to the blog index', async ({ page, request }) => {
-  await openPortfolio(page);
-
-  const hrefs = await page.locator('#writing a').evaluateAll((links) => links.map((a) => a.getAttribute('href')));
-  expect(hrefs).toContain('blog/');
-  expect(hrefs.length).toBeGreaterThanOrEqual(3);
-  for (const href of hrefs) {
-    const response = await request.get(new URL(href, page.url()).href);
-    expect(response.ok(), href).toBe(true);
-  }
-});
-
 test('hash navigation clears the fixed navbar via scroll padding', async ({ page }) => {
   await openPortfolio(page);
 
@@ -625,10 +575,6 @@ test('github and linkedin icons use brand paths instead of text placeholders', a
   await expect(page.locator('symbol#icon-linkedin path')).not.toHaveCount(0);
 });
 
-// Regression: the script sizes the pupils with a percentage width, but the
-// width/height attributes used to pin the height to a constant 34px. The pupil
-// rendered at a 0.78 ratio against the image's real 474x527 (0.899) and the
-// distortion changed with every viewport size.
 test('avatar pupils keep the eye image aspect ratio', async ({ page }) => {
   await openPortfolio(page);
 
@@ -648,9 +594,6 @@ test('avatar pupils keep the eye image aspect ratio', async ({ page }) => {
   }
 });
 
-// Regression: the handler read the button's current label to restore it later,
-// so a second click inside the 1.6s window captured "Copied" and the stale
-// timer restored that as the permanent label.
 test('the copy button returns to its resting label after repeated clicks', async ({ page, context, browserName }) => {
   test.skip(browserName !== 'chromium', 'clipboard permission grant is chromium-only');
   await context.grantPermissions(['clipboard-read', 'clipboard-write']);
@@ -665,8 +608,6 @@ test('the copy button returns to its resting label after repeated clicks', async
   await copy.click();
   await expect(copy).toHaveText('Copied');
 
-  // Past both timers: the first must not fire while the second is still armed
-  // and leave "Copied" behind for good.
   await page.waitForTimeout(2000);
   await expect(copy).toHaveText('Copy');
 });

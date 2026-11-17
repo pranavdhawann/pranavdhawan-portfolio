@@ -1,6 +1,3 @@
-// One-off generator for the 1200x630 social share card (images/og-card.png).
-// Run with: node scripts/make-og-card.mjs
-// The output is committed; it is not part of the Netlify build.
 import { readFile } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';

@@ -131,8 +131,6 @@ test('sends system prompt plus history plus question to OpenAI', async () => {
   const { url, body } = fetchCalls[0];
   assert.equal(url, 'https://api.openai.com/v1/chat/completions');
   assert.equal(body.model, 'gpt-6-luna');
-  // gpt-6-luna 400s on max_tokens and on temperature unless reasoning is off;
-  // either mistake turns every question into the generic error.
   assert.equal(body.max_tokens, undefined);
   assert.equal(body.max_completion_tokens, 800);
   assert.equal(body.reasoning_effort, 'none');
@@ -167,8 +165,6 @@ test('maps upstream failures to 502 without leaking details', async () => {
   assert.ok(!JSON.stringify(data).includes('upstream secret detail'));
 });
 
-// Upstream throttling is retryable and should stay distinguishable from a real
-// upstream fault, both for the caller and for anything reading the logs.
 test('passes an upstream 429 through as 429, still without details', async () => {
   stubUpstream(() => new Response('upstream secret detail', { status: 429 }));
   const response = await ask({ question: 'Hi' });
@@ -178,9 +174,6 @@ test('passes an upstream 429 through as 429, still without details', async () =>
   assert.match(data.error, /lot of questions/i);
 });
 
-// OpenAI answers both a rate limit and an exhausted prepaid credit with 429,
-// and only the body says which; without logging it they also looked identical
-// to the local IP throttle.
 test('an upstream 429 is logged with the limit the provider reports', async (t) => {
   const warn = t.mock.method(console, 'warn', () => {});
   stubUpstream(() => new Response(
@@ -195,8 +188,6 @@ test('an upstream 429 is logged with the limit the provider reports', async (t) 
   assert.match(details.detail, /tokens per minute/);
 });
 
-// SYSTEM_PROMPT allows three paragraphs; a tighter sentence ceiling silently
-// turned valid answers into the generic error message.
 test('a three-paragraph answer is not rejected by the output guard', async () => {
   const answer = [
     'I work at ACS. I build agents there. It is a good fit.',
@@ -212,8 +203,6 @@ test('a three-paragraph answer is not rejected by the output guard', async () =>
   assert.equal((await response.json()).answer, answer);
 });
 
-// A max_tokens cut-off leaves a sentence hanging; showing it as a complete
-// answer is worse than admitting the failure.
 test('an answer truncated by max_tokens is rejected', async () => {
   stubUpstream(() => new Response(JSON.stringify({
     choices: [{ message: { content: 'I work at ACS and my role there is to' }, finish_reason: 'length' }],
@@ -221,4 +210,11 @@ test('an answer truncated by max_tokens is rejected', async () => {
 
   const response = await ask({ question: 'What do you do?' });
   assert.equal(response.status, 502);
+});
+
+test('logs the question text', async (t) => {
+  const info = t.mock.method(console, 'info', () => {});
+  const response = await ask({ question: 'What do you work on?' });
+  assert.equal(response.status, 200);
+  assert.deepEqual(info.mock.calls[0].arguments, ['Ask Pranav question', { question: 'What do you work on?' }]);
 });

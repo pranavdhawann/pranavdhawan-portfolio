@@ -1,10 +1,6 @@
-// Global: respect reduced-motion preference
 const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const SVG_NS = 'http://www.w3.org/2000/svg';
 
-// Engines without IntersectionObserver used to throw on the bare `new`
-// constructors below, killing every later module on the page. This shim reports observed elements as visible immediately so
-// reveal-on-scroll features degrade to "shown" instead of breaking the page.
 if (!('IntersectionObserver' in window)) {
     window.IntersectionObserver = class {
         constructor(callback) { this.callback = callback; }
@@ -20,9 +16,6 @@ if (!('IntersectionObserver' in window)) {
     };
 }
 
-// trackEvent, the theme toggle, the data-analytics click listener and the footer
-// year live in site-common.js, which every page loads before this file.
-
 function createSvgIcon(symbolId, className = 'icon') {
     const icon = document.createElementNS(SVG_NS, 'svg');
     icon.setAttribute('class', className);
@@ -34,8 +27,6 @@ function createSvgIcon(symbolId, className = 'icon') {
     return icon;
 }
 
-// Inject decorative hero particles + rockets only on desktop and only if motion is OK.
-// Keeps mobile DOM lean and respects accessibility preferences.
 (function injectHeroDecorations() {
     const hero = document.getElementById('home');
     if (!hero) return;
@@ -52,7 +43,6 @@ function createSvgIcon(symbolId, className = 'icon') {
     const rockets = document.createElement('div');
     rockets.className = 'hero-rockets';
     rockets.setAttribute('aria-hidden', 'true');
-    // Dialed back from 8 to keep the hero lively but less busy.
     for (let i = 1; i <= 3; i++) {
         const r = document.createElement('div');
         r.className = `rocket rocket-${i}`;
@@ -64,56 +54,6 @@ function createSvgIcon(symbolId, className = 'icon') {
     hero.prepend(particles);
 })();
 
-// Mobile Nav Toggle
-const mobileToggle = document.getElementById('mobileToggle');
-const navMenu = document.getElementById('navMenu');
-
-function setMenuOpen(open) {
-    if (!navMenu || !mobileToggle) return;
-    navMenu.classList.toggle('active', open);
-    mobileToggle.classList.toggle('is-open', open);
-    mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-}
-
-if (mobileToggle) {
-    mobileToggle.addEventListener('click', () => {
-        if (!navMenu) return;
-        const isOpen = navMenu.classList.contains('active');
-        setMenuOpen(!isOpen);
-    });
-}
-
-// The nav drawer takes over at 1024px, not 768 — keep this in step with the
-// .mobile-toggle / .nav-menu rules in the max-width: 1024px block of styles.css.
-const navDrawerQuery = window.matchMedia('(max-width: 1024px)');
-
-// Close menu on navigation (drawer)
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-    if (navDrawerQuery.matches && navMenu) {
-        setMenuOpen(false);
-    }
-}));
-
-// Close menu when clicking outside (Mobile)
-document.addEventListener('click', (e) => {
-    if (!mobileToggle || !navMenu) return;
-    if (navDrawerQuery.matches && navMenu.classList.contains('active')) {
-        if (!mobileToggle.contains(e.target) && !navMenu.contains(e.target)) {
-            setMenuOpen(false);
-        }
-    }
-});
-
-// Close menu with Escape (Mobile) and return focus to the toggle
-document.addEventListener('keydown', (e) => {
-    if (e.key !== 'Escape' || !navMenu) return;
-    if (navDrawerQuery.matches && navMenu.classList.contains('active')) {
-        setMenuOpen(false);
-        if (mobileToggle) mobileToggle.focus();
-    }
-});
-
-// Smooth Scroll with nav offset
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -132,19 +72,13 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 top: targetPosition,
                 behavior: prefersReducedMotion.matches ? 'auto' : 'smooth'
             });
-            // preventDefault() cancels the browser's own fragment navigation, which
-            // is what would normally move keyboard focus. Without this the skip link
-            // scrolls the page but leaves focus in the nav (WCAG 2.4.1).
             if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
             target.focus({ preventScroll: true });
-            // preventDefault() also skips the URL update, so sections could not be
-            // bookmarked or shared and Back did nothing. Record the hash ourselves.
             if (location.hash !== href) history.pushState(null, '', href);
         }
     });
 });
 
-// Back to Top Button
 const backToTopButton = document.getElementById('backToTop');
 
 if (backToTopButton) {
@@ -163,7 +97,6 @@ if (backToTopButton) {
     });
 }
 
-// Active Link Highlighter — track all sections, pick the one with the largest visible ratio
 const sections = Array.from(document.querySelectorAll('section'));
 const navLinks = document.querySelectorAll('.nav-link');
 const sectionRatios = new Map();
@@ -202,7 +135,6 @@ const sectionObserver = new IntersectionObserver((entries) => {
 
 sections.forEach(section => sectionObserver.observe(section));
 
-// Scroll Animations (Fade Up) — toggle CSS class so :hover transforms still apply
 const scrollObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -217,7 +149,6 @@ document.querySelectorAll('.project-card, .timeline-item').forEach(el => {
     scrollObserver.observe(el);
 });
 
-// FUN FACTOR: Interactive Hero Title (3D Tilt) — only on fine-pointer devices, only while hero visible
 const heroTitle = document.querySelector('.hero-title');
 const heroSection = document.getElementById('home');
 const finePointerQuery = window.matchMedia('(pointer: fine)');
@@ -274,9 +205,6 @@ if (heroTitle && heroSection) {
     syncTilt();
 }
 
-// ==========================================
-// AVATAR EYES (Desktop tracking, mobile orbit)
-// ==========================================
 (function initEyeTracking() {
     const wrapper = document.getElementById('avatarWrapper');
     const base = document.getElementById('avatarImg');
@@ -284,7 +212,6 @@ if (heroTitle && heroSection) {
     const eyeR = document.getElementById('eyeRight');
     if (!wrapper || !base || !eyeL || !eyeR) return;
 
-    // Boundary definitions in photo.png pixel coordinates (487x476)
     const eyes = [
         {
             el: eyeL, cx: 208, cy: 188, offsetX: -1, scale: 0.97,
@@ -460,8 +387,6 @@ if (heroTitle && heroSection) {
         }
 
         function syncMode() {
-            // The orbit is driven by requestAnimationFrame, so the blanket
-            // reduced-motion CSS rule cannot stop it — bail out here instead.
             if (prefersReducedMotion.matches) {
                 stopPointerMode();
                 stopOrbitMode();
@@ -472,8 +397,6 @@ if (heroTitle && heroSection) {
             }
 
             if (shouldUseOrbitMode()) {
-                // Pause the rAF loop while the avatar is off-screen so it does not
-                // burn battery for the whole scroll of the page.
                 if (!avatarVisible) {
                     stopOrbitMode();
                     activeMode = 'orbit-paused';
@@ -505,17 +428,11 @@ if (heroTitle && heroSection) {
     eyeR.addEventListener('error', hidePupils, { once: true });
     if (!base.complete) base.addEventListener('load', setup, { once: true });
     if (!eyeL.complete) eyeL.addEventListener('load', setup, { once: true });
-    // An image that already failed before this script ran is `complete` with a
-    // zero naturalWidth and will never fire `error`, so the listeners above
-    // never hide the pupils. Catch that state directly.
     const failedEarly = [base, eyeL, eyeR].some((img) => img.complete && img.naturalWidth === 0);
     if (failedEarly) hidePupils();
     else if (base.complete && eyeL.complete) setup();
 })();
 
-/* ==========================================
-   SKILLS GRAPH (static layout)
-   ========================================== */
 (() => {
     const svg = document.getElementById('skillsGraph');
     if (!svg) return;
@@ -527,7 +444,6 @@ if (heroTitle && heroSection) {
     const initialize = () => {
     if (initialized) return;
     initialized = true;
-    svg.dataset.initialized = 'true';
 
     const nodes = [
         { id: 'python',  label: 'Python',       group: 'lang' },
@@ -553,37 +469,29 @@ if (heroTitle && heroSection) {
     ];
 
     const linkPairs = [
-        // Python ecosystem (Python is the central hub)
         ['python','pandas'], ['python','numpy'], ['python','sklearn'],
         ['python','mpl'], ['python','sns'], ['python','pt'], ['python','tf'],
         ['python','hf'], ['python','st'], ['python','sql'],
         ['python','aws'], ['python','gcp'],
         ['python','lc'], ['python','crew'], ['python','agentai'], ['python','n8n'],
 
-        // R ecosystem
         ['r','pbi'], ['r','tab'],
 
-        // Data manipulation core
         ['pandas','numpy'], ['pandas','sklearn'],
         ['pandas','mpl'], ['pandas','sns'],
         ['pandas','sql'], ['pandas','st'],
         ['numpy','sklearn'], ['numpy','pt'], ['numpy','tf'],
 
-        // Visualization libraries
         ['mpl','sns'], ['sklearn','mpl'],
         ['st','mpl'], ['st','sns'],
 
-        // Deep learning ↔ HuggingFace (PT/TF both back HF; not each other)
         ['pt','hf'], ['tf','hf'],
 
-        // Databases & cloud (clouds host the DBs; not connected to each other)
         ['sql','aws'], ['sql','gcp'],
         ['st','gcp'],
 
-        // BI tools connect to data sources, not each other
         ['pbi','sql'], ['tab','sql'],
 
-        // Agentic stack
         ['agentai','lc'], ['agentai','crew'], ['agentai','n8n'],
         ['lc','crew'], ['lc','hf'], ['crew','hf'],
         ['n8n','lc'],
@@ -626,7 +534,6 @@ if (heroTitle && heroSection) {
         n.el = g; n.circle = c; n.text = t;
     });
 
-    // dynamic radius from rendered text width
     function measureRadii() {
         nodes.forEach(n => {
             let w = 60;
@@ -715,13 +622,11 @@ if (heroTitle && heroSection) {
         render();
     }
 
-    // wait a tick so SVG is laid out and getBBox works
     requestAnimationFrame(layout);
 
     nodes.forEach(n => {
         n.el.addEventListener('pointerenter', () => highlight(n.id));
         n.el.addEventListener('pointerleave', clearHighlight);
-        // Touch support: tap a node to highlight it; tapping outside the graph clears
         n.el.addEventListener('click', (e) => {
             e.stopPropagation();
             highlight(n.id);
@@ -784,14 +689,10 @@ if (heroTitle && heroSection) {
     observer.observe(svg);
 })();
 
-// Chat Widget — "Ask Pranav" floating pill assistant
 (() => {
     const form = document.getElementById('chatForm');
     const panel = document.getElementById('chatPanel');
     if (!form) return;
-    // Without <dialog> support the submit handler below would never attach and
-    // Enter would native-GET the page with the question in the query string.
-    // Hiding the pill beats shipping a broken control.
     if (!panel || typeof panel.show !== 'function') {
         form.hidden = true;
         return;
@@ -805,14 +706,11 @@ if (heroTitle && heroSection) {
     const footer = document.querySelector('.footer');
     const root = document.documentElement;
     const history = [];
-    // Mirrors MAX_HISTORY_MESSAGES in netlify/functions/ask.mjs (server re-clamps).
     const HISTORY_LIMIT = 6;
     let pending = false;
     let suppressOpen = false;
     let positionFrame = null;
 
-    // getComputedStyle forces style recalc, so read the resting offset once and
-    // refresh it only when the viewport changes rather than on every scroll frame.
     let restingOffset = 20;
     const readRestingOffset = () => {
         restingOffset = Number.parseFloat(
@@ -852,14 +750,11 @@ if (heroTitle && heroSection) {
         const message = document.createElement('div');
         message.className = `chat-message chat-message--${variant}`;
         message.textContent = text;
-        // Keep the "•••" typing dots out of the aria-live region.
         if (variant === 'typing') {
             message.setAttribute('aria-hidden', 'true');
         }
         log.appendChild(message);
         log.scrollTop = log.scrollHeight;
-        // A closed <dialog> is display:none, so its aria-live region is inert;
-        // mirror bot replies into an always-present live region outside it.
         if (variant === 'bot' && !panel.open && announcer) {
             announcer.textContent = text;
         }
@@ -869,8 +764,6 @@ if (heroTitle && heroSection) {
     let lastFocused = null;
 
     const openPanel = () => {
-        // suppressOpen guards the close→refocus→focus-event→reopen loop; the
-        // outside-click handler clears it early for genuine new gestures.
         if (suppressOpen || panel.open) return;
         lastFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
         panel.show();
@@ -881,11 +774,7 @@ if (heroTitle && heroSection) {
         if (!panel.open) return;
         suppressOpen = true;
         panel.close();
-        // Let the pill fall back to its collapsed FAB state with the dialog.
         form.classList.remove('is-open');
-        // Only move focus when it would otherwise be lost inside the now-closed
-        // dialog — Escape pressed while typing elsewhere must not yank focus
-        // out of that field.
         if (refocus && input && document.activeElement && panel.contains(document.activeElement)) {
             const restoreTarget = lastFocused && document.contains(lastFocused) ? lastFocused : null;
             (restoreTarget || input).focus();
@@ -900,9 +789,6 @@ if (heroTitle && heroSection) {
         input.addEventListener('input', openPanel);
     }
 
-    // The pill renders as a collapsed FAB and expands on :hover/:focus-within.
-    // Touch has neither until something is focused, and tapping the sparkle
-    // icon does not focus the input by itself, so drive it explicitly.
     form.addEventListener('click', (event) => {
         if (event.target instanceof Element && event.target.closest('.chat-send')) return;
         form.classList.add('is-open');
@@ -919,9 +805,6 @@ if (heroTitle && heroSection) {
 
     document.addEventListener('pointerdown', (event) => {
         const wasOpen = panel.open;
-        // A genuine pointer gesture ends close-triggered suppression right away,
-        // so clicking straight into the pill reopens instead of being eaten by
-        // the 250ms window that guards the close-button refocus loop.
         suppressOpen = false;
         if (wasOpen && !panel.contains(event.target) && !form.contains(event.target)) {
             closePanel(false);
@@ -932,9 +815,6 @@ if (heroTitle && heroSection) {
 
     const setPending = (value) => {
         pending = value;
-        // Without this a second Enter while a request is in flight is swallowed
-        // silently — the control has to *look* busy for that to read as "wait",
-        // not "broken".
         if (sendButton) sendButton.disabled = value;
         form.classList.toggle('is-pending', value);
     };
@@ -943,8 +823,6 @@ if (heroTitle && heroSection) {
         if (pending || !question) return;
         setPending(true);
         openPanel();
-        // Hide suggestions only after moving focus off a chip, or the focused
-        // element vanishes and keyboard/SR users drop to the top of the page.
         if (suggestions && suggestions.contains(document.activeElement)) {
             input?.focus();
         }
@@ -992,9 +870,6 @@ if (heroTitle && heroSection) {
     });
 })();
 
-// Experience timeline — the current roles are shown, everything earlier
-// (plus education) is behind this toggle. Expanded by default the section ran
-// 5,300px, roughly half the page, and pushed the projects below it out of sight.
 (() => {
     const toggle = document.getElementById('timelineToggle');
     const extra = document.getElementById('timelineExtra');
@@ -1014,14 +889,10 @@ if (heroTitle && heroSection) {
     });
 })();
 
-// Contact — copy the email address to the clipboard.
 (() => {
     const copyButton = document.querySelector('.contact-copy');
     const copyStatus = document.getElementById('copyStatus');
     if (copyButton) {
-        // Captured once, before any click can overwrite the label: reading it
-        // inside the handler meant a second click within the reset window
-        // captured "Copied" and restored that as the permanent label.
         const restingLabel = copyButton.textContent;
         let resetTimer = 0;
         copyButton.addEventListener('click', async () => {
@@ -1032,7 +903,6 @@ if (heroTitle && heroSection) {
                 copied = true;
             } catch (e) { /* fall through to the legacy path */ }
             if (!copied) {
-                // execCommand fallback for non-secure contexts / denied permission.
                 try {
                     const helper = document.createElement('textarea');
                     helper.value = email;

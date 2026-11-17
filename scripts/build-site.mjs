@@ -47,8 +47,6 @@ await Promise.all(fontAssets.map(({ source, output }) => (
 
 await optimizeImages(path.join(publish, 'images'));
 
-// iOS ignores SVG icons for home-screen bookmarks; derive the PNG from the
-// one favicon source rather than committing a second copy.
 await sharp(path.join(root, 'favicon.svg'), { density: 300 })
   .resize(180, 180)
   .png()

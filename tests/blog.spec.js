@@ -4,7 +4,6 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { readConfiguredHeaders, startStaticServer } = require('./helpers/static-server.cjs');
 
-// Built output only — see portfolio.spec.js for rationale.
 const rootDir = path.join(__dirname, '..', 'public');
 if (!fs.existsSync(path.join(rootDir, 'index.html'))) {
   throw new Error('public/index.html missing — run `npm run build` before testing.');
@@ -23,7 +22,6 @@ test.afterAll(async () => {
 });
 
 async function openBlog(page) {
-  // pageUrl already ends with a trailing slash.
   await page.goto(`${pageUrl}blog/`);
 }
 
@@ -49,8 +47,6 @@ test('the blog carries no signup form or third-party content', async ({ page }) 
   await expect(page.locator('.writing-list a[target="_blank"]')).toHaveCount(0);
 });
 
-// Two scripts once registered the data-analytics click listener, so every blog
-// CTA was counted twice in GoatCounter.
 test('a CTA click fires exactly one analytics event', async ({ page }) => {
   await openBlog(page);
   await page.evaluate(() => {
@@ -81,8 +77,30 @@ test('blog page has no axe accessibility violations in dark mode', async ({ page
 
 test('blog retains portfolio navigation', async ({ page }) => {
   await openBlog(page);
-  await expect(page.getByRole('link', { name: 'Portfolio', exact: true })).toHaveAttribute('href', '../');
+  const nav = page.getByRole('navigation', { name: 'Main' });
+  await expect(nav.getByRole('link', { name: 'HOME', exact: true })).toHaveAttribute('href', '../');
+  await expect(nav.getByRole('link', { name: 'PROJECTS', exact: true })).toHaveAttribute('href', '../#projects');
+  await expect(nav.getByRole('link', { name: 'BLOG', exact: true })).toHaveAttribute('aria-current', 'page');
   await expect(page.getByRole('link', { name: 'Privacy', exact: true })).toHaveAttribute('href', '../privacy.html');
+});
+
+test('the blog nav drawer opens and closes on a phone', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 800 });
+  await openBlog(page);
+  const toggle = page.locator('#mobileToggle');
+  await expect(toggle).toBeVisible();
+  await toggle.click();
+  await expect(toggle).toHaveAttribute('aria-expanded', 'true');
+  await expect(page.getByRole('link', { name: 'CONTACT', exact: true })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(toggle).toHaveAttribute('aria-expanded', 'false');
+});
+
+test('a section link in the blog nav lands on that section of the portfolio', async ({ page }) => {
+  await openBlog(page);
+  await page.getByRole('navigation', { name: 'Main' }).getByRole('link', { name: 'PROJECTS', exact: true }).click();
+  await expect(page).toHaveURL(/#projects$/);
+  await expect(page.locator('#projects .section-title')).toBeInViewport();
 });
 
 test('blog uses the self-hosted site fonts', async ({ page }) => {
@@ -90,10 +108,6 @@ test('blog uses the self-hosted site fonts', async ({ page }) => {
   await expect(page.locator('link[href*="fonts.googleapis.com"], link[href*="fonts.gstatic.com"]')).toHaveCount(0);
 });
 
-// The writing list carries no fill and no shadow, so its rules are the
-// only thing separating one entry from the next. If they sink into the page
-// background the list reads as an undifferentiated wall of text — and axe
-// cannot see it, because WCAG 1.4.11 contrast is not statically checkable.
 function relativeLuminance([r, g, b]) {
   const [lr, lg, lb] = [r, g, b].map((channel) => {
     const c = channel / 255;
@@ -128,7 +142,6 @@ for (const theme of ['light', 'dark']) {
     }));
 
     const background = parseRgb(pageBg);
-    // WCAG 1.4.11 non-text contrast: boundaries needed to understand content.
     expect(contrastRatio(parseRgb(listTop), background)).toBeGreaterThanOrEqual(3);
     expect(contrastRatio(parseRgb(rowBottom), background)).toBeGreaterThanOrEqual(3);
   });
@@ -138,15 +151,11 @@ test('post links use the site focus ring, not the browser default', async ({ pag
   await openBlog(page);
   const firstEntry = page.locator('.writing-list .writing-row-title').first();
   await firstEntry.evaluate((el) => el.focus());
-  // `auto` means no author ring — the browser default, which ignores the palette.
   await expect(firstEntry).not.toHaveCSS('outline-style', 'auto');
   await expect(firstEntry).toHaveCSS('outline-style', 'solid');
   await expect(firstEntry).toHaveCSS('outline-color', 'rgb(107, 63, 224)');
 });
 
-// Regression: `.nowrap` was applied to a full 96-character sentence, forcing a
-// 690px line inside a 343px column. That made the whole blog page scroll
-// sideways at every width below ~700px, not just the intro paragraph.
 for (const width of [320, 375, 480, 640]) {
   test(`blog page does not scroll sideways at ${width}px`, async ({ page }) => {
     await page.setViewportSize({ width, height: 812 });
